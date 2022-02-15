@@ -1,0 +1,53 @@
+<!-- Topbar -->
+<nav class="navbar navbar-expand navbar-light topbar mb-4 static-top">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb bg-transparent pt-4">
+      <li class="breadcrumb-item text-dark" aria-current="page">
+        Inventory
+      </li>
+      <li
+        class="breadcrumb-item text-dark active"
+        aria-current="page"
+      >
+        Dashboard
+      </li>
+    </ol>
+  </nav>
+
+  <!-- Sidebar Toggle (Topbar) -->
+  <button
+    id="sidebarToggleTop"
+    class="btn btn-link d-md-none rounded-circle mr-3"
+  >
+    <i class="fa fa-bars"></i>
+  </button>
+
+  <!-- Topbar Navbar -->
+  <ul class="navbar-nav ml-auto">
+    <div class="topbar-divider d-none d-sm-block"></div>
+
+    <!-- Nav Item - User Information -->
+
+    <li class="nav-item dropdown no-arrow">
+      <a id="navbarDropdown" class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+          {{ Auth::user()->name }}
+          <img class="ms-3" src="{{ asset('img/user.png') }}" width="25px" />
+
+      </a>
+      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{{ route('logout') }}"
+             onclick="event.preventDefault();
+                           document.getElementById('logout-form').submit();">
+              {{ __('Logout') }}
+          </a>
+
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-block">
+              @csrf
+          </form>
+      </div>
+    </li>
+
+
+  </ul>
+</nav>
+<!-- End of Topbar -->

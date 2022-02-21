@@ -39,37 +39,21 @@
                           </div>
                         </div>
 
-                        {{-- <div class="row mb-3">
-                          <label for="company" class="col-md-4 col-form-label text-md-end">{{ __('Company') }}</label>
-
-                          <div class="col-md-6">
-                              <input id="company" type="text" class="form-control @error('company') is-invalid @enderror" name="company_id" value="{{ old('company') }}" required autocomplete="company" autofocus>
-
-                              @error('company')
-                                  <span class="invalid-feedback" role="alert">
-                                      <strong>{{ $message }}</strong>
-                                  </span>
-                              @enderror
-                          </div>
-                        </div> --}}
-
                         <div class="row mb-3">
-                          <label for="company" class="form-label">Company</label>
+                          <label for="company" class="col-md-4 col-form-label text-md-end">{{ __('Company') }}</label>
                           <div class="col-md-6">
                             <select
                               name="company_id"
                               class="form-select"
                               id="company"
-                              aria-label="Default select example">
-                              <option selected>Choose Company</option>
+                              required>
+                              <option value="">Choose Company</option>
                               @foreach ($companies as $company)
-                                <option value="{{ $company->id }}">{{ $company->company_name }}</option>
-                    
-                                {{-- @if (old('subcategory_id') == $subcategory->id)
-                                  <option value="{{ $subcategory->id }}" selected>{{ $subcategory->subcategory_name }}</option>
+                                @if (old('company_id') == $company->id)
+                                  <option value="{{ $company->id }}" selected>{{ $company->company_name }}</option>
                                 @else
-                                  <option value="{{ $subcategory->id }}">{{ $subcategory->subcategory_name }}</option>
-                                @endif --}}
+                                  <option value="{{ $company->id }}">{{ $company->company_name }}</option>
+                                @endif
                               @endforeach
                             </select>
                           </div>
@@ -93,13 +77,16 @@
                           <label for="role" class="col-md-4 col-form-label text-md-end">{{ __('Role') }}</label>
 
                           <div class="col-md-6">
-                              <input id="role" type="text" class="form-control @error('role') is-invalid @enderror" name="role" value="{{ old('role') }}" required autocomplete="name" autofocus>
-
-                              @error('role')
-                                  <span class="invalid-feedback" role="alert">
-                                      <strong>{{ $message }}</strong>
-                                  </span>
-                              @enderror
+                              <select
+                                name="role"
+                                class="form-select"
+                                id="role"
+                                required>
+                                <option value="">Choose Role</option>
+                                <option value="superadmin">Superadmin</option>
+                                <option value="admin">Admin</option>
+                                <option value="user">User</option>
+                              </select>
                           </div>
                         </div>
 

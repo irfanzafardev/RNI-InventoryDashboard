@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+use App\Models\Unit;
 use App\Models\User;
-use App\Models\Company;
 use App\Models\Group;
+use App\Models\Company;
+use App\Models\Product;
 use App\Models\Category;
 use App\Models\Subcategory;
-use App\Models\Unit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Spatie\QueryBuilder\AllowedFilter;
 
 class AdministratorProductController extends Controller
 {
@@ -26,8 +29,15 @@ class AdministratorProductController extends Controller
 
   public function index()
   {
+    $id = 2;
+    $nama = "GULA - PG RA";
+    $subcategory = 7;
+    $class = "Agroindustri";
     return view('administrator.products.product', [
-      'products' => Product::all()
+      'products' => Product::OrderBy('updated_at', 'desc')->get()
+      // 'products' => Product::all()->where('subcategory_id', $subcategory)
+      // 'products' => Product::all()->where('subcategory_id', $subcategory)
+      // ->join('detail_barang', 'detail_barang.id_barang', '=', 'barang.id_barang')>get();
     ]);
   }
 
@@ -38,13 +48,26 @@ class AdministratorProductController extends Controller
    */
   public function create()
   {
-    return view('administrator.products.create', [
+    // PR-11001
+    $check = Product::count();
+    $userid = Auth::user()->id;
+    $companyid = Auth::user()->company->id;
+    if ($check == 0) {
+      $order = 1001;
+      $code = 'PR-' . $userid . $companyid . $order;
+    } else {
+      $pull = Product::all()->last();
+      $order = (int)substr($pull->product_code, -4) + 1;
+      $code = 'PR-' . $userid . $companyid . $order;
+    }
+    $id = Auth::user()->company->group->id;
+    return view('administrator.products.create', compact('code'), [
       'users' => User::all(),
       'companies' => Company::all(),
       'groups' => Group::all(),
-      'categories' => Category::all(),
+      'categories' => Category::all()->where('group_id', $id),
       'subcategories' => Subcategory::all(),
-      'units' => Unit::all(),
+      'units' => Unit::all()
     ]);
   }
 
@@ -60,13 +83,8 @@ class AdministratorProductController extends Controller
     $validatedData = $request->validate([
       'product_code' => 'required',
       'product_name' => 'required',
-      // 'company' => 'required',
       'user_id' => 'required',
-      // 'group_name' => 'required',
-      // 'category_name' => 'required',
-      // 'subcategory_name' => 'required',
       'subcategory_id' => 'required',
-      // 'unit_name' => 'required',
       'unit_id' => 'required',
       'quantity' => 'required',
       'unit_price' => 'required',
@@ -75,7 +93,7 @@ class AdministratorProductController extends Controller
     // $validatedData['user_id'] = auth()->user()->id;
 
     Product::create($validatedData);
-    return redirect('/administrator/products')->with('success', 'p');
+    return redirect('/administrator/products')->with('success', 'Data has been successfully added');
   }
 
   /**
@@ -97,11 +115,13 @@ class AdministratorProductController extends Controller
    */
   public function edit(Product $product)
   {
+    $id = Auth::user()->company->group->id;
     return view('administrator.products.edit', [
       'product' => $product,
       'users' => User::all(),
+      'companies' => Company::all(),
       'groups' => Group::all(),
-      'categories' => Category::all(),
+      'categories' => Category::all()->where('group_id', $id),
       'subcategories' => Subcategory::all(),
       'units' => Unit::all(),
     ]);
@@ -119,13 +139,8 @@ class AdministratorProductController extends Controller
     $validatedData = $request->validate([
       'product_code' => 'required',
       'product_name' => 'required',
-      // 'company' => 'required',
       'user_id' => 'required',
-      // 'group_name' => 'required',
-      // 'category_name' => 'required',
-      // 'subcategory_name' => 'required',
       'subcategory_id' => 'required',
-      // 'unit_name' => 'required',
       'unit_id' => 'required',
       'quantity' => 'required',
       'unit_price' => 'required',
@@ -134,7 +149,7 @@ class AdministratorProductController extends Controller
     Product::where('id', $product->id)
       ->update($validatedData);
 
-    return redirect('/administrator/products')->with('success', 'updated');
+    return redirect('/administrator/products')->with('success', 'Data has been successfully updated');
   }
 
   /**
@@ -153,6 +168,6 @@ class AdministratorProductController extends Controller
   {
     $dataproduct = Product::find($id);
     $dataproduct->delete();
-    return redirect('/administrator/products')->with('success', 'delete');
+    return redirect('/administrator/products')->with('success', 'Data has been successfully deleted');
   }
 }

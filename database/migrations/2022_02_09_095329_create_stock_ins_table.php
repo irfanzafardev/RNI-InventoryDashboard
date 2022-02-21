@@ -18,7 +18,7 @@ class CreateStockInsTable extends Migration
       $table->string('transact_code')->unique();
       $table->date('date')->nullable();
       $table->foreignId('product_id');
-      $table->string('supplier');
+      // $table->string('supplier')->nullable();
       $table->integer('quantity');
       $table->timestamps();
     });

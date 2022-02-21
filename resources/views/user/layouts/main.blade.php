@@ -59,13 +59,13 @@
 	<body id="page-top">
 		<!-- Page Wrapper -->
 		<div id="wrapper">
-      @include('administrator.partials.sidebar')
+      @include('user.partials.sidebar')
 
 			<!-- Content Wrapper -->
 			<div id="content-wrapper" class="d-flex flex-column">
 				<!-- Main Content -->
 				<div id="content">
-          @include('administrator.partials.topbar')
+          @include('user.partials.topbar')
 
 					<!-- Begin Page Content -->
 					<div class="container-fluid">

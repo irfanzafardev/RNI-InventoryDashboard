@@ -3,7 +3,7 @@
 @section('container')
 <!-- Page Heading -->
 <div class="page-heading heading bg-darkblue d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-white">Subategory List</h1>
+    <h1 class="h3 mb-0 text-white">Subcategory List</h1>
 </div>
 
 <!-- DataTales Today's input -->

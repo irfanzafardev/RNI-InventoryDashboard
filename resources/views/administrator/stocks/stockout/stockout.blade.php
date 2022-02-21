@@ -33,7 +33,6 @@
             <th>Transact Code</th>
             <th>Date</th>
             <th>Product Name</th>
-            <th>Supplier</th>
             <th>UOM</th>
             <th>Qty</th>
             <th>Unit Price (Rp)</th>
@@ -47,7 +46,6 @@
             <th>Transact Code</th>
             <th>Date</th>
             <th>Product Name</th>
-            <th>Supplier</th>
             <th>UOM</th>
             <th>Qty</th>
             <th>Unit Price (Rp)</th>
@@ -59,21 +57,23 @@
           @php
               $value = 50
           @endphp
-          @foreach ($stockins as $stockin)
+          @foreach ($stockouts as $stockout)
           <tr>
             <td>{{ $loop->iteration }}</td>
-            <td>{{ $stockin->transact_code }}</td>
-            <td>{{ $stockin->created_at }}</td>
-            <td>{{ $stockin->product->product_name }}</td>
-            <td>{{ $stockin->supplier}}</td>
-            <td>{{ $stockin->product->unit->unit_symbol }}</td>
-            <td>{{ $stockin->quantity}}</td>
-            <td>{{ $stockin->product->unit_price }}</td>
-            <td> <?php echo $value; ?> </td>
+            <td>{{ $stockout->transact_code }}</td>
+            <td>{{ $stockout->date }}</td>
+            <td>{{ $stockout->product->product_name }}</td>
+            <td>{{ $stockout->product->unit->unit_symbol }}</td>
+            <td>{{ number_format($stockout->quantity, 0) }}</td>
+            <td>{{ number_format($stockout->product->unit_price, 2) }}</td>
+            @php
+              $value = $stockout->quantity * $stockout->product->unit_price ;
+            @endphp
+            <td>Rp. <?php echo number_format($value, 2); ?> </td>
             {{-- <td id="value">{{ $stockin->quantity}}*{{ $stockin->product->unit_price }}</td> --}}
             <td>
-              <a href="/administrator/products/{{ $stockin->id }}/edit">Edit</a>
-              <a href="#" class="delete" data-id="{{ $stockin->id }}" data-name="{{ $stockin->product->product_name }}">Delete</a>
+              <a href="/administrator/products/{{ $stockout->id }}/edit">Edit</a>
+              <a href="#" class="delete" data-id="{{ $stockout->id }}" data-name="{{ $stockout->product->product_name }}">Delete</a>
             </td>
           </tr>
           @endforeach

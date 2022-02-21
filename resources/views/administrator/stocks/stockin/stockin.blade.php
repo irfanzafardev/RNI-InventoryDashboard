@@ -17,9 +17,17 @@
         {{ $message }}
       </div>
     @endif
+    @if (session('error'))
+      <div class="alert alert-danger">
+        {{ session('error') }}
+      </div>
+    @endif
     <a href="/administrator/stockin/create" class="btn btn-primary bg-darkblue px-4 mb-3">
       Add Data
     </a>
+    {{-- <a href="/administrator/detailstockin/{{ $last->id }}" class="btn btn-primary bg-darkblue px-4 mb-3">
+      Show Last Data
+    </a> --}}
     <div class="table-responsive">
       <table
         class="table table-bordered"
@@ -33,11 +41,10 @@
             <th>Transact Code</th>
             <th>Date</th>
             <th>Product Name</th>
-            <th>Supplier</th>
             <th>UOM</th>
             <th>Qty</th>
-            <th>Unit Price (Rp)</th>
-            <th>Value (Rp)</th>
+            <th>Unit Price</th>
+            <th>Value</th>
             <th>Option</th>
           </tr>
         </thead>
@@ -47,38 +54,36 @@
             <th>Transact Code</th>
             <th>Date</th>
             <th>Product Name</th>
-            <th>Supplier</th>
             <th>UOM</th>
             <th>Qty</th>
-            <th>Unit Price (Rp)</th>
-            <th>Value (Rp)</th>
+            <th>Unit Price</th>
+            <th>Value</th>
             <th>Option</th>
           </tr>
         </tfoot>
         <tbody>
-          
           @foreach ($stockins as $stockin)
-          @php
-              $value = 0
-
-          @endphp
           <tr>
             <td>{{ $loop->iteration }}</td>
             <td>{{ $stockin->transact_code }}</td>
             <td>{{ $stockin->date }}</td>
             <td>{{ $stockin->product->product_name }}</td>
-            <td>{{ $stockin->supplier}}</td>
             <td>{{ $stockin->product->unit->unit_symbol }}</td>
-            <td>{{ $stockin->quantity}}</td>
-            <td>{{ $stockin->product->unit_price }}</td>
+            <td>{{ number_format($stockin->quantity, 0)}}</td>
+            <td>Rp. {{ number_format($stockin->product->unit_price, 2) }}</td>
             @php
               $value = $stockin->quantity * $stockin->product->unit_price ;
             @endphp
-            <td> <?php echo $value; ?> </td>
-            {{-- <td id="value">{{ $stockin->quantity}}*{{ $stockin->product->unit_price }}</td> --}}
+            <td>Rp.  <?php echo number_format($value, 2); ?> </td>
             <td>
+              {{-- <form method="post" action="/administrator/increasestockin/{{ $stockin->id }}">
+                @csrf
+                <button type="submit" class="btn-link border-0">
+                  Transfer Data
+                </button>
+              </form>     --}}
               <a href="/administrator/products/{{ $stockin->id }}/edit">Edit</a>
-              <a href="#" class="delete" data-id="{{ $stockin->id }}" data-name="{{ $stockin->product->product_name }}">Delete</a>
+              <a href="#" class="deleteStockIn" data-id="{{ $stockin->id }}" data-name="{{ $stockin->product->product_name }}">Delete</a>
             </td>
           </tr>
           @endforeach
@@ -87,4 +92,28 @@
     </div>
   </div>
 </div>
+
+<script>
+  $('.deleteStockIn').click( function(){
+      var stockinid = $(this).attr('data-id')
+      var stockinname = $(this).attr('data-name')
+      swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this heheheheheh "+stockinname+" ",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          window.location = "/administrator/deletestockin/"+stockinid+""
+          swal("Poof! Your imaginary file has been deleted!", {
+            icon: "success",
+          });
+        } else {
+          swal("Your imaginary file is safe!");
+        }
+      });
+    })
+</script>
 @endsection

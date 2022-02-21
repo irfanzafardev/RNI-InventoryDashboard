@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\StockOut;
+use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdministratorStockOutController extends Controller
@@ -20,7 +22,9 @@ class AdministratorStockOutController extends Controller
   public function index()
   {
     return view('administrator.stocks.stockout.stockout', [
-      'stockins' => StockOut::all()
+      'stockouts' => StockOut::all(),
+      'products' => Product::all(),
+      'users' => User::all()
     ]);
   }
 

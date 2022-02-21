@@ -1,5 +1,20 @@
 @extends('administrator.layouts.main')
 
+@section('breadcrumb')
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb bg-transparent pt-4">
+    <li class="breadcrumb-item text-dark" aria-current="page">
+      <a href="/">
+        Dashboard
+      </a>
+    </li>
+    <li class="breadcrumb-item text-dark active" aria-current="page">
+      Product Items
+    </li>
+  </ol>
+</nav>
+@endsection
+
 @section('container')
 <!-- Page Heading -->
 <div class="page-heading heading bg-darkblue d-sm-flex align-items-center justify-content-between mb-4">
@@ -30,30 +45,34 @@
         <thead>
           <tr>
             <th>No</th>
+            <th>Product Code</th>
             <th>Company</th>
+            <th>Product Name</th>
+            <th>Class</th>
             <th>Category</th>
             <th>Sub Category</th>
-            <th>Product Name</th>
             <th>UOM</th>
             <th>Qty</th>
-            <th>Unit Price (Rp)</th>
-            <th>Value (Rp)</th>
-            <th>Last Updated</th>
+            <th>Unit Price</th>
+            <th>Value</th>
+            {{-- <th>Last Updated</th> --}}
             <th>Option</th>
           </tr>
         </thead>
         <tfoot>
           <tr>
             <th>No</th>
+            <th>Product Code</th>
             <th>Company</th>
+            <th>Product Name</th>
+            <th>Class</th>
             <th>Category</th>
             <th>Sub Category</th>
-            <th>Product Name</th>
             <th>UOM</th>
             <th>Qty</th>
-            <th>Unit Price (Rp)</th>
-            <th>Value (Rp)</th>
-            <th>Last Updated</th>
+            <th>Unit Price</th>
+            <th>Value</th>
+            {{-- <th>Last Updated</th> --}}
             <th>Option</th>
           </tr>
         </tfoot>
@@ -61,21 +80,23 @@
           @foreach ($products as $product)
           <tr>
             <td>{{ $loop->iteration }}</td>
+            <td>{{ $product->product_code }}</td>
             <td>{{ $product->user->company->company_name }}</td>
+            <td>{{ $product->product_name }}</td>
+            <td>{{ $product->subcategory->category->group->group_name }}</td>
             <td>{{ $product->subcategory->category->category_name }}</td>
             <td>{{ $product->subcategory->subcategory_name }}</td>
-            <td>{{ $product->product_name }}</td>
-            <td>{{ $product->unit->unit_symbol}}</td>
-            <td>{{ $product->quantity }}</td>
-            <td>{{ $product->unit_price }}</td>
+            <td>{{ $product->unit->unit_name}}</td>
+            <td>{{ number_format($product->quantity, 0)  }}</td>
+            <td>Rp. {{ number_format($product->unit_price, 2) }}</td>
             @php
               $value = $product->quantity * $product->unit_price ;
             @endphp
-            <td><?php echo $value; ?></td>
-            <td>{{ $product->updated_at->diffForHumans() }}</td>
+            <td>Rp. <?php echo number_format($value, 0); ?></td>
+            {{-- <td>{{ $product->created_at }}</td> --}}
             <td>
               <a href="/administrator/products/{{ $product->id }}/edit">Edit</a>
-              <a href="#" class="delete" data-id="{{ $product->id }}" data-name="{{ $product->product_name }}">Delete</a>
+              <a href="#" class="deleteProduct" data-id="{{ $product->id }}" data-name="{{ $product->product_name }}">Delete</a>
             </td>
           </tr>   
           @endforeach
@@ -84,4 +105,28 @@
     </div>
   </div>
 </div>
+
+<script>
+  $('.deleteProduct').click( function(){
+    var productid = $(this).attr('data-id')
+    var productname = $(this).attr('data-name')
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this "+productname+" ",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        window.location = "/administrator/deleteproduct/"+productid+""
+        swal("Poof! Your imaginary file has been deleted!", {
+          icon: "success",
+        });
+      } else {
+        swal("Your imaginary file is safe!");
+      }
+    });
+  })
+</script>
 @endsection

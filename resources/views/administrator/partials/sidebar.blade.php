@@ -83,17 +83,17 @@
 
   <!-- Nav Item - Tables -->
   <li class="nav-item">
-    <a class="nav-link {{ Request::is('administrator/stockin*') ? 'active' : '' }} py-2" href="/administrator/stockin">
-      <span>Stock In</span></a
+    <a class="nav-link {{ Request::is('administrator/stocks*') ? 'active' : '' }} py-2" href="/administrator/stocks">
+      <span>Daily Stock</span></a
     >
   </li>
 
   <!-- Nav Item - Tables -->
-  <li class="nav-item">
+  {{-- <li class="nav-item">
     <a class="nav-link {{ Request::is('administrator/stockout*') ? 'active' : '' }} py-2" href="/administrator/stockout">
       <span>Stock Out</span></a
     >
-  </li>
+  </li> --}}
 
   <!-- Report -->
   <div class="nav-heading text-dark mx-3">Report</div>
@@ -101,19 +101,19 @@
   <!-- Nav Item - Tables -->
   <li class="nav-item">
     <a class="nav-link py-2" href="#">
-      <span>Report Stock In</span></a
+      <span>Report Stock</span></a
     >
   </li>
 
   <!-- Nav Item - Tables -->
-  <li class="nav-item">
+  {{-- <li class="nav-item">
     <a class="nav-link py-2" href="#">
       <span>Report Stock Out</span></a
     >
-  </li>
+  </li> --}}
 
   <!-- Sidebar Toggler (Sidebar) -->
-  <div class="text-center d-none d-md-inline">
+  <div class="text-center d-none d-md-inline mt-3">
     <button class="rounded-circle border-0" id="sidebarToggle"></button>
   </div>
 </ul>

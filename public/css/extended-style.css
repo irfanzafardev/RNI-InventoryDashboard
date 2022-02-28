@@ -103,6 +103,11 @@
   line-height: 27px;
 }
 
+label {
+  font-family: "Poppins", Helvetica, sans-serif;
+  font-size: 15px;
+}
+
 
 /* View Dashboard */
 
@@ -137,6 +142,13 @@
 .time-nav .nav-item a:hover {
   color: #0B1629;
   text-decoration: underline;
+}
+
+#datepicker {
+  font-family: "Poppins", Helvetica, sans-serif;
+  padding: 0 8px;
+  background-color: #fff;
+  border-radius: 5px;
 }
 
 /* summary-card */
@@ -180,6 +192,18 @@
 }
 
 /* category-summary-card */
+
+.accordion-button img {
+  transform: rotate(0);
+  transition: transform 0.2s ease-in;
+}
+
+.accordion-button.clicked img {
+  transform: rotate(180deg);
+  transition: transform 0.2s ease-in;
+}
+
+
 
 .category-summary-card .card {
   background-color: #E4F8CF;

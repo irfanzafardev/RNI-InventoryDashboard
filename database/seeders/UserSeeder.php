@@ -68,6 +68,15 @@ class UserSeeder extends Seeder
         'email' => 'yudha@mail.com',
         'password' => bcrypt('qqqqqqqq'),
         'role' => 'user',
+      ],
+      [
+        'name' => 'Aldo Brahmantio',
+        'username' => 'aldo',
+        'company_id' => 11,
+        'phone' => '088888888888',
+        'email' => 'aldo@mail.com',
+        'password' => bcrypt('qqqqqqqq'),
+        'role' => 'user',
       ]
     ]);
   }

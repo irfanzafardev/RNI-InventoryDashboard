@@ -17,7 +17,7 @@
 
   <!-- Nav Item - Dashboard -->
   <li class="nav-item">
-    <a class="nav-link {{ Request::is('/') ? 'active' : '' }} py-2" href="/">
+    <a class="nav-link {{ Request::is('staff') ? 'active' : '' }} py-2" href="/staff">
       <!-- <i class="fas fa-fw fa-tachometer-alt"></i> -->
       <span>Dashboard</span></a
     >
@@ -28,28 +28,28 @@
 
   <!-- Nav Item - Charts -->
   <li class="nav-item">
-    <a class="nav-link {{ Request::is('*') ? 'active' : '' }} py-2" href="">
+    <a class="nav-link {{ Request::is('staff/products*') ? 'active' : '' }} py-2" href="/staff/products">
       <span>Product Items</span></a
     >
   </li>
 
   <!-- Nav Item - Tables -->
   <li class="nav-item">
-    <a class="nav-link {{ Request::is('*') ? 'active' : '' }} py-2" href="">
+    <a class="nav-link {{ Request::is('staff/categories*') ? 'active' : '' }} py-2" href="">
       <span>Product Category</span></a
     >
   </li>
 
   <!-- Nav Item - Tables -->
   <li class="nav-item">
-    <a class="nav-link {{ Request::is('*') ? 'active' : '' }} py-2" href="">
+    <a class="nav-link {{ Request::is('staff/subcatgories*') ? 'active' : '' }} py-2" href="">
       <span>Sub Product Category</span></a
     >
   </li>
 
   <!-- Nav Item - Tables -->
   <li class="nav-item">
-    <a class="nav-link {{ Request::is('*') ? 'active' : '' }} py-2" href="">
+    <a class="nav-link {{ Request::is('staff/units*') ? 'active' : '' }} py-2" href="">
       <span>Product UOM</span></a
     >
   </li>
@@ -59,14 +59,14 @@
 
   <!-- Nav Item - Tables -->
   <li class="nav-item">
-    <a class="nav-link {{ Request::is('*') ? 'active' : '' }} py-2" href="">
+    <a class="nav-link {{ Request::is('/*') ? 'active' : '' }} py-2" href="">
       <span>Stock In</span></a
     >
   </li>
 
   <!-- Nav Item - Tables -->
   <li class="nav-item">
-    <a class="nav-link {{ Request::is('*') ? 'active' : '' }} py-2" href="">
+    <a class="nav-link {{ Request::is('/*') ? 'active' : '' }} py-2" href="">
       <span>Stock Out</span></a
     >
   </li>
@@ -76,14 +76,14 @@
 
   <!-- Nav Item - Tables -->
   <li class="nav-item">
-    <a class="nav-link py-2" href="#">
+    <a class="nav-link py-2" href="/">
       <span>Report Stock In</span></a
     >
   </li>
 
   <!-- Nav Item - Tables -->
   <li class="nav-item">
-    <a class="nav-link py-2" href="#">
+    <a class="nav-link py-2" href="/">
       <span>Report Stock Out</span></a
     >
   </li>

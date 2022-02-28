@@ -3,15 +3,19 @@
 @section('container')
 <!-- Page Heading -->
 <div class="page-heading heading bg-darkblue d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-white">Stok in list</h1>
+    <h1 class="h3 mb-0 text-white">Product Stok</h1>
 </div>
 
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item" role="presentation">
-    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Today</a>
+    <a class="nav-link py-2 px-3 active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
+      Today
+    </a>
   </li>
   <li class="nav-item" role="presentation">
-    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">All</a>
+    <a class="nav-link py-2 px-3" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">
+      All
+    </a>
   </li>
 </ul>
 <div class="tab-content" id="myTabContent">
@@ -32,12 +36,9 @@
             {{ session('error') }}
           </div>
         @endif
-        <a href="/administrator/stockin/create" class="btn btn-primary bg-darkblue px-4 mb-3">
+        <a href="/administrator/stocks/create" class="btn btn-primary bg-darkblue px-4 mb-3">
           Add Data
         </a>
-        {{-- <a href="/administrator/detailstockin/{{ $last->id }}" class="btn btn-primary bg-darkblue px-4 mb-3">
-          Show Last Data
-        </a> --}}
         <div class="table-responsive">
           <table
             class="table table-bordered"
@@ -72,28 +73,19 @@
               </tr>
             </tfoot>
             <tbody>
-              @foreach ($stockins as $stockin)
+              @foreach ($stocks as $stock)
               <tr>
                 <td>{{ $loop->iteration }}</td>
-                <td>{{ $stockin->transact_code }}</td>
-                <td>{{ $stockin->date }}</td>
-                <td>{{ $stockin->product->product_name }}</td>
-                <td>{{ $stockin->product->unit->unit_symbol }}</td>
-                <td>{{ number_format($stockin->quantity, 0)}}</td>
-                <td>Rp. {{ number_format($stockin->product->unit_price, 2) }}</td>
-                @php
-                  $value = $stockin->quantity * $stockin->product->unit_price ;
-                @endphp
-                <td>Rp.  <?php echo number_format($value, 2); ?> </td>
+                <td>{{ $stock->stock_code }}</td>
+                <td>{{ $stock->date }}</td>
+                <td>{{ $stock->product->product_name }}</td>
+                <td>{{ $stock->product->unit->unit_symbol }}</td>
+                <td>{{ number_format($stock->quantity, 0)}}</td>
+                <td>Rp. {{ number_format($stock->product->unit_price, 2) }}</td>
+                <td>Rp. {{ number_format($stock->value, 2) }}</td>
                 <td>
-                  {{-- <form method="post" action="/administrator/increasestockin/{{ $stockin->id }}">
-                    @csrf
-                    <button type="submit" class="btn-link border-0">
-                      Transfer Data
-                    </button>
-                  </form>     --}}
-                  <a href="/administrator/products/{{ $stockin->id }}/edit">Edit</a>
-                  <a href="#" class="deleteStockIn" data-id="{{ $stockin->id }}" data-name="{{ $stockin->product->product_name }}">Delete</a>
+                  <a href="/administrator/products/{{ $stock->id }}/edit">Edit</a>
+                  <a href="#" class="deleteStockIn" data-id="{{ $stock->id }}" data-name="{{ $stock->product->product_name }}">Delete</a>
                 </td>
               </tr>
               @endforeach
@@ -107,7 +99,7 @@
     <!-- DataTales Today's input -->
     <div class="card my-4">
       <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-dark">Today's input</h6>
+        <h6 class="m-0 font-weight-bold text-dark">All input</h6>
       </div>
       <div class="card-body">
         @if ($message = Session::get('success'))
@@ -157,22 +149,19 @@
               </tr>
             </tfoot>
             <tbody>
-              @foreach ($datastocks as $datastock)
+              @foreach ($allStocks as $allStock)
               <tr>
                 <td>{{ $loop->iteration }}</td>
-                <td>{{ $datastock->transact_code }}</td>
-                <td>{{ $datastock->date }}</td>
-                <td>{{ $datastock->product->product_name }}</td>
-                <td>{{ $datastock->product->unit->unit_symbol }}</td>
-                <td>{{ number_format($datastock->quantity, 0)}}</td>
-                <td>Rp. {{ number_format($datastock->product->unit_price, 2) }}</td>
-                @php
-                  $value = $datastock->quantity * $datastock->product->unit_price ;
-                @endphp
-                <td>Rp.  <?php echo number_format($value, 2); ?> </td>
+                <td>{{ $allStock->stock_code }}</td>
+                <td>{{ $allStock->date }}</td>
+                <td>{{ $allStock->product->product_name }}</td>
+                <td>{{ $allStock->product->unit->unit_symbol }}</td>
+                <td>{{ number_format($allStock->quantity, 0)}}</td>
+                <td>Rp. {{ number_format($allStock->product->unit_price, 2) }}</td>
+                <td>Rp. {{ number_format($allStock->value, 2) }}</td>
                 <td>
-                  <a href="/administrator/products/{{ $datastock->id }}/edit">Edit</a>
-                  <a href="#" class="deleteStockIn" data-id="{{ $datastock->id }}" data-name="{{ $datastock->product->product_name }}">Delete</a>
+                  <a href="/administrator/products/{{ $allStock->id }}/edit">Edit</a>
+                  <a href="#" class="deleteStockIn" data-id="{{ $allStock->id }}" data-name="{{ $allStock->product->product_name }}">Delete</a>
                 </td>
               </tr>
               @endforeach

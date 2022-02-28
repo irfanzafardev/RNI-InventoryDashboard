@@ -41,31 +41,59 @@ class SubcategorySeeder extends Seeder
       ],
       [
         'subcategory_name' => 'CPO',
-        'category_id' => 4
+        'category_id' => 5
       ],
       [
         'subcategory_name' => 'PK',
-        'category_id' => 4
+        'category_id' => 5
       ],
       [
         'subcategory_name' => 'Inner Bag',
-        'category_id' => 5
-      ],
-      [
-        'subcategory_name' => 'Woven Bag',
-        'category_id' => 5
-      ],
-      [
-        'subcategory_name' => 'WB+IB',
-        'category_id' => 5
-      ],
-      [
-        'subcategory_name' => 'ASSP',
         'category_id' => 6
       ],
       [
+        'subcategory_name' => 'Woven Bag',
+        'category_id' => 6
+      ],
+      [
+        'subcategory_name' => 'WB+IB',
+        'category_id' => 6
+      ],
+      [
+        'subcategory_name' => 'ASSP',
+        'category_id' => 7
+      ],
+      [
         'subcategory_name' => 'Mask',
-        'category_id' => 8
+        'category_id' => 9
+      ],
+      [
+        'subcategory_name' => 'Garam Halus Karungan',
+        'category_id' => 10
+      ],
+      [
+        'subcategory_name' => 'Garam Halus Kemasan',
+        'category_id' => 11
+      ],
+      [
+        'subcategory_name' => 'Garam Kasar Kemasan',
+        'category_id' => 12
+      ],
+      [
+        'subcategory_name' => 'Garam Import Farmasi',
+        'category_id' => 13
+      ],
+      [
+        'subcategory_name' => 'Garam Rakyat PMN',
+        'category_id' => 14
+      ],
+      [
+        'subcategory_name' => 'Garam Produksi Sendiri',
+        'category_id' => 15
+      ],
+      [
+        'subcategory_name' => 'Garam Top Grande Maduro',
+        'category_id' => 16
       ],
     ]);
   }

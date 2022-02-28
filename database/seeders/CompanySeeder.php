@@ -55,6 +55,10 @@ class CompanySeeder extends Seeder
         'company_name' => 'PT GIEB',
         'group_id' => 3
       ],
+      [
+        'company_name' => 'PT Garam',
+        'group_id' => 4
+      ],
     ]);
   }
 }

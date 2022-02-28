@@ -34,7 +34,7 @@ class AdministratorProductController extends Controller
     $subcategory = 7;
     $class = "Agroindustri";
     return view('administrator.products.product', [
-      'products' => Product::OrderBy('updated_at', 'desc')->get()
+      'products' => Product::all()
       // 'products' => Product::all()->where('subcategory_id', $subcategory)
       // 'products' => Product::all()->where('subcategory_id', $subcategory)
       // ->join('detail_barang', 'detail_barang.id_barang', '=', 'barang.id_barang')>get();
@@ -83,6 +83,7 @@ class AdministratorProductController extends Controller
     $validatedData = $request->validate([
       'product_code' => 'required',
       'product_name' => 'required',
+      'class' => 'required',
       'user_id' => 'required',
       'subcategory_id' => 'required',
       'unit_id' => 'required',
@@ -139,6 +140,7 @@ class AdministratorProductController extends Controller
     $validatedData = $request->validate([
       'product_code' => 'required',
       'product_name' => 'required',
+      'class' => 'required',
       'user_id' => 'required',
       'subcategory_id' => 'required',
       'unit_id' => 'required',

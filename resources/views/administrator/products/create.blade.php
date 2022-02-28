@@ -56,6 +56,7 @@
               class="form-control @error('product_name') is-invalid @enderror"
               name="product_name"
               id="product_name"
+              placeholder="Enter product name"
               value="{{ old('product_name') }}"
               required
             />
@@ -71,7 +72,7 @@
               name="user_id"
               class="form-control form-select"
               required>
-              <option value="">Choose Company</option>
+              <option value="">Choose company</option>
               <option value="{{ Auth::user()->id }}" selected>{{ Auth::user()->company->company_name }}</option>
             </select>
           </div>
@@ -82,14 +83,30 @@
               class="form-control form-select"
               id="group"
               required>
-              <option value="">Choose Class</option>
+              <option value="">Choose product class</option>
               <option value="{{ Auth::user()->company->group->id }}" selected>{{ Auth::user()->company->group->group_name }}</option>
             </select>
           </div>
           <div class="form-group mb-3">
+            <label for="class" class="form-label">Class</label>
+            <input
+              type="text"
+              class="form-control @error('class') is-invalid @enderror"
+              name="class"
+              id="class"
+              value="{{ Auth::user()->company->group->group_name }}"
+              readonly
+            />
+            @error('class')
+                <div class="invalid-feedback">
+                  {{ $message }}
+                </div>
+            @enderror
+          </div>
+          <div class="form-group mb-3">
             <label for="category" class="form-label">Product Category</label>
             <select class="form-control form-select @error('category') is-invalid @enderror" name="category_id" id="category" required>
-              <option value="">Choose Category</option>
+              <option value="">Choose product category</option>
               @foreach ($categories as $category)
                 <option value="{{ $category->id }}">{{ $category->category_name }}</option>
               @endforeach
@@ -113,7 +130,7 @@
               class="form-control form-select"
               id="product_unit"
               required>
-              <option value="">Choose Unit</option>
+              <option value="">Choose product unit</option>
               @foreach ($units as $unit)
                 @if (old('unit_id') == $unit->id)
                   <option value="{{ $unit->id }}" selected>{{ $unit->unit_name }}</option>
@@ -140,12 +157,14 @@
             @enderror
           </div>
           <div class="form-group mb-4">
-            <label for="unit_price" class="form-label">Unit Price</label>
+            <label for="unit_price" class="form-label">Unit Price (Rp)</label>
             <input
               type="number"
               class="input form-control @error('unit_price') is-invalid @enderror"
               name="unit_price"
               id="unit_price"
+              placeholder="Enter product unit price"
+              value="{{ old('unit_price') }}"
               required>
               @error('unit_price')
                   <div class="invalid-feedback">
@@ -153,26 +172,10 @@
                   </div>
               @enderror
           </div>
-          <div class="form-group d-none mb-3">
-            <label for="value" class="form-label">Value</label>
-            <input
-              type="number"
-              class="form-control @error('value') is-invalid @enderror"
-              name="value"
-              id="value"
-              readonly
-            />
-            @error('value')
-                <div class="invalid-feedback">
-                  {{ $message }}
-                </div>
-            @enderror
-          </div>
           <button type="submit" class="btn btn-primary ms-3 bg-darkblue float-end">Submit</button>
           <a href="/administrator/products" class="btn btn btn-light float-end">Cancel</a>
         </div>
       </div>
-      
     </form>
   </div>
 </div>
@@ -193,13 +196,14 @@
               dataType: "json",
               success:function(data)
               {
-                if(data){
+                if(data) {
                     $('#subcategory').empty();
-                    $('#subcategory').append('<option value="">Choose Subcategory</option>'); 
+                    $('#subcategory').append('<option value="">Choose product subcategory</option>'); 
                     $.each(data, function(key, subcategory){
-                        $('select[name="subcategory_id"]').append('<option value="'+ key + + subcategory.id +'">' + subcategory.subcategory_name+ '</option>');
+    
+                      $('select[name="subcategory_id"]').append('<option value="'+ subcategory.id +'">' + subcategory.subcategory_name+ '</option>');
                     });
-                }else{
+                }else {
                     $('#subcategory').empty();
                 }
             }

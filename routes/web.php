@@ -8,17 +8,20 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BasicController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\StaffHomeController;
+use App\Http\Controllers\StaffProductController;
 use App\Http\Controllers\AdministratorHomeController;
 use App\Http\Controllers\AdministratorUnitController;
 use App\Http\Controllers\AdministratorGroupController;
+use App\Http\Controllers\AdministratorStockController;
 use App\Http\Controllers\AdministratorCompanyController;
 use App\Http\Controllers\AdministratorProductController;
 use App\Http\Controllers\AdministratorStockInController;
 use App\Http\Controllers\AdministratorCategoryController;
 use App\Http\Controllers\AdministratorStockOutController;
+use App\Http\Controllers\DashboardAgroindustriController;
 use App\Http\Controllers\AdministratorSubcategoryController;
+use App\Models\Stock;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,12 +39,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // Admin Frontend View
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
+Route::get('/dashboard/agroindustri', [DashboardAgroindustriController::class, 'daily'])->name('dashboardAgroindustri');
+Route::get('/dashboard/agroindustri/products', [DashboardAgroindustriController::class, 'product'])->name('dashboardAgroindustri');
+Route::post('/dashboard/agroindustri/date', [DashboardAgroindustriController::class, 'search'])->name('dashboardAgroindustriSearch');
 
 // Superadmin Frontend View
 
 Route::get('/', [AdministratorHomeController::class, 'index'])->name('HomeAdministrator');
-
 
 Route::get('/administrator/users', function () {
   return view('administrator.users.user', [
@@ -55,6 +59,9 @@ Route::get('getSubCategory/{id}', function ($id) {
   return response()->json($subcategory);
 });
 Route::get('/administrator/deleteproduct/{id}', [AdministratorProductController::class, 'deleteproduct'])->name('deleteproduct');
+
+Route::resource('/administrator/stocks', AdministratorStockController::class);
+Route::get('/get/details/{id}', [AdministratorStockController::class, 'getDetails'])->name('getDetails');
 
 Route::resource('/administrator/classes', AdministratorGroupController::class);
 
@@ -73,20 +80,10 @@ Route::get('/administrator/deletestockin/{id}', [AdministratorStockInController:
 Route::get('/administrator/detaildeletestockin/', [AdministratorStockInController::class, 'detaildelete'])->name('detaildeletestockin');
 Route::post('/administrator/decreasestockin/{id}', [AdministratorStockInController::class, 'decrease'])->name('decreaseStockIn');
 
-
 Route::resource('/administrator/stockout', AdministratorStockOutController::class);
 
 // User Staff Frontend View
 
-Route::get('/staff', [StaffHomeController::class, 'index'])->name('Home');
+Route::get('/staff', [StaffHomeController::class, 'index'])->name('staffHome');
 
-
-
-
-
-// Route::get('/basic', [BasicController::class, 'index'])->name('basic');
-// Route::get('/basicform', [BasicController::class, 'basicform'])->name('basicform');
-// Route::post('/insertbasic', [BasicController::class, 'insertbasic'])->name('insertbasic');
-// Route::get('/viewbasic/{id}', [BasicController::class, 'viewbasic'])->name('viewbasic');
-// Route::post('/updatebasic/{id}', [BasicController::class, 'updatebasic'])->name('updatebasic');
-// Route::get('/deletebasic/{id}', [BasicController::class, 'deletebasic'])->name('deletebasic');
+Route::resource('/staff/products', StaffProductController::class);

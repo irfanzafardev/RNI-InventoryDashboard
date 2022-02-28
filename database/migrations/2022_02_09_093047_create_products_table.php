@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use phpDocumentor\Reflection\Types\Nullable;
 
 class CreateProductsTable extends Migration
 {
@@ -17,10 +18,11 @@ class CreateProductsTable extends Migration
       $table->id();
       $table->string('product_code')->unique();
       $table->string('product_name')->unique();
+      $table->string('class');
       $table->foreignId('user_id');
       $table->foreignId('subcategory_id');
       $table->foreignId('unit_id');
-      $table->bigInteger('quantity');
+      $table->bigInteger('quantity')->Nullable();
       $table->bigInteger('unit_price');
       $table->timestamps();
     });

@@ -19,6 +19,7 @@ class CreateStockOutsTable extends Migration
       $table->date('date')->nullable();
       $table->foreignId('product_id');
       // $table->string('destination')->nullable();
+      $table->string('class');
       $table->integer('quantity');
       $table->timestamps();
     });

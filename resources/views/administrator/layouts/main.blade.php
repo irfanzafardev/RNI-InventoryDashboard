@@ -47,13 +47,25 @@
 		/>
 		<link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet" />
 		<link href="{{ asset('css/extended-style.css') }}" rel="stylesheet" />
-		<link
-			href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}"
-			rel="stylesheet"
-		/>
+		<link href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet"/>
 
     <!-- jQuery-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link
+			href="http://code.jquery.com/ui/1.9.2/themes/smoothness/jquery-ui.css"
+			rel="stylesheet"
+		/>
+    {{-- <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+		<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+		<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function () {
+				$("#datepickerAdmin").datepicker({
+					format: "yyyy/mm/dd",
+					maxDate: new Date(),
+				});
+			});
+		</script> --}}
 	</head>
 
 	<body id="page-top">

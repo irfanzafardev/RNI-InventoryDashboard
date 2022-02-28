@@ -28,6 +28,10 @@ class CategorySeeder extends Seeder
         'group_id' => 2
       ],
       [
+        'category_name' => 'Karet',
+        'group_id' => 2
+      ],
+      [
         'category_name' => 'Sawit',
         'group_id' => 2
       ],
@@ -44,11 +48,11 @@ class CategorySeeder extends Seeder
         'group_id' => 3
       ],
       [
-        'category_name' => 'Produk Lain',
+        'category_name' => 'Produk Manufaktur Lain',
         'group_id' => 3
       ],
       [
-        'category_name' => 'Garam Kasar Kemasan',
+        'category_name' => 'Garam Halus Karungan',
         'group_id' => 4
       ],
       [
@@ -56,11 +60,23 @@ class CategorySeeder extends Seeder
         'group_id' => 4
       ],
       [
-        'category_name' => 'Garam Low Sodium Lososa',
+        'category_name' => 'Garam Kasar Kemasan',
         'group_id' => 4
       ],
       [
-        'category_name' => 'Garam Top Grade Maduros',
+        'category_name' => 'Garam Import Farmasi',
+        'group_id' => 4
+      ],
+      [
+        'category_name' => 'Garam Rakyat PMN',
+        'group_id' => 4
+      ],
+      [
+        'category_name' => 'Garam Produksi Sendiri',
+        'group_id' => 4
+      ],
+      [
+        'category_name' => 'Garam Top Grande Maduro',
         'group_id' => 4
       ],
     ]);

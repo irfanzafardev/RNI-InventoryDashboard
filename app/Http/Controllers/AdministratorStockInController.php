@@ -50,7 +50,7 @@ class AdministratorStockInController extends Controller
       $code = 'STCI-' . $userid . $tanggal . $order;
     }
     return view('administrator.stocks.stockin.create', compact('code'), [
-      'products' => Product::all(),
+      'products' => Product::all()->where('user_id', $userid),
       'users' => User::all(),
       'last' => StockIn::all()->last()
     ]);
@@ -74,8 +74,8 @@ class AdministratorStockInController extends Controller
     // $validatedData['user_id'] = auth()->user()->id;
 
     StockIn::create($validatedData);
-    // return redirect('/administrator/stockin')->with('success', 'Data has been successfully added');
-    return redirect('/administrator/detailstockin/');
+    return redirect('/administrator/stockin')->with('success', 'Data has been successfully added');
+    // return redirect('/administrator/detailstockin/');
   }
 
   /**
@@ -142,7 +142,7 @@ class AdministratorStockInController extends Controller
       Product::where('id', $productid)->update([
         'quantity' => $updatedstock
       ]);
-      return redirect('/administrator/stockin')->with('success', "{$productname} has been successfully updated");
+      return redirect('/administrator/stockin')->with('success', "Data has been successfully updated");
     } catch (\Throwable $th) {
       return back()->withError($th->getMessage())->withInput();
     }
@@ -176,7 +176,7 @@ class AdministratorStockInController extends Controller
       Product::where('id', $productid)->update([
         'quantity' => $updatedstock
       ]);
-      return redirect('/administrator/stockin')->with('success', "{$productname} has been successfully deleted");
+      return redirect('/administrator/stockin')->with('success', "Data has been successfully deleted");
     } catch (\Throwable $th) {
       return back()->withError($th->getMessage())->withInput();
     }

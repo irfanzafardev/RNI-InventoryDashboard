@@ -1,4 +1,4 @@
-@extends('administrator.layouts.main')
+@extends('user.layouts.main')
 
 @section('container')
 <!-- Page Heading -->
@@ -9,7 +9,7 @@
 <!-- AddData-form -->
 <div class="row">
   <div class="col-12">
-    <form method="post" action="/administrator/stocks">
+    <form method="post" action="/staff/stocks">
       @csrf
       <div class="row">
         <div class="col-5">

@@ -1,4 +1,4 @@
-@extends('administrator.layouts.main')
+@extends('user.layouts.main')
 
 @section('breadcrumb')
 <nav aria-label="breadcrumb">
@@ -29,7 +29,7 @@
 <!-- AddData-form -->
 <div class="row">
   <div class="col-12">
-    <form method="post" action="/administrator/products">
+    <form method="post" action="/staff/products">
       @csrf
       <div class="row">
         <div class="col-5">

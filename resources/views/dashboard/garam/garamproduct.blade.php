@@ -3,11 +3,11 @@
 @section('container')
 <!-- Page Heading -->
 <div class="page-heading d-sm-flex align-items-center justify-content-between mb-4">
-  <h1 class="h3 mb-0">Agroindustri</h1>
+  <h1 class="h3 mb-0">Garam</h1>
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb bg-transparent pt-4">
       <li class="breadcrumb-item text-dark" aria-current="page">
-        Agroindustri
+        Garam
       </li>
       <li class="breadcrumb-item text-dark active" aria-current="page">
         Products
@@ -18,10 +18,10 @@
 
 <ul class="nav time-nav mb-5">
   <li class="nav-item mr-3">
-    <a class="nav-link" href="/dashboard/agroindustri">Daily</a>
+    <a class="nav-link" href="/dashboard/garam">Daily</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link active" href="/dashboard/agroindustri/products">Product</a>
+    <a class="nav-link active" href="/dashboard/garam/products">Product</a>
   </li>
 </ul>
 
@@ -76,7 +76,7 @@
       <div class="accordion-body">
         <div class="card">
           <div class="card-body">
-            ...
+            Lorem ipsum dolor sit amet
           </div>
         </div>
       </div>
@@ -87,7 +87,7 @@
       <div class="accordion-body">
         <div class="card">
           <div class="card-body">
-            This is some text within a card body.
+            Lorem ipsum dolor sit amet
           </div>
         </div>
       </div>
@@ -98,23 +98,16 @@
 <!-- DataTales Product List -->
 <ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
   <li class="nav-item" role="presentation">
-    <button class="nav-link py-2 px-3 active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">PT PG Rajawali I</button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button class="nav-link py-2 px-3" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">PT PG Candi Baru</button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button class="nav-link py-2 px-3" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">PG Krebet Baru</button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button class="nav-link py-2 px-3" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">PT Mitra Kerinci</button>
+    <button class="nav-link py-2 px-3 active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">
+      PT Garam
+    </button>
   </li>
 </ul>
 <div class="tab-content" id="myTabContent">
   <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
     <div class="card my-4">
       <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-dark">PT PG Rajawali I Products</h6>
+        <h6 class="m-0 font-weight-bold text-dark">PT Garam</h6>
       </div>
       <div class="card-body">
         <div class="table-responsive">
@@ -148,7 +141,7 @@
               </tr>
             </tfoot>
             <tbody id="tbody">
-              @foreach ($dataproductPTPGRajawaliI as $product)
+              @foreach ($dataproductPTGaram as $product)
               <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $product->user->company->company_name }}</td>

@@ -20,8 +20,10 @@ class CreateProductsTable extends Migration
       $table->string('product_name')->unique();
       $table->string('class');
       $table->foreignId('user_id');
+      $table->string('company');
       $table->foreignId('subcategory_id');
       $table->foreignId('unit_id');
+      $table->boolean('active')->default(1);
       $table->bigInteger('quantity')->Nullable();
       $table->bigInteger('unit_price');
       $table->timestamps();

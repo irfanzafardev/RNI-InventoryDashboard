@@ -10,7 +10,7 @@ use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
-class AdministratorStockController extends Controller
+class StaffStockController extends Controller
 {
   /**
    * Display a listing of the resource.
@@ -24,9 +24,12 @@ class AdministratorStockController extends Controller
 
   public function index()
   {
-    return view('administrator.stocks.stock', [
-      'stocks' => Stock::where('date', '=', Carbon::today()->toDateString())->get(),
-      'allStocks' => Stock::all()
+    $company = Auth::user()->company->company_name;
+    return view('user.stocks.stock', [
+      'stocks' => Stock::where('date', '=', Carbon::today()->toDateString())
+        ->where('company', $company)
+        ->get(),
+      'allStocks' => Stock::where('company', $company)->get()
     ]);
   }
 
@@ -51,17 +54,11 @@ class AdministratorStockController extends Controller
     }
 
     $today = Carbon::today()->toDateString();
-    return view('administrator.stocks.create', compact('code', 'today'), [
+    return view('user.stocks.create', compact('code', 'today'), [
       'products' => Product::all()->where('user_id', $userid),
       'users' => User::all(),
       'last' => Stock::all()->last()
     ]);
-  }
-
-  public function getDetails($id = 0)
-  {
-    $data = Product::find($id);
-    return response()->json($data);
   }
 
   /**
@@ -85,7 +82,7 @@ class AdministratorStockController extends Controller
     // $validatedData['user_id'] = auth()->user()->id;
 
     Stock::create($validatedData);
-    return redirect('/administrator/stocks')->with('success', 'Data has been successfully added');
+    return redirect('/staff/stocks')->with('success', 'Data has been successfully added');
     // return redirect('/administrator/detailstockin/');
   }
 
@@ -109,7 +106,7 @@ class AdministratorStockController extends Controller
   public function edit(Stock $stock)
   {
     $userid = Auth::user()->id;
-    return view('administrator.stocks.edit', [
+    return view('user.stocks.edit', [
       'stock' => $stock,
       'allStocks' => Stock::all(),
       'products' => Product::all()->where('user_id', $userid),
@@ -136,7 +133,7 @@ class AdministratorStockController extends Controller
     Stock::where('id', $stock->id)
       ->update($validatedData);
 
-    return redirect('/administrator/stocks')->with('success', 'Data has been successfully updated');
+    return redirect('/staff/stocks')->with('success', 'Data has been successfully updated');
   }
 
   /**
@@ -145,16 +142,16 @@ class AdministratorStockController extends Controller
    * @param  \App\Models\Stock  $stock
    * @return \Illuminate\Http\Response
    */
-  public function destroy(Stock $stock)
-  {
-    //
-  }
+  // public function destroy(Stock $stock)
+  // {
+  //   //
+  // }
 
   public function deletestock($id)
   {
     $datastock = Stock::find($id);
     $datastock->delete();
-    return redirect('/administrator/stocks')->with('success', 'Data has been successfully deleted');
+    return redirect('/staff/stocks')->with('success', 'Data has been successfully deleted');
     // return redirect('/administrator/detaildeletestockin/');
   }
 }

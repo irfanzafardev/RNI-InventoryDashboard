@@ -2,8 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Unit;
+use App\Models\User;
+use App\Models\Group;
+use App\Models\Company;
 use App\Models\Product;
+use App\Models\Category;
+use App\Models\Subcategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Spatie\QueryBuilder\AllowedFilter;
 
 class StaffProductController extends Controller
 {
@@ -12,11 +21,19 @@ class StaffProductController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
+  public function __construct()
+  {
+    $this->middleware('auth');
+  }
+
   public function index()
   {
-    return view('user.product.product', [
-      'products' => Product::OrderBy('updated_at', 'desc')->get()
-    ]);
+    $id = Auth::user()->id;
+    $dataproduct = Product::all()
+      ->where('user_id', $id)
+      ->where('active', true);
+
+    return view('user.product.product', compact('dataproduct'));
   }
 
   /**
@@ -26,7 +43,26 @@ class StaffProductController extends Controller
    */
   public function create()
   {
-    //
+    $check = Product::count();
+    $userid = Auth::user()->id;
+    $companyid = Auth::user()->company->id;
+    if ($check == 0) {
+      $order = 1001;
+      $code = 'PR-' . $userid . $companyid . $order;
+    } else {
+      $pull = Product::all()->last();
+      $order = (int)substr($pull->product_code, -4) + 1;
+      $code = 'PR-' . $userid . $companyid . $order;
+    }
+    $id = Auth::user()->company->group->id;
+    return view('user.product.create', compact('code'), [
+      'users' => User::all(),
+      'companies' => Company::all(),
+      'groups' => Group::all(),
+      'categories' => Category::all()->where('group_id', $id),
+      'subcategories' => Subcategory::all(),
+      'units' => Unit::all()
+    ]);
   }
 
   /**
@@ -37,7 +73,22 @@ class StaffProductController extends Controller
    */
   public function store(Request $request)
   {
-    //
+    $validatedData = $request->validate([
+      'product_code' => 'required',
+      'product_name' => 'required',
+      'class' => 'required',
+      'company' => 'required',
+      'user_id' => 'required',
+      'subcategory_id' => 'required',
+      'unit_id' => 'required',
+      'quantity' => 'required',
+      'unit_price' => 'required',
+    ]);
+
+    // $validatedData['user_id'] = auth()->user()->id;
+
+    Product::create($validatedData);
+    return redirect('/staff/products')->with('success', 'Data has been successfully added');
   }
 
   /**
@@ -59,7 +110,16 @@ class StaffProductController extends Controller
    */
   public function edit(Product $product)
   {
-    //
+    $id = Auth::user()->company->group->id;
+    return view('user.product.edit', [
+      'product' => $product,
+      'users' => User::all(),
+      'companies' => Company::all(),
+      'groups' => Group::all(),
+      'categories' => Category::all()->where('group_id', $id),
+      'subcategories' => Subcategory::all(),
+      'units' => Unit::all(),
+    ]);
   }
 
   /**
@@ -80,8 +140,20 @@ class StaffProductController extends Controller
    * @param  \App\Models\Product  $product
    * @return \Illuminate\Http\Response
    */
-  public function destroy(Product $product)
+  // public function destroy(Product $product)
+  // {
+  //   //
+  // }
+
+  public function deleteproduct($id)
   {
-    //
+    $productid = Product::find($id);
+
+    if ($productid) {
+      $productid->active = false;
+      $productid->save();
+    }
+    // $productid->delete();
+    return redirect('/staff/products')->with('success', 'Data has been successfully deleted');
   }
 }

@@ -35,21 +35,21 @@
 
   <!-- Nav Item - Tables -->
   <li class="nav-item">
-    <a class="nav-link {{ Request::is('staff/categories*') ? 'active' : '' }} py-2" href="">
+    <a class="nav-link {{ Request::is('staff/categories*') ? 'active' : '' }} py-2" href="/staff/categories">
       <span>Product Category</span></a
     >
   </li>
 
   <!-- Nav Item - Tables -->
   <li class="nav-item">
-    <a class="nav-link {{ Request::is('staff/subcatgories*') ? 'active' : '' }} py-2" href="">
+    <a class="nav-link {{ Request::is('staff/subcategories*') ? 'active' : '' }} py-2" href="/staff/subcategories">
       <span>Sub Product Category</span></a
     >
   </li>
 
   <!-- Nav Item - Tables -->
   <li class="nav-item">
-    <a class="nav-link {{ Request::is('staff/units*') ? 'active' : '' }} py-2" href="">
+    <a class="nav-link {{ Request::is('staff/units*') ? 'active' : '' }} py-2" href="/staff/units">
       <span>Product UOM</span></a
     >
   </li>
@@ -59,15 +59,8 @@
 
   <!-- Nav Item - Tables -->
   <li class="nav-item">
-    <a class="nav-link {{ Request::is('/*') ? 'active' : '' }} py-2" href="">
-      <span>Stock In</span></a
-    >
-  </li>
-
-  <!-- Nav Item - Tables -->
-  <li class="nav-item">
-    <a class="nav-link {{ Request::is('/*') ? 'active' : '' }} py-2" href="">
-      <span>Stock Out</span></a
+    <a class="nav-link {{ Request::is('staff/stocks*') ? 'active' : '' }} py-2" href="/staff/stocks">
+      <span>Daily Stock</span></a
     >
   </li>
 
@@ -77,14 +70,7 @@
   <!-- Nav Item - Tables -->
   <li class="nav-item">
     <a class="nav-link py-2" href="/">
-      <span>Report Stock In</span></a
-    >
-  </li>
-
-  <!-- Nav Item - Tables -->
-  <li class="nav-item">
-    <a class="nav-link py-2" href="/">
-      <span>Report Stock Out</span></a
+      <span>Report Stock</span></a
     >
   </li>
 

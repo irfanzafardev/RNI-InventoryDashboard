@@ -1,4 +1,4 @@
-@extends('administrator.layouts.main')
+@extends('user.layouts.main')
 
 @section('container')
 <!-- Page Heading -->
@@ -36,7 +36,7 @@
             {{ session('error') }}
           </div>
         @endif
-        <a href="/administrator/stocks/create" class="btn btn-primary bg-darkblue px-4 mb-3">
+        <a href="/staff/stocks/create" class="btn btn-primary bg-darkblue px-4 mb-3">
           Add Data
         </a>
         <div class="table-responsive">
@@ -84,8 +84,8 @@
                 <td>Rp. {{ number_format($stock->product->unit_price, 2) }}</td>
                 <td>Rp. {{ number_format($stock->value, 2) }}</td>
                 <td>
-                  <a href="/administrator/stocks/{{ $stock->id }}/edit">Edit</a>
-                  <a href="#" class="deleteStockIn" data-id="{{ $stock->id }}" data-name="{{ $stock->product->product_name }}">Delete</a>
+                  <a href="/staff/stocks/{{ $stock->id }}/edit">Edit</a>
+                  <a href="#" class="deleteStock" data-id="{{ $stock->id }}" data-name="{{ $stock->product->product_name }}">Delete</a>
                 </td>
               </tr>
               @endforeach
@@ -96,7 +96,7 @@
     </div>
   </div>
   <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-    <!-- DataTales Today's input -->
+    <!-- DataTales All's input -->
     <div class="card my-4">
       <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-dark">All input</h6>
@@ -112,7 +112,7 @@
             {{ session('error') }}
           </div>
         @endif
-        <a href="/administrator/stockin/create" class="btn btn-primary bg-darkblue px-4 mb-3">
+        <a href="/user/stockin/create" class="btn btn-primary bg-darkblue px-4 mb-3">
           Add Data
         </a>
         <div class="table-responsive">
@@ -132,7 +132,7 @@
                 <th>Qty</th>
                 <th>Unit Price</th>
                 <th>Value</th>
-                <th>Option</th>
+                <th class="d-none">Option</th>
               </tr>
             </thead>
             <tfoot>
@@ -145,7 +145,7 @@
                 <th>Qty</th>
                 <th>Unit Price</th>
                 <th>Value</th>
-                <th>Option</th>
+                <th class="d-none">Option</th>
               </tr>
             </tfoot>
             <tbody>
@@ -159,8 +159,8 @@
                 <td>{{ number_format($allStock->quantity, 0)}}</td>
                 <td>Rp. {{ number_format($allStock->product->unit_price, 2) }}</td>
                 <td>Rp. {{ number_format($allStock->value, 2) }}</td>
-                <td>
-                  <a href="/administrator/stocks/{{ $allStock->id }}/edit">Edit</a>
+                <td class="d-none">
+                  <a href="/user/stock/{{ $allStock->id }}/edit">Edit</a>
                   <a href="#" class="deleteStockIn" data-id="{{ $allStock->id }}" data-name="{{ $allStock->product->product_name }}">Delete</a>
                 </td>
               </tr>
@@ -178,7 +178,7 @@
     $('table.display').DataTable();
   });
 
-  $('.deleteStockIn').click( function(){
+  $('.deleteStock').click( function(){
       var stockid = $(this).attr('data-id')
       var stockname = $(this).attr('data-name')
       swal({
@@ -190,7 +190,7 @@
       })
       .then((willDelete) => {
         if (willDelete) {
-          window.location = "/administrator/deletestock/"+stockid+""
+          window.location = "/staff/deletestock/"+stockid+""
           swal("Poof! Your imaginary file has been deleted!", {
             icon: "success",
           });

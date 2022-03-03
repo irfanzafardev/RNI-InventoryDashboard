@@ -17,83 +17,103 @@ class SubcategorySeeder extends Seeder
     DB::table('subcategories')->insert([
       [
         'subcategory_name' => 'Gula SHS',
-        'category_id' => 1
+        'category_id' => 1,
+        'class' => 'Agroindustri'
       ],
       [
         'subcategory_name' => 'Gula Bulk',
-        'category_id' => 1
+        'category_id' => 1,
+        'class' => 'Agroindustri'
       ],
       [
         'subcategory_name' => 'Teh Hijau',
-        'category_id' => 2
+        'category_id' => 2,
+        'class' => 'Agroindustri'
       ],
       [
         'subcategory_name' => 'Teh Hitam',
-        'category_id' => 2
+        'category_id' => 2,
+        'class' => 'Agroindustri'
       ],
       [
         'subcategory_name' => 'Teh Spesial',
-        'category_id' => 2
+        'category_id' => 2,
+        'class' => 'Agroindustri'
       ],
       [
         'subcategory_name' => 'Tetes Tebu',
-        'category_id' => 3
+        'category_id' => 3,
+        'class' => 'Agroindustri'
       ],
       [
         'subcategory_name' => 'CPO',
-        'category_id' => 5
+        'category_id' => 5,
+        'class' => 'Agroindustri'
       ],
       [
         'subcategory_name' => 'PK',
-        'category_id' => 5
+        'category_id' => 5,
+        'class' => 'Agroindustri'
       ],
       [
         'subcategory_name' => 'Inner Bag',
-        'category_id' => 6
+        'category_id' => 6,
+        'class' => 'Manufaktur'
       ],
       [
         'subcategory_name' => 'Woven Bag',
-        'category_id' => 6
+        'category_id' => 6,
+        'class' => 'Manufaktur'
       ],
       [
         'subcategory_name' => 'WB+IB',
-        'category_id' => 6
+        'category_id' => 6,
+        'class' => 'Manufaktur'
       ],
       [
         'subcategory_name' => 'ASSP',
-        'category_id' => 7
+        'category_id' => 7,
+        'class' => 'Manufaktur'
       ],
       [
         'subcategory_name' => 'Mask',
-        'category_id' => 9
+        'category_id' => 9,
+        'class' => 'Manufaktur'
       ],
       [
         'subcategory_name' => 'Garam Halus Karungan',
-        'category_id' => 10
+        'category_id' => 10,
+        'class' => 'Garam'
       ],
       [
         'subcategory_name' => 'Garam Halus Kemasan',
-        'category_id' => 11
+        'category_id' => 11,
+        'class' => 'Garam'
       ],
       [
         'subcategory_name' => 'Garam Kasar Kemasan',
-        'category_id' => 12
+        'category_id' => 12,
+        'class' => 'Garam'
       ],
       [
         'subcategory_name' => 'Garam Import Farmasi',
-        'category_id' => 13
+        'category_id' => 13,
+        'class' => 'Garam'
       ],
       [
         'subcategory_name' => 'Garam Rakyat PMN',
-        'category_id' => 14
+        'category_id' => 14,
+        'class' => 'Garam'
       ],
       [
         'subcategory_name' => 'Garam Produksi Sendiri',
-        'category_id' => 15
+        'category_id' => 15,
+        'class' => 'Garam'
       ],
       [
         'subcategory_name' => 'Garam Top Grande Maduro',
-        'category_id' => 16
+        'category_id' => 16,
+        'class' => 'Garam'
       ],
     ]);
   }

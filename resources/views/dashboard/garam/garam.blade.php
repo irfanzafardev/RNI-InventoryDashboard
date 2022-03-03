@@ -3,11 +3,11 @@
 @section('container')
 <!-- Page Heading -->
 <div class="page-heading d-sm-flex align-items-center justify-content-between mb-4">
-  <h1 class="h3 mb-0">Agroindustri</h1>
+  <h1 class="h3 mb-0">Garam</h1>
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb bg-transparent pt-4">
       <li class="breadcrumb-item text-dark" aria-current="page">
-        Agroindustri
+        Garam
       </li>
       <li class="breadcrumb-item text-dark active" aria-current="page">
         Daily
@@ -18,10 +18,10 @@
 
 <ul class="nav time-nav">
   <li class="nav-item mr-3">
-    <a class="nav-link active" href="/dashboard/agroindustri">Daily</a>
+    <a class="nav-link active" href="/dashboard/garam">Daily</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="/dashboard/agroindustri/products">Product</a>
+    <a class="nav-link" href="/dashboard/garam/products">Product</a>
   </li>
 </ul>
 
@@ -31,13 +31,6 @@
     @csrf
     <div class="row justify-content-end">
       <div class="col-6 d-flex justify-content-end">
-        {{-- <input
-          type="date"
-          class="form-control mr-3"
-          id="date"
-          value="{{ $today }}"
-          style="max-width: 200px"
-        /> --}}
         <input type="text" id="datepicker" value="{{ $yesterday }}" name="date">
 
         <button type="submit" class="btn btn-primary bg-darkblue ml-3 px-4">
@@ -77,6 +70,8 @@
           @else
           <span>-</span>
           @endif
+          {{-- <small>({{ $highestAmount->product->product_name }})</small> <br> --}}
+          {{-- <span>{{ number_format($highestAmount->quantity, 0) }} Kg</span> --}}
         </div>
         <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-1">
           <div class="row">
@@ -108,7 +103,7 @@
             <div class="row">
               <div class="col-6">
                 <h5 class="card-title item-card-title text-white">
-                  Gula
+                  Garam
                 </h5>
                 <p
                   class="card-subtitle item-card-subtitle mb-2 text-white"
@@ -166,7 +161,7 @@
             <div class="row">
               <div class="col-6">
                 <h5 class="card-title item-card-title text-white">
-                  Tetes
+                  Garam
                 </h5>
                 <p
                   class="card-subtitle item-card-subtitle mb-2 text-white"
@@ -210,7 +205,9 @@
           <div class="card-body">
             <div class="row">
               <div class="col-6">
-                <h5 class="card-title item-card-title text-white">Teh</h5>
+                <h5 class="card-title item-card-title text-white">
+                  Garam
+                </h5>
                 <p
                   class="card-subtitle item-card-subtitle mb-2 text-white"
                 >
@@ -254,7 +251,7 @@
             <div class="row">
               <div class="col-6">
                 <h5 class="card-title item-card-title text-white">
-                  Sawit
+                  Garam
                 </h5>
                 <p
                   class="card-subtitle item-card-subtitle mb-2 text-white"
@@ -290,7 +287,43 @@
             <div class="row">
               <div class="col-6">
                 <h5 class="card-title item-card-title text-white">
-                  Karet
+                  Garam
+                </h5>
+                <p
+                  class="card-subtitle item-card-subtitle mb-2 text-white"
+                >
+                  0 <br />
+                  <span>(kg)</span>
+                </p>
+              </div>
+              <div class="col-6">
+                <div class="donut-chart d-flex justify-content-end pe-3">
+                  <canvas id="ChartKaret"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-12 item-card-value text-white">Rp. 0</div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-4 item-card-company text-white">
+                Company
+              </div>
+              <div class="col-4 item-card-company text-white">Stock</div>
+              <div class="col-4 item-card-company text-white">Value</div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4 mb-3">
+      <a href="category-page.html" class="text-decoration-none">
+        <div class="card single-card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-6">
+                <h5 class="card-title item-card-title text-white">
+                  Garam
                 </h5>
                 <p
                   class="card-subtitle item-card-subtitle mb-2 text-white"

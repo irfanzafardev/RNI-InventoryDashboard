@@ -16,25 +16,28 @@ class StockSeeder extends Seeder
   {
     DB::table('stocks')->insert([
       [
-        'stock_code' => 'STCI-32022217100001',
+        'stock_code' => 'STC-32022217100001',
         'date' => "2022-2-11",
         'product_id' => 1,
+        'company' => 'PT PG Rajawali I',
         'class' => 'Agroindustri',
         'quantity' => 223,
         'value' => 2419550
       ],
       [
-        'transact_code' => 'STCI-32022217100002',
+        'transact_code' => 'STC-32022217100002',
         'date' => "2022-2-12",
         'product_id' => 2,
+        'company' => 'PT PG Rajawali I',
         'class' => 'Agroindustri',
         'quantity' => 349,
         'value' => 3786650
       ],
       [
-        'transact_code' => 'STCI-32022217100003',
+        'transact_code' => 'STC-32022217100003',
         'date' => "2022-2-13",
         'product_id' => 2,
+        'company' => 'PT PG Rajawali I',
         'class' => 'Agroindustri',
         'quantity' => 112,
         'value' => 1215200

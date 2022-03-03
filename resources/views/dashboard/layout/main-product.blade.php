@@ -18,21 +18,7 @@
 		<link href="{{ asset("css/extended-style.css") }}" rel="stylesheet" />
 		<link href="{{ asset("vendor/datatables/dataTables.bootstrap4.min.css") }}" rel="stylesheet"/>
 
-		<link
-			href="http://code.jquery.com/ui/1.9.2/themes/smoothness/jquery-ui.css"
-			rel="stylesheet"
-		/>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
-		<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
-		<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
-		<script type="text/javascript">
-			$(document).ready(function () {
-				$("#datepicker").datepicker({
-					dateFormat: 'yy-mm-dd',
-          maxDate: -1,
-				});
-			});
-		</script>
+    
 	</head>
 
 	<body id="page-top">
@@ -111,7 +97,7 @@
 		</a>
 
 		<!-- Bootstrap core JavaScript-->
-		{{-- <script src="{{ asset("vendor/jquery/jquery.min.js") }}"></script> --}}
+		<script src="{{ asset("vendor/jquery/jquery.min.js") }}"></script>
 		<script src="{{ asset("vendor/bootstrap/js/bootstrap.bundle.min.js") }}"></script>
 
 		<!-- Core plugin JavaScript-->
@@ -129,5 +115,11 @@
 		<script src="{{ asset("js/demo/chart-area-demo.js") }}"></script>
 		<script src="{{ asset("js/demo/chart-pie-demo.js") }}"></script>
 		<script src="{{ asset("js/demo/datatables-demo.js") }}"></script>
+
+    <script>
+      $(document).ready(function() {
+        $('table.display').DataTable();
+      });
+    </script>
 	</body>
 </html>

@@ -8,7 +8,7 @@ use App\Models\Category;
 use App\Models\Stock;
 use Carbon\Carbon;
 
-class DashboardAgroindustriController extends Controller
+class DashboardGaramController extends Controller
 {
   public function __construct()
   {
@@ -17,56 +17,63 @@ class DashboardAgroindustriController extends Controller
 
   public function daily()
   {
+    // $datastocks = Stock::where('class', 'Manufaktur')->get();
     $datastocks = Stock::where('date', '=', Carbon::today()->toDateString())
-      ->where('class', 'Agroindustri')->get();
+      ->where('class', 'Garam')->get();
     $highestAmount = Stock::where('date', '=', Carbon::today()->toDateString())
-      ->where('class', 'Agroindustri')
+      ->where('class', 'Garam')
       ->orderBy('quantity', 'desc')->first();
     $dataStockLength = Stock::where('date', '=', Carbon::today()->toDateString())
-      ->where('class', 'Agroindustri')
+      ->where('class', 'Garam')
       ->count();
     $yesterday = Carbon::today()->toDateString();
-    return view('dashboard.agroindustri.agroindustri', compact('datastocks', 'highestAmount', 'dataStockLength', 'yesterday'));
+    return view(
+      'dashboard.garam.garam',
+      compact(
+        'datastocks',
+        'highestAmount',
+        'dataStockLength',
+        'yesterday'
+      )
+    );
   }
 
   public function search(Request $request)
   {
     $date = $request->input('date');
     $stockbydates = Stock::where('date', '=', $date)
-      ->where('class', 'Agroindustri')
+      ->where('class', 'Garam')
       ->get();
+
     $datastocks = Stock::all();
     $yesterday = Carbon::today()->toDateString();
     $highestAmount = Stock::where('date', '=', $date)
-      ->where('class', 'Agroindustri')
       ->orderBy('quantity', 'desc')->first();
     $dataStockLength = Stock::where('date', '=', $date)
-      ->where('class', 'Agroindustri')
+      ->where('class', 'Garam')
       ->count();
 
     // dd($stockbydate);
 
-    return view('dashboard.agroindustri.agroindustribydate', compact('datastocks', 'stockbydates', 'highestAmount', 'dataStockLength', 'date'));
+    return view('dashboard.garam.garambydate', compact('datastocks', 'stockbydates', 'highestAmount', 'dataStockLength', 'date'));
   }
 
   public function product()
   {
-    $PTPGRajawaliI = 3;
-    $dataproduct = Product::where('class', 'Agroindustri')->get();
-    $dataproductPTPGRajawaliI = Product::where('user_id', $PTPGRajawaliI)->get();
-    $dataproductPTPGCandiBaru = Product::where('class', 'PT PG Candi Baru')->get();
-    $dataProductLength = Product::where('class', 'Agroindustri')->count();
-    $dataCategoryLength = Category::where('group_id', 2)->count();
-    $dataCategory = Category::where('group_id', 2)->get();
+    $PTGaram = 7;
+    $dataproduct = Product::where('class', 'Garan')->get();
+    $dataproductPTGaram = Product::where('user_id', $PTGaram)->get();
+    $dataProductLength = Product::where('class', 'Garam')->count();
+    $dataCategoryLength = Category::where('group_id', 3)->count();
+    $dataCategory = Category::where('group_id', 3)->get();
     return view(
-      'dashboard.agroindustri.agroindustriproduct',
+      'dashboard.garam.garamproduct',
       compact(
         'dataproduct',
         'dataProductLength',
         'dataCategory',
         'dataCategoryLength',
-        'dataproductPTPGRajawaliI',
-        'dataproductPTPGCandiBaru'
+        'dataproductPTGaram',
       )
     );
   }

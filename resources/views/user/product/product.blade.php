@@ -32,7 +32,7 @@
         {{ $message }}
       </div>
     @endif
-    <a href="/administrator/products/create" class="btn btn-primary bg-darkblue px-4 mb-3">
+    <a href="/staff/products/create" class="btn btn-primary bg-darkblue px-4 mb-3">
       Add Data
     </a>
     <div class="table-responsive">
@@ -52,10 +52,7 @@
             <th>Category</th>
             <th>Sub Category</th>
             <th>UOM</th>
-            <th>Qty</th>
             <th>Unit Price</th>
-            <th>Value</th>
-            {{-- <th>Last Updated</th> --}}
             <th>Option</th>
           </tr>
         </thead>
@@ -69,16 +66,13 @@
             <th>Category</th>
             <th>Sub Category</th>
             <th>UOM</th>
-            <th>Qty</th>
             <th>Unit Price</th>
-            <th>Value</th>
-            {{-- <th>Last Updated</th> --}}
             <th>Option</th>
           </tr>
         </tfoot>
         <tbody>
-          @foreach ($products as $product)
-          <tr>
+          @foreach ($dataproduct as $product)
+          <tr class="" id="trow-{{ $product->id }}">
             <td>{{ $loop->iteration }}</td>
             <td>{{ $product->product_code }}</td>
             <td>{{ $product->user->company->company_name }}</td>
@@ -87,15 +81,14 @@
             <td>{{ $product->subcategory->category->category_name }}</td>
             <td>{{ $product->subcategory->subcategory_name }}</td>
             <td>{{ $product->unit->unit_name}}</td>
-            <td>{{ number_format($product->quantity, 0)  }}</td>
             <td>Rp. {{ number_format($product->unit_price, 2) }}</td>
             @php
               $value = $product->quantity * $product->unit_price ;
             @endphp
-            <td>Rp. <?php echo number_format($value, 0); ?></td>
+            {{-- <td>Rp. <?php echo number_format($value, 0); ?></td> --}}
             {{-- <td>{{ $product->created_at }}</td> --}}
             <td>
-              <a href="/administrator/products/{{ $product->id }}/edit">Edit</a>
+              <a href="/staff/products/{{ $product->id }}/edit">Edit</a>
               <a href="#" class="deleteProduct" data-id="{{ $product->id }}" data-name="{{ $product->product_name }}">Delete</a>
             </td>
           </tr>   
@@ -119,10 +112,10 @@
     })
     .then((willDelete) => {
       if (willDelete) {
-        window.location = "/administrator/deleteproduct/"+productid+""
+        window.location = "/staff/deleteproduct/"+productid+""
         swal("Poof! Your imaginary file has been deleted!", {
           icon: "success",
-        });
+        }); 
       } else {
         swal("Your imaginary file is safe!");
       }

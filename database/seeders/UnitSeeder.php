@@ -35,22 +35,22 @@ class UnitSeeder extends Seeder
         'unit_name' => 'Set',
         'unit_symbol' => 'Set'
       ],
-      [
-        'unit_name' => 'Bottle',
-        'unit_symbol' => 'Btl'
-      ],
-      [
-        'unit_name' => 'Tub',
-        'unit_symbol' => 'Tub'
-      ],
+      // [
+      //   'unit_name' => 'Bottle',
+      //   'unit_symbol' => 'Btl'
+      // ],
+      // [
+      //   'unit_name' => 'Tub',
+      //   'unit_symbol' => 'Tub'
+      // ],
       [
         'unit_name' => 'Kit',
         'unit_symbol' => 'Kit'
       ],
-      [
-        'unit_name' => 'Density of states',
-        'unit_symbol' => 'Dos'
-      ],
+      // [
+      //   'unit_name' => 'Density of states',
+      //   'unit_symbol' => 'Dos'
+      // ],
     ]);
   }
 }

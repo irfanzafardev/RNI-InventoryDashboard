@@ -29,15 +29,8 @@ class AdministratorProductController extends Controller
 
   public function index()
   {
-    $id = 2;
-    $nama = "GULA - PG RA";
-    $subcategory = 7;
-    $class = "Agroindustri";
     return view('administrator.products.product', [
-      'products' => Product::all()
-      // 'products' => Product::all()->where('subcategory_id', $subcategory)
-      // 'products' => Product::all()->where('subcategory_id', $subcategory)
-      // ->join('detail_barang', 'detail_barang.id_barang', '=', 'barang.id_barang')>get();
+      'products' => Product::where('active', true)->get()
     ]);
   }
 
@@ -48,7 +41,6 @@ class AdministratorProductController extends Controller
    */
   public function create()
   {
-    // PR-11001
     $check = Product::count();
     $userid = Auth::user()->id;
     $companyid = Auth::user()->company->id;
@@ -56,7 +48,7 @@ class AdministratorProductController extends Controller
       $order = 1001;
       $code = 'PR-' . $userid . $companyid . $order;
     } else {
-      $pull = Product::all()->last();
+      $pull = Product::where('active', true)->get()->last();
       $order = (int)substr($pull->product_code, -4) + 1;
       $code = 'PR-' . $userid . $companyid . $order;
     }
@@ -84,6 +76,7 @@ class AdministratorProductController extends Controller
       'product_code' => 'required',
       'product_name' => 'required',
       'class' => 'required',
+      'company' => 'required',
       'user_id' => 'required',
       'subcategory_id' => 'required',
       'unit_id' => 'required',
@@ -168,8 +161,14 @@ class AdministratorProductController extends Controller
 
   public function deleteproduct($id)
   {
-    $dataproduct = Product::find($id);
-    $dataproduct->delete();
+    $productid = Product::find($id);
+    dd($productid);
+
+    if ($productid) {
+      $productid->active = false;
+      $productid->save();
+    }
+    // $productid->delete();
     return redirect('/administrator/products')->with('success', 'Data has been successfully deleted');
   }
 }

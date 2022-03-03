@@ -16,10 +16,8 @@ class AdministratorHomeController extends Controller
 
   public function index()
   {
-    $id = Auth::user()->id;
-    $groupid = Auth::user()->company->group->id;
-    $dataproduct = Product::all()->where('user_id', $id)->count();
-    $datacategory = Category::all()->where('group_id', $groupid)->count();
+    $dataproduct = Product::all()->count();
+    $datacategory = Category::all()->count();
 
     return view('administrator.home', compact('dataproduct', 'datacategory'));
   }

@@ -18,6 +18,7 @@ class CreateStocksTable extends Migration
       $table->string('stock_code')->unique();
       $table->date('date');
       $table->foreignId('product_id');
+      $table->string('company');
       $table->string('class');
       $table->integer('quantity');
       $table->integer('value');

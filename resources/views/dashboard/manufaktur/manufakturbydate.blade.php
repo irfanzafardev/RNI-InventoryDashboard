@@ -3,11 +3,11 @@
 @section('container')
 <!-- Page Heading -->
 <div class="page-heading d-sm-flex align-items-center justify-content-between mb-4">
-  <h1 class="h3 mb-0">Agroindustri</h1>
+  <h1 class="h3 mb-0">Manufaktur</h1>
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb bg-transparent pt-4">
       <li class="breadcrumb-item text-dark" aria-current="page">
-        Agroindustri
+        Manufaktur
       </li>
       <li class="breadcrumb-item text-dark active" aria-current="page">
         Daily
@@ -18,27 +18,20 @@
 
 <ul class="nav time-nav">
   <li class="nav-item mr-3">
-    <a class="nav-link active" href="/dashboard/agroindustri">Daily</a>
+    <a class="nav-link active" href="/dashboard/manufaktur">Daily</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="/dashboard/agroindustri/products">Product</a>
+    <a class="nav-link" href="/dashboard/manufaktur/products">Product</a>
   </li>
 </ul>
 
 <!-- Content Row -->
 <div class="content-cta mb-3">
-  <form action="/dashboard/agroindustri/date" method="POST">
+  <form action="/dashboard/manufaktur/date" method="POST">
     @csrf
     <div class="row justify-content-end">
       <div class="col-6 d-flex justify-content-end">
-        {{-- <input
-          type="date"
-          class="form-control mr-3"
-          id="date"
-          value="{{ $today }}"
-          style="max-width: 200px"
-        /> --}}
-        <input type="text" id="datepicker" value="{{ $yesterday }}" name="date">
+        <input type="text" id="datepicker" value="{{ $date }}" name="date">
 
         <button type="submit" class="btn btn-primary bg-darkblue ml-3 px-4">
           Show
@@ -77,6 +70,8 @@
           @else
           <span>-</span>
           @endif
+          {{-- <small>({{ $highestAmount->product->product_name }})</small> <br> --}}
+          {{-- <span>{{ number_format($highestAmount->quantity, 0) }} Kg</span> --}}
         </div>
         <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-1">
           <div class="row">
@@ -365,19 +360,19 @@
           </tr>
         </tfoot>
         <tbody id="tbody">
-          @foreach ($datastocks as $datastock)
+          @foreach ($stockbydates as $stockbydate)
           <tr>
             <td>{{ $loop->iteration }}</td>
-            <td>{{ $datastock->product->user->company->company_name }}</td>
-            <td>{{ $datastock->product->subcategory->category->category_name }}</td>
-            <td>{{ $datastock->product->subcategory->subcategory_name }}</td>
-            <td>{{ $datastock->product->product_name }}</td>
-            <td>{{ $datastock->date }}</td>
-            <td>{{ $datastock->product->unit->unit_symbol }}</td>
-            <td>{{ number_format($datastock->quantity, 0)}}</td>
-            <td>Rp. {{ number_format($datastock->product->unit_price, 2) }}</td>
+            <td>{{ $stockbydate->product->user->company->company_name }}</td>
+            <td>{{ $stockbydate->product->subcategory->category->category_name }}</td>
+            <td>{{ $stockbydate->product->subcategory->subcategory_name }}</td>
+            <td>{{ $stockbydate->product->product_name }}</td>
+            <td>{{ $stockbydate->date }}</td>
+            <td>{{ $stockbydate->product->unit->unit_symbol }}</td>
+            <td>{{ number_format($stockbydate->quantity, 0)}}</td>
+            <td>Rp. {{ number_format($stockbydate->product->unit_price, 2) }}</td>
             @php
-              $value = $datastock->quantity * $datastock->product->unit_price ;
+              $value = $stockbydate->quantity * $stockbydate->product->unit_price ;
             @endphp
             <td class="d-none"><?php echo $value ?> </td>
             <td>Rp.  <?php echo number_format($value, 2); ?> </td>
@@ -386,11 +381,6 @@
         </tbody>
       </table>
     </div>
-    {{-- <div class="row">
-      <div class="col-12 mt-3 d-flex justify-content-end">
-        <h3 class="text-primary" id="productLength">{{ $dataproductlength }}</h3>
-      </div>
-    </div> --}}
   </div>
 </div>
 

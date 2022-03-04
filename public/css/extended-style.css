@@ -12,6 +12,30 @@
   border: none;
 }
 
+.bg-lightorange {
+  background-color: #FFF1D8;
+  border: none;
+}
+
+.bg-lightred {
+  background-color: #FFEEE6;
+  border: none;
+}
+
+.bg-lightlime {
+  background-color: #F0FCEB;
+  border: none;
+}
+
+.bg-lightblue {
+  background-color: #E9EEF6;
+  border: none;
+}
+
+.text-darkblue {
+  color: #0B1629;
+}
+
 /* Login */
 
 .login-box {
@@ -154,7 +178,6 @@ label {
 /* summary-card */
 
 .summary-card .card {
-  background-color: #E4F8CF;
   border: none;
   border-radius: 10px;
 }
@@ -258,6 +281,27 @@ label {
   border-radius: 10px;
   border: none;
   min-height: 242px;
+}
+
+.single-card-consolidation {
+  border-radius: 10px;
+  border: none;
+  min-height: 160px;
+}
+
+.single-card-consolidation .canvas{
+  max-height: 120px;
+  max-width: 160px;
+}
+
+.single-card-consolidation h5 {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.single-card-consolidation .item-card-subtitle .number {
+  font-size: 26px;
+  font-weight: 700;
 }
 
 .single-card:hover {

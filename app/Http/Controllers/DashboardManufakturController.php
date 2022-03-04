@@ -15,9 +15,10 @@ class DashboardManufakturController extends Controller
     $this->middleware('auth');
   }
 
-  public function daily()
+  public function latest()
   {
-    // $datastocks = Stock::where('class', 'Manufaktur')->get();
+    $day = Carbon::today()->toDateString();
+
     $datastocks = Stock::where('date', '=', Carbon::today()->toDateString())
       ->where('class', 'Manufaktur')->get();
     $highestAmount = Stock::where('date', '=', Carbon::today()->toDateString())
@@ -26,14 +27,49 @@ class DashboardManufakturController extends Controller
     $dataStockLength = Stock::where('date', '=', Carbon::today()->toDateString())
       ->where('class', 'Manufaktur')
       ->count();
-    $yesterday = Carbon::today()->toDateString();
+
+    $quantityWBIB = Stock::where('date', '=', $day)
+      ->where('category', 'WB/IB')
+      ->sum('quantity');
+    $quantityASSP = Stock::where('date', '=', $day)
+      ->where('category', 'ASSP')
+      ->sum('quantity');
+    $quantityAlatKesehatan = Stock::where('date', '=', $day)
+      ->where('category', 'Alat Kesehatan')
+      ->sum('quantity');
+    $quantityLainnya = Stock::where('date', '=', $day)
+      ->where('category', 'Produk Manufaktur Lainnya')
+      ->sum('quantity');
+
+    $valueWBIB = Stock::where('date', '=', $day)
+      ->where('category', 'WB/IB')
+      ->sum('value');
+    $valueASSP = Stock::where('date', '=', $day)
+      ->where('category', 'ASSP')
+      ->sum('value');
+    $valueAlatKesehatan  = Stock::where('date', '=', $day)
+      ->where('category', 'Alat Kesehatan ')
+      ->sum('value');
+    $valueLainnya = Stock::where('date', '=', $day)
+      ->where('category', 'Produk Manufaktur Lainnya')
+      ->sum('value');
+
+
     return view(
       'dashboard.manufaktur.manufaktur',
       compact(
+        'day',
         'datastocks',
         'highestAmount',
         'dataStockLength',
-        'yesterday'
+        'quantityWBIB',
+        'quantityASSP',
+        'quantityAlatKesehatan',
+        'quantityLainnya',
+        'valueWBIB',
+        'valueASSP',
+        'valueAlatKesehatan',
+        'valueLainnya',
       )
     );
   }

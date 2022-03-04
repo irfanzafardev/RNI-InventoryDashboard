@@ -15,38 +15,143 @@ class DashboardAgroindustriController extends Controller
     $this->middleware('auth');
   }
 
-  public function daily()
+  public function latest()
   {
-    $datastocks = Stock::where('date', '=', Carbon::today()->toDateString())
+    $day = Carbon::today()->toDateString();
+
+    $datastocks = Stock::where('date', '=', $day)
       ->where('class', 'Agroindustri')->get();
-    $highestAmount = Stock::where('date', '=', Carbon::today()->toDateString())
+    $highestAmount = Stock::where('date', '=', $day)
       ->where('class', 'Agroindustri')
       ->orderBy('quantity', 'desc')->first();
-    $dataStockLength = Stock::where('date', '=', Carbon::today()->toDateString())
+    $dataStockLength = Stock::where('date', '=', $day)
       ->where('class', 'Agroindustri')
       ->count();
-    $yesterday = Carbon::today()->toDateString();
-    return view('dashboard.agroindustri.agroindustri', compact('datastocks', 'highestAmount', 'dataStockLength', 'yesterday'));
+
+    $quantityGula = Stock::where('date', '=', $day)
+      ->where('category', 'Gula')
+      ->sum('quantity');
+    $quantityTetes = Stock::where('date', '=', $day)
+      ->where('category', 'Tetes')
+      ->sum('quantity');
+    $quantityTeh = Stock::where('date', '=', $day)
+      ->where('category', 'Teh')
+      ->sum('quantity');
+    $quantitySawit = Stock::where('date', '=', $day)
+      ->where('category', 'Sawit')
+      ->sum('quantity');
+    $quantityKaret = Stock::where('date', '=', $day)
+      ->where('category', 'Karet')
+      ->sum('quantity');
+
+    $valueGula = Stock::where('date', '=', $day)
+      ->where('category', 'Gula')
+      ->sum('value');
+    $valueTetes = Stock::where('date', '=', $day)
+      ->where('category', 'Tetes')
+      ->sum('value');
+    $valueTeh = Stock::where('date', '=', $day)
+      ->where('category', 'Teh')
+      ->sum('value');
+    $valueSawit = Stock::where('date', '=', $day)
+      ->where('category', 'Sawit')
+      ->sum('value');
+    $valueKaret = Stock::where('date', '=', $day)
+      ->where('category', 'Karet')
+      ->sum('value');
+
+    $companyGula = Stock::where('date', '=', $day)
+      ->where('category', 'Gula')
+      ->orderBy('quantity', 'desc')->get();
+
+    return view(
+      'dashboard.agroindustri.agroindustri',
+      compact(
+        'day',
+        'datastocks',
+        'highestAmount',
+        'dataStockLength',
+        'quantityGula',
+        'quantityTetes',
+        'quantityTeh',
+        'quantitySawit',
+        'quantityKaret',
+        'valueGula',
+        'valueTetes',
+        'valueTeh',
+        'valueSawit',
+        'valueKaret',
+        'companyGula'
+      )
+    );
   }
 
   public function search(Request $request)
   {
-    $date = $request->input('date');
-    $stockbydates = Stock::where('date', '=', $date)
+    $day = $request->input('date');
+    $today = Carbon::today()->toDateString();
+
+    $stockbydates = Stock::where('date', '=', $day)
       ->where('class', 'Agroindustri')
       ->get();
-    $datastocks = Stock::all();
-    $yesterday = Carbon::today()->toDateString();
-    $highestAmount = Stock::where('date', '=', $date)
+    $highestAmount = Stock::where('date', '=', $day)
       ->where('class', 'Agroindustri')
       ->orderBy('quantity', 'desc')->first();
-    $dataStockLength = Stock::where('date', '=', $date)
+    $dataStockLength = Stock::where('date', '=', $day)
       ->where('class', 'Agroindustri')
       ->count();
 
-    // dd($stockbydate);
+    $quantityGula = Stock::where('date', '=', $day)
+      ->where('category', 'Gula')
+      ->sum('quantity');
+    $quantityTetes = Stock::where('date', '=', $day)
+      ->where('category', 'Tetes')
+      ->sum('quantity');
+    $quantityTeh = Stock::where('date', '=', $day)
+      ->where('category', 'Teh')
+      ->sum('quantity');
+    $quantitySawit = Stock::where('date', '=', $day)
+      ->where('category', 'Sawit')
+      ->sum('quantity');
+    $quantityKaret = Stock::where('date', '=', $day)
+      ->where('category', 'Karet')
+      ->sum('quantity');
 
-    return view('dashboard.agroindustri.agroindustribydate', compact('datastocks', 'stockbydates', 'highestAmount', 'dataStockLength', 'date'));
+    $valueGula = Stock::where('date', '=', $day)
+      ->where('category', 'Gula')
+      ->sum('value');
+    $valueTetes = Stock::where('date', '=', $day)
+      ->where('category', 'Tetes')
+      ->sum('value');
+    $valueTeh = Stock::where('date', '=', $day)
+      ->where('category', 'Teh')
+      ->sum('value');
+    $valueSawit = Stock::where('date', '=', $day)
+      ->where('category', 'Sawit')
+      ->sum('value');
+    $valueKaret = Stock::where('date', '=', $day)
+      ->where('category', 'Karet')
+      ->sum('value');
+
+    return view(
+      'dashboard.agroindustri.agroindustribydate',
+      compact(
+        'day',
+        'stockbydates',
+        'highestAmount',
+        'dataStockLength',
+        'quantityGula',
+        'quantityTetes',
+        'quantityTeh',
+        'quantitySawit',
+        'quantityKaret',
+        'valueGula',
+        'valueTetes',
+        'valueTeh',
+        'valueSawit',
+        'valueKaret',
+      )
+    );
   }
 
   public function product()

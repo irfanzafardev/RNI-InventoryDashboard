@@ -30,7 +30,9 @@ class AdministratorProductController extends Controller
   public function index()
   {
     return view('administrator.products.product', [
-      'products' => Product::where('active', true)->get()
+      'products' => Product::where('active', true)
+        ->orderBy('updated_at', 'desc')
+        ->get()
     ]);
   }
 
@@ -48,7 +50,9 @@ class AdministratorProductController extends Controller
       $order = 1001;
       $code = 'PR-' . $userid . $companyid . $order;
     } else {
-      $pull = Product::where('active', true)->get()->last();
+      $pull = Product::where('active', true)->get()
+        ->sortBy('created_at')
+        ->last();
       $order = (int)substr($pull->product_code, -4) + 1;
       $code = 'PR-' . $userid . $companyid . $order;
     }
@@ -79,6 +83,7 @@ class AdministratorProductController extends Controller
       'company' => 'required',
       'user_id' => 'required',
       'subcategory_id' => 'required',
+      'category' => 'required',
       'unit_id' => 'required',
       'quantity' => 'required',
       'unit_price' => 'required',
@@ -133,9 +138,11 @@ class AdministratorProductController extends Controller
     $validatedData = $request->validate([
       'product_code' => 'required',
       'product_name' => 'required',
+      'company' => 'required',
       'class' => 'required',
       'user_id' => 'required',
       'subcategory_id' => 'required',
+      'category' => 'required',
       'unit_id' => 'required',
       'quantity' => 'required',
       'unit_price' => 'required',

@@ -27,11 +27,11 @@
 
 <!-- Content Row -->
 <div class="content-cta mb-3">
-  <form action="/dashboard/manufaktur/date" method="POST">
+  <form action="/dashboard/manufaktur/daily" method="POST">
     @csrf
     <div class="row justify-content-end">
       <div class="col-6 d-flex justify-content-end">
-        <input type="text" id="datepicker" value="{{ $yesterday }}" name="date">
+        <input type="text" id="datepicker" value="{{ $day }}" name="date">
 
         <button type="submit" class="btn btn-primary bg-darkblue ml-3 px-4">
           Show
@@ -44,7 +44,7 @@
 <!-- Summary Row -->
 <div class="summary-card mb-4">
   <div class="card">
-    <div class="card-body">
+    <div class="card-body bg-lightlime rounded">
       <div class="row">
         <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-1">
           <div class="row">

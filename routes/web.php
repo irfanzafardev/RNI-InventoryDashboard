@@ -23,6 +23,7 @@ use App\Http\Controllers\AdministratorProductController;
 use App\Http\Controllers\AdministratorStockInController;
 use App\Http\Controllers\AdministratorCategoryController;
 use App\Http\Controllers\AdministratorStockOutController;
+use App\Http\Controllers\DashboardConsolidationController;
 use App\Http\Controllers\DashboardAgroindustriController;
 use App\Http\Controllers\DashboardManufakturController;
 use App\Http\Controllers\DashboardGaramController;
@@ -44,16 +45,18 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // Admin Frontend View
 
-Route::get('/dashboard/agroindustri', [DashboardAgroindustriController::class, 'daily'])->name('dashboardAgroindustri');
-Route::post('/dashboard/agroindustri/date', [DashboardAgroindustriController::class, 'search'])->name('dashboardAgroindustriSearch');
+Route::get('/dashboard', [DashboardConsolidationController::class, 'latest'])->name('dashboardAgroindustri');
+
+Route::get('/dashboard/agroindustri', [DashboardAgroindustriController::class, 'latest'])->name('dashboardAgroindustri');
+Route::post('/dashboard/agroindustri/daily', [DashboardAgroindustriController::class, 'search'])->name('dashboardAgroindustriSearch');
 Route::get('/dashboard/agroindustri/products', [DashboardAgroindustriController::class, 'product'])->name('dashboardAgroindustriProduct');
 
-Route::get('/dashboard/manufaktur', [DashboardManufakturController::class, 'daily'])->name('dashboardManufaktur');
-Route::post('/dashboard/manufaktur/date', [DashboardManufakturController::class, 'search'])->name('dashboardManufakturSearch');
+Route::get('/dashboard/manufaktur', [DashboardManufakturController::class, 'latest'])->name('dashboardManufaktur');
+Route::post('/dashboard/manufaktur/daily', [DashboardManufakturController::class, 'search'])->name('dashboardManufakturSearch');
 Route::get('/dashboard/manufaktur/products', [DashboardManufakturController::class, 'product'])->name('dashboardManufakturProduct');
 
-Route::get('/dashboard/garam', [DashboardGaramController::class, 'daily'])->name('dashboardGaram');
-Route::post('/dashboard/garam/date', [DashboardGaramController::class, 'search'])->name('dashboardGaramSearch');
+Route::get('/dashboard/garam', [DashboardGaramController::class, 'latest'])->name('dashboardGaram');
+Route::post('/dashboard/garam/daily', [DashboardGaramController::class, 'search'])->name('dashboardGaramSearch');
 Route::get('/dashboard/garam/products', [DashboardGaramController::class, 'product'])->name('dashboardGaramProduct');
 
 // Superadmin Frontend View

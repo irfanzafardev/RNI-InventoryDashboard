@@ -27,7 +27,7 @@
 
 <!-- Content Row -->
 <div class="content-cta mb-3">
-  <form action="/dashboard/garam/date" method="POST">
+  <form action="/dashboard/garam/daily" method="POST">
     @csrf
     <div class="row justify-content-end">
       <div class="col-6 d-flex justify-content-end">

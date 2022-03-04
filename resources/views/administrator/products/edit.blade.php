@@ -102,6 +102,44 @@
               @endforeach
             </select>
           </div>
+          <div class="form-group mb-3">
+            <label for="class" class="form-label">Class</label>
+            <input
+              type="text"
+              class="form-control @error('class') is-invalid @enderror"
+              name="class"
+              id="class"
+              value="{{ Auth::user()->company->group->group_name }}"
+              readonly
+            />
+            @error('class')
+                <div class="invalid-feedback">
+                  {{ $message }}
+                </div>
+            @enderror
+          </div>
+          <div class="form-group mb-3">
+            <label for="company" class="form-label">Company</label>
+            <input
+              type="text"
+              class="form-control @error('company') is-invalid @enderror"
+              name="company"
+              id="company"
+              value="{{ Auth::user()->company->company_name }}"
+              readonly
+            />
+          </div>
+          <div class="form-group mb-3">
+            <label for="category" class="form-label">Category</label>
+            <input
+              type="text"
+              class="form-control @error('category') is-invalid @enderror"
+              name="category"
+              id="category-read"
+              value="{{ old('product_name', $product->category) }}"
+              readonly
+            />
+          </div>
         </div>
         <div class="col-6">
           <div class="form-group mb-3">
@@ -159,21 +197,6 @@
               value="{{ old('unit_price', $product->unit_price) }}"
             />
             @error('unit_price')
-                <div class="invalid-feedback">
-                  {{ $message }}
-                </div>
-            @enderror
-          </div>
-          <div class="form-group mb-5">
-            <label for="value" class="form-label">Value</label>
-            <input
-              type="number"
-              class="form-control @error('value') is-invalid @enderror"
-              name="value"
-              id="value"
-              readonly
-            />
-            @error('value')
                 <div class="invalid-feedback">
                   {{ $message }}
                 </div>

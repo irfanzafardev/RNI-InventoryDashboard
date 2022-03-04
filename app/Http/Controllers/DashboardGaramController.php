@@ -15,7 +15,7 @@ class DashboardGaramController extends Controller
     $this->middleware('auth');
   }
 
-  public function daily()
+  public function latest()
   {
     // $datastocks = Stock::where('class', 'Manufaktur')->get();
     $datastocks = Stock::where('date', '=', Carbon::today()->toDateString())

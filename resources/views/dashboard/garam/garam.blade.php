@@ -27,7 +27,7 @@
 
 <!-- Content Row -->
 <div class="content-cta mb-3">
-  <form action="/dashboard/agroindustri/date" method="POST">
+  <form action="/dashboard/agroindustri/daily" method="POST">
     @csrf
     <div class="row justify-content-end">
       <div class="col-6 d-flex justify-content-end">
@@ -44,7 +44,7 @@
 <!-- Summary Row -->
 <div class="summary-card mb-4">
   <div class="card">
-    <div class="card-body">
+    <div class="card-body bg-lightlime rounded">
       <div class="row">
         <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-1">
           <div class="row">

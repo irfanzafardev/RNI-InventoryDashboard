@@ -27,11 +27,11 @@
 
 <!-- Content Row -->
 <div class="content-cta mb-3">
-  <form action="/dashboard/agroindustri/date" method="POST">
+  <form action="/dashboard/agroindustri/daily" method="POST">
     @csrf
     <div class="row justify-content-end">
       <div class="col-6 d-flex justify-content-end">
-        <input type="text" id="datepicker" value="{{ $date }}" name="date">
+        <input type="text" id="datepicker" value="{{ $day }}" name="date">
 
         <button type="submit" class="btn btn-primary bg-darkblue ml-3 px-4">
           Show
@@ -44,7 +44,7 @@
 <!-- Summary Row -->
 <div class="summary-card mb-4">
   <div class="card">
-    <div class="card-body">
+    <div class="card-body bg-lightlime rounded">
       <div class="row">
         <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-1">
           <div class="row">
@@ -105,10 +105,8 @@
                 <h5 class="card-title item-card-title text-white">
                   Gula
                 </h5>
-                <p
-                  class="card-subtitle item-card-subtitle mb-2 text-white"
-                >
-                  0 <br />
+                <p class="card-subtitle item-card-subtitle mb-2 text-white">
+                  {{ number_format($quantityGula, 0)}} <br />
                   <span>(kg)</span>
                 </p>
               </div>

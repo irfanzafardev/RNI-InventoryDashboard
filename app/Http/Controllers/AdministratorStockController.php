@@ -78,6 +78,7 @@ class AdministratorStockController extends Controller
       'product_id' => 'required',
       'class' => 'required',
       'company' => 'required',
+      'category' => 'required',
       'quantity' => 'required',
       'value' => 'required'
     ]);
@@ -129,6 +130,9 @@ class AdministratorStockController extends Controller
       'stock_code' => 'required',
       'date' => 'required',
       'product_id' => 'required',
+      'class' => 'required',
+      'company' => 'required',
+      'category' => 'required',
       'quantity' => 'required',
       'value' => 'required'
     ]);

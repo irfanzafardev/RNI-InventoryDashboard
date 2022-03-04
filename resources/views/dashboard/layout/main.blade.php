@@ -38,7 +38,7 @@
 	<body id="page-top">
 		<nav class="navbar navbar-expand-lg navbar-light bg-white">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="#">Dashventory</a>
+				<a class="navbar-brand" href="/dashboard">Dashventory</a>
 				<button
 					class="navbar-toggler"
 					type="button"

@@ -70,7 +70,17 @@
               @endforeach
             </select>
           </div>
-          <div class="form-group d-none mb-3">
+          <div class="form-group mb-3">
+            <label for="company" class="form-label">Company</label>
+            <input
+              type="text"
+              class="form-control @error('company') is-invalid @enderror"
+              name="company"
+              id="company"
+              readonly
+            />
+          </div>
+          <div class="form-group mb-3">
             <label for="class" class="form-label">Class</label>
             <input
               type="text"
@@ -85,60 +95,18 @@
                 </div>
             @enderror
           </div>
-          <div class="form-group mb-3">
-            <label for="company" class="form-label">Company</label>
-            <input
-              type="text"
-              class="form-control @error('company') is-invalid @enderror"
-              name="company"
-              id="company"
-              readonly
-            />
-            @error('company')
-                <div class="invalid-feedback">
-                  {{ $message }}
-                </div>
-            @enderror
-          </div>
-          
-          {{-- <div class="form-group mb-3">
-            <label for="group_name" class="form-label">Product Code</label>
-            <input type="text" class="form-control @error('group_name') is-invalid @enderror" name="group_name" id="group_name" readonly/>
-              @error('group_name')
-                  <div class="invalid-feedback">
-                    {{ $message }}
-                  </div>
-              @enderror
-          </div>
-          <div class="form-group mb-3">
-            <label for="category_name" class="form-label">Product Category</label>
-            <input type="text" class="form-control @error('category_name') is-invalid @enderror" name="category_name" id="category_name" readonly/>
-            @error('category_name')
-                <div class="invalid-feedback">
-                  {{ $message }}
-                </div>
-            @enderror
-          </div> --}}
         </div>
         <div class="col-5">
-          {{-- <div class="form-group mb-3">
-            <label for="subcategory_name" class="form-label">Sub Product Category</label>
-            <input type="text" class="form-control @error('subcategory_name') is-invalid @enderror" name="subcategory_name" id="subcategory_name" readonly />
-            @error('subcategory_name')
-                <div class="invalid-feedback">
-                  {{ $message }}
-                </div>
-            @enderror
-          </div>
           <div class="form-group mb-3">
-            <label for="product_code" class="form-label">Product Code</label>
-            <input type="text" class="form-control @error('unit_price') is-invalid @enderror" name="unit_price" id="product_code" readonly/>
-            @error('unit_price')
-                <div class="invalid-feedback">
-                  {{ $message }}
-                </div>
-            @enderror
-          </div> --}}
+            <label for="category" class="form-label">Category</label>
+            <input
+              type="text"
+              class="form-control @error('category') is-invalid @enderror"
+              name="category"
+              id="category"
+              readonly
+            />
+          </div>
           <div class="form-group mb-3">
             <label for="unit_price" class="form-label">Unit Price (Rp)</label>
             <input type="number" class="form-control @error('unit_price') is-invalid @enderror" name="unit_price" id="unit_price" readonly/>
@@ -174,6 +142,8 @@
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 <script>
   $('#product_id').change(function(){
     var id = $(this).val();
@@ -188,13 +158,16 @@
         success: function(response)
         {
             if(response){
-              $('#unit_price').val(response.unit_price);
-              $('#class').val(response.class);
               $('#company').val(response.company);
+              $('#class').val(response.class);
+              $('#category').val(response.category);
+              $('#unit_price').val(response.unit_price);
             } 
         }
     });
   });
+
+  $('#product_id').select2();
 
   $(".input").on("input", function () {
       var x = document.getElementById("quantity").value;

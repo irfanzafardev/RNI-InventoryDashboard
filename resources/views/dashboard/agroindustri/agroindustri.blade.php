@@ -27,18 +27,11 @@
 
 <!-- Content Row -->
 <div class="content-cta mb-3">
-  <form action="/dashboard/agroindustri/date" method="POST">
+  <form action="/dashboard/agroindustri/daily" method="POST">
     @csrf
     <div class="row justify-content-end">
       <div class="col-6 d-flex justify-content-end">
-        {{-- <input
-          type="date"
-          class="form-control mr-3"
-          id="date"
-          value="{{ $today }}"
-          style="max-width: 200px"
-        /> --}}
-        <input type="text" id="datepicker" value="{{ $yesterday }}" name="date">
+        <input type="text" id="datepicker" value="{{ $day }}" name="date">
 
         <button type="submit" class="btn btn-primary bg-darkblue ml-3 px-4">
           Show
@@ -51,7 +44,7 @@
 <!-- Summary Row -->
 <div class="summary-card mb-4">
   <div class="card">
-    <div class="card-body">
+    <div class="card-body bg-lightlime rounded">
       <div class="row">
         <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-1">
           <div class="row">
@@ -110,10 +103,8 @@
                 <h5 class="card-title item-card-title text-white">
                   Gula
                 </h5>
-                <p
-                  class="card-subtitle item-card-subtitle mb-2 text-white"
-                >
-                  0 <br />
+                <p class="card-subtitle item-card-subtitle mb-2 text-white">
+                  {{ number_format($quantityGula, 0)}} <br />
                   <span>(kg)</span>
                 </p>
               </div>
@@ -125,36 +116,36 @@
             </div>
             <div class="row mt-2">
               <div class="col-12 item-card-value text-white">
-                Rp. 0
+                Rp. {{ number_format($valueGula, 2)}}
               </div>
             </div>
             <div class="row mt-2">
-              <div class="col-4 item-card-company text-white">
-                Company
-              </div>
+              <div class="col-4 item-card-company text-white">Company</div>
               <div class="col-4 item-card-company text-white">Stock</div>
               <div class="col-4 item-card-company text-white">Value</div>
             </div>
-            <div class="card-info">
-              <div class="row">
-                <div class="col-4 item-card-info text-white">
-                  PG Rajawali
+            @foreach ($companyGula as $item)
+              <div class="card-info">
+                <div class="row">
+                  <div class="col-4 item-card-info text-white">
+                    {{ $item->company }}
+                  </div>
+                  <div class="col-4 item-card-info text-white">0</div>
+                  <div class="col-4 item-card-info text-white">
+                    0
+                  </div>
                 </div>
-                <div class="col-4 item-card-info text-white">0</div>
-                <div class="col-4 item-card-info text-white">
-                  0
+                <div class="row">
+                  <div class="col-4 item-card-info text-white">
+                    PG Candi B
+                  </div>
+                  <div class="col-4 item-card-info text-white">0</div>
+                  <div class="col-4 item-card-info text-white">
+                    0
+                  </div>
                 </div>
-              </div>
-              <div class="row">
-                <div class="col-4 item-card-info text-white">
-                  PG Candi B
-                </div>
-                <div class="col-4 item-card-info text-white">0</div>
-                <div class="col-4 item-card-info text-white">
-                  0
-                </div>
-              </div>
-            </div>
+              </div>            
+            @endforeach
           </div>
         </div>
       </a>
@@ -211,10 +202,8 @@
             <div class="row">
               <div class="col-6">
                 <h5 class="card-title item-card-title text-white">Teh</h5>
-                <p
-                  class="card-subtitle item-card-subtitle mb-2 text-white"
-                >
-                  0 <br />
+                <p class="card-subtitle item-card-subtitle mb-2 text-white">
+                  {{ number_format($quantityTeh, 0)}} <br />
                   <span>(kg)</span>
                 </p>
               </div>
@@ -226,7 +215,7 @@
             </div>
             <div class="row mt-2">
               <div class="col-12 item-card-value text-white">
-                Rp. 0
+                Rp. {{ number_format($valueTeh, 2)}} <br /> 
               </div>
             </div>
             <div class="row mt-2">

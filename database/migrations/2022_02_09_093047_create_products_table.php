@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
       $table->foreignId('user_id');
       $table->string('company');
       $table->foreignId('subcategory_id');
+      $table->string('category');
       $table->foreignId('unit_id');
       $table->boolean('active')->default(1);
       $table->bigInteger('quantity')->Nullable();

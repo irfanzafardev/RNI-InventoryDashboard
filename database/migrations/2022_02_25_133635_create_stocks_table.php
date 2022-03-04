@@ -20,8 +20,9 @@ class CreateStocksTable extends Migration
       $table->foreignId('product_id');
       $table->string('company');
       $table->string('class');
-      $table->integer('quantity');
-      $table->integer('value');
+      $table->string('category');
+      $table->bigInteger('quantity');
+      $table->bigInteger('value');
       $table->timestamps();
     });
   }

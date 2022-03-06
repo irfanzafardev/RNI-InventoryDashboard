@@ -100,9 +100,9 @@
 
   <!-- Nav Item - Tables -->
   <li class="nav-item">
-    <a class="nav-link py-2" href="#">
-      <span>Report Stock</span></a
-    >
+    <a class="nav-link {{ Request::is('administrator/report*') ? 'active' : '' }} py-2" href="/administrator/report">
+      <span>Report Stock</span>
+    </a>
   </li>
 
   <!-- Nav Item - Tables -->

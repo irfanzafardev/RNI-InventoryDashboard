@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\StockOut;
-use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class AdministratorStockOutController extends Controller
+class AdministratorUserController extends Controller
 {
   /**
    * Display a listing of the resource.
    *
    * @return \Illuminate\Http\Response
    */
+
   public function __construct()
   {
     $this->middleware('auth');
@@ -21,9 +20,7 @@ class AdministratorStockOutController extends Controller
 
   public function index()
   {
-    return view('administrator.stocks.stockout.stockout', [
-      'stockouts' => StockOut::all(),
-      'products' => Product::all(),
+    return view('administrator.users.user', [
       'users' => User::all()
     ]);
   }
@@ -52,10 +49,10 @@ class AdministratorStockOutController extends Controller
   /**
    * Display the specified resource.
    *
-   * @param  \App\Models\StockOut  $stockOut
+   * @param  \App\Models\User  $user
    * @return \Illuminate\Http\Response
    */
-  public function show(StockOut $stockOut)
+  public function show(User $user)
   {
     //
   }
@@ -63,10 +60,10 @@ class AdministratorStockOutController extends Controller
   /**
    * Show the form for editing the specified resource.
    *
-   * @param  \App\Models\StockOut  $stockOut
+   * @param  \App\Models\User  $user
    * @return \Illuminate\Http\Response
    */
-  public function edit(StockOut $stockOut)
+  public function edit(User $user)
   {
     //
   }
@@ -75,10 +72,10 @@ class AdministratorStockOutController extends Controller
    * Update the specified resource in storage.
    *
    * @param  \Illuminate\Http\Request  $request
-   * @param  \App\Models\StockOut  $stockOut
+   * @param  \App\Models\User  $user
    * @return \Illuminate\Http\Response
    */
-  public function update(Request $request, StockOut $stockOut)
+  public function update(Request $request, User $user)
   {
     //
   }
@@ -86,10 +83,10 @@ class AdministratorStockOutController extends Controller
   /**
    * Remove the specified resource from storage.
    *
-   * @param  \App\Models\StockOut  $stockOut
+   * @param  \App\Models\User  $user
    * @return \Illuminate\Http\Response
    */
-  public function destroy(StockOut $stockOut)
+  public function destroy(User $user)
   {
     //
   }

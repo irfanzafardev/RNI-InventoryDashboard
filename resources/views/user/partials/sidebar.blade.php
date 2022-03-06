@@ -60,8 +60,8 @@
   <!-- Nav Item - Tables -->
   <li class="nav-item">
     <a class="nav-link {{ Request::is('staff/stocks*') ? 'active' : '' }} py-2" href="/staff/stocks">
-      <span>Daily Stock</span></a
-    >
+      <span>Daily Stock</span>
+    </a>
   </li>
 
   <!-- Report -->
@@ -69,9 +69,9 @@
 
   <!-- Nav Item - Tables -->
   <li class="nav-item">
-    <a class="nav-link py-2" href="/">
-      <span>Report Stock</span></a
-    >
+    <a class="nav-link {{ Request::is('staff/report*') ? 'active' : '' }} py-2" href="/staff/report">
+      <span>Report Stock</span>
+    </a>
   </li>
 
   <!-- Sidebar Toggler (Sidebar) -->

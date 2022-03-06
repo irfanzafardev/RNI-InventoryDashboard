@@ -18,15 +18,17 @@ class AdministratorHomeController extends Controller
 
   public function index()
   {
-    $dataproduct = Product::all()
+    $day = Carbon::today()->toDateString();
+
+    $dataValue = Stock::where('date', '=', $day)
+      ->sum('value');
+    $dataProduct = Product::all()
       ->count();
-    $dataStock = Stock::where('date', '=', Carbon::today()->toDateString())
+    $dataStock = Stock::where('date', '=', $day)
       ->get();
-    $datavalue = Stock::all()
-      ->count();
-    $datacategory = Category::all()
+    $dataTotalStock = Stock::where('date', '=', $day)
       ->count();
 
-    return view('administrator.home', compact('dataproduct', 'dataStock', 'datacategory'));
+    return view('administrator.home', compact('dataValue', 'dataProduct', 'dataStock', 'dataTotalStock'));
   }
 }

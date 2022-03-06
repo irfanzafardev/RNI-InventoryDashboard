@@ -109,11 +109,10 @@ class AdministratorStockController extends Controller
    */
   public function edit(Stock $stock)
   {
-    $userid = Auth::user()->id;
     return view('administrator.stocks.edit', [
       'stock' => $stock,
       'allStocks' => Stock::all(),
-      'products' => Product::all()->where('user_id', $userid),
+      'products' => Product::all(),
     ]);
   }
 

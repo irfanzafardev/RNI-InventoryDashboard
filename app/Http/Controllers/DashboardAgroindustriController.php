@@ -64,6 +64,22 @@ class DashboardAgroindustriController extends Controller
       ->where('category', 'Gula')
       ->orderBy('quantity', 'desc')->get();
 
+    $companyTetes = Stock::where('date', '=', $day)
+      ->where('category', 'Tetes')
+      ->orderBy('quantity', 'desc')->get();
+
+    $companyTeh = Stock::where('date', '=', $day)
+      ->where('category', 'Teh')
+      ->orderBy('quantity', 'desc')->get();
+
+    $companySawit = Stock::where('date', '=', $day)
+      ->where('category', 'Sawit')
+      ->orderBy('quantity', 'desc')->get();
+
+    $companyKaret = Stock::where('date', '=', $day)
+      ->where('category', 'Sawit')
+      ->orderBy('quantity', 'desc')->get();
+
     return view(
       'dashboard.agroindustri.agroindustri',
       compact(

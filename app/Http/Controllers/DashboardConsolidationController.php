@@ -37,6 +37,8 @@ class DashboardConsolidationController extends Controller
       ->where('class', 'Garam')
       ->sum('quantity');
 
+    $valueAll = Stock::where('date', '=', $day)
+      ->sum('value');
     $valueAgroindustri = Stock::where('date', '=', $day)
       ->where('class', 'Agroindustri')
       ->sum('value');
@@ -61,6 +63,7 @@ class DashboardConsolidationController extends Controller
         'quantityAgroindustri',
         'quantityManufaktur',
         'quantityGaram',
+        'valueAll',
         'valueAgroindustri',
         'valueManufaktur',
         'valueGaram',

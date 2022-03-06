@@ -19,12 +19,22 @@ class StaffHomeController extends Controller
   public function index()
   {
     $id = Auth::user()->id;
-    $groupid = Auth::user()->company->group->id;
+    $day = Carbon::today()->toDateString();
     $company = Auth::user()->company->company_name;
-    $dataproduct = Product::all()->where('user_id', $id)->count();
-    $datacategory = Category::all()->where('group_id', $groupid)->count();
-    $dataStock = Stock::where('date', '=', Carbon::today()->toDateString())->where('company', $company)->get();
 
-    return view('user.home', compact('dataproduct', 'datacategory', 'dataStock'));
+    $dataValue = Stock::where('date', '=', $day)
+      ->where('company', $company)
+      ->sum('value');
+    $dataProduct = Product::all()
+      ->where('user_id', $id)
+      ->count();
+    $dataStock = Stock::where('date', '=', $day)
+      ->where('company', $company)
+      ->get();
+    $dataTotalStock = Stock::where('date', '=', $day)
+      ->where('company', $company)
+      ->count();
+
+    return view('user.home', compact('dataProduct', 'dataStock', 'dataValue', 'dataTotalStock'));
   }
 }

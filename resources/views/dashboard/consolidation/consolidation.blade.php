@@ -4,7 +4,7 @@
 <!-- Page Heading -->
 <div class="page-heading d-sm-flex align-items-center justify-content-between mb-4">
   <h1 class="h3 mb-0">Consolidation</h1>
-  <nav aria-label="breadcrumb">
+  <nav class="d-none" aria-label="breadcrumb">
     <ol class="breadcrumb bg-transparent pt-4">
       <li class="breadcrumb-item text-dark" aria-current="page">
         Consolidation
@@ -32,56 +32,26 @@
   </form>
 </div>
 
-<!-- Summary Row -->
-<div class="summary-card mb-4">
-  <div class="card bg-darkblue">
-    <div class="card-body">
-      <div class="row">
-        <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-1">
-          <div class="row">
-            <div class="col-12">
-              <img src="{{ asset("./img/dollar-white.png") }}" alt="" />
-              <h5 class="d-inline-block text-white ps-2">
-                Total Value
-              </h5>
-            </div>
-          </div>
-          <span id="totalValue"></span>
-        </div>
-        <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-1">
-          <div class="row">
-            <div class="col-12">
-              <img src="{{ asset("./img/highest-amount-white.png") }}" alt="" />
-              <h5 class="d-inline-block text-white ps-2">
-                Highest amount
-              </h5>
-            </div>
-          </div>
-          @if (!empty($highestAmount->product->product_name))
-            <small>({{ $highestAmount->product->product_name }})</small>
-            <span>{{ number_format($highestAmount->quantity, 0) }} Kg</span>
-          @else
-          <span>-</span>
-          @endif
-        </div>
-        <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-1">
-          <div class="row">
-            <div class="col-12">
-              <img src="{{ asset("./img/items-white.png") }}" alt="" />
-              <h5 class="d-inline-block text-white ps-2">
-                Total Product Items
-              </h5>
-            </div>
-          </div>
-          <span>{{ $dataStockLength }} items</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- Single Card Row -->
 <div class="single-cards row">
+  <div class="col-12 col-md-6 col-lg-3 mb-3">
+    <a href="#" class="text-decoration-none">
+      <div class="card single-card-consolidation bg-lightblue">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12">
+              <h5 class="card-title item-card-title text-muted">
+                Total Value
+              </h5>
+              <p class="card-subtitle item-card-subtitle mb-2 text-darkblue mt-2">
+                <span class="number"> Rp.{{ number_format($valueAll, 0) }}</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
   <div class="col-12 col-md-6 col-lg-3 mb-3">
     <a href="#" class="text-decoration-none">
       <div class="card single-card-consolidation bg-lightorange">
@@ -154,9 +124,67 @@
       </div>
     </a>
   </div>
-  <div class="col-12 col-md-6 col-lg-3 mb-3">
+</div>
+
+<!-- Summary Row -->
+<div class="row">
+  <div class="col-9">
+    <div class="summary-card mb-4">
+      <div class="card bg-lightgray">
+        <div class="card-body">
+          <div class="row consolidation-card">
+            <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-1 d-flex align-items-center">
+                <div class="">
+                  <div class="row">
+                    <div class="col-12 d-flex align-items-center">
+                      <img src="{{ asset("./img/dollar-sign.png") }}" alt="" />
+                      <h5 class="d-inline-block text-dark ps-0">
+                        Total Value
+                      </h5>
+                    </div>
+                  </div>
+                  <span id="totalValue"></span>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-1 d-flex align-items-center">
+              <div class="">
+                <div class="row">
+                  <div class="col-12">
+                    <img src="{{ asset("./img/highest-amount.png") }}" alt="" />
+                    <h5 class="d-inline-block text-dark ps-2">
+                      Highest amount
+                    </h5>
+                  </div>
+                </div>
+                @if (!empty($highestAmount->product->product_name))
+                  <small>({{ $highestAmount->product->product_name }})</small>
+                  <span>{{ number_format($highestAmount->quantity, 0) }} Kg</span>
+                @else
+                <span>-</span>
+                @endif
+              </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-1 d-flex align-items-center">
+              <div class="">
+                <div class="row">
+                  <div class="col-12">
+                    <img src="{{ asset("./img/items.png") }}" alt="" />
+                    <h5 class="d-inline-block text-dark ps-2">
+                      Total Product Items
+                    </h5>
+                  </div>
+                </div>
+                <span>{{ $dataStockLength }} items</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-3">
     <a href="#" class="text-decoration-none">
-      <div class="card single-card-consolidation bg-lightblue">
+      <div class="card single-card-consolidation bg-lightgray">
         <div class="card-body">
           <div class="row">
             <div class="col-12">
@@ -276,6 +304,7 @@
   datasets: [{
     label: 'My First Dataset',
     data: [{{ $valueAgroindustri }}, {{ $valueManufaktur }}, {{ $valueGaram }}],
+    // data: [60, 20, 20],
     backgroundColor: [
       'rgba(255, 211, 132, 1)',
       'rgba(255, 153, 106, 1)',
@@ -290,10 +319,17 @@
   type: 'doughnut',
   data: data,
   options: {
+      circumference: 	180,
+      rotation: 270,
       responsive: true,
       plugins: {
         legend: {
-          display: false,
+          display: true,
+          position: 'bottom',
+          align: 'center',
+          labels: {
+            boxWidth: 10
+          }
         },
       },
     },

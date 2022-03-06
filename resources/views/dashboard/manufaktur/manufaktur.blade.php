@@ -108,7 +108,7 @@
                 <p
                   class="card-subtitle item-card-subtitle mb-2 text-white"
                 >
-                  0 <br />
+                  {{ number_format(0)}} <br />
                   <span>(Lembar)</span>
                 </p>
               </div>
@@ -120,7 +120,7 @@
             </div>
             <div class="row mt-2">
               <div class="col-12 item-card-value text-white">
-                Rp. 0
+                Rp. {{ number_format(0)}}
               </div>
             </div>
             <div class="row mt-2">
@@ -131,24 +131,7 @@
               <div class="col-4 item-card-company text-white">Value</div>
             </div>
             <div class="card-info">
-              <div class="row">
-                <div class="col-4 item-card-info text-white">
-                  PG Rajawali
-                </div>
-                <div class="col-4 item-card-info text-white">0</div>
-                <div class="col-4 item-card-info text-white">
-                  0
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-4 item-card-info text-white">
-                  PG Candi B
-                </div>
-                <div class="col-4 item-card-info text-white">0</div>
-                <div class="col-4 item-card-info text-white">
-                  0
-                </div>
-              </div>
+
             </div>
           </div>
         </div>
@@ -166,7 +149,7 @@
                 <p
                   class="card-subtitle item-card-subtitle mb-2 text-white"
                 >
-                0 <br />
+                {{ number_format(0)}} <br />
                   <span>(Pieces)</span>
                 </p>
               </div>
@@ -178,7 +161,7 @@
             </div>
             <div class="row mt-2">
               <div class="col-12 item-card-value text-white">
-                Rp. 0
+                Rp. {{ number_format(0)}}
               </div>
             </div>
             <div class="row mt-2">
@@ -187,13 +170,6 @@
               </div>
               <div class="col-4 item-card-company text-white">Stock</div>
               <div class="col-4 item-card-company text-white">Value</div>
-            </div>
-            <div class="row">
-              <div class="col-4 item-card-info text-white">
-                PG Krebet baru I
-              </div>
-              <div class="col-4 item-card-info text-white">0</div>
-              <div class="col-4 item-card-info text-white">0</div>
             </div>
           </div>
         </div>
@@ -209,7 +185,7 @@
                 <p
                   class="card-subtitle item-card-subtitle mb-2 text-white"
                 >
-                  0 <br />
+                {{ number_format(0)}} <br />
                   <span>(Items)</span>
                 </p>
               </div>
@@ -221,7 +197,7 @@
             </div>
             <div class="row mt-2">
               <div class="col-12 item-card-value text-white">
-                Rp. 0
+                Rp. {{ number_format(0)}}
               </div>
             </div>
             <div class="row mt-2">
@@ -230,13 +206,6 @@
               </div>
               <div class="col-4 item-card-company text-white">Stock</div>
               <div class="col-4 item-card-company text-white">Value</div>
-            </div>
-            <div class="row">
-              <div class="col-4 item-card-info text-white">
-                PT Mitra Kerinci
-              </div>
-              <div class="col-4 item-card-info text-white">0</div>
-              <div class="col-4 item-card-info text-white">0</div>
             </div>
           </div>
         </div>

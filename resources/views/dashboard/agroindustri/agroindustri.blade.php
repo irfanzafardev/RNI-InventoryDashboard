@@ -7,7 +7,9 @@
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb bg-transparent pt-4">
       <li class="breadcrumb-item text-dark" aria-current="page">
-        Agroindustri
+        <a href="/dashboard">
+          Agroindustri
+        </a>
       </li>
       <li class="breadcrumb-item text-dark active" aria-current="page">
         Daily
@@ -95,7 +97,7 @@
 <div class="collapse mt-3" id="collapseExample">
   <div class="single-cards row">
     <div class="col-12 col-md-6 col-lg-4 mb-3">
-      <a href="category-page.html" class="text-decoration-none">
+      <a href="#" class="text-decoration-none">
         <div class="card single-card">
           <div class="card-body">
             <div class="row">
@@ -131,18 +133,7 @@
                     {{ $item->company }}
                   </div>
                   <div class="col-4 item-card-info text-white">0</div>
-                  <div class="col-4 item-card-info text-white">
-                    0
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-4 item-card-info text-white">
-                    PG Candi B
-                  </div>
                   <div class="col-4 item-card-info text-white">0</div>
-                  <div class="col-4 item-card-info text-white">
-                    0
-                  </div>
                 </div>
               </div>            
             @endforeach
@@ -151,7 +142,7 @@
       </a>
     </div>
     <div class="col-12 col-md-6 col-lg-4 mb-3">
-      <a href="category-page.html" class="text-decoration-none">
+      <a href="#" class="text-decoration-none">
         <div class="card single-card">
           <div class="card-body">
             <div class="row">
@@ -162,7 +153,7 @@
                 <p
                   class="card-subtitle item-card-subtitle mb-2 text-white"
                 >
-                0 <br />
+                {{ number_format($quantityTetes, 0)}} <br />
                   <span>(kg)</span>
                 </p>
               </div>
@@ -174,7 +165,7 @@
             </div>
             <div class="row mt-2">
               <div class="col-12 item-card-value text-white">
-                Rp. 0
+                Rp. {{ number_format($valueTetes, 2)}}
               </div>
             </div>
             <div class="row mt-2">
@@ -184,19 +175,12 @@
               <div class="col-4 item-card-company text-white">Stock</div>
               <div class="col-4 item-card-company text-white">Value</div>
             </div>
-            <div class="row">
-              <div class="col-4 item-card-info text-white">
-                PG Krebet baru I
-              </div>
-              <div class="col-4 item-card-info text-white">0</div>
-              <div class="col-4 item-card-info text-white">0</div>
-            </div>
           </div>
         </div>
       </a>
     </div>
     <div class="col-12 col-md-6 col-lg-4 mb-3">
-      <a href="category-page.html" class="text-decoration-none">
+      <a href="#" class="text-decoration-none">
         <div class="card single-card">
           <div class="card-body">
             <div class="row">
@@ -225,19 +209,12 @@
               <div class="col-4 item-card-company text-white">Stock</div>
               <div class="col-4 item-card-company text-white">Value</div>
             </div>
-            <div class="row">
-              <div class="col-4 item-card-info text-white">
-                PT Mitra Kerinci
-              </div>
-              <div class="col-4 item-card-info text-white">0</div>
-              <div class="col-4 item-card-info text-white">0</div>
-            </div>
           </div>
         </div>
       </a>
     </div>
     <div class="col-12 col-md-6 col-lg-4 mb-3">
-      <a href="category-page.html" class="text-decoration-none">
+      <a href="#" class="text-decoration-none">
         <div class="card single-card">
           <div class="card-body">
             <div class="row">
@@ -248,7 +225,7 @@
                 <p
                   class="card-subtitle item-card-subtitle mb-2 text-white"
                 >
-                  0 <br />
+                  {{ number_format($quantitySawit, 0)}} <br />
                   <span>(kg)</span>
                 </p>
               </div>
@@ -259,7 +236,9 @@
               </div>
             </div>
             <div class="row mt-2">
-              <div class="col-12 item-card-value text-white">Rp. 0</div>
+              <div class="col-12 item-card-value text-white">
+                Rp. {{ number_format($valueSawit, 0)}}
+              </div>
             </div>
             <div class="row mt-2">
               <div class="col-4 item-card-company text-white">
@@ -273,7 +252,7 @@
       </a>
     </div>
     <div class="col-12 col-md-6 col-lg-4 mb-3">
-      <a href="category-page.html" class="text-decoration-none">
+      <a href="#" class="text-decoration-none">
         <div class="card single-card">
           <div class="card-body">
             <div class="row">
@@ -284,7 +263,7 @@
                 <p
                   class="card-subtitle item-card-subtitle mb-2 text-white"
                 >
-                  0 <br />
+                  {{ number_format($quantityKaret, 0)}} <br />
                   <span>(kg)</span>
                 </p>
               </div>
@@ -295,7 +274,9 @@
               </div>
             </div>
             <div class="row mt-2">
-              <div class="col-12 item-card-value text-white">Rp. 0</div>
+              <div class="col-12 item-card-value text-white">
+                Rp. {{ number_format($valueKaret, 0)}}
+              </div>
             </div>
             <div class="row mt-2">
               <div class="col-4 item-card-company text-white">
@@ -375,15 +356,11 @@
         </tbody>
       </table>
     </div>
-    {{-- <div class="row">
-      <div class="col-12 mt-3 d-flex justify-content-end">
-        <h3 class="text-primary" id="productLength">{{ $dataproductlength }}</h3>
-      </div>
-    </div> --}}
   </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
   $('.accordion-button').click(function(){
@@ -405,5 +382,53 @@
   });
 
   document.getElementById('totalValue').innerHTML = formatter.format(sumVal);
+</script>
+
+<script>
+    const data = {
+      labels: [
+        'PT A',
+        'PT B',
+      ],
+      datasets: [{
+        label: 'Gula Dataset',
+        data: [60, 40],
+        backgroundColor: [
+          'rgba(132, 178, 156, 1)',
+          'rgba(242, 204, 142, 1)',
+        ],
+        borderColor:'#111F38',
+        hoverOffset: 3,
+      }]
+    };
+
+  const config = {
+    type: 'doughnut',
+    data: data,
+    options: {
+        circumference: 	180,
+        rotation: 270,
+        responsive: true,
+        plugins: {
+          legend: {
+            display: true,
+            position: 'bottom',
+            align: 'center',
+            labels: {
+              boxWidth: 10,
+              font: {
+                        size: 8,
+                        color: '#666'
+                    }
+            }
+          },
+        },
+      },
+  };
+
+  const ChartGula = new Chart(
+    document.getElementById('ChartGula'),
+    config
+  );
 </script>
 @endsection

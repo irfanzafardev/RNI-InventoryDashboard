@@ -30,31 +30,35 @@
   <div class="card">
     <div class="card-body bg-darkblue rounded">
       <div class="row">
-        <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-1">
-          <div class="row">
-            <div class="col-12 d-flex align-items-center">
-              <img class="" src="{{ asset("./img/product.png") }}" alt="" />
-              <h5 class="d-inline-block text-white ml-3 ps-2">
-                Total <br> Products
-              </h5>
+        <div class="col-12 col-md-6 col-lg-6 mb-5 mb-lg-1 d-flex justify-content-center">
+          <div class="">
+            <div class="row">
+              <div class="col-12 d-flex align-items-center">
+                <img class="" src="{{ asset("./img/product.png") }}" alt="" />
+                <h5 class="d-inline-block text-white ml-3 ps-2">
+                  Total <br> Products
+                </h5>
+              </div>
             </div>
+            <span class="">{{ $dataProductLength }}</span>
+            <span class="pl-2">items</span>
           </div>
-          <span class="">{{ $dataProductLength }}</span>
-          <span class="pl-2">items</span>
         </div>
-        <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-1">
-          <div class="row">
-            <div class="col-12 d-flex align-items-center">
-              <img class="" src="{{ asset("./img/product.png") }}" alt="" />
-              <h5 class="accordion-button collapsed d-inline-block text-white ml-3 ps-2" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                Total Category <br> Products
-              </h5>
+        <div class="col-12 col-md-6 col-lg-6 mb-5 mb-lg-1 d-flex justify-content-center">
+          <div class="">
+            <div class="row">
+              <div class="col-12 d-flex align-items-center">
+                <img class="" src="{{ asset("./img/product.png") }}" alt="" />
+                <h5 class="accordion-button collapsed d-inline-block text-white ml-3 ps-2" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                  Total Category <br> Products
+                </h5>
+              </div>
             </div>
+            <span>{{ $dataCategoryLength }}</span>
+            <span class="pl-2">items</span>
           </div>
-          <span>{{ $dataCategoryLength }}</span>
-          <span class="pl-2">items</span>
         </div>
-        <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-1">
+        {{-- <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-1">
           <div class="row">
             <div class="col-12 d-flex align-items-center">
               <img class="" src="{{ asset("./img/product.png") }}" alt="" />
@@ -64,7 +68,7 @@
             </div>
           </div>
           <span>items</span>
-        </div>
+        </div> --}}
       </div>
     </div>
   </div>

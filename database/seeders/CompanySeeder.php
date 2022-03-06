@@ -28,19 +28,16 @@ class CompanySeeder extends Seeder
         'group_id' => 2
       ],
       [
-        'company_name' => 'PT Mitra Kerinci',
-        'group_id' => 2
-      ],
-      [
         'company_name' => 'PG Krebet baru I',
         'group_id' => 2
       ],
       [
-        'company_name' => 'PT Rajawali Citramas',
-        'group_id' => 3
+        'company_name' => 'PT Mitra Kerinci',
+        'group_id' => 2
       ],
+
       [
-        'company_name' => 'PT Mitra Rajawali Banjaran',
+        'company_name' => 'PT Rajawali TE',
         'group_id' => 3
       ],
       [
@@ -48,11 +45,7 @@ class CompanySeeder extends Seeder
         'group_id' => 3
       ],
       [
-        'company_name' => 'PT Rajawali TE',
-        'group_id' => 3
-      ],
-      [
-        'company_name' => 'PT GIEB',
+        'company_name' => 'PT Rajawali Citramas',
         'group_id' => 3
       ],
       [

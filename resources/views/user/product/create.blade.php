@@ -114,6 +114,8 @@
               readonly
             />
           </div>
+        </div>
+        <div class="col-5">
           <div class="form-group mb-3">
             <label for="category" class="form-label">Product Category</label>
             <select class="form-control form-select @error('category') is-invalid @enderror" name="category_id" id="category" required>
@@ -128,8 +130,6 @@
                 </div>
             @enderror
           </div>
-        </div>
-        <div class="col-5">
           <div class="form-group mb-3 d-none" id="subcategoryview">
             <label for="subcategory" class="form-label">Product Subcategory</label>
             <select class="form-control form-select" name="subcategory_id" id="subcategory" required></select>
@@ -151,7 +151,7 @@
               @endforeach
             </select>
           </div>
-          <div class="form-group mb-3">
+          <div class="form-group d-none mb-3">
             <label for="quantity" class="form-label">Quantity</label>
             <input
               type="number"

@@ -25,8 +25,9 @@ class StaffStockController extends Controller
   public function index()
   {
     $company = Auth::user()->company->company_name;
+    $date = Carbon::today()->toDateString();
     return view('user.stocks.stock', [
-      'stocks' => Stock::where('date', '=', Carbon::today()->toDateString())
+      'stocks' => Stock::where('date', '=', $date)
         ->where('company', $company)
         ->get(),
       'allStocks' => Stock::where('company', $company)->get()

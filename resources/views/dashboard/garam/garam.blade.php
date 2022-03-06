@@ -101,14 +101,19 @@
         <div class="card single-card">
           <div class="card-body">
             <div class="row">
-              <div class="col-6">
+              <div class="col-12">
                 <h5 class="card-title item-card-title text-white">
-                  Garam
+                  Garam Produksi Sendiri
                 </h5>
+                
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
                 <p
                   class="card-subtitle item-card-subtitle mb-2 text-white"
                 >
-                  0 <br />
+                  {{ number_format(0)}} <br />
                   <span>(kg)</span>
                 </p>
               </div>
@@ -120,7 +125,7 @@
             </div>
             <div class="row mt-2">
               <div class="col-12 item-card-value text-white">
-                Rp. 0
+                Rp. {{ number_format(0)}}
               </div>
             </div>
             <div class="row mt-2">
@@ -129,26 +134,6 @@
               </div>
               <div class="col-4 item-card-company text-white">Stock</div>
               <div class="col-4 item-card-company text-white">Value</div>
-            </div>
-            <div class="card-info">
-              <div class="row">
-                <div class="col-4 item-card-info text-white">
-                  PG Rajawali
-                </div>
-                <div class="col-4 item-card-info text-white">0</div>
-                <div class="col-4 item-card-info text-white">
-                  0
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-4 item-card-info text-white">
-                  PG Candi B
-                </div>
-                <div class="col-4 item-card-info text-white">0</div>
-                <div class="col-4 item-card-info text-white">
-                  0
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -161,12 +146,12 @@
             <div class="row">
               <div class="col-6">
                 <h5 class="card-title item-card-title text-white">
-                  Garam
+                  Garam Import
                 </h5>
                 <p
                   class="card-subtitle item-card-subtitle mb-2 text-white"
                 >
-                0 <br />
+                {{ number_format(0)}} <br />
                   <span>(kg)</span>
                 </p>
               </div>
@@ -178,7 +163,7 @@
             </div>
             <div class="row mt-2">
               <div class="col-12 item-card-value text-white">
-                Rp. 0
+                Rp. {{ number_format(0)}}
               </div>
             </div>
             <div class="row mt-2">
@@ -189,165 +174,7 @@
               <div class="col-4 item-card-company text-white">Value</div>
             </div>
             <div class="row">
-              <div class="col-4 item-card-info text-white">
-                PG Krebet baru I
-              </div>
-              <div class="col-4 item-card-info text-white">0</div>
-              <div class="col-4 item-card-info text-white">0</div>
-            </div>
-          </div>
-        </div>
-      </a>
-    </div>
-    <div class="col-12 col-md-6 col-lg-4 mb-3">
-      <a href="category-page.html" class="text-decoration-none">
-        <div class="card single-card">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-6">
-                <h5 class="card-title item-card-title text-white">
-                  Garam
-                </h5>
-                <p
-                  class="card-subtitle item-card-subtitle mb-2 text-white"
-                >
-                  0 <br />
-                  <span>(kg)</span>
-                </p>
-              </div>
-              <div class="col-6">
-                <div class="donut-chart d-flex justify-content-end pe-3">
-                  <canvas id="ChartTeh"></canvas>
-                </div>
-              </div>
-            </div>
-            <div class="row mt-2">
-              <div class="col-12 item-card-value text-white">
-                Rp. 0
-              </div>
-            </div>
-            <div class="row mt-2">
-              <div class="col-4 item-card-company text-white">
-                Company
-              </div>
-              <div class="col-4 item-card-company text-white">Stock</div>
-              <div class="col-4 item-card-company text-white">Value</div>
-            </div>
-            <div class="row">
-              <div class="col-4 item-card-info text-white">
-                PT Mitra Kerinci
-              </div>
-              <div class="col-4 item-card-info text-white">0</div>
-              <div class="col-4 item-card-info text-white">0</div>
-            </div>
-          </div>
-        </div>
-      </a>
-    </div>
-    <div class="col-12 col-md-6 col-lg-4 mb-3">
-      <a href="category-page.html" class="text-decoration-none">
-        <div class="card single-card">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-6">
-                <h5 class="card-title item-card-title text-white">
-                  Garam
-                </h5>
-                <p
-                  class="card-subtitle item-card-subtitle mb-2 text-white"
-                >
-                  0 <br />
-                  <span>(kg)</span>
-                </p>
-              </div>
-              <div class="col-6">
-                <div class="donut-chart d-flex justify-content-end pe-3">
-                  <canvas id="ChartSawit"></canvas>
-                </div>
-              </div>
-            </div>
-            <div class="row mt-2">
-              <div class="col-12 item-card-value text-white">Rp. 0</div>
-            </div>
-            <div class="row mt-2">
-              <div class="col-4 item-card-company text-white">
-                Company
-              </div>
-              <div class="col-4 item-card-company text-white">Stock</div>
-              <div class="col-4 item-card-company text-white">Value</div>
-            </div>
-          </div>
-        </div>
-      </a>
-    </div>
-    <div class="col-12 col-md-6 col-lg-4 mb-3">
-      <a href="category-page.html" class="text-decoration-none">
-        <div class="card single-card">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-6">
-                <h5 class="card-title item-card-title text-white">
-                  Garam
-                </h5>
-                <p
-                  class="card-subtitle item-card-subtitle mb-2 text-white"
-                >
-                  0 <br />
-                  <span>(kg)</span>
-                </p>
-              </div>
-              <div class="col-6">
-                <div class="donut-chart d-flex justify-content-end pe-3">
-                  <canvas id="ChartKaret"></canvas>
-                </div>
-              </div>
-            </div>
-            <div class="row mt-2">
-              <div class="col-12 item-card-value text-white">Rp. 0</div>
-            </div>
-            <div class="row mt-2">
-              <div class="col-4 item-card-company text-white">
-                Company
-              </div>
-              <div class="col-4 item-card-company text-white">Stock</div>
-              <div class="col-4 item-card-company text-white">Value</div>
-            </div>
-          </div>
-        </div>
-      </a>
-    </div>
-    <div class="col-12 col-md-6 col-lg-4 mb-3">
-      <a href="category-page.html" class="text-decoration-none">
-        <div class="card single-card">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-6">
-                <h5 class="card-title item-card-title text-white">
-                  Garam
-                </h5>
-                <p
-                  class="card-subtitle item-card-subtitle mb-2 text-white"
-                >
-                  0 <br />
-                  <span>(kg)</span>
-                </p>
-              </div>
-              <div class="col-6">
-                <div class="donut-chart d-flex justify-content-end pe-3">
-                  <canvas id="ChartKaret"></canvas>
-                </div>
-              </div>
-            </div>
-            <div class="row mt-2">
-              <div class="col-12 item-card-value text-white">Rp. 0</div>
-            </div>
-            <div class="row mt-2">
-              <div class="col-4 item-card-company text-white">
-                Company
-              </div>
-              <div class="col-4 item-card-company text-white">Stock</div>
-              <div class="col-4 item-card-company text-white">Value</div>
-            </div>
+
           </div>
         </div>
       </a>
@@ -427,7 +254,10 @@
   </div>
 </div>
 
+ppp
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
   $('.accordion-button').click(function(){

@@ -60,7 +60,7 @@
             <label for="product_id" class="form-label">Product Name</label>
             <select
               name="product_id"
-              class="form-control form-select"
+              class="form-control form-select product_id"
               id="product_id">
               <option value="">Choose product</option>
               @foreach ($products as $product)
@@ -110,7 +110,11 @@
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 <script>
+  $('.product_id').select2();
+
   $('#product_id').change(function(){
     var id = $(this).val();
     var url = '{{ route("getDetails", ":id") }}';

@@ -60,6 +60,7 @@
 
 
 /* Administrator */
+
 .navbar-expand {
   background-color: #F8F9FA;
 }
@@ -132,6 +133,10 @@
 label {
   font-family: "Poppins", Helvetica, sans-serif;
   font-size: 15px;
+}
+
+.select-search {
+  background-color: red !important;
 }
 
 
@@ -230,8 +235,6 @@ label {
   transform: rotate(180deg);
   transition: transform 0.2s ease-in;
 }
-
-
 
 .category-summary-card .card {
   background-color: #E4F8CF;

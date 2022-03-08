@@ -50,7 +50,7 @@
             <td>{{ $category->category_name }}</td>
             <td>{{ $category->group->group_name }}</td>
             <td class="d-none">
-              <a href="/administrator/products/{{ $category->id }}/edit">Edit</a>
+              <a href="/administrator/categories/{{ $category->id }}/edit">Edit</a>
               <a href="#" class="delete" data-id="{{ $category->id }}" data-name="{{ $category->categroy_name }}">Delete</a>
             </td>
           </tr>

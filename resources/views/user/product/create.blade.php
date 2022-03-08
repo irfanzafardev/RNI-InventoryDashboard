@@ -118,10 +118,18 @@
         <div class="col-5">
           <div class="form-group mb-3">
             <label for="category" class="form-label">Product Category</label>
-            <select class="form-control form-select @error('category') is-invalid @enderror" name="category_id" id="category" required>
+            <select 
+            class="form-control form-select category @error('category') is-invalid @enderror" 
+            name="category_id" 
+            id="category" 
+            required>
               <option value="">Choose product category</option>
               @foreach ($categories as $category)
-                <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                @if (old('category_id') === $category->id)
+                  <option value="{{ $category->id }}" selected>{{ $category->category_name }}</option>
+                @else
+                  <option value="{{ $category->id }}">{{ $category->category_name }}</option>                 
+                @endif
               @endforeach
             </select>
             @error('category')
@@ -129,6 +137,16 @@
                   {{ $message }}
                 </div>
             @enderror
+          </div>
+          <div class="form-group d-none mb-3">
+            <label for="category" class="form-label">Category</label>
+            <input
+              type="text"
+              class="form-control @error('category') is-invalid @enderror"
+              name="category"
+              id="category-read"
+              readonly
+            />
           </div>
           <div class="form-group mb-3 d-none" id="subcategoryview">
             <label for="subcategory" class="form-label">Product Subcategory</label>
@@ -224,15 +242,12 @@
       }
     });
 
-    $(".input").on("input", function () {
-      var x = document.getElementById("quantity").value;
-      x = parseFloat(x);
-
-      var y = document.getElementById("unit_price").value;
-      y = parseFloat(y);
-
-      document.getElementById("value").value = x * y;
+    $(".category").on("input", function () {
+      var $variable = $('#category option:selected').html();
+      document.getElementById("category-read").value = $variable;
     });
+
+
   });
 </script>
 

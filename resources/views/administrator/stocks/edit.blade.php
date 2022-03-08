@@ -72,8 +72,51 @@
               @endforeach
             </select>
           </div>
+          <div class="form-group mb-3">
+            <label for="company" class="form-label">Company</label>
+            <input
+              type="text"
+              class="form-control @error('company') is-invalid @enderror"
+              name="company"
+              id="company"
+              value="{{ old('company', $stock->company) }}"
+              readonly
+            />
+            @error('company')
+                <div class="invalid-feedback">
+                  {{ $message }}
+                </div>
+            @enderror
+          </div>
+          <div class="form-group mb-3">
+            <label for="class" class="form-label">Class</label>
+            <input
+              type="text"
+              class="form-control @error('class') is-invalid @enderror"
+              name="class"
+              id="class"
+              value="{{ old('class', $stock->class) }}"
+              readonly
+            />
+            @error('class')
+                <div class="invalid-feedback">
+                  {{ $message }}
+                </div>
+            @enderror
+          </div>
         </div>
         <div class="col-5">
+          <div class="form-group mb-3">
+            <label for="category" class="form-label">Category</label>
+            <input
+              type="text"
+              class="form-control @error('category') is-invalid @enderror"
+              name="category"
+              id="category"
+              value="{{ old('category', $stock->category) }}"
+              readonly
+            />
+          </div>
           <div class="form-group mb-3">
             <label for="unit_price" class="form-label">Unit Price (Rp)</label>
             <input type="number" class="form-control @error('unit_price') is-invalid @enderror" name="unit_price" id="unit_price" value="{{ old('unit_price', $stock->product->unit_price) }}" readonly/>
@@ -128,9 +171,10 @@
         success: function(response)
         {
             if(response){
-              $('#unit_price').val(response.unit_price);
-              $('#class').val(response.class);
               $('#company').val(response.company);
+              $('#class').val(response.class);
+              $('#category').val(response.category);
+              $('#unit_price').val(response.unit_price);
             } 
         }
     });

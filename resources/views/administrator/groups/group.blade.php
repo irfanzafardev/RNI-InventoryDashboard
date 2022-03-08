@@ -17,7 +17,7 @@
         {{ $message }}
       </div>
     @endif
-    <a href="/administrator/products/create" class="btn btn-primary bg-darkblue px-4 mb-3">
+    <a href="/administrator/classes/create" class="btn btn-primary bg-darkblue px-4 mb-3">
       Add Data
     </a>
     <div class="table-responsive">
@@ -47,7 +47,7 @@
             <td>{{ $loop->iteration }}</td>
             <td>{{ $group->group_name }}</td>
             <td>
-              <a href="/administrator/products/{{ $group->id }}/edit">Edit</a>
+              <a href="/administrator/classes/{{ $group->id }}/edit">Edit</a>
               <a href="#" class="delete" data-id="{{ $group->id }}" data-name="{{ $group->group_name }}">Delete</a>
             </td>
           </tr>   
@@ -57,4 +57,28 @@
     </div>
   </div>
 </div>
+
+<script>
+  $('.delete').click( function(){
+    var groupId = $(this).attr('data-id')
+    var groupName = $(this).attr('data-name')
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this "+groupName+" ",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        window.location = "/administrator/deleteclass/"+groupId+""
+        swal("Poof! Your imaginary file has been deleted!", {
+          icon: "success",
+        });
+      } else {
+        swal("Your imaginary file is safe!");
+      }
+    });
+  })
+</script>
 @endsection

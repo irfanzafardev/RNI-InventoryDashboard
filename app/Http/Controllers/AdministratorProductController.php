@@ -144,7 +144,6 @@ class AdministratorProductController extends Controller
       'subcategory_id' => 'required',
       'category' => 'required',
       'unit_id' => 'required',
-      'quantity' => 'required',
       'unit_price' => 'required',
     ]);
 
@@ -160,11 +159,11 @@ class AdministratorProductController extends Controller
    * @param  \App\Models\Product  $product
    * @return \Illuminate\Http\Response
    */
-  // public function destroy(Product $product)
-  // {
-  //   Product::destroy($product->id);
-  //   return redirect('/administrator/products')->with('success', 'deleted');
-  // }
+  public function destroy(Product $product)
+  {
+    Product::destroy($product->id);
+    return redirect('/administrator/products')->with('success', 'deleted');
+  }
 
   public function deleteproduct($id)
   {

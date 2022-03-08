@@ -77,6 +77,7 @@
               class="form-control @error('company') is-invalid @enderror"
               name="company"
               id="company"
+              value="{{ old('company') }}"
               readonly
             />
             @error('company')
@@ -92,6 +93,7 @@
               class="form-control @error('class') is-invalid @enderror"
               name="class"
               id="class"
+              value="{{ old('class') }}"
               readonly
             />
             @error('class')
@@ -109,12 +111,20 @@
               class="form-control @error('category') is-invalid @enderror"
               name="category"
               id="category"
+              value="{{ old('category') }}"
               readonly
             />
           </div>
           <div class="form-group mb-3">
             <label for="unit_price" class="form-label">Unit Price (Rp)</label>
-            <input type="number" class="form-control @error('unit_price') is-invalid @enderror" name="unit_price" id="unit_price" readonly/>
+            <input 
+            type="number" 
+            class="form-control @error('unit_price') is-invalid @enderror" 
+            name="unit_price" 
+            id="unit_price" 
+            value="{{ old('unit_price') }}"
+            readonly
+            required/>
             @error('unit_price')
                 <div class="invalid-feedback">
                   {{ $message }}
@@ -123,7 +133,14 @@
           </div>
           <div class="form-group mb-3">
             <label for="quantity" class="form-label">Quantity</label>
-            <input type="number" class="input form-control @error('quantity') is-invalid @enderror" name="quantity" id="quantity" placeholder="Enter product quantity" />
+            <input 
+            type="number" 
+            class="input form-control @error('quantity') is-invalid @enderror" 
+            name="quantity" 
+            id="quantity" 
+            placeholder="Enter product quantity" 
+            value="{{ old('quantity') }}"
+            required/>
             @error('quantity')
               <div class="invalid-feedback">
                 {{ $message }}
@@ -132,7 +149,13 @@
           </div>
           <div class="form-group mb-3">
             <label for="value" class="form-label">Value (Rp)</label>
-            <input type="number" class="input form-control @error('value') is-invalid @enderror" name="value" id="value" readonly/>
+            <input 
+            type="number" 
+            class="input form-control @error('value') is-invalid @enderror" 
+            name="value" 
+            id="value" 
+            readonly 
+            required/>
             @error('value')
               <div class="invalid-feedback">
                 {{ $message }}
@@ -146,6 +169,8 @@
     </form>
   </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <script>
   $('#product_id').change(function(){
@@ -169,6 +194,8 @@
         }
     });
   });
+
+  $('#product_id').select2();
 
   $(".input").on("input", function () {
       var x = document.getElementById("quantity").value;

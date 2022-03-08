@@ -31,7 +31,9 @@ class AdministratorUnitController extends Controller
    */
   public function create()
   {
-    //
+    return view('administrator.units.create', [
+      'units' => Unit::all()
+    ]);
   }
 
   /**
@@ -42,7 +44,14 @@ class AdministratorUnitController extends Controller
    */
   public function store(Request $request)
   {
-    //
+    // return $request;
+    $validatedData = $request->validate([
+      'unit_name' => 'required',
+      'unit_symbol' => 'required',
+    ]);
+
+    Unit::create($validatedData);
+    return redirect('/administrator/units')->with('success', 'Data has been successfully added');
   }
 
   /**

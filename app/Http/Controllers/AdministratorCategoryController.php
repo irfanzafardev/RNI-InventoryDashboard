@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Group;
 use Illuminate\Http\Request;
 
 class AdministratorCategoryController extends Controller
@@ -32,7 +33,10 @@ class AdministratorCategoryController extends Controller
    */
   public function create()
   {
-    //
+    return view('administrator.categories.create', [
+      'categories' => Category::all(),
+      'groups' => Group::all()
+    ]);
   }
 
   /**
@@ -43,7 +47,14 @@ class AdministratorCategoryController extends Controller
    */
   public function store(Request $request)
   {
-    //
+    // return $request;
+    $validatedData = $request->validate([
+      'category_name' => 'required',
+      'group_id' => 'required',
+    ]);
+
+    Category::create($validatedData);
+    return redirect('/administrator/categories')->with('success', 'Data has been successfully added');
   }
 
   /**
@@ -65,7 +76,10 @@ class AdministratorCategoryController extends Controller
    */
   public function edit(Category $category)
   {
-    //
+    return view('administrator.categories.edit', [
+      'category' => $category,
+      'groups' => Group::all()
+    ]);
   }
 
   /**
@@ -77,7 +91,15 @@ class AdministratorCategoryController extends Controller
    */
   public function update(Request $request, Category $category)
   {
-    //
+    $validatedData = $request->validate([
+      'category_name' => 'required',
+      'group_id' => 'required',
+    ]);
+
+    Category::where('id', $category->id)
+      ->update($validatedData);
+
+    return redirect('/administrator/categories')->with('success', 'Data has been successfully updated');
   }
 
   /**
@@ -89,5 +111,12 @@ class AdministratorCategoryController extends Controller
   public function destroy(Category $category)
   {
     //
+  }
+
+  public function deletecategory($id)
+  {
+    $dataCategory = Category::find($id);
+    $dataCategory->delete();
+    return redirect('/administrator/categories')->with('success', 'Data has been successfully deleted');
   }
 }

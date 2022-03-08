@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\Group;
 use Illuminate\Http\Request;
 
 class AdministratorCompanyController extends Controller
@@ -31,7 +32,10 @@ class AdministratorCompanyController extends Controller
    */
   public function create()
   {
-    //
+    return view('administrator.companies.create', [
+      'companies' => Company::all(),
+      'groups' => Group::all()
+    ]);
   }
 
   /**
@@ -42,7 +46,14 @@ class AdministratorCompanyController extends Controller
    */
   public function store(Request $request)
   {
-    //
+    // return $request;
+    $validatedData = $request->validate([
+      'company_name' => 'required',
+      'group_id' => 'required',
+    ]);
+
+    Company::create($validatedData);
+    return redirect('/administrator/companies')->with('success', 'Data has been successfully added');
   }
 
   /**
@@ -64,7 +75,10 @@ class AdministratorCompanyController extends Controller
    */
   public function edit(Company $company)
   {
-    //
+    return view('administrator.companies.edit', [
+      'company' => $company,
+      'groups' => Group::all(),
+    ]);
   }
 
   /**
@@ -76,7 +90,15 @@ class AdministratorCompanyController extends Controller
    */
   public function update(Request $request, Company $company)
   {
-    //
+    $validatedData = $request->validate([
+      'company_name' => 'required',
+      'group_id' => 'required',
+    ]);
+
+    Company::where('id', $company->id)
+      ->update($validatedData);
+
+    return redirect('/administrator/companies')->with('success', 'Data has been successfully updated');
   }
 
   /**
@@ -88,5 +110,12 @@ class AdministratorCompanyController extends Controller
   public function destroy(Company $company)
   {
     //
+  }
+
+  public function deletecompany($id)
+  {
+    $dataCompany = Company::find($id);
+    $dataCompany->delete();
+    return redirect('/administrator/companies')->with('success', 'Data has been successfully deleted');
   }
 }

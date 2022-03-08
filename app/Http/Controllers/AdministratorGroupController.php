@@ -31,7 +31,9 @@ class AdministratorGroupController extends Controller
    */
   public function create()
   {
-    //
+    return view('administrator.groups.create', [
+      'groups' => Group::all()
+    ]);
   }
 
   /**
@@ -42,7 +44,13 @@ class AdministratorGroupController extends Controller
    */
   public function store(Request $request)
   {
-    //
+    // return $request;
+    $validatedData = $request->validate([
+      'group_name' => 'required',
+    ]);
+
+    Group::create($validatedData);
+    return redirect('/administrator/classes')->with('success', 'Data has been successfully added');
   }
 
   /**
@@ -64,7 +72,9 @@ class AdministratorGroupController extends Controller
    */
   public function edit(Group $group)
   {
-    //
+    return view('administrator.groups.edit', [
+      'group' => $group,
+    ]);
   }
 
   /**
@@ -76,7 +86,14 @@ class AdministratorGroupController extends Controller
    */
   public function update(Request $request, Group $group)
   {
-    //
+    $validatedData = $request->validate([
+      'group_name' => 'required',
+    ]);
+
+    Group::where('id', $group->id)
+      ->update($validatedData);
+
+    return redirect('/administrator/classes')->with('success', 'Data has been successfully updated');
   }
 
   /**
@@ -88,5 +105,13 @@ class AdministratorGroupController extends Controller
   public function destroy(Group $group)
   {
     //
+  }
+
+
+  public function deleteclass($id)
+  {
+    $dataCompany = Group::find($id);
+    $dataCompany->delete();
+    return redirect('/administrator/classes')->with('success', 'Data has been successfully deleted');
   }
 }

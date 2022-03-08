@@ -60,7 +60,7 @@
             <label for="product_id" class="form-label">Product Name</label>
             <select
               name="product_id"
-              class="form-control form-select"
+              class="form-control form-select product_id"
               id="product_id">
               <option value="">Choose product</option>
               @foreach ($products as $product)
@@ -72,8 +72,51 @@
               @endforeach
             </select>
           </div>
+          <div class="form-group mb-3">
+            <label for="company" class="form-label">Company</label>
+            <input
+              type="text"
+              class="form-control @error('company') is-invalid @enderror"
+              name="company"
+              id="company"
+              value="{{ old('company', $stock->company) }}"
+              readonly
+            />
+            @error('company')
+                <div class="invalid-feedback">
+                  {{ $message }}
+                </div>
+            @enderror
+          </div>
+          <div class="form-group mb-3">
+            <label for="class" class="form-label">Class</label>
+            <input
+              type="text"
+              class="form-control @error('class') is-invalid @enderror"
+              name="class"
+              id="class"
+              value="{{ old('class', $stock->class) }}"
+              readonly
+            />
+            @error('class')
+                <div class="invalid-feedback">
+                  {{ $message }}
+                </div>
+            @enderror
+          </div>
         </div>
         <div class="col-5">
+          <div class="form-group mb-3">
+            <label for="category" class="form-label">Category</label>
+            <input
+              type="text"
+              class="form-control @error('category') is-invalid @enderror"
+              name="category"
+              id="category"
+              value="{{ old('category', $stock->category) }}"
+              readonly
+            />
+          </div>
           <div class="form-group mb-3">
             <label for="unit_price" class="form-label">Unit Price (Rp)</label>
             <input type="number" class="form-control @error('unit_price') is-invalid @enderror" name="unit_price" id="unit_price" value="{{ old('unit_price', $stock->product->unit_price) }}" readonly/>
@@ -110,7 +153,11 @@
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 <script>
+  $('.product_id').select2();
+
   $('#product_id').change(function(){
     var id = $(this).val();
     var url = '{{ route("getDetails", ":id") }}';

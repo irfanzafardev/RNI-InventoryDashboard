@@ -17,7 +17,7 @@
         {{ $message }}
       </div>
     @endif
-    <a href="/administrator/products/create" class="btn btn-primary bg-darkblue px-4 mb-3">
+    <a href="/administrator/companies/create" class="btn btn-primary bg-darkblue px-4 mb-3">
       Add Data
     </a>
     <div class="table-responsive">
@@ -50,8 +50,8 @@
             <td>{{ $company->company_name }}</td>
             <td>{{ $company->group->group_name }}</td>
             <td>
-              <a href="/administrator/products/{{ $company->id }}/edit">Edit</a>
-              <a href="#" class="delete" data-id="{{ $company->id }}" data-name="{{ $company->company }}">Delete</a>
+              <a href="/administrator/companies/{{ $company->id }}/edit">Edit</a>
+              <a href="#" class="delete" data-id="{{ $company->id }}" data-name="{{ $company->company_name }}">Delete</a>
             </td>
           </tr>   
           @endforeach
@@ -60,4 +60,28 @@
     </div>
   </div>
 </div>
+
+<script>
+  $('.delete').click( function(){
+    var companyId = $(this).attr('data-id')
+    var companyName = $(this).attr('data-name')
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this "+companyName+" ",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        window.location = "/administrator/deletecompany/"+companyId+""
+        swal("Poof! Your imaginary file has been deleted!", {
+          icon: "success",
+        });
+      } else {
+        swal("Your imaginary file is safe!");
+      }
+    });
+  })
+</script>
 @endsection

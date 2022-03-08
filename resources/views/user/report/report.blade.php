@@ -32,7 +32,7 @@
           <button type="submit" class="btn btn-primary bg-darkblue ml-3 px-4">
             Show
           </button>
-          <a href="/export" class="btn btn-primary bg-darkblue ml-3 px-4">
+          <a href="/export" class="btn btn-primary bg-darkblue ml-3 px-4" onclick="tablesToExcel(['dataTable'], ['Stock'], 'stock.xls', 'Excel')">
             Export
           </a>
         </div>
@@ -75,7 +75,6 @@
             <th>Qty</th>
             <th>Unit Price</th>
             <th>Value</th>
-            <th>Option</th>
           </tr>
         </thead>
         <tfoot>
@@ -88,7 +87,6 @@
             <th>Qty</th>
             <th>Unit Price</th>
             <th>Value</th>
-            <th>Option</th>
           </tr>
         </tfoot>
         <tbody>
@@ -102,10 +100,6 @@
             <td>{{ number_format($stock->quantity, 0)}}</td>
             <td>Rp. {{ number_format($stock->product->unit_price, 2) }}</td>
             <td>Rp. {{ number_format($stock->value, 2) }}</td>
-            <td>
-              <a href="/administrator/products/{{ $stock->id }}/edit">Edit</a>
-              <a href="#" class="deleteStockIn" data-id="{{ $stock->id }}" data-name="{{ $stock->product->product_name }}">Delete</a>
-            </td>
           </tr>
           @endforeach
         </tbody>
@@ -115,7 +109,7 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
+<script src="{{ URL::to('js/exportExcel/export.js') }}"></script>
 @endsection
 
 

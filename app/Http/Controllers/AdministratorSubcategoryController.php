@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Subcategory;
+use App\Models\Category;
+use App\Models\Group;
 use Illuminate\Http\Request;
 
 class AdministratorSubcategoryController extends Controller
@@ -31,7 +33,11 @@ class AdministratorSubcategoryController extends Controller
    */
   public function create()
   {
-    //
+    return view('administrator.subcategories.create', [
+      'subcategories' => Subcategory::all(),
+      'categories' => Category::all(),
+      'groups' => Group::all()
+    ]);
   }
 
   /**
@@ -42,7 +48,15 @@ class AdministratorSubcategoryController extends Controller
    */
   public function store(Request $request)
   {
-    //
+    // return $request;
+    $validatedData = $request->validate([
+      'subcategory_name' => 'required',
+      'class' => 'required',
+      'category_id' => 'required',
+    ]);
+
+    Subcategory::create($validatedData);
+    return redirect('/administrator/subcategories')->with('success', 'Data has been successfully added');
   }
 
   /**
@@ -64,7 +78,11 @@ class AdministratorSubcategoryController extends Controller
    */
   public function edit(Subcategory $subcategory)
   {
-    //
+    return view('administrator.subcategories.edit', [
+      'subcategory' => $subcategory,
+      'categories' => Category::all(),
+      'groups' => Group::all()
+    ]);
   }
 
   /**
@@ -76,7 +94,16 @@ class AdministratorSubcategoryController extends Controller
    */
   public function update(Request $request, Subcategory $subcategory)
   {
-    //
+    $validatedData = $request->validate([
+      'subcategory_name' => 'required',
+      'class' => 'required',
+      'category_id' => 'required',
+    ]);
+
+    Subcategory::where('id', $subcategory->id)
+      ->update($validatedData);
+
+    return redirect('/administrator/subcategories')->with('success', 'Data has been successfully updated');
   }
 
   /**
@@ -88,5 +115,13 @@ class AdministratorSubcategoryController extends Controller
   public function destroy(Subcategory $subcategory)
   {
     //
+  }
+
+  public function deletesubcategory($id)
+  {
+    $datastock = Subcategory::find($id);
+    $datastock->delete();
+    return redirect('/administrator/subcategories')->with('success', 'Data has been successfully deleted');
+    // return redirect('/administrator/detaildeletestockin/');
   }
 }

@@ -160,6 +160,5 @@ class AdministratorStockController extends Controller
     $datastock = Stock::find($id);
     $datastock->delete();
     return redirect('/administrator/stocks')->with('success', 'Data has been successfully deleted');
-    // return redirect('/administrator/detaildeletestockin/');
   }
 }

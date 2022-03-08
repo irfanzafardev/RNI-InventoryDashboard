@@ -100,13 +100,21 @@ class DashboardManufakturController extends Controller
     $PTRajawaliCitramas = "PT Rajawali Citramas";
     $PTMitraRB = "PT Mitra RB";
     $PTRajawaliTE = "PT Rajawali TE";
-    $dataproduct = Product::where('class', 'Manufaktur')->get();
-    $dataproductPTRajawaliCitramas = Product::where('company', $PTRajawaliCitramas)->get();
-    $dataproductPTMitraRB = Product::where('company', $PTMitraRB)->get();
-    $dataproductPTRajawaliTE = Product::where('company', $PTRajawaliTE)->get();
-    $dataProductLength = Product::where('class', 'Manufaktur')->count();
-    $dataCategoryLength = Category::where('group_id', 3)->count();
-    $dataCategory = Category::where('group_id', 3)->get();
+
+    $dataproduct = Product::where('class', 'Manufaktur')
+      ->get();
+    $dataproductPTRajawaliCitramas = Product::where('company', $PTRajawaliCitramas)
+      ->get();
+    $dataproductPTMitraRB = Product::where('company', $PTMitraRB)
+      ->get();
+    $dataproductPTRajawaliTE = Product::where('company', $PTRajawaliTE)
+      ->get();
+    $dataProductLength = Product::where('class', 'Manufaktur')
+      ->count();
+    $dataCategoryLength = Category::where('group_id', 3)
+      ->count();
+    $dataCategory = Category::where('group_id', 3)
+      ->get();
     return view(
       'dashboard.manufaktur.manufakturproduct',
       compact(

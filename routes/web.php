@@ -79,14 +79,22 @@ Route::get('/get/details/{id}', [AdministratorStockController::class, 'getDetail
 Route::get('/administrator/deletestock/{id}', [AdministratorStockController::class, 'deletestock'])->name('deleteStock');
 
 Route::resource('/administrator/classes', AdministratorGroupController::class);
+Route::get('/administrator/deleteclass/{id}', [AdministratorGroupController::class, 'deleteclass'])->name('deleteClass');
 
 Route::resource('/administrator/categories', AdministratorCategoryController::class);
+Route::get('/administrator/deletecategory/{id}', [AdministratorCategoryController::class, 'deletecategory'])->name('deleteCategory');
 
 Route::resource('/administrator/subcategories', AdministratorSubcategoryController::class);
+Route::get('getCategory/{id}', function ($id) {
+  $category = App\Models\Category::where('group_id', $id)->get();
+  return response()->json($category);
+});
+Route::get('/administrator/deletesubcategory/{id}', [AdministratorSubcategoryController::class, 'deletesubcategory'])->name('deleteSubcategory');
 
 Route::resource('/administrator/units', AdministratorUnitController::class);
 
 Route::resource('/administrator/companies', AdministratorCompanyController::class);
+Route::get('/administrator/deletecompany/{id}', [AdministratorCompanyController::class, 'deletecompany'])->name('deleteCompany');
 
 Route::get('/administrator/report', [AdministratorReportController::class, 'latest'])->name('reportStock');
 Route::post('/administrator/report/daily', [AdministratorReportController::class, 'search'])->name('reportStockByDate');

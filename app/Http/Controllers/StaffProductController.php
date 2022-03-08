@@ -80,6 +80,7 @@ class StaffProductController extends Controller
       'company' => 'required',
       'user_id' => 'required',
       'subcategory_id' => 'required',
+      'category' => 'required',
       'unit_id' => 'required',
       'quantity' => 'required',
       'unit_price' => 'required',
@@ -131,7 +132,22 @@ class StaffProductController extends Controller
    */
   public function update(Request $request, Product $product)
   {
-    //
+    $validatedData = $request->validate([
+      'product_code' => 'required',
+      'product_name' => 'required',
+      'company' => 'required',
+      'class' => 'required',
+      'user_id' => 'required',
+      'subcategory_id' => 'required',
+      'category' => 'required',
+      'unit_id' => 'required',
+      'unit_price' => 'required',
+    ]);
+
+    Product::where('id', $product->id)
+      ->update($validatedData);
+
+    return redirect('/staff/products')->with('success', 'Data has been successfully updated');
   }
 
   /**

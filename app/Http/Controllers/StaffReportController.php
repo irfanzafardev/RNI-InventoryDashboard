@@ -24,6 +24,7 @@ class StaffReportController extends Controller
     $dataStocks = Stock::where('date', '=', $day)
       ->where('company', $company)
       ->get();
+    // $dataStocks = Stock::all();
 
     return view(
       'user.report.report',

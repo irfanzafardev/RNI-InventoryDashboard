@@ -125,7 +125,11 @@
             required>
               <option value="">Choose product category</option>
               @foreach ($categories as $category)
-                <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                @if (old('category_id') === $category->id)
+                  <option value="{{ $category->id }}" selected>{{ $category->category_name }}</option>
+                @else
+                  <option value="{{ $category->id }}">{{ $category->category_name }}</option>                 
+                @endif
               @endforeach
             </select>
             @error('category')
@@ -134,7 +138,7 @@
                 </div>
             @enderror
           </div>
-          <div class="form-group d-none mb-3">
+          <div class="form-group mb-3">
             <label for="category" class="form-label">Category</label>
             <input
               type="text"

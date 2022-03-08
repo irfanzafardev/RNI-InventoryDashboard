@@ -102,19 +102,6 @@
         <h6 class="m-0 font-weight-bold text-dark">All input</h6>
       </div>
       <div class="card-body">
-        @if ($message = Session::get('success'))
-          <div class="alert alert-primary" role="alert">
-            {{ $message }}
-          </div>
-        @endif
-        @if (session('error'))
-          <div class="alert alert-danger">
-            {{ session('error') }}
-          </div>
-        @endif
-        <a href="/user/stockin/create" class="btn btn-primary bg-darkblue px-4 mb-3">
-          Add Data
-        </a>
         <div class="table-responsive">
           <table
             class="table table-bordered display"

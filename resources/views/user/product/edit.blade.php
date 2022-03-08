@@ -33,7 +33,7 @@
       @method('put')
       @csrf
       <div class="row">
-        <div class="col-6">
+        <div class="col-5">
           <div class="form-group mb-3">
             <label for="product_code" class="form-label">Product Code</label>
             <input
@@ -89,9 +89,36 @@
               <option value="{{ Auth::user()->company->group->id }}" selected>{{ Auth::user()->company->group->group_name }}</option>
             </select>
           </div>
+          <div class="form-group d-none mb-3">
+            <label for="class" class="form-label">Class</label>
+            <input
+              type="text"
+              class="form-control @error('class') is-invalid @enderror"
+              name="class"
+              id="class"
+              value="{{ Auth::user()->company->group->group_name }}"
+              readonly
+            />
+            @error('class')
+                <div class="invalid-feedback">
+                  {{ $message }}
+                </div>
+            @enderror
+          </div>
+          <div class="form-group d-none mb-3">
+            <label for="company" class="form-label">Company</label>
+            <input
+              type="text"
+              class="form-control @error('company') is-invalid @enderror"
+              name="company"
+              id="company"
+              value="{{ Auth::user()->company->company_name }}"
+              readonly
+            />
+          </div>
 
         </div>
-        <div class="col-6">
+        <div class="col-5">
           <div class="form-group mb-3">
             <label for="category" class="form-label">Product Category</label>
             <select class="form-control form-select" name="category_id" id="category">
@@ -104,6 +131,17 @@
                 @endif
               @endforeach
             </select>
+          </div>
+          <div class="form-group d-none mb-3">
+            <label for="category" class="form-label">Category</label>
+            <input
+              type="text"
+              class="form-control @error('category') is-invalid @enderror"
+              name="category"
+              id="category-read"
+              value="{{ old('product_name', $product->category) }}"
+              readonly
+            />
           </div>
           <div class="form-group mb-3">
             <label for="subcategory" class="form-label d-block">Product Subcategory</label>

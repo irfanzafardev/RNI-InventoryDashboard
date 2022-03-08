@@ -112,9 +112,6 @@
             {{ session('error') }}
           </div>
         @endif
-        <a href="/administrator/stockin/create" class="btn btn-primary bg-darkblue px-4 mb-3">
-          Add Data
-        </a>
         <div class="table-responsive">
           <table
             class="table table-bordered display"

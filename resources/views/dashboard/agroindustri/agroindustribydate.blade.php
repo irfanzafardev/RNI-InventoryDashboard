@@ -97,7 +97,7 @@
 <div class="collapse mt-3" id="collapseExample">
   <div class="single-cards row">
     <div class="col-12 col-md-6 col-lg-4 mb-3">
-      <a href="category-page.html" class="text-decoration-none">
+      <a href="#" class="text-decoration-none">
         <div class="card single-card">
           <div class="card-body">
             <div class="row">
@@ -118,42 +118,20 @@
             </div>
             <div class="row mt-2">
               <div class="col-12 item-card-value text-white">
-                Rp. 0
+                Rp. {{ number_format($valueGula, 2)}}
               </div>
             </div>
             <div class="row mt-2">
-              <div class="col-4 item-card-company text-white">
-                Company
-              </div>
+              <div class="col-4 item-card-company text-white">Company</div>
               <div class="col-4 item-card-company text-white">Stock</div>
               <div class="col-4 item-card-company text-white">Value</div>
-            </div>
-            <div class="card-info">
-              <div class="row">
-                <div class="col-4 item-card-info text-white">
-                  PG Rajawali
-                </div>
-                <div class="col-4 item-card-info text-white">0</div>
-                <div class="col-4 item-card-info text-white">
-                  0
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-4 item-card-info text-white">
-                  PG Candi B
-                </div>
-                <div class="col-4 item-card-info text-white">0</div>
-                <div class="col-4 item-card-info text-white">
-                  0
-                </div>
-              </div>
             </div>
           </div>
         </div>
       </a>
     </div>
     <div class="col-12 col-md-6 col-lg-4 mb-3">
-      <a href="category-page.html" class="text-decoration-none">
+      <a href="#" class="text-decoration-none">
         <div class="card single-card">
           <div class="card-body">
             <div class="row">
@@ -164,7 +142,7 @@
                 <p
                   class="card-subtitle item-card-subtitle mb-2 text-white"
                 >
-                0 <br />
+                {{ number_format($quantityTetes, 0)}} <br />
                   <span>(kg)</span>
                 </p>
               </div>
@@ -176,7 +154,7 @@
             </div>
             <div class="row mt-2">
               <div class="col-12 item-card-value text-white">
-                Rp. 0
+                Rp. {{ number_format($valueTetes, 2)}}
               </div>
             </div>
             <div class="row mt-2">
@@ -186,28 +164,19 @@
               <div class="col-4 item-card-company text-white">Stock</div>
               <div class="col-4 item-card-company text-white">Value</div>
             </div>
-            <div class="row">
-              <div class="col-4 item-card-info text-white">
-                PG Krebet baru I
-              </div>
-              <div class="col-4 item-card-info text-white">0</div>
-              <div class="col-4 item-card-info text-white">0</div>
-            </div>
           </div>
         </div>
       </a>
     </div>
     <div class="col-12 col-md-6 col-lg-4 mb-3">
-      <a href="category-page.html" class="text-decoration-none">
+      <a href="#" class="text-decoration-none">
         <div class="card single-card">
           <div class="card-body">
             <div class="row">
               <div class="col-6">
                 <h5 class="card-title item-card-title text-white">Teh</h5>
-                <p
-                  class="card-subtitle item-card-subtitle mb-2 text-white"
-                >
-                  0 <br />
+                <p class="card-subtitle item-card-subtitle mb-2 text-white">
+                  {{ number_format($quantityTeh, 0)}} <br />
                   <span>(kg)</span>
                 </p>
               </div>
@@ -219,7 +188,7 @@
             </div>
             <div class="row mt-2">
               <div class="col-12 item-card-value text-white">
-                Rp. 0
+                Rp. {{ number_format($valueTeh, 2)}} <br /> 
               </div>
             </div>
             <div class="row mt-2">
@@ -229,19 +198,12 @@
               <div class="col-4 item-card-company text-white">Stock</div>
               <div class="col-4 item-card-company text-white">Value</div>
             </div>
-            <div class="row">
-              <div class="col-4 item-card-info text-white">
-                PT Mitra Kerinci
-              </div>
-              <div class="col-4 item-card-info text-white">0</div>
-              <div class="col-4 item-card-info text-white">0</div>
-            </div>
           </div>
         </div>
       </a>
     </div>
     <div class="col-12 col-md-6 col-lg-4 mb-3">
-      <a href="category-page.html" class="text-decoration-none">
+      <a href="#" class="text-decoration-none">
         <div class="card single-card">
           <div class="card-body">
             <div class="row">
@@ -252,7 +214,7 @@
                 <p
                   class="card-subtitle item-card-subtitle mb-2 text-white"
                 >
-                  0 <br />
+                  {{ number_format($quantitySawit, 0)}} <br />
                   <span>(kg)</span>
                 </p>
               </div>
@@ -263,7 +225,9 @@
               </div>
             </div>
             <div class="row mt-2">
-              <div class="col-12 item-card-value text-white">Rp. 0</div>
+              <div class="col-12 item-card-value text-white">
+                Rp. {{ number_format($valueSawit, 0)}}
+              </div>
             </div>
             <div class="row mt-2">
               <div class="col-4 item-card-company text-white">
@@ -277,7 +241,7 @@
       </a>
     </div>
     <div class="col-12 col-md-6 col-lg-4 mb-3">
-      <a href="category-page.html" class="text-decoration-none">
+      <a href="#" class="text-decoration-none">
         <div class="card single-card">
           <div class="card-body">
             <div class="row">
@@ -288,7 +252,7 @@
                 <p
                   class="card-subtitle item-card-subtitle mb-2 text-white"
                 >
-                  0 <br />
+                  {{ number_format($quantityKaret, 0)}} <br />
                   <span>(kg)</span>
                 </p>
               </div>
@@ -299,7 +263,9 @@
               </div>
             </div>
             <div class="row mt-2">
-              <div class="col-12 item-card-value text-white">Rp. 0</div>
+              <div class="col-12 item-card-value text-white">
+                Rp. {{ number_format($valueKaret, 0)}}
+              </div>
             </div>
             <div class="row mt-2">
               <div class="col-4 item-card-company text-white">

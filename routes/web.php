@@ -46,7 +46,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // Admin Frontend View
 
-Route::get('/dashboard', [DashboardConsolidationController::class, 'latest'])->name('dashboardAgroindustri');
+Route::get('/dashboard', [DashboardConsolidationController::class, 'latest'])->name('dashboardConsolidation');
+Route::post('/dashboard/daily', [DashboardConsolidationController::class, 'search'])->name('dashboardConsolidationSearch');
 
 Route::get('/dashboard/agroindustri', [DashboardAgroindustriController::class, 'latest'])->name('dashboardAgroindustri');
 Route::post('/dashboard/agroindustri/daily', [DashboardAgroindustriController::class, 'search'])->name('dashboardAgroindustriSearch');
@@ -108,3 +109,4 @@ Route::get('/staff/deletestock/{id}', [StaffStockController::class, 'deletestock
 
 Route::get('/staff/report', [StaffReportController::class, 'latest'])->name('reportStock');
 Route::post('/staff/report/daily', [StaffReportController::class, 'search'])->name('reportStockByDate');
+Route::get('/export', [StaffReportController::class, 'export'])->name('exportExcel');

@@ -32,6 +32,9 @@
           <button type="submit" class="btn btn-primary bg-darkblue ml-3 px-4">
             Show
           </button>
+          <button type="submit" class="btn btn-primary bg-darkblue ml-3 px-4">
+            Export
+          </button>
         </div>
       </div>
     </form>

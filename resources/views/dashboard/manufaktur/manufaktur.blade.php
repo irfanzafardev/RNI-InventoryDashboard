@@ -7,6 +7,11 @@
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb bg-transparent pt-4">
       <li class="breadcrumb-item text-dark" aria-current="page">
+        <a href="/dashboard">
+          Consolidation
+        </a>
+      </li>
+      <li class="breadcrumb-item text-dark" aria-current="page">
         Manufaktur
       </li>
       <li class="breadcrumb-item text-dark active" aria-current="page">
@@ -96,6 +101,28 @@
 </a>
 <div class="collapse mt-3" id="collapseExample">
   <div class="single-cards row">
+    <div class="col-12 col-md-6 col-lg-4 mb-3">
+      <a href="#" class="text-decoration-none">
+        <div class="card single-card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-6">
+                <h5 class="card-title item-card-title text-white">
+                  Performance Stats
+                </h5>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="main-chart d-flex justify-content-center">
+                  <canvas id="ManuPerformance"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
     <div class="col-12 col-md-6 col-lg-4 mb-3">
       <a href="category-page.html" class="text-decoration-none">
         <div class="card single-card">
@@ -287,6 +314,54 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  const dataAgro = {
+    labels: ["WB/IB", "ASSP", "Lainnya",],
+    datasets: [
+      {
+        label: "My First Dataset",
+        data: [120, 80, 60],
+        backgroundColor: [
+          "rgba(132, 178, 156, 1)",
+          'rgba(210, 151, 59, 1)',
+          'rgba(232, 202, 129, 1)',
+        ],
+        hoverOffset: 4,
+        borderColor:'#111F38',
+
+      },
+    ],
+  };
+
+  const configAgro = {
+    type: "doughnut",
+    data: dataAgro,
+    options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            display: true,
+            position: 'bottom',
+            align: 'center',
+            labels: {
+              boxWidth: 10,
+              font: {
+                        size: 8,
+                        color: '#666'
+                    }
+            }
+          }
+        }
+      }
+  };
+
+  const AgroPerformance = new Chart(
+    document.getElementById("ManuPerformance"),
+    configAgro
+  );
+</script>
 
 <script>
   $('.accordion-button').click(function(){

@@ -35,87 +35,94 @@
 <!-- Single Card Row -->
 <div class="single-cards row">
   <div class="col-12 col-md-6 col-lg-3 mb-3">
-    <div class="card single-card-consolidation bg-lightblue">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-12">
-            <h5 class="card-title item-card-title text-muted">
-              Total Value
-            </h5>
-            <p class="card-subtitle item-card-subtitle mb-2 text-darkblue mt-2">
-              {{-- Rp. <span class="number counter" data-target="{{ $valueAll }}">{{ $valueAll }}</span> --}}
-              <span class="number"> Rp.{{ number_format($valueAll, 0) }}</span>
-            </p>
+    <a href="#" class="text-decoration-none">
+      <div class="card single-card-consolidation bg-lightblue">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12">
+              <h5 class="card-title item-card-title text-muted">
+                Total Value
+              </h5>
+              <p class="card-subtitle item-card-subtitle mb-2 text-darkblue mt-2">
+                <span class="number"> Rp.{{ number_format($valueAll, 0) }}</span>
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </a>
   </div>
   <div class="col-12 col-md-6 col-lg-3 mb-3">
-    <div class="card single-card-consolidation bg-lightorange">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-12">
-            <h5 class="card-title item-card-title text-muted">
-              Agroindustri
-            </h5>
-            <p class="card-subtitle item-card-subtitle mb-2 text-darkblue mt-2">
-              <span class="number">{{ number_format($quantityAgroindustri, 0) }}</span>
-              <span>(kg)</span>
-            </p>
+    <a href="#" class="text-decoration-none">
+      <div class="card single-card-consolidation bg-lightorange">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12">
+              <h5 class="card-title item-card-title text-muted">
+                Agroindustri
+              </h5>
+              <p class="card-subtitle item-card-subtitle mb-2 text-darkblue mt-2">
+                <span class="number">{{ number_format($quantityAgroindustri, 0) }}</span>
+                <span>(kg)</span>
+              </p>
+            </div>
           </div>
-        </div>
-        <div class="row mt-0">
-          <div class="col-12 item-card-value text-darkblue">
-            Rp. {{ number_format($valueAgroindustri, 2) }}
+          <div class="row mt-0">
+            <div class="col-12 item-card-value text-darkblue">
+              Rp. {{ number_format($valueAgroindustri, 2) }}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </a>
   </div>
   <div class="col-12 col-md-6 col-lg-3 mb-3">
-    <div class="card single-card-consolidation bg-lightred">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-12">
-            <h5 class="card-title item-card-title text-muted">
-              Manufaktur
-            </h5>
-            <p class="card-subtitle item-card-subtitle mb-2 text-darkblue mt-2">
-              <span class="number">{{ number_format($quantityManufaktur, 0) }}</span>
-              <span>(items)</span>
-            </p>
+    <a href="#" class="text-decoration-none">
+      <div class="card single-card-consolidation bg-lightred">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12">
+              <h5 class="card-title item-card-title text-muted">
+                Manufaktur
+              </h5>
+              <p class="card-subtitle item-card-subtitle mb-2 text-darkblue mt-2">
+                <span class="number">{{ number_format($quantityManufaktur, 0) }}</span>
+                <span>(items)</span>
+              </p>
+            </div>
           </div>
-        </div>
-        <div class="row mt-0">
-          <div class="col-12 item-card-value text-darkblue">
-            Rp. {{ number_format($valueManufaktur, 2) }}
+          <div class="row mt-0">
+            <div class="col-12 item-card-value text-darkblue">
+              Rp. {{ number_format($valueManufaktur, 2) }}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </a>
   </div>
   <div class="col-12 col-md-6 col-lg-3 mb-3">
-    <div class="card single-card-consolidation bg-lightlime">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-12">
-            <h5 class="card-title item-card-title text-muted">
-              Garam
-            </h5>
-            <p class="card-subtitle item-card-subtitle mb-2 text-darkblue mt-2">
-              <span class="number">{{ number_format($quantityGaram, 0) }}</span>
-              <span>(kg)</span>
-            </p>
+    <a href="#" class="text-decoration-none">
+      <div class="card single-card-consolidation bg-lightlime">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12">
+              <h5 class="card-title item-card-title text-muted">
+                Garam
+              </h5>
+              <p class="card-subtitle item-card-subtitle mb-2 text-darkblue mt-2">
+                <span class="number">{{ number_format($quantityGaram, 0) }}</span>
+                <span>(kg)</span>
+              </p>
+            </div>
           </div>
-        </div>
-        <div class="row mt-0">
-          <div class="col-12 item-card-value text-darkblue">
-            Rp. {{ number_format($valueGaram, 2) }}
+          <div class="row mt-0">
+            <div class="col-12 item-card-value text-darkblue">
+              Rp. {{ number_format($valueGaram, 2) }}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </a>
   </div>
 </div>
 
@@ -176,20 +183,22 @@
     </div>
   </div>
   <div class="col-3">
-    <div class="card single-card-consolidation bg-lightgray">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-12">
-            <h5 class="card-title item-card-title text-muted">
-              Performance Stats
-            </h5>
-            <div class="d-flex justify-content-center">
-              <canvas class="canvas" id="myChart"></canvas>
+    <a href="#" class="text-decoration-none">
+      <div class="card single-card-consolidation bg-lightgray">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12">
+              <h5 class="card-title item-card-title text-muted">
+                Performance Stats
+              </h5>
+              <div class="d-flex justify-content-center">
+                <canvas class="canvas" id="myChart"></canvas>
+              </div>
             </div>
           </div>
-        </div>
-      </div>   
-    </div>
+        </div>   
+      </div>
+    </a>
   </div>
 </div>
 
@@ -197,11 +206,6 @@
 <div class="card my-4">
   <div class="card-header py-3">
     <h6 class="m-0 font-weight-bold text-dark">Today's input</h6>
-  </div>
-  <div class="d-flex justify-content-end">
-    <a type="submit" class="btn btn-primary bg-darkblue mx-3 mt-3 px-4">
-      Export
-    </a>
   </div>
   <div class="card-body">
     <div class="table-responsive">
@@ -292,69 +296,48 @@
 
 <script>
   const data = {
-    labels: [
-      'Agroindustri',
-      'Manufaktur',
-      'Garam'
+  labels: [
+    'Agroindustri',
+    'Manufaktur',
+    'Garam'
+  ],
+  datasets: [{
+    label: 'My First Dataset',
+    data: [{{ $valueAgroindustri }}, {{ $valueManufaktur }}, {{ $valueGaram }}],
+    // data: [60, 20, 20],
+    backgroundColor: [
+      'rgba(255, 211, 132, 1)',
+      'rgba(255, 153, 106, 1)',
+      'rgba(67, 140, 255, 1)'
     ],
-    datasets: [{
-      label: 'My First Dataset',
-      data: [{{ $valueAgroindustri }}, {{ $valueManufaktur }}, {{ $valueGaram }}],
-      // data: [60, 20, 20],
-      backgroundColor: [
-        'rgba(255, 211, 132, 1)',
-        'rgba(255, 153, 106, 1)',
-        'rgba(67, 140, 255, 1)'
-      ],
     borderColor:'#E9EEF6',
     hoverOffset: 3,
-    }]
-  };
+  }]
+};
 
   const config = {
-    type: 'doughnut',
-    data: data,
-    options: {
-        circumference: 	180,
-        rotation: 270,
-        responsive: true,
-        plugins: {
-          legend: {
-            display: true,
-            position: 'bottom',
-            align: 'center',
-            labels: {
-              boxWidth: 10
-            }
-          },
+  type: 'doughnut',
+  data: data,
+  options: {
+      circumference: 	180,
+      rotation: 270,
+      responsive: true,
+      plugins: {
+        legend: {
+          display: true,
+          position: 'bottom',
+          align: 'center',
+          labels: {
+            boxWidth: 10
+          }
         },
       },
-  };
+    },
+};
 
   const myChart = new Chart(
     document.getElementById('myChart'),
     config
   );
-</script>
-
-<script>
-  const counters = document.querySelectorAll('.counter');
-  counters.forEach((counter) => {
-    counter.innerText = '0';
-
-    const updateCounter = () => {
-    const target = +counter.getAttribute('data-target');
-    const c = +counter.innerText;
-
-    const increment = target / 100;
-
-    if(c < target) {
-    
-      counter.innerText = `${Math.ceil(c+increment)}`;
-      setTimeout(updateCounter, 1);
-    }
-    };
-     updateCounter();
-   });
 </script>
 @endsection

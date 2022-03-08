@@ -8,8 +8,11 @@
     <ol class="breadcrumb bg-transparent pt-4">
       <li class="breadcrumb-item text-dark" aria-current="page">
         <a href="/dashboard">
-          Agroindustri
+          Consolidation
         </a>
+      </li>
+      <li class="breadcrumb-item text-dark active" aria-current="page">
+        Agroindustri
       </li>
       <li class="breadcrumb-item text-dark active" aria-current="page">
         Daily
@@ -103,6 +106,28 @@
             <div class="row">
               <div class="col-6">
                 <h5 class="card-title item-card-title text-white">
+                  Performance Stats
+                </h5>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="main-chart d-flex justify-content-center">
+                  <canvas id="AgroPerformance"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4 mb-3">
+      <a href="#" class="text-decoration-none">
+        <div class="card single-card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-6">
+                <h5 class="card-title item-card-title text-white">
                   Gula
                 </h5>
                 <p class="card-subtitle item-card-subtitle mb-2 text-white">
@@ -111,7 +136,7 @@
                 </p>
               </div>
               <div class="col-6">
-                <div class="donut-chart d-flex justify-content-end pe-3">
+                <div class="donut-chart d-flex justify-content-end pr-5 pt-3">
                   <canvas id="ChartGula"></canvas>
                 </div>
               </div>
@@ -297,6 +322,11 @@
   <div class="card-header py-3">
     <h6 class="m-0 font-weight-bold text-dark">Today's input</h6>
   </div>
+  <div class="d-flex justify-content-end">
+    <a type="submit" class="btn btn-primary bg-darkblue mx-3 mt-3 px-4">
+      Export
+    </a>
+  </div>
   <div class="card-body">
     <div class="table-responsive">
       <table
@@ -362,45 +392,73 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+
 <script>
-  $('.accordion-button').click(function(){
-    $(this).toggleClass("clicked");
-  });
-  var tbody = document.getElementById("tbody");
-  var sumVal = 0;
+  const dataAgro = {
+    labels: ["Gula", "Tetes", "Teh", "Sawit", "Teh"],
+    datasets: [
+      {
+        label: "Agroindustri Dataset",
+        data: [120, 80, 60, 140, 100],
+        backgroundColor: [
+          "rgba(132, 178, 156, 1)",
+          "rgba(242, 204, 142, 1)",
+          "rgba(232, 202, 129, 1)",
+          "rgba(210, 151, 59, 1)",
+          "rgba(244, 246, 248, 1)"
+        ],
+        hoverOffset: 4,
+        borderColor:'#111F38',
 
-  for (var i = 0; i < tbody.rows.length; i++)
-  {
-    sumVal = sumVal + parseInt(tbody.rows[i].cells[9].innerHTML);
-  }
+      },
+    ],
+  };
 
+  const configAgro = {
+    type: "doughnut",
+    data: dataAgro,
+    options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            display: true,
+            position: 'bottom',
+            align: 'center',
+            labels: {
+              boxWidth: 10,
+              font: {
+                        size: 8,
+                        color: '#666'
+                    }
+            }
+          }
+        }
+      }
+  };
 
-  // Create our number formatter.
-  var formatter = new Intl.NumberFormat('id-ID', {
-    style: 'currency',
-    currency: 'IDR',
-  });
-
-  document.getElementById('totalValue').innerHTML = formatter.format(sumVal);
+  const AgroPerformance = new Chart(
+    document.getElementById("AgroPerformance"),
+    configAgro
+  );
 </script>
 
 <script>
-    const data = {
-      labels: [
-        'PT A',
-        'PT B',
+  const data = {
+    labels: [
+      'PT A',
+      'PT B',
+    ],
+    datasets: [{
+      label: 'Gula Dataset',
+      data: [60, 40],
+      backgroundColor: [
+        'rgba(210, 151, 59, 1)',
+        'rgba(232, 202, 129, 1)',
       ],
-      datasets: [{
-        label: 'Gula Dataset',
-        data: [60, 40],
-        backgroundColor: [
-          'rgba(132, 178, 156, 1)',
-          'rgba(242, 204, 142, 1)',
-        ],
-        borderColor:'#111F38',
-        hoverOffset: 3,
-      }]
-    };
+      borderColor:'#111F38',
+      hoverOffset: 3,
+    }]
+  };
 
   const config = {
     type: 'doughnut',
@@ -430,5 +488,27 @@
     document.getElementById('ChartGula'),
     config
   );
+</script>
+
+<script>
+  $('.accordion-button').click(function(){
+    $(this).toggleClass("clicked");
+  });
+  var tbody = document.getElementById("tbody");
+  var sumVal = 0;
+
+  for (var i = 0; i < tbody.rows.length; i++)
+  {
+    sumVal = sumVal + parseInt(tbody.rows[i].cells[9].innerHTML);
+  }
+
+
+  // Create our number formatter.
+  var formatter = new Intl.NumberFormat('id-ID', {
+    style: 'currency',
+    currency: 'IDR',
+  });
+
+  document.getElementById('totalValue').innerHTML = formatter.format(sumVal);
 </script>
 @endsection

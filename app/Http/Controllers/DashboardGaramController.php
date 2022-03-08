@@ -60,9 +60,9 @@ class DashboardGaramController extends Controller
 
   public function product()
   {
-    $PTGaram = 7;
+    $PTGaram = "PT Garam";
     $dataproduct = Product::where('class', 'Garan')->get();
-    $dataproductPTGaram = Product::where('user_id', $PTGaram)->get();
+    $dataproductPTGaram = Product::where('company', $PTGaram)->get();
     $dataProductLength = Product::where('class', 'Garam')->count();
     $dataCategoryLength = Category::where('group_id', 3)->count();
     $dataCategory = Category::where('group_id', 3)->get();

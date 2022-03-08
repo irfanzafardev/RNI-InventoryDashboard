@@ -24,9 +24,11 @@ class AdministratorStockController extends Controller
 
   public function index()
   {
+    $day = Carbon::today()->toDateString();
+    $today = Carbon::today()->toDateString();
     return view('administrator.stocks.stock', [
-      'stocks' => Stock::where('date', '=', Carbon::today()->toDateString())->get(),
-      'allStocks' => Stock::all()
+      'stocks' => Stock::where('date', '=', $day)->get(),
+      'allStocks' => Stock::whereNotIn('date', [$day, $today])->get()
     ]);
   }
 

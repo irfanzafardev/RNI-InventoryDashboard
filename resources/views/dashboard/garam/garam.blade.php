@@ -7,6 +7,11 @@
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb bg-transparent pt-4">
       <li class="breadcrumb-item text-dark" aria-current="page">
+        <a href="/dashboard">
+          Consolidation
+        </a>
+      </li>
+      <li class="breadcrumb-item text-dark" aria-current="page">
         Garam
       </li>
       <li class="breadcrumb-item text-dark active" aria-current="page">
@@ -97,27 +102,42 @@
 <div class="collapse mt-3" id="collapseExample">
   <div class="single-cards row">
     <div class="col-12 col-md-6 col-lg-4 mb-3">
-      <a href="category-page.html" class="text-decoration-none">
+      <a href="#" class="text-decoration-none">
         <div class="card single-card">
           <div class="card-body">
             <div class="row">
-              <div class="col-12">
+              <div class="col-6">
                 <h5 class="card-title item-card-title text-white">
-                  Garam Produksi Sendiri
+                  Performance Stats
                 </h5>
-                
               </div>
             </div>
             <div class="row">
-              <div class="col-6">
-                <p
-                  class="card-subtitle item-card-subtitle mb-2 text-white"
-                >
+              <div class="col-12">
+                <div class="main-chart d-flex justify-content-center">
+                  <canvas id="GaramPerformance"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4 mb-3">
+      <a href="#" class="text-decoration-none">
+        <div class="card single-card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-9">
+                <h5 class="card-title item-card-title text-white">
+                  Garam Produksi Sendiri
+                </h5>
+                <p class="card-subtitle item-card-subtitle mb-2 text-white">
                   {{ number_format(0)}} <br />
                   <span>(kg)</span>
                 </p>
               </div>
-              <div class="col-6">
+              <div class="col-3">
                 <div class="donut-chart d-flex justify-content-end pe-3">
                   <canvas id="ChartGula"></canvas>
                 </div>
@@ -125,22 +145,21 @@
             </div>
             <div class="row mt-2">
               <div class="col-12 item-card-value text-white">
-                Rp. {{ number_format(0)}}
+                {{ number_format(0)}} <br />
               </div>
             </div>
             <div class="row mt-2">
-              <div class="col-4 item-card-company text-white">
-                Company
-              </div>
+              <div class="col-4 item-card-company text-white">Company</div>
               <div class="col-4 item-card-company text-white">Stock</div>
               <div class="col-4 item-card-company text-white">Value</div>
             </div>
+
           </div>
         </div>
       </a>
     </div>
     <div class="col-12 col-md-6 col-lg-4 mb-3">
-      <a href="category-page.html" class="text-decoration-none">
+      <a href="#" class="text-decoration-none">
         <div class="card single-card">
           <div class="card-body">
             <div class="row">
@@ -163,7 +182,7 @@
             </div>
             <div class="row mt-2">
               <div class="col-12 item-card-value text-white">
-                Rp. {{ number_format(0)}}
+                {{ number_format(0)}} <br />
               </div>
             </div>
             <div class="row mt-2">
@@ -173,14 +192,14 @@
               <div class="col-4 item-card-company text-white">Stock</div>
               <div class="col-4 item-card-company text-white">Value</div>
             </div>
-            <div class="row">
-
           </div>
         </div>
       </a>
     </div>
   </div>
 </div>
+
+
 
 <!-- DataTales Today's input -->
 <div class="card my-4">
@@ -254,10 +273,54 @@
   </div>
 </div>
 
-ppp
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  const dataAgro = {
+    labels: ["Garam Produksi Sendiri", "Garam Import"],
+    datasets: [
+      {
+        label: "My First Dataset",
+        data: [120, 80],
+        backgroundColor: [
+          'rgba(210, 151, 59, 1)',
+          'rgba(232, 202, 129, 1)',
+        ],
+        hoverOffset: 4,
+        borderColor:'#111F38',
+
+      },
+    ],
+  };
+
+  const configAgro = {
+    type: "doughnut",
+    data: dataAgro,
+    options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            display: true,
+            position: 'bottom',
+            align: 'center',
+            labels: {
+              boxWidth: 10,
+              font: {
+                        size: 8,
+                        color: '#666'
+                    }
+            }
+          }
+        }
+      }
+  };
+
+  const AgroPerformance = new Chart(
+    document.getElementById("GaramPerformance"),
+    configAgro
+  );
+</script>
 
 <script>
   $('.accordion-button').click(function(){

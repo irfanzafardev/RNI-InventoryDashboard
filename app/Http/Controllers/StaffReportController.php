@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Stock;
 use Carbon\Carbon;
+use App\Models\Stock;
+use App\Exports\StockExport;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class StaffReportController extends Controller
 {
@@ -49,5 +51,10 @@ class StaffReportController extends Controller
         'stockbydates',
       )
     );
+  }
+
+  public function export()
+  {
+    return Excel::download(new StockExport, 'datastock.xlsx');
   }
 }

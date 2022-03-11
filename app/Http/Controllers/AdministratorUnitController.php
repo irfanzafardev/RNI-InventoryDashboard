@@ -20,7 +20,9 @@ class AdministratorUnitController extends Controller
   public function index()
   {
     return view('administrator.units.unit', [
-      'units' => Unit::all()
+      'units' => Unit::where('active', true)
+        ->orderBy('updated_at', 'desc')
+        ->get()
     ]);
   }
 
@@ -73,7 +75,9 @@ class AdministratorUnitController extends Controller
    */
   public function edit(Unit $unit)
   {
-    //
+    return view('administrator.units.edit', [
+      'unit' => $unit
+    ]);
   }
 
   /**
@@ -85,7 +89,15 @@ class AdministratorUnitController extends Controller
    */
   public function update(Request $request, Unit $unit)
   {
-    //
+    $validatedData = $request->validate([
+      'unit_name' => 'required',
+      'unit_symbol' => 'required',
+    ]);
+
+    Unit::where('id', $unit->id)
+      ->update($validatedData);
+
+    return redirect('/administrator/units')->with('success', 'Data has been successfully updated');
   }
 
   /**
@@ -97,5 +109,24 @@ class AdministratorUnitController extends Controller
   public function destroy(Unit $unit)
   {
     //
+  }
+
+  public function deleteunit($id)
+  {
+    $dataUnit = Unit::find($id);
+    $dataUnit->delete();
+    return redirect('/administrator/units')->with('success', 'Data has been successfully deleted');
+  }
+
+  public function removeUnit($id)
+  {
+    $unitId = Unit::find($id);
+    // dd($unitId);
+
+    if ($unitId) {
+      $unitId->active = false;
+      $unitId->save();
+    }
+    return redirect('/administrator/units')->with('success', 'Data has been successfully removed');
   }
 }

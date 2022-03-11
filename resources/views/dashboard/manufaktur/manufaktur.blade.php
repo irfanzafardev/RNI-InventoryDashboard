@@ -15,7 +15,7 @@
         Manufaktur
       </li>
       <li class="breadcrumb-item text-dark active" aria-current="page">
-        Daily
+        Latest
       </li>
     </ol>
   </nav>
@@ -23,7 +23,7 @@
 
 <ul class="nav time-nav">
   <li class="nav-item mr-3">
-    <a class="nav-link active" href="/dashboard/manufaktur">Daily</a>
+    <a class="nav-link active" href="/dashboard/manufaktur">Latest</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="/dashboard/manufaktur/products">Product</a>
@@ -124,7 +124,7 @@
       </a>
     </div>
     <div class="col-12 col-md-6 col-lg-4 mb-3">
-      <a href="category-page.html" class="text-decoration-none">
+      <a href="#" class="text-decoration-none">
         <div class="card single-card">
           <div class="card-body">
             <div class="row">
@@ -132,40 +132,42 @@
                 <h5 class="card-title item-card-title text-white">
                   WB/IB
                 </h5>
-                <p
-                  class="card-subtitle item-card-subtitle mb-2 text-white"
-                >
-                  {{ number_format(0)}} <br />
+                <p class="card-subtitle item-card-subtitle mb-2 text-white">
+                {{ number_format($quantityWBIB, 0)}} <br />
                   <span>(Lembar)</span>
                 </p>
               </div>
               <div class="col-6">
-                <div class="donut-chart d-flex justify-content-end pe-3">
-                  <canvas id="ChartGula"></canvas>
+                <div class="donut-chart pr-3 pt-2">
+                  <canvas id="ChartWBIBByCompany"></canvas>
                 </div>
               </div>
             </div>
-            <div class="row mt-2">
+            <div class="row mt-1">
               <div class="col-12 item-card-value text-white">
-                Rp. {{ number_format(0)}}
+                Rp. {{ number_format($valueWBIB, 2)}}
               </div>
             </div>
-            <div class="row mt-2">
-              <div class="col-4 item-card-company text-white">
-                Company
-              </div>
+            <div class="row mt-1">
+              <div class="col-4 item-card-company text-white">Company</div>
               <div class="col-4 item-card-company text-white">Stock</div>
               <div class="col-4 item-card-company text-white">Value</div>
             </div>
+            @foreach ($companyWBIB as $item)
             <div class="card-info">
-
-            </div>
+              <div class="row">
+                <div class="col-4 item-card-info text-white">{{ $item->company }}</div>
+                <div class="col-4 item-card-info text-white">{{ $item->quantity }}</div>
+                <div class="col-4 item-card-info text-white">{{ $item->value }}</div>
+              </div>
+            </div>            
+            @endforeach
           </div>
         </div>
       </a>
     </div>
     <div class="col-12 col-md-6 col-lg-4 mb-3">
-      <a href="category-page.html" class="text-decoration-none">
+      <a href="#" class="text-decoration-none">
         <div class="card single-card">
           <div class="card-body">
             <div class="row">
@@ -173,67 +175,79 @@
                 <h5 class="card-title item-card-title text-white">
                   ASSP
                 </h5>
-                <p
-                  class="card-subtitle item-card-subtitle mb-2 text-white"
-                >
-                {{ number_format(0)}} <br />
-                  <span>(Pieces)</span>
+                <p class="card-subtitle item-card-subtitle mb-2 text-white">
+                {{ number_format($quantityWBIB, 0)}} <br />
+                  <span>(Pcs)</span>
                 </p>
               </div>
               <div class="col-6">
-                <div class="donut-chart d-flex justify-content-end pe-3">
-                  <canvas id="ChartTetes"></canvas>
+                <div class="donut-chart pr-3 pt-2">
+                  <canvas id="ChartASSPByCompany"></canvas>
                 </div>
               </div>
             </div>
-            <div class="row mt-2">
+            <div class="row mt-1">
               <div class="col-12 item-card-value text-white">
-                Rp. {{ number_format(0)}}
+                Rp. {{ number_format($valueWBIB, 2)}}
               </div>
             </div>
-            <div class="row mt-2">
-              <div class="col-4 item-card-company text-white">
-                Company
-              </div>
+            <div class="row mt-1">
+              <div class="col-4 item-card-company text-white">Company</div>
               <div class="col-4 item-card-company text-white">Stock</div>
               <div class="col-4 item-card-company text-white">Value</div>
             </div>
+            @foreach ($companyWBIB as $item)
+            <div class="card-info">
+              <div class="row">
+                <div class="col-4 item-card-info text-white">{{ $item->company }}</div>
+                <div class="col-4 item-card-info text-white">{{ $item->quantity }}</div>
+                <div class="col-4 item-card-info text-white">{{ $item->value }}</div>
+              </div>
+            </div>            
+            @endforeach
           </div>
         </div>
       </a>
     </div>
     <div class="col-12 col-md-6 col-lg-4 mb-3">
-      <a href="category-page.html" class="text-decoration-none">
+      <a href="#" class="text-decoration-none">
         <div class="card single-card">
           <div class="card-body">
             <div class="row">
               <div class="col-6">
-                <h5 class="card-title item-card-title text-white">Lainnya</h5>
-                <p
-                  class="card-subtitle item-card-subtitle mb-2 text-white"
-                >
-                {{ number_format(0)}} <br />
+                <h5 class="card-title item-card-title text-white">
+                  Lainnya
+                </h5>
+                <p class="card-subtitle item-card-subtitle mb-2 text-white">
+                {{ number_format($quantityWBIB, 0)}} <br />
                   <span>(Items)</span>
                 </p>
               </div>
               <div class="col-6">
-                <div class="donut-chart d-flex justify-content-end pe-3">
-                  <canvas id="ChartTeh"></canvas>
+                <div class="donut-chart pr-3 pt-2">
+                  <canvas id="ChartLainnyaByCompany"></canvas>
                 </div>
               </div>
             </div>
-            <div class="row mt-2">
+            <div class="row mt-1">
               <div class="col-12 item-card-value text-white">
-                Rp. {{ number_format(0)}}
+                Rp. {{ number_format($valueWBIB, 2)}}
               </div>
             </div>
-            <div class="row mt-2">
-              <div class="col-4 item-card-company text-white">
-                Company
-              </div>
+            <div class="row mt-1">
+              <div class="col-4 item-card-company text-white">Company</div>
               <div class="col-4 item-card-company text-white">Stock</div>
               <div class="col-4 item-card-company text-white">Value</div>
             </div>
+            @foreach ($companyWBIB as $item)
+            <div class="card-info">
+              <div class="row">
+                <div class="col-4 item-card-info text-white">{{ $item->company }}</div>
+                <div class="col-4 item-card-info text-white">{{ $item->quantity }}</div>
+                <div class="col-4 item-card-info text-white">{{ $item->value }}</div>
+              </div>
+            </div>            
+            @endforeach
           </div>
         </div>
       </a>
@@ -315,51 +329,279 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.0.0/chartjs-plugin-datalabels.min.js" integrity="sha512-R/QOHLpV1Ggq22vfDAWYOaMd5RopHrJNMxi8/lJu8Oihwi4Ho4BRFeiMiCefn9rasajKjnx9/fTQ/xkWnkDACg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script>
-  const dataAgro = {
-    labels: ["WB/IB", "ASSP", "Lainnya",],
+  const dataManu = {
+    labels: ["WB/IB", "ASSP", "Lainnya"],
     datasets: [
       {
-        label: "My First Dataset",
-        data: [120, 80, 60],
+        label: "Manufaktur Dataset",
+        data: [{{ $valueWBIB }}, {{ $valueASSP }}, {{ $valueLainnya }}],
         backgroundColor: [
           "rgba(132, 178, 156, 1)",
-          'rgba(210, 151, 59, 1)',
-          'rgba(232, 202, 129, 1)',
+          "rgba(242, 204, 142, 1)",
+          "rgba(232, 202, 129, 1)",
+          // "rgba(210, 151, 59, 1)",
+          // "rgba(244, 246, 248, 1)"
         ],
         hoverOffset: 4,
         borderColor:'#111F38',
-
       },
     ],
   };
 
-  const configAgro = {
+  const configManu = {
     type: "doughnut",
-    data: dataAgro,
+    data: dataManu,
     options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            display: true,
-            position: 'bottom',
-            align: 'center',
-            labels: {
-              boxWidth: 10,
-              font: {
-                        size: 8,
-                        color: '#666'
-                    }
-            }
+      responsive: true,
+      plugins: {
+        legend: {
+          display: true,
+          position: 'bottom',
+          align: 'center',
+          labels: {
+            boxWidth: 10,
+            font: {
+              size: 10,
+            },
+            color: '#fff'
           }
+        },
+        tooltip: {
+          enabled: true
+        },
+        datalabels: {
+          formatter: (value, context) => {
+            const datapoints = context.chart.data.datasets[0].data;
+            function totalSum(total, datapoint)  {
+              return total + datapoint;
+            }
+            const totalValue = datapoints.reduce(totalSum, 0);
+            const PercentageValue = (value / totalValue * 100).toFixed(1);
+            return `${PercentageValue}%`;
+          },
+          font: {
+            size: 10,
+          },
+          color: '#fff'
         }
       }
+    },
+    plugins: [ChartDataLabels]
   };
 
-  const AgroPerformance = new Chart(
+  const ManuPerformance = new Chart(
     document.getElementById("ManuPerformance"),
-    configAgro
+    configManu
+  );
+</script>
+
+<script>
+  const dataWBIB = {
+    labels: [
+      "{{ $companyWBIB1st->company ?? "a" }}",
+      "{{ $companyWBIB2nd->company ?? "b" }}",
+      "{{ $companyWBIB3rd->company ?? "c" }}",
+    ],
+    datasets: [{
+      label: 'WBIB Dataset',
+      data: [ 
+        {{ $companyWBIB1st->value ?? "0" }},      
+        {{ $companyWBIB2nd->value ?? "0" }},
+        {{ $companyWBIB3rd->value ?? "0" }},
+      ],
+      backgroundColor: [
+        'rgba(210, 151, 59, 1)',
+        'rgba(232, 202, 129, 1)',
+      ],
+      borderColor:'#111F38',
+      hoverOffset: 3,
+    }]
+  };
+
+  const configWBIB = {
+    type: 'doughnut',
+    data: dataWBIB,
+    options: {
+      circumference: 	180,
+      rotation: 270,
+      responsive: true,
+      plugins: {
+        legend: {
+          display: false,
+          position: 'bottom',
+          align: 'center',
+          labels: {
+            boxWidth: 10,
+            font: {
+              size: 8,
+            },
+            color: '#fff'
+          }
+        },
+        datalabels: {
+          formatter: (value, context) => {
+            const datapoints = context.chart.data.datasets[0].data;
+            function totalSum(total, datapoint)  {
+              return total + datapoint;
+            }
+            const totalValue = datapoints.reduce(totalSum, 0);
+            const PercentageValue = (value / totalValue * 100).toFixed(1);
+            return `${PercentageValue}%`;
+          },
+          font: {
+            size: 10,
+          },
+          color: '#fff'
+        }
+      },
+    },
+    plugins: [ChartDataLabels]
+  };
+
+  const ChartWBIB = new Chart(
+    document.getElementById('ChartWBIBByCompany'),
+    configWBIB
+  );
+</script>
+
+<script>
+  const dataASSP = {
+    labels: [
+      "{{ $companyWBIB1st->company ?? "a" }}",
+      "{{ $companyWBIB2nd->company ?? "b" }}",
+      "{{ $companyWBIB3rd->company ?? "c" }}",
+    ],
+    datasets: [{
+      label: 'ASSP Dataset',
+      data: [ 
+        {{ $companyWBIB1st->value ?? "0" }},      
+        {{ $companyWBIB2nd->value ?? "0" }},
+        {{ $companyWBIB3rd->value ?? "0" }},
+      ],
+      backgroundColor: [
+        'rgba(210, 151, 59, 1)',
+        'rgba(232, 202, 129, 1)',
+      ],
+      borderColor:'#111F38',
+      hoverOffset: 3,
+    }]
+  };
+
+  const configASSP = {
+    type: 'doughnut',
+    data: dataASSP,
+    options: {
+      circumference: 	180,
+      rotation: 270,
+      responsive: true,
+      plugins: {
+        legend: {
+          display: false,
+          position: 'bottom',
+          align: 'center',
+          labels: {
+            boxWidth: 10,
+            font: {
+              size: 8,
+            },
+            color: '#fff'
+          }
+        },
+        datalabels: {
+          formatter: (value, context) => {
+            const datapoints = context.chart.data.datasets[0].data;
+            function totalSum(total, datapoint)  {
+              return total + datapoint;
+            }
+            const totalValue = datapoints.reduce(totalSum, 0);
+            const PercentageValue = (value / totalValue * 100).toFixed(1);
+            return `${PercentageValue}%`;
+          },
+          font: {
+            size: 10,
+          },
+          color: '#fff'
+        }
+      },
+    },
+    plugins: [ChartDataLabels]
+  };
+
+  const ChartASSP = new Chart(
+    document.getElementById('ChartASSPByCompany'),
+    configASSP
+  );
+</script>
+
+<script>
+  const dataLainnya = {
+    labels: [
+      "{{ $companyWBIB1st->company ?? "a" }}",
+      "{{ $companyWBIB2nd->company ?? "b" }}",
+      "{{ $companyWBIB3rd->company ?? "c" }}",
+    ],
+    datasets: [{
+      label: 'ASSP Dataset',
+      data: [ 
+        {{ $companyWBIB1st->value ?? "0" }},      
+        {{ $companyWBIB2nd->value ?? "0" }},
+        {{ $companyWBIB3rd->value ?? "0" }},
+      ],
+      backgroundColor: [
+        'rgba(210, 151, 59, 1)',
+        'rgba(232, 202, 129, 1)',
+      ],
+      borderColor:'#111F38',
+      hoverOffset: 3,
+    }]
+  };
+
+  const configLainnya = {
+    type: 'doughnut',
+    data: dataLainnya,
+    options: {
+      circumference: 	180,
+      rotation: 270,
+      responsive: true,
+      plugins: {
+        legend: {
+          display: false,
+          position: 'bottom',
+          align: 'center',
+          labels: {
+            boxWidth: 10,
+            font: {
+              size: 8,
+            },
+            color: '#fff'
+          }
+        },
+        datalabels: {
+          formatter: (value, context) => {
+            const datapoints = context.chart.data.datasets[0].data;
+            function totalSum(total, datapoint)  {
+              return total + datapoint;
+            }
+            const totalValue = datapoints.reduce(totalSum, 0);
+            const PercentageValue = (value / totalValue * 100).toFixed(1);
+            return `${PercentageValue}%`;
+          },
+          font: {
+            size: 10,
+          },
+          color: '#fff'
+        }
+      },
+    },
+    plugins: [ChartDataLabels]
+  };
+
+  const ChartLainnya = new Chart(
+    document.getElementById('ChartLainnyaByCompany'),
+    configLainnya
   );
 </script>
 

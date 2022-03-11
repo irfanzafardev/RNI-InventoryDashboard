@@ -17,6 +17,7 @@ class CreateUnitsTable extends Migration
       $table->id();
       $table->string('unit_name')->unique();
       $table->string('unit_symbol')->unique();
+      $table->boolean('active')->default(1);
       $table->timestamps();
     });
   }

@@ -1,4 +1,4 @@
-@extends('administrator.layouts.main')
+@extends('user.layouts.main')
 
 @section('breadcrumb')
 <nav aria-label="breadcrumb">
@@ -9,7 +9,7 @@
       </a>
     </li>
     <li class="breadcrumb-item text-dark active" aria-current="page">
-      <a href="/administrator/classes">
+      <a href="/staff/classes">
         Unit
       </a>
     </li>
@@ -29,7 +29,7 @@
 <!-- AddData-form -->
 <div class="row">
   <div class="col-12">
-    <form method="post" action="/administrator/units/{{ $unit->id }}">
+    <form method="post" action="/staff/units/{{ $unit->id }}">
       @method('put')
       @csrf
       <div class="row">
@@ -69,7 +69,7 @@
             @enderror
           </div>
           <button type="submit" class="btn btn-primary ms-3 bg-darkblue float-end">Submit</button>
-          <a href="/administrator/units" class="btn btn btn-light float-end">Cancel</a>
+          <a href="/staff/units" class="btn btn btn-light float-end">Cancel</a>
         </div>
       </div>
     </form>

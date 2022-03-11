@@ -1,5 +1,23 @@
 @extends('user.layouts.main')
 
+@section('breadcrumb')
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb bg-transparent pt-4">
+    <li class="breadcrumb-item text-dark" aria-current="page">
+      <a href="/staff">
+        Dashboard
+      </a>
+    </li>
+    <li class="breadcrumb-item text-dark active" aria-current="page">
+      Daily Stock
+    </li>
+    <li class="breadcrumb-item text-dark active" aria-current="page">
+      Create
+    </li>
+  </ol>
+</nav>
+@endsection
+
 @section('container')
 <!-- Page Heading -->
 <div class="page-heading heading bg-darkblue d-sm-flex align-items-center justify-content-between mb-4">

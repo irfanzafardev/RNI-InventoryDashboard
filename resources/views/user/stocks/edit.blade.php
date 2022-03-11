@@ -1,9 +1,29 @@
 @extends('user.layouts.main')
 
+@section('breadcrumb')
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb bg-transparent pt-4">
+    <li class="breadcrumb-item text-dark" aria-current="page">
+      <a href="/staff">
+        Dashboard
+      </a>
+    </li>
+    <li class="breadcrumb-item text-dark active" aria-current="page">
+      <a href="/staff/stocks">
+        Stock
+      </a>
+    </li>
+    <li class="breadcrumb-item text-dark active" aria-current="page">
+      Edit
+    </li>
+  </ol>
+</nav>
+@endsection
+
 @section('container')
 <!-- Page Heading -->
 <div class="page-heading heading bg-darkblue d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-white">Update Stock Form</h1>
+    <h1 class="h3 mb-0 text-white">Edit Stock Form</h1>
 </div>
 
 <!-- AddData-form -->

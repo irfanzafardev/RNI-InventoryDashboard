@@ -21,7 +21,9 @@ class StaffCategorytController extends Controller
   public function index()
   {
     $groupId = Auth::user()->company->group->id;
-    $dataCategory = Category::all()->where('group_id', $groupId);
+    $dataCategory = Category::all()
+      ->where('group_id', $groupId)
+      ->where('active', true);
 
     return view('user.categories.category', compact('dataCategory'));
   }
@@ -53,7 +55,7 @@ class StaffCategorytController extends Controller
    * @param  \App\Models\Stock  $stock
    * @return \Illuminate\Http\Response
    */
-  public function show(Stock $stock)
+  public function show(Category $category)
   {
     //
   }
@@ -64,7 +66,7 @@ class StaffCategorytController extends Controller
    * @param  \App\Models\Stock  $stock
    * @return \Illuminate\Http\Response
    */
-  public function edit(Stock $stock)
+  public function edit(Category $category)
   {
     //
   }
@@ -76,7 +78,7 @@ class StaffCategorytController extends Controller
    * @param  \App\Models\Stock  $stock
    * @return \Illuminate\Http\Response
    */
-  public function update(Request $request, Stock $stock)
+  public function update(Request $request, Category $category)
   {
     //
   }
@@ -87,7 +89,7 @@ class StaffCategorytController extends Controller
    * @param  \App\Models\Stock  $stock
    * @return \Illuminate\Http\Response
    */
-  public function destroy(Stock $stock)
+  public function destroy(Category $category)
   {
     //
   }

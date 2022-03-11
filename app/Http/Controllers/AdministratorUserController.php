@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -32,7 +33,10 @@ class AdministratorUserController extends Controller
    */
   public function create()
   {
-    //
+    return view('administrator.users.create', [
+      'users' => User::all(),
+      'companies' => Company::all()
+    ]);
   }
 
   /**
@@ -43,7 +47,21 @@ class AdministratorUserController extends Controller
    */
   public function store(Request $request)
   {
-    //
+    // return $request;
+    $validatedData = $request->validate([
+      'name' => ['required', 'string', 'max:255'],
+      'username' => ['required', 'string', 'max:255'],
+      'company_id' => ['required', 'max:255'],
+      'phone' => ['required', 'max:255'],
+      'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+      'password' => ['required', 'string', 'min:4', 'confirmed'],
+      'role' => ['required', 'max:255'],
+    ]);
+
+    $validatedData['password'] = bcrypt($validatedData['password']);
+
+    User::create($validatedData);
+    return redirect('/administrator/users')->with('success', 'Data has been successfully added');
   }
 
   /**
@@ -65,7 +83,10 @@ class AdministratorUserController extends Controller
    */
   public function edit(User $user)
   {
-    //
+    return view('administrator.users.edit', [
+      'user' => $user,
+      'companies' => Company::all()
+    ]);
   }
 
   /**
@@ -77,7 +98,22 @@ class AdministratorUserController extends Controller
    */
   public function update(Request $request, User $user)
   {
-    //
+    $validatedData = $request->validate([
+      'name' => ['required', 'string', 'max:255'],
+      'username' => ['required', 'string', 'max:255'],
+      'company_id' => ['required', 'max:255'],
+      'phone' => ['required', 'max:255'],
+      'email' => ['required', 'string', 'email', 'max:255'],
+      // 'password' => ['required', 'string', 'min:4', 'confirmed'],
+      'role' => ['required', 'max:255'],
+    ]);
+
+    // $validatedData['password'] = bcrypt($validatedData['password']);
+
+    User::where('id', $user->id)
+      ->update($validatedData);
+
+    return redirect('/administrator/users')->with('success', 'Data has been successfully updated');
   }
 
   /**
@@ -90,4 +126,23 @@ class AdministratorUserController extends Controller
   {
     //
   }
+
+  public function deleteuser($id)
+  {
+    $dataUser = User::find($id);
+    $dataUser->delete();
+    return redirect('/administrator/users')->with('success', 'Data has been successfully deleted');
+  }
+
+  // public function deleteproduct($id)
+  // {
+  //   $productid = User::find($id);
+  //   dd($productid);
+
+  //   if ($productid) {
+  //     $productid->active = false;
+  //     $productid->save();
+  //   }
+  //   return redirect('/administrator/products')->with('success', 'Data has been successfully removed');
+  // }
 }

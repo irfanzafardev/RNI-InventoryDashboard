@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Subcategory;
+use App\Models\Category;
+use App\Models\Group;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,7 +24,9 @@ class StaffSubcategorytController extends Controller
   {
 
     $groupId = Auth::user()->company->group->group_name;
-    $dataSubcategory = Subcategory::all()->where('class', $groupId);
+    $dataSubcategory = Subcategory::all()
+      ->where('class', $groupId)
+      ->where('active', true);
 
     return view('user.subcategories.subcategory', compact('dataSubcategory'));
   }
@@ -34,7 +38,17 @@ class StaffSubcategorytController extends Controller
    */
   public function create()
   {
-    //
+    $groupId = Auth::user()->company->group->id;
+    return view('user.subcategories.create', [
+      'subcategories' => Subcategory::all()
+        ->where('active', true),
+      'categories' => Category::all()
+        ->where('group_id', $groupId)
+        ->where('active', true),
+      'groups' => Group::all()
+        ->where('id', $groupId)
+        ->where('active', true)
+    ]);
   }
 
   /**
@@ -45,7 +59,15 @@ class StaffSubcategorytController extends Controller
    */
   public function store(Request $request)
   {
-    //
+    // return $request;
+    $validatedData = $request->validate([
+      'subcategory_name' => 'required',
+      'class' => 'required',
+      'category_id' => 'required',
+    ]);
+
+    Subcategory::create($validatedData);
+    return redirect('/staff/subcategories')->with('success', 'Data has been successfully added');
   }
 
   /**
@@ -67,7 +89,12 @@ class StaffSubcategorytController extends Controller
    */
   public function edit(Subcategory $subcategory)
   {
-    //
+    $groupId = Auth::user()->company->group->id;
+    return view('user.subcategories.edit', [
+      'subcategory' => $subcategory,
+      'categories' => Category::all(),
+      'groups' => Group::all()->where('id', $groupId)
+    ]);
   }
 
   /**
@@ -79,7 +106,16 @@ class StaffSubcategorytController extends Controller
    */
   public function update(Request $request, Subcategory $subcategory)
   {
-    //
+    $validatedData = $request->validate([
+      'subcategory_name' => 'required',
+      'class' => 'required',
+      'category_id' => 'required',
+    ]);
+
+    Subcategory::where('id', $subcategory->id)
+      ->update($validatedData);
+
+    return redirect('/staff/subcategories')->with('success', 'Data has been successfully updated');
   }
 
   /**

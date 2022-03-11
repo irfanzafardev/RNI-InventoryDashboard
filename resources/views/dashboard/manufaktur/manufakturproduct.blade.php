@@ -7,10 +7,15 @@
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb bg-transparent pt-4">
       <li class="breadcrumb-item text-dark" aria-current="page">
+        <a href="/dashboard">
+          Consolidation
+        </a>
+      </li>
+      <li class="breadcrumb-item text-dark active" aria-current="page">
         Manufaktur
       </li>
       <li class="breadcrumb-item text-dark active" aria-current="page">
-        Products
+        Product
       </li>
     </ol>
   </nav>

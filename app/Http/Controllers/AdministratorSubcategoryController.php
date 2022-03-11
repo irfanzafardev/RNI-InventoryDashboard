@@ -22,7 +22,9 @@ class AdministratorSubcategoryController extends Controller
   public function index()
   {
     return view('administrator.subcategories.subcategory', [
-      'subcategories' => Subcategory::all()
+      'subcategories' => Subcategory::where('active', true)
+        ->orderBy('updated_at', 'desc')
+        ->get()
     ]);
   }
 
@@ -122,6 +124,17 @@ class AdministratorSubcategoryController extends Controller
     $datastock = Subcategory::find($id);
     $datastock->delete();
     return redirect('/administrator/subcategories')->with('success', 'Data has been successfully deleted');
-    // return redirect('/administrator/detaildeletestockin/');
+  }
+
+  public function removeSubcategory($id)
+  {
+    $subcategoryId = Subcategory::find($id);
+    // dd($subcategoryId);
+
+    if ($subcategoryId) {
+      $subcategoryId->active = false;
+      $subcategoryId->save();
+    }
+    return redirect('/administrator/subcategories')->with('success', 'Data has been successfully removed');
   }
 }

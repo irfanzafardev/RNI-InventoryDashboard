@@ -56,8 +56,11 @@ class StaffStockController extends Controller
 
     $today = Carbon::today()->toDateString();
     return view('user.stocks.create', compact('code', 'today'), [
-      'products' => Product::all()->where('user_id', $userid),
-      'users' => User::all(),
+      'products' => Product::all()
+        ->where('user_id', $userid)
+        ->where('active', true),
+      'users' => User::all()
+        ->where('active', true),
       'last' => Stock::all()->last()
     ]);
   }

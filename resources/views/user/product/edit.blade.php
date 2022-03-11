@@ -9,8 +9,8 @@
       </a>
     </li>
     <li class="breadcrumb-item text-dark active" aria-current="page">
-      <a href="/administrator/products">
-        Product Items
+      <a href="/staff/products">
+        Product
       </a>
     </li>
     <li class="breadcrumb-item text-dark active" aria-current="page">

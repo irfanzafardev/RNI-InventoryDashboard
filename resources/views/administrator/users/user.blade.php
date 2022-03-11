@@ -9,7 +9,7 @@
       </a>
     </li>
     <li class="breadcrumb-item text-dark active" aria-current="page">
-        User Management
+        User
     </li>
   </ol>
 </nav>
@@ -18,7 +18,7 @@
 @section('container')
 <!-- Page Heading -->
 <div class="page-heading heading bg-darkblue d-sm-flex align-items-center justify-content-between mb-4">
-  <h1 class="h3 mb-0 text-white">User Management (IT RNI)</h1>
+  <h1 class="h3 mb-0 text-white">User Management</h1>
 </div>
 
 <!-- DataTales Example -->
@@ -29,6 +29,14 @@
     </h6>
   </div>
   <div class="card-body">
+    @if ($message = Session::get('success'))
+      <div class="alert alert-primary" role="alert">
+        {{ $message }}
+      </div>
+    @endif
+    <a href="/administrator/users/create" class="btn btn-primary bg-darkblue px-4 mb-3">
+      Register User
+    </a>
     <div class="table-responsive">
       <table
         class="table table-bordered"
@@ -71,8 +79,8 @@
             <td>{{ $user->role }}</td>
             <td>{{ $user->phone }}</td>
             <td>
-              <a href="">Edit</a>
-              <a href="">Delete</a>
+              <a href="/administrator/users/{{ $user->id }}/edit">Edit</a>
+              <a href="#" class="delete" data-id="{{ $user->id }}" data-name="{{ $user->name }}">Delete</a>
             </td>
           </tr>     
           @endforeach
@@ -81,4 +89,28 @@
     </div>
   </div>
 </div>
+
+<script>
+  $('.delete').click( function(){
+    var userId = $(this).attr('data-id')
+    var userName = $(this).attr('data-name')
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this "+userName+" ",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        window.location = "/administrator/deleteuser/"+userId+""
+        swal("Poof! Your imaginary file has been deleted!", {
+          icon: "success",
+        });
+      } else {
+        swal("Your imaginary file is safe!");
+      }
+    });
+  })
+</script>
 @endsection

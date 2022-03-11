@@ -7,6 +7,11 @@
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb bg-transparent pt-4">
       <li class="breadcrumb-item text-dark" aria-current="page">
+        <a href="/dashboard">
+          Consolidation
+        </a>
+      </li>
+      <li class="breadcrumb-item text-dark active" aria-current="page">
         Manufaktur
       </li>
       <li class="breadcrumb-item text-dark active" aria-current="page">
@@ -18,7 +23,7 @@
 
 <ul class="nav time-nav">
   <li class="nav-item mr-3">
-    <a class="nav-link active" href="/dashboard/manufaktur">Daily</a>
+    <a class="nav-link active" href="/dashboard/manufaktur">Latest</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="/dashboard/manufaktur/products">Product</a>
@@ -44,7 +49,7 @@
 <!-- Summary Row -->
 <div class="summary-card mb-4">
   <div class="card">
-    <div class="card-body">
+    <div class="card-body bg-lightlime rounded">
       <div class="row">
         <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-1">
           <div class="row">

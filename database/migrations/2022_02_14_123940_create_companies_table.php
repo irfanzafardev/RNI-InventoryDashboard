@@ -17,6 +17,7 @@ class CreateCompaniesTable extends Migration
       $table->id();
       $table->string('company_name')->unique();
       $table->foreignId('group_id');
+      $table->boolean('active')->default(1);
       $table->timestamps();
     });
   }

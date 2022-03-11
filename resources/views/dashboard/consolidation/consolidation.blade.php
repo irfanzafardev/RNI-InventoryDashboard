@@ -199,7 +199,7 @@
     <h6 class="m-0 font-weight-bold text-dark">Today's input</h6>
   </div>
   <div class="d-flex justify-content-end">
-    <a type="submit" class="btn btn-primary bg-darkblue mx-3 mt-3 px-4">
+    <a href="#" class="btn btn-primary bg-darkblue mr-4 mt-3 px-4" onclick="tablesToExcel(['dataTable'], ['Stock'], 'stock.xls', 'Excel')">
       Export
     </a>
   </div>
@@ -267,6 +267,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.0.0/chartjs-plugin-datalabels.min.js" integrity="sha512-R/QOHLpV1Ggq22vfDAWYOaMd5RopHrJNMxi8/lJu8Oihwi4Ho4BRFeiMiCefn9rasajKjnx9/fTQ/xkWnkDACg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script>
   $('.accordion-button').click(function(){
@@ -315,20 +316,36 @@
     type: 'doughnut',
     data: data,
     options: {
-        circumference: 	180,
-        rotation: 270,
-        responsive: true,
-        plugins: {
-          legend: {
-            display: true,
-            position: 'bottom',
-            align: 'center',
-            labels: {
-              boxWidth: 10
-            }
-          },
+      circumference: 	180,
+      rotation: 270,
+      responsive: true,
+      plugins: {
+        legend: {
+          display: true,
+          position: 'bottom',
+          align: 'center',
+          labels: {
+            boxWidth: 10
+          }
         },
+        datalabels: {
+          formatter: (value, context) => {
+            const datapoints = context.chart.data.datasets[0].data;
+            function totalSum(total, datapoint)  {
+              return total + datapoint;
+            }
+            const totalValue = datapoints.reduce(totalSum, 0);
+            const PercentageValue = (value / totalValue * 100).toFixed(1);
+            return `${PercentageValue}%`;
+          },
+          font: {
+            size: 12,
+          },
+          color: '#fff'
+        }
       },
+    },
+    plugins: [ChartDataLabels]
   };
 
   const myChart = new Chart(
@@ -349,12 +366,104 @@
     const increment = target / 100;
 
     if(c < target) {
-    
       counter.innerText = `${Math.ceil(c+increment)}`;
       setTimeout(updateCounter, 1);
     }
     };
      updateCounter();
    });
+</script>
+
+<script>
+  var tablesToExcel = (function () {
+    var uri = "data:application/vnd.ms-excel;base64,",
+        tmplWorkbookXML =
+            '<?xml version="1.0"?><?mso-application progid="Excel.Sheet"?><Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">' +
+            '<DocumentProperties xmlns="urn:schemas-microsoft-com:office:office"><Author>Axel Richter</Author><Created>{created}</Created></DocumentProperties>' +
+            "<Styles>" +
+            '<Style ss:ID="Currency"><NumberFormat ss:Format="Currency"></NumberFormat></Style>' +
+            '<Style ss:ID="Date"><NumberFormat ss:Format="Medium Date"></NumberFormat></Style>' +
+            "</Styles>" +
+            "{worksheets}</Workbook>",
+        tmplWorksheetXML =
+            '<Worksheet ss:Name="{nameWS}"><Table>{rows}</Table></Worksheet>',
+        tmplCellXML =
+            '<Cell{attributeStyleID}{attributeFormula}><Data ss:Type="{nameType}">{data}</Data></Cell>',
+        base64 = function (s) {
+            return window.btoa(unescape(encodeURIComponent(s)));
+        },
+        format = function (s, c) {
+            return s.replace(/{(\w+)}/g, function (m, p) {
+                return c[p];
+            });
+        };
+    return function (tables, wsnames, wbname, appname) {
+        var ctx = "";
+        var workbookXML = "";
+        var worksheetsXML = "";
+        var rowsXML = "";
+  
+        for (var i = 0; i < tables.length; i++) {
+            if (!tables[i].nodeType)
+                tables[i] = document.getElementById(tables[i]);
+            for (var j = 0; j < tables[i].rows.length; j++) {
+                rowsXML += "<Row>";
+                for (var k = 0; k < tables[i].rows[j].cells.length; k++) {
+                    var dataType =
+                        tables[i].rows[j].cells[k].getAttribute("data-type");
+                    var dataStyle =
+                        tables[i].rows[j].cells[k].getAttribute("data-style");
+                    var dataValue =
+                        tables[i].rows[j].cells[k].getAttribute("data-value");
+                    dataValue = dataValue
+                        ? dataValue
+                        : tables[i].rows[j].cells[k].innerHTML;
+                    var dataFormula =
+                        tables[i].rows[j].cells[k].getAttribute("data-formula");
+                    dataFormula = dataFormula
+                        ? dataFormula
+                        : appname == "Calc" && dataType == "DateTime"
+                        ? dataValue
+                        : null;
+                    ctx = {
+                        attributeStyleID:
+                            dataStyle == "Currency" || dataStyle == "Date"
+                                ? ' ss:StyleID="' + dataStyle + '"'
+                                : "",
+                        nameType:
+                            dataType == "Number" ||
+                            dataType == "DateTime" ||
+                            dataType == "Boolean" ||
+                            dataType == "Error"
+                                ? dataType
+                                : "String",
+                        data: dataFormula ? "" : dataValue,
+                        attributeFormula: dataFormula
+                            ? ' ss:Formula="' + dataFormula + '"'
+                            : "",
+                    };
+                    rowsXML += format(tmplCellXML, ctx);
+                }
+                rowsXML += "</Row>";
+            }
+            ctx = { rows: rowsXML, nameWS: wsnames[i] || "Sheet" + i };
+            worksheetsXML += format(tmplWorksheetXML, ctx);
+            rowsXML = "";
+        }
+  
+        ctx = { created: new Date().getTime(), worksheets: worksheetsXML };
+        workbookXML = format(tmplWorkbookXML, ctx);
+  
+        console.log(workbookXML);
+  
+        var link = document.createElement("A");
+        link.href = uri + base64(workbookXML);
+        link.download = wbname || "Workbook.xls";
+        link.target = "_blank";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+  })();
 </script>
 @endsection

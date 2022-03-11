@@ -55,6 +55,23 @@ class DashboardManufakturController extends Controller
       ->sum('value');
 
 
+    $companyWBIB = Stock::where('date', '=', $day)
+      ->where('category', 'WB/IB')
+      ->orderBy('quantity', 'desc')->get();
+
+    $companyWBIB1st = Stock::where('date', '=', $day)
+      ->where('category', 'WB/IB')
+      ->orderBy('quantity', 'desc')->first();
+
+    $companyWBIB2nd = Stock::where('date', '=', $day)
+      ->where('category', 'WB/IB')
+      ->orderBy('quantity', 'desc')->skip(1)->take(1)->first();
+
+    $companyWBIB3rd = Stock::where('date', '=', $day)
+      ->where('category', 'WB/IB')
+      ->orderBy('quantity', 'desc')->skip(2)->take(1)->first();
+
+
     return view(
       'dashboard.manufaktur.manufaktur',
       compact(
@@ -70,6 +87,10 @@ class DashboardManufakturController extends Controller
         'valueASSP',
         'valueAlatKesehatan',
         'valueLainnya',
+        'companyWBIB',
+        'companyWBIB1st',
+        'companyWBIB2nd',
+        'companyWBIB3rd'
       )
     );
   }

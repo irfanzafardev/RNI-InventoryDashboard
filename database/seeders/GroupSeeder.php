@@ -16,16 +16,20 @@ class GroupSeeder extends Seeder
   {
     DB::table('groups')->insert([
       [
-        'group_name' => 'Holding'
+        'group_name' => 'Holding',
+        'active' => 1
       ],
       [
-        'group_name' => 'Agroindustri'
+        'group_name' => 'Agroindustri',
+        'active' => 1
       ],
       [
-        'group_name' => 'Manufaktur'
+        'group_name' => 'Manufaktur',
+        'active' => 1
       ],
       [
-        'group_name' => 'Garam'
+        'group_name' => 'Garam',
+        'active' => 1
       ]
     ]);
   }

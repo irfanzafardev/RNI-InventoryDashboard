@@ -288,7 +288,7 @@ label {
   background-color: #0B1629;
   border-radius: 10px;
   border: none;
-  min-height: 242px;
+  min-height: 258px;
 }
 
 .single-card-consolidation {
@@ -333,15 +333,19 @@ label {
   line-height: 27px;
 }
 
+.single-card .first-single-card-row {
+  max-height: 120px;
+}
+
 .single-card .main-chart canvas {
-  margin-top: -30px;
+  margin-top: -20px;
   max-width: 160px !important;
   max-height: 160px !important;
 }
 
 .single-card .donut-chart canvas {
-  max-width: 100px !important;
-  max-height: 100px !important;
+  max-width: 120px !important;
+  max-height: 120px !important;
 }
 
 .single-card .item-card-subtitle span {

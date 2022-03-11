@@ -17,7 +17,8 @@ class DashboardGaramController extends Controller
 
   public function latest()
   {
-    // $datastocks = Stock::where('class', 'Manufaktur')->get();
+    $day = Carbon::today()->toDateString();
+
     $datastocks = Stock::where('date', '=', Carbon::today()->toDateString())
       ->where('class', 'Garam')->get();
     $highestAmount = Stock::where('date', '=', Carbon::today()->toDateString())
@@ -26,14 +27,39 @@ class DashboardGaramController extends Controller
     $dataStockLength = Stock::where('date', '=', Carbon::today()->toDateString())
       ->where('class', 'Garam')
       ->count();
-    $yesterday = Carbon::today()->toDateString();
+
+    $quantityProduksiSendiri = Stock::where('date', '=', $day)
+      ->where('category', 'Garam Produksi Sendiri')
+      ->sum('quantity');
+
+    $valueProduksiSendiri = Stock::where('date', '=', $day)
+      ->where('category', 'Garam Produksi Sendiri')
+      ->sum('value');
+
+    $companyProduksiSendiri = Stock::where('date', '=', $day)
+      ->where('category', 'Garam Produksi Sendiri')
+      ->orderBy('quantity', 'desc')->get();
+
+    $companyProduksiSendiri1st = Stock::where('date', '=', $day)
+      ->where('category', 'Garam Produksi Sendiri')
+      ->orderBy('quantity', 'desc')->first();
+
+    $companyProduksiSendiri2nd = Stock::where('date', '=', $day)
+      ->where('category', 'Garam Produksi Sendiri')
+      ->orderBy('quantity', 'desc')->skip(1)->take(1)->first();
+
     return view(
       'dashboard.garam.garam',
       compact(
+        'day',
         'datastocks',
         'highestAmount',
         'dataStockLength',
-        'yesterday'
+        'quantityProduksiSendiri',
+        'valueProduksiSendiri',
+        'companyProduksiSendiri',
+        'companyProduksiSendiri1st',
+        'companyProduksiSendiri2nd'
       )
     );
   }

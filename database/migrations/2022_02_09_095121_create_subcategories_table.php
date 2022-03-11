@@ -17,7 +17,8 @@ class CreateSubcategoriesTable extends Migration
       $table->id();
       $table->string('class');
       $table->foreignId('category_id');
-      $table->string('subcategory_name')->unique();
+      $table->string('subcategory_name');
+      $table->boolean('active')->default(1);
       $table->timestamps();
     });
   }

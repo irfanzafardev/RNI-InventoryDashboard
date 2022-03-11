@@ -36,7 +36,7 @@
     @csrf
     <div class="row justify-content-end">
       <div class="col-6 d-flex justify-content-end">
-        <input type="text" id="datepicker" value="{{ $yesterday }}" name="date">
+        <input type="text" id="datepicker" value="{{ $day }}" name="date">
 
         <button type="submit" class="btn btn-primary bg-darkblue ml-3 px-4">
           Show
@@ -128,32 +128,40 @@
         <div class="card single-card">
           <div class="card-body">
             <div class="row">
-              <div class="col-9">
+              <div class="col-6">
                 <h5 class="card-title item-card-title text-white">
-                  Garam Produksi Sendiri
+                  Produksi Sendiri
                 </h5>
                 <p class="card-subtitle item-card-subtitle mb-2 text-white">
-                  {{ number_format(0)}} <br />
-                  <span>(kg)</span>
+                {{ number_format($quantityProduksiSendiri, 0)}} <br />
+                  <span>(Kg)</span>
                 </p>
               </div>
-              <div class="col-3">
-                <div class="donut-chart d-flex justify-content-end pe-3">
-                  <canvas id="ChartGula"></canvas>
+              <div class="col-6">
+                <div class="donut-chart pr-3 pt-2">
+                  <canvas id="ChartProduksiSendiriByCompany"></canvas>
                 </div>
               </div>
             </div>
-            <div class="row mt-2">
+            <div class="row mt-1">
               <div class="col-12 item-card-value text-white">
-                {{ number_format(0)}} <br />
+                Rp. {{ number_format($valueProduksiSendiri, 2)}}
               </div>
             </div>
-            <div class="row mt-2">
+            <div class="row mt-1">
               <div class="col-4 item-card-company text-white">Company</div>
               <div class="col-4 item-card-company text-white">Stock</div>
               <div class="col-4 item-card-company text-white">Value</div>
             </div>
-
+            @foreach ($companyProduksiSendiri as $item)
+            <div class="card-info">
+              <div class="row">
+                <div class="col-4 item-card-info text-white">{{ $item->company }}</div>
+                <div class="col-4 item-card-info text-white">{{ $item->quantity }}</div>
+                <div class="col-4 item-card-info text-white">{{ $item->value }}</div>
+              </div>
+            </div>            
+            @endforeach
           </div>
         </div>
       </a>
@@ -165,33 +173,38 @@
             <div class="row">
               <div class="col-6">
                 <h5 class="card-title item-card-title text-white">
-                  Garam Import
+                  Import
                 </h5>
-                <p
-                  class="card-subtitle item-card-subtitle mb-2 text-white"
-                >
-                {{ number_format(0)}} <br />
-                  <span>(kg)</span>
+                <p class="card-subtitle item-card-subtitle mb-2 text-white">
+                {{ number_format($quantityProduksiSendiri, 0)}} <br />
+                  <span>(Kg)</span>
                 </p>
               </div>
               <div class="col-6">
-                <div class="donut-chart d-flex justify-content-end pe-3">
-                  <canvas id="ChartTetes"></canvas>
+                <div class="donut-chart pr-3 pt-2">
+                  <canvas id="ChartProduksiSendiriByCompany"></canvas>
                 </div>
               </div>
             </div>
-            <div class="row mt-2">
+            <div class="row mt-1">
               <div class="col-12 item-card-value text-white">
-                {{ number_format(0)}} <br />
+                Rp. {{ number_format($valueProduksiSendiri, 2)}}
               </div>
             </div>
-            <div class="row mt-2">
-              <div class="col-4 item-card-company text-white">
-                Company
-              </div>
+            <div class="row mt-1">
+              <div class="col-4 item-card-company text-white">Company</div>
               <div class="col-4 item-card-company text-white">Stock</div>
               <div class="col-4 item-card-company text-white">Value</div>
             </div>
+            @foreach ($companyProduksiSendiri as $item)
+            <div class="card-info">
+              <div class="row">
+                <div class="col-4 item-card-info text-white">{{ $item->company }}</div>
+                <div class="col-4 item-card-info text-white">{{ $item->quantity }}</div>
+                <div class="col-4 item-card-info text-white">{{ $item->value }}</div>
+              </div>
+            </div>            
+            @endforeach
           </div>
         </div>
       </a>
@@ -275,50 +288,211 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.0.0/chartjs-plugin-datalabels.min.js" integrity="sha512-R/QOHLpV1Ggq22vfDAWYOaMd5RopHrJNMxi8/lJu8Oihwi4Ho4BRFeiMiCefn9rasajKjnx9/fTQ/xkWnkDACg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 
 <script>
-  const dataAgro = {
-    labels: ["Garam Produksi Sendiri", "Garam Import"],
+  const dataGaram = {
+    labels: ["Produksi Sendiri", "Import"],
     datasets: [
       {
-        label: "My First Dataset",
-        data: [120, 80],
+        label: "Garam Dataset",
+        data: [{{ $valueProduksiSendiri }}, 0],
         backgroundColor: [
-          'rgba(210, 151, 59, 1)',
-          'rgba(232, 202, 129, 1)',
+          "rgba(132, 178, 156, 1)",
+          "rgba(242, 204, 142, 1)",
+          // "rgba(232, 202, 129, 1)",
+          // "rgba(210, 151, 59, 1)",
+          // "rgba(244, 246, 248, 1)"
         ],
         hoverOffset: 4,
         borderColor:'#111F38',
-
       },
     ],
   };
 
-  const configAgro = {
+  const configGaram = {
     type: "doughnut",
-    data: dataAgro,
+    data: dataGaram,
     options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            display: true,
-            position: 'bottom',
-            align: 'center',
-            labels: {
-              boxWidth: 10,
-              font: {
-                        size: 8,
-                        color: '#666'
-                    }
-            }
+      responsive: true,
+      plugins: {
+        legend: {
+          display: true,
+          position: 'bottom',
+          align: 'center',
+          labels: {
+            boxWidth: 10,
+            font: {
+              size: 10,
+            },
+            color: '#fff'
           }
+        },
+        tooltip: {
+          enabled: true
+        },
+        datalabels: {
+          formatter: (value, context) => {
+            const datapoints = context.chart.data.datasets[0].data;
+            function totalSum(total, datapoint)  {
+              return total + datapoint;
+            }
+            const totalValue = datapoints.reduce(totalSum, 0);
+            const PercentageValue = (value / totalValue * 100).toFixed(1);
+            return `${PercentageValue}%`;
+          },
+          font: {
+            size: 10,
+          },
+          color: '#fff'
         }
       }
+    },
+    plugins: [ChartDataLabels]
   };
 
-  const AgroPerformance = new Chart(
+  const GaramPerformance = new Chart(
     document.getElementById("GaramPerformance"),
-    configAgro
+    configGaram
+  );
+</script>
+
+<script>
+  const dataProduksiSendiri = {
+    labels: [
+      "{{ $companyProduksiSendiri1st->company ?? "a" }}",
+      "{{ $companyProduksiSendiri2nd->company ?? "b" }}",
+      "{{ $companyProduksiSendiri3rd->company ?? "c" }}",
+    ],
+    datasets: [{
+      label: 'Produksi Sendiri Dataset',
+      data: [ 
+        {{ $companyProduksiSendiri1st->value ?? "0" }},      
+        {{ $companyProduksiSendiri2nd->value ?? "0" }},
+        {{ $companyProduksiSendiri3rd->value ?? "0" }},
+      ],
+      backgroundColor: [
+        'rgba(210, 151, 59, 1)',
+        'rgba(232, 202, 129, 1)',
+      ],
+      borderColor:'#111F38',
+      hoverOffset: 3,
+    }]
+  };
+
+  const configProduksiSendiri = {
+    type: 'doughnut',
+    data: dataProduksiSendiri,
+    options: {
+      circumference: 	180,
+      rotation: 270,
+      responsive: true,
+      plugins: {
+        legend: {
+          display: false,
+          position: 'bottom',
+          align: 'center',
+          labels: {
+            boxWidth: 10,
+            font: {
+              size: 8,
+            },
+            color: '#fff'
+          }
+        },
+        datalabels: {
+          formatter: (value, context) => {
+            const datapoints = context.chart.data.datasets[0].data;
+            function totalSum(total, datapoint)  {
+              return total + datapoint;
+            }
+            const totalValue = datapoints.reduce(totalSum, 0);
+            const PercentageValue = (value / totalValue * 100).toFixed(1);
+            return `${PercentageValue}%`;
+          },
+          font: {
+            size: 10,
+          },
+          color: '#fff'
+        }
+      },
+    },
+    plugins: [ChartDataLabels]
+  };
+
+  const ChartProduksiSendiri = new Chart(
+    document.getElementById('ChartProduksiSendiriByCompany'),
+    configProduksiSendiri
+  );
+</script>
+
+<script>
+  const dataImport = {
+    labels: [
+      "{{ $companyProduksiSendiri1st->company ?? "a" }}",
+      "{{ $companyProduksiSendiri2nd->company ?? "b" }}",
+      "{{ $companyProduksiSendiri3rd->company ?? "c" }}",
+    ],
+    datasets: [{
+      label: 'Produksi Sendiri Dataset',
+      data: [ 
+        {{ $companyProduksiSendiri1st->value ?? "0" }},      
+        {{ $companyProduksiSendiri2nd->value ?? "0" }},
+        {{ $companyProduksiSendiri3rd->value ?? "0" }},
+      ],
+      backgroundColor: [
+        'rgba(210, 151, 59, 1)',
+        'rgba(232, 202, 129, 1)',
+      ],
+      borderColor:'#111F38',
+      hoverOffset: 3,
+    }]
+  };
+
+  const configProduksiSendiri = {
+    type: 'doughnut',
+    data: dataProduksiSendiri,
+    options: {
+      circumference: 	180,
+      rotation: 270,
+      responsive: true,
+      plugins: {
+        legend: {
+          display: false,
+          position: 'bottom',
+          align: 'center',
+          labels: {
+            boxWidth: 10,
+            font: {
+              size: 8,
+            },
+            color: '#fff'
+          }
+        },
+        datalabels: {
+          formatter: (value, context) => {
+            const datapoints = context.chart.data.datasets[0].data;
+            function totalSum(total, datapoint)  {
+              return total + datapoint;
+            }
+            const totalValue = datapoints.reduce(totalSum, 0);
+            const PercentageValue = (value / totalValue * 100).toFixed(1);
+            return `${PercentageValue}%`;
+          },
+          font: {
+            size: 10,
+          },
+          color: '#fff'
+        }
+      },
+    },
+    plugins: [ChartDataLabels]
+  };
+
+  const ChartProduksiSendiri = new Chart(
+    document.getElementById('ChartImportByCompany'),
+    configProduksiSendiri
   );
 </script>
 

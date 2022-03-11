@@ -7,10 +7,15 @@
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb bg-transparent pt-4">
       <li class="breadcrumb-item text-dark" aria-current="page">
+        <a href="/dashboard">
+          Consolidation
+        </a>
+      </li>
+      <li class="breadcrumb-item text-dark active" aria-current="page">
         Agroindustri
       </li>
       <li class="breadcrumb-item text-dark active" aria-current="page">
-        Products
+        Product
       </li>
     </ol>
   </nav>
@@ -75,17 +80,6 @@
       </div>
     </div>
   </div>
-  <div class="accordion-item">
-    <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-      <div class="accordion-body">
-        <div class="card">
-          <div class="card-body">
-            This is some text within a card body.
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 
 <!-- DataTales Product List -->
@@ -100,7 +94,7 @@
     <button class="nav-link py-2 px-3" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">PG Krebet Baru</button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="nav-link py-2 px-3" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">PT Mitra Kerinci</button>
+    <button class="nav-link py-2 px-3" id="mitraKerinci-tab" data-bs-toggle="tab" data-bs-target="#mitraKerinci" type="button" role="tab" aria-controls="contact" aria-selected="false">PT Mitra Kerinci</button>
   </li>
 </ul>
 <div class="tab-content" id="myTabContent">
@@ -160,10 +154,169 @@
     </div>
   </div>
   <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-    
+    <div class="card my-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-dark">PT PG Candi Baru Products</h6>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table
+            class="table table-bordered display"
+            id="dataTable"
+            width="100%"
+            cellspacing="0">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Company</th>
+                <th>Class</th>
+                <th>Category</th>
+                <th>Sub Category</th>
+                <th>Product Name</th>
+                <th>UOM</th>
+                <th>Unit Price</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th>No</th>
+                <th>Company</th>
+                <th>Category</th>
+                <th>Class</th>
+                <th>Sub Category</th>
+                <th>Product Name</th>
+                <th>UOM</th>
+                <th>Unit Price</th>
+              </tr>
+            </tfoot>
+            <tbody id="tbody">
+              @foreach ($dataproductPTPGCandiBaru as $product)
+              <tr>
+                <td>{{ $loop->iteration }}</td>
+                <td>{{ $product->user->company->company_name }}</td>
+                <td>{{ $product->subcategory->category->group->group_name }}</td>
+                <td>{{ $product->subcategory->category->category_name }}</td>
+                <td>{{ $product->subcategory->subcategory_name }}</td>
+                <td>{{ $product->product_name }}</td>
+                <td>{{ $product->unit->unit_symbol}}</td>
+                <td>Rp. {{ number_format($product->unit_price, 2) }}</td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-    
+    <div class="card my-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-dark">PG Krebet Baru I Products</h6>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table
+            class="table table-bordered display"
+            id="dataTable"
+            width="100%"
+            cellspacing="0">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Company</th>
+                <th>Class</th>
+                <th>Category</th>
+                <th>Sub Category</th>
+                <th>Product Name</th>
+                <th>UOM</th>
+                <th>Unit Price</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th>No</th>
+                <th>Company</th>
+                <th>Category</th>
+                <th>Class</th>
+                <th>Sub Category</th>
+                <th>Product Name</th>
+                <th>UOM</th>
+                <th>Unit Price</th>
+              </tr>
+            </tfoot>
+            <tbody id="tbody">
+              @foreach ($dataproductPGKrebetBaruI as $product)
+              <tr>
+                <td>{{ $loop->iteration }}</td>
+                <td>{{ $product->user->company->company_name }}</td>
+                <td>{{ $product->subcategory->category->group->group_name }}</td>
+                <td>{{ $product->subcategory->category->category_name }}</td>
+                <td>{{ $product->subcategory->subcategory_name }}</td>
+                <td>{{ $product->product_name }}</td>
+                <td>{{ $product->unit->unit_symbol}}</td>
+                <td>Rp. {{ number_format($product->unit_price, 2) }}</td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane fade" id="mitraKerinci" role="tabpanel" aria-labelledby="contact-tab">
+    <div class="card my-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-dark">PT Mitra Kerinci Products</h6>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table
+            class="table table-bordered display"
+            id="dataTable"
+            width="100%"
+            cellspacing="0">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Company</th>
+                <th>Class</th>
+                <th>Category</th>
+                <th>Sub Category</th>
+                <th>Product Name</th>
+                <th>UOM</th>
+                <th>Unit Price</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th>No</th>
+                <th>Company</th>
+                <th>Category</th>
+                <th>Class</th>
+                <th>Sub Category</th>
+                <th>Product Name</th>
+                <th>UOM</th>
+                <th>Unit Price</th>
+              </tr>
+            </tfoot>
+            <tbody id="tbody">
+              @foreach ($dataproductPTMitraKerinci as $product)
+              <tr>
+                <td>{{ $loop->iteration }}</td>
+                <td>{{ $product->user->company->company_name }}</td>
+                <td>{{ $product->subcategory->category->group->group_name }}</td>
+                <td>{{ $product->subcategory->category->category_name }}</td>
+                <td>{{ $product->subcategory->subcategory_name }}</td>
+                <td>{{ $product->product_name }}</td>
+                <td>{{ $product->unit->unit_symbol}}</td>
+                <td>Rp. {{ number_format($product->unit_price, 2) }}</td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -174,24 +327,12 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 <script>
+  $(document).ready(function() {
+    $('table.display').DataTable();
+  });
+
   $('.accordion-button').click(function(){
     $(this).toggleClass("clicked");
   });
-  var tbody = document.getElementById("tbody");
-  var sumVal = 0;
-
-  for (var i = 0; i < tbody.rows.length; i++)
-  {
-    sumVal = sumVal + parseInt(tbody.rows[i].cells[9].innerHTML);
-  }
-
-
-  // Create our number formatter.
-  var formatter = new Intl.NumberFormat('id-ID', {
-    style: 'currency',
-    currency: 'IDR',
-  });
-
-  document.getElementById('totalValue').innerHTML = formatter.format(sumVal);
 </script>
 @endsection

@@ -1,4 +1,4 @@
-@extends('administrator.layouts.main')
+@extends('user.layouts.main')
 
 @section('breadcrumb')
 <nav aria-label="breadcrumb">
@@ -29,7 +29,7 @@
 <!-- AddData-form -->
 <div class="row">
   <div class="col-12">
-    <form method="post" action="/administrator/subcategories/{{ $subcategory->id }}">
+    <form method="post" action="/staff/subcategories/{{ $subcategory->id }}">
       @method('put')
       @csrf
       <div class="row">
@@ -51,6 +51,7 @@
                 </div>
             @enderror
           </div>
+          <small>Current Product Class : {{ $subcategory->category->group->group_name }}</small>
           <div class="form-group mb-3">
             <label for="group" class="form-label">Product Class</label>
             <select 
@@ -60,7 +61,7 @@
             required>
               <option value="">Choose product class</option>
               @foreach ($groups as $group)
-                @if (old('group_id', $subcategory->category->group_id) === $group->id)
+                @if (old('group_id') === $group->id)
                   <option value="{{ $group->id }}" selected>{{ $group->group_name }}</option>
                 @else
                   <option value="{{ $group->id }}">{{ $group->group_name }}</option>                 

@@ -168,13 +168,12 @@ class AdministratorProductController extends Controller
   public function deleteproduct($id)
   {
     $productid = Product::find($id);
-    dd($productid);
+    // dd($productid);
 
     if ($productid) {
       $productid->active = false;
       $productid->save();
     }
-    // $productid->delete();
-    return redirect('/administrator/products')->with('success', 'Data has been successfully deleted');
+    return redirect('/administrator/products')->with('success', 'Data has been successfully removed');
   }
 }

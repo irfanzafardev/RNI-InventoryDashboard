@@ -15,15 +15,15 @@
         Agroindustri
       </li>
       <li class="breadcrumb-item text-dark active" aria-current="page">
-        Daily
+        Latest
       </li>
     </ol>
   </nav>
 </div>
 
 <ul class="nav time-nav">
-  <li class="nav-item mr-3">
-    <a class="nav-link active" href="/dashboard/agroindustri">Daily</a>
+  <li class="nav-item mr-4">
+    <a class="nav-link active" href="/dashboard/agroindustri">Latest</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="/dashboard/agroindustri/products">Product</a>
@@ -125,9 +125,9 @@
       <a href="#" class="text-decoration-none">
         <div class="card single-card">
           <div class="card-body">
-            <div class="row">
+            <div class="row first-single-card-row">
               <div class="col-6">
-                <h5 class="card-title item-card-title text-white">
+                <h5 class="card-title item-card-title text-white ">
                   Gula
                 </h5>
                 <p class="card-subtitle item-card-subtitle mb-2 text-white">
@@ -136,12 +136,12 @@
                 </p>
               </div>
               <div class="col-6">
-                <div class="donut-chart d-flex justify-content-end pr-5 pt-3">
-                  <canvas id="ChartGula"></canvas>
+                <div class="donut-chart pr-3 pt-2">
+                  <canvas id="ChartGulaByCompany"></canvas>
                 </div>
               </div>
             </div>
-            <div class="row mt-2">
+            <div class="row mt-1">
               <div class="col-12 item-card-value text-white">
                 Rp. {{ number_format($valueGula, 2)}}
               </div>
@@ -149,19 +149,33 @@
             <div class="row mt-2">
               <div class="col-4 item-card-company text-white">Company</div>
               <div class="col-4 item-card-company text-white">Stock</div>
-              <div class="col-4 item-card-company text-white">Value</div>
+              <div class="col-4 item-card-company text-white">
+                Value 
+                {{-- @if (null !== $companyGula1st)
+                    {{ $companyGula1st->value }}
+                @endif --}}
+              </div>
             </div>
-            @foreach ($companyGula as $item)
-              <div class="card-info">
-                <div class="row">
-                  <div class="col-4 item-card-info text-white">
-                    {{ $item->company }}
-                  </div>
-                  <div class="col-4 item-card-info text-white">0</div>
-                  <div class="col-4 item-card-info text-white">0</div>
-                </div>
-              </div>            
-            @endforeach
+            <div id="companyGulaBody">
+              @php
+                $count = 0;
+                foreach ($companyGula as $item) {
+                  $value = $item->value;
+                  $quantity = $item->quantity;
+                  $company = $item->company;
+                  echo '
+                    <div class="card-info">
+                      <div class="row">
+                        <div class="col-4 item-card-info text-white">'.$company.'</div>
+                        <div class="col-4 item-card-info text-white">'.$quantity.'</div>
+                        <div id="value'.$count.'" class="col-4 item-card-info text-white">'.$value.'</div>
+                      </div>
+                    </div>
+                    ';
+                  ++$count;
+                }
+              @endphp
+            </div>
           </div>
         </div>
       </a>
@@ -183,23 +197,34 @@
                 </p>
               </div>
               <div class="col-6">
-                <div class="donut-chart d-flex justify-content-end pe-3">
-                  <canvas id="ChartTetes"></canvas>
+                <div class="donut-chart pr-3 pt-2">
+                  <canvas id="ChartTetesByCompany"></canvas>
                 </div>
               </div>
             </div>
-            <div class="row mt-2">
+            <div class="row mt-1">
               <div class="col-12 item-card-value text-white">
                 Rp. {{ number_format($valueTetes, 2)}}
               </div>
             </div>
-            <div class="row mt-2">
+            <div class="row mt-1">
               <div class="col-4 item-card-company text-white">
                 Company
               </div>
               <div class="col-4 item-card-company text-white">Stock</div>
               <div class="col-4 item-card-company text-white">Value</div>
             </div>
+            @foreach ($companyTetes as $item)
+            <div class="card-info">
+              <div class="row">
+                <div class="col-4 item-card-info text-white">
+                  {{ $item->company }}
+                </div>
+                <div class="col-4 item-card-info text-white">{{ $item->quantity }}</div>
+                <div class="col-4 item-card-info text-white">{{ $item->value }}</div>
+              </div>
+            </div>            
+            @endforeach
           </div>
         </div>
       </a>
@@ -217,23 +242,34 @@
                 </p>
               </div>
               <div class="col-6">
-                <div class="donut-chart d-flex justify-content-end pe-3">
-                  <canvas id="ChartTeh"></canvas>
+                <div class="donut-chart pr-3 pt-2">
+                  <canvas id="ChartTehByCompany"></canvas>
                 </div>
               </div>
             </div>
-            <div class="row mt-2">
+            <div class="row mt-1">
               <div class="col-12 item-card-value text-white">
                 Rp. {{ number_format($valueTeh, 2)}} <br /> 
               </div>
             </div>
-            <div class="row mt-2">
+            <div class="row mt-1">
               <div class="col-4 item-card-company text-white">
                 Company
               </div>
               <div class="col-4 item-card-company text-white">Stock</div>
               <div class="col-4 item-card-company text-white">Value</div>
             </div>
+            @foreach ($companyTeh as $item)
+            <div class="card-info">
+              <div class="row">
+                <div class="col-4 item-card-info text-white">
+                  {{ $item->company }}
+                </div>
+                <div class="col-4 item-card-info text-white">{{ $item->quantity }}</div>
+                <div class="col-4 item-card-info text-white">{{ $item->value }}</div>
+              </div>
+            </div>            
+          @endforeach
           </div>
         </div>
       </a>
@@ -255,23 +291,30 @@
                 </p>
               </div>
               <div class="col-6">
-                <div class="donut-chart d-flex justify-content-end pe-3">
-                  <canvas id="ChartSawit"></canvas>
+                <div class="donut-chart pr-3 pt-2">
+                  <canvas id="ChartSawitByCompany"></canvas>
                 </div>
               </div>
             </div>
-            <div class="row mt-2">
+            <div class="row mt-1">
               <div class="col-12 item-card-value text-white">
                 Rp. {{ number_format($valueSawit, 0)}}
               </div>
             </div>
-            <div class="row mt-2">
-              <div class="col-4 item-card-company text-white">
-                Company
-              </div>
+            <div class="row mt-1">
+              <div class="col-4 item-card-company text-white">Company</div>
               <div class="col-4 item-card-company text-white">Stock</div>
               <div class="col-4 item-card-company text-white">Value</div>
             </div>
+            @foreach ($companySawit as $item)
+            <div class="card-info">
+              <div class="row">
+                <div class="col-4 item-card-info text-white">{{ $item->company }}</div>
+                <div class="col-4 item-card-info text-white">{{ $item->quantity }}</div>
+                <div class="col-4 item-card-info text-white">{{ $item->value }}</div>
+              </div>
+            </div>            
+          @endforeach
           </div>
         </div>
       </a>
@@ -285,31 +328,40 @@
                 <h5 class="card-title item-card-title text-white">
                   Karet
                 </h5>
-                <p
-                  class="card-subtitle item-card-subtitle mb-2 text-white"
-                >
+                <p class="card-subtitle item-card-subtitle mb-2 text-white">
                   {{ number_format($quantityKaret, 0)}} <br />
                   <span>(kg)</span>
                 </p>
               </div>
               <div class="col-6">
-                <div class="donut-chart d-flex justify-content-end pe-3">
-                  <canvas id="ChartKaret"></canvas>
+                <div class="donut-chart pr-3 pt-2">
+                  <canvas id="ChartKaretByCompany"></canvas>
                 </div>
               </div>
             </div>
-            <div class="row mt-2">
+            <div class="row mt-1">
               <div class="col-12 item-card-value text-white">
                 Rp. {{ number_format($valueKaret, 0)}}
               </div>
             </div>
-            <div class="row mt-2">
+            <div class="row mt-1">
               <div class="col-4 item-card-company text-white">
                 Company
               </div>
               <div class="col-4 item-card-company text-white">Stock</div>
               <div class="col-4 item-card-company text-white">Value</div>
             </div>
+            @foreach ($companyKaret as $item)
+            <div class="card-info">
+              <div class="row">
+                <div class="col-4 item-card-info text-white">
+                  {{ $item->company }}
+                </div>
+                <div class="col-4 item-card-info text-white">{{ $item->quantity }}</div>
+                <div class="col-4 item-card-info text-white">{{ $item->value }}</div>
+              </div>
+            </div>            
+          @endforeach
           </div>
         </div>
       </a>
@@ -323,7 +375,7 @@
     <h6 class="m-0 font-weight-bold text-dark">Today's input</h6>
   </div>
   <div class="d-flex justify-content-end">
-    <a type="submit" class="btn btn-primary bg-darkblue mx-3 mt-3 px-4">
+    <a href="#" class="btn btn-primary bg-darkblue mr-4 mt-3 px-4" onclick="tablesToExcel(['dataTable'], ['Stock'], 'stock.xls', 'Excel')">
       Export
     </a>
   </div>
@@ -391,7 +443,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.0.0/chartjs-plugin-datalabels.min.js" integrity="sha512-R/QOHLpV1Ggq22vfDAWYOaMd5RopHrJNMxi8/lJu8Oihwi4Ho4BRFeiMiCefn9rasajKjnx9/fTQ/xkWnkDACg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script>
   const dataAgro = {
@@ -399,7 +451,7 @@
     datasets: [
       {
         label: "Agroindustri Dataset",
-        data: [120, 80, 60, 140, 100],
+        data: [{{ $valueGula }}, {{ $valueTetes }}, {{ $valueTeh }}, {{ $valueSawit }}, {{ $valueKaret }}],
         backgroundColor: [
           "rgba(132, 178, 156, 1)",
           "rgba(242, 204, 142, 1)",
@@ -409,7 +461,6 @@
         ],
         hoverOffset: 4,
         borderColor:'#111F38',
-
       },
     ],
   };
@@ -418,22 +469,41 @@
     type: "doughnut",
     data: dataAgro,
     options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            display: true,
-            position: 'bottom',
-            align: 'center',
-            labels: {
-              boxWidth: 10,
-              font: {
-                        size: 8,
-                        color: '#666'
-                    }
-            }
+      responsive: true,
+      plugins: {
+        legend: {
+          display: true,
+          position: 'bottom',
+          align: 'center',
+          labels: {
+            boxWidth: 10,
+            font: {
+              size: 10,
+            },
+            color: '#fff'
           }
+        },
+        tooltip: {
+          enabled: true
+        },
+        datalabels: {
+          formatter: (value, context) => {
+            const datapoints = context.chart.data.datasets[0].data;
+            function totalSum(total, datapoint)  {
+              return total + datapoint;
+            }
+            const totalValue = datapoints.reduce(totalSum, 0);
+            const PercentageValue = (value / totalValue * 100).toFixed(1);
+            return `${PercentageValue}%`;
+          },
+          font: {
+            size: 10,
+          },
+          color: '#fff'
         }
       }
+    },
+    plugins: [ChartDataLabels]
   };
 
   const AgroPerformance = new Chart(
@@ -443,14 +513,21 @@
 </script>
 
 <script>
-  const data = {
+  const dataGula = {
     labels: [
-      'PT A',
-      'PT B',
+      "{{ $companyGula1st->company ?? "a" }}",
+      "{{ $companyGula2nd->company ?? "b" }}",
+      "{{ $companyGula3rd->company ?? "c" }}",
+      "{{ $companyGula4th->company ?? "d" }}",
     ],
     datasets: [{
       label: 'Gula Dataset',
-      data: [60, 40],
+      data: [ 
+        {{ $companyGula1st->value ?? "0" }},      
+        {{ $companyGula2nd->value ?? "0" }},
+        {{ $companyGula3rd->value ?? "0" }},
+        {{ $companyGula4th->value ?? "0" }},
+      ],
       backgroundColor: [
         'rgba(210, 151, 59, 1)',
         'rgba(232, 202, 129, 1)',
@@ -460,33 +537,317 @@
     }]
   };
 
-  const config = {
+  const configGula = {
     type: 'doughnut',
-    data: data,
+    data: dataGula,
     options: {
-        circumference: 	180,
-        rotation: 270,
-        responsive: true,
-        plugins: {
-          legend: {
-            display: true,
-            position: 'bottom',
-            align: 'center',
-            labels: {
-              boxWidth: 10,
-              font: {
-                        size: 8,
-                        color: '#666'
-                    }
-            }
-          },
+      circumference: 	180,
+      rotation: 270,
+      responsive: true,
+      plugins: {
+        legend: {
+          display: false,
+          position: 'bottom',
+          align: 'center',
+          labels: {
+            boxWidth: 10,
+            font: {
+              size: 8,
+            },
+            color: '#fff'
+          }
         },
+        datalabels: {
+          formatter: (value, context) => {
+            const datapoints = context.chart.data.datasets[0].data;
+            function totalSum(total, datapoint)  {
+              return total + datapoint;
+            }
+            const totalValue = datapoints.reduce(totalSum, 0);
+            const PercentageValue = (value / totalValue * 100).toFixed(1);
+            return `${PercentageValue}%`;
+          },
+          font: {
+            size: 10,
+          },
+          color: '#fff'
+        }
       },
+    },
+    plugins: [ChartDataLabels]
   };
 
   const ChartGula = new Chart(
-    document.getElementById('ChartGula'),
-    config
+    document.getElementById('ChartGulaByCompany'),
+    configGula
+  );
+</script>
+
+<script>
+  const dataTetes = {
+    labels: [
+      "{{ $companyTetes1st->company ?? "a" }}",
+      "{{ $companyTetes2nd->company ?? "b" }}",
+    ],
+    datasets: [{
+      label: 'Tetes Dataset',
+      data: [
+        {{ $companyTetes1st->value ?? "0" }},      
+        {{ $companyTetes2nd->value ?? "0" }}
+      ],
+      backgroundColor: [
+        'rgba(210, 151, 59, 1)',
+        'rgba(232, 202, 129, 1)',
+      ],
+      borderColor:'#111F38',
+      hoverOffset: 3,
+    }]
+  };
+
+  const configTetes = {
+    type: 'doughnut',
+    data: dataTetes,
+    options: {
+      circumference: 	180,
+      rotation: 270,
+      responsive: true,
+      plugins: {
+        legend: {
+          display: false,
+          position: 'bottom',
+          align: 'center',
+          labels: {
+            boxWidth: 10,
+            font: {
+              size: 8,
+            },
+            color: '#fff'
+          }
+        },
+        datalabels: {
+          formatter: (value, context) => {
+            const datapoints = context.chart.data.datasets[0].data;
+            function totalSum(total, datapoint)  {
+              return total + datapoint;
+            }
+            const totalValue = datapoints.reduce(totalSum, 0);
+            const PercentageValue = (value / totalValue * 100).toFixed(1);
+            return `${PercentageValue}%`;
+          },
+          font: {
+            size: 10,
+          },
+          color: '#fff'
+        }
+      },
+    },
+    plugins: [ChartDataLabels]
+  };
+
+  const ChartTetes = new Chart(
+    document.getElementById('ChartTetesByCompany'),
+    configTetes
+  );
+</script>
+
+<script>
+  const dataTeh = {
+    labels: [
+      "{{ $companyTeh1st->company ?? "a" }}",
+      "{{ $companyTehs2nd->company ?? "b" }}",
+    ],
+    datasets: [{
+      label: 'Tetes Dataset',
+      data: [
+        {{ $companyTeh1st->value ?? "0" }},      
+        {{ $companyTeh2nd->value ?? "0" }}
+      ],
+      backgroundColor: [
+        'rgba(210, 151, 59, 1)',
+        'rgba(232, 202, 129, 1)',
+      ],
+      borderColor:'#111F38',
+      hoverOffset: 3,
+    }]
+  };
+
+  const configTeh = {
+    type: 'doughnut',
+    data: dataTeh,
+    options: {
+      circumference: 	180,
+      rotation: 270,
+      responsive: true,
+      plugins: {
+        legend: {
+          display: false,
+          position: 'bottom',
+          align: 'center',
+          labels: {
+            boxWidth: 10,
+            font: {
+              size: 8,
+            },
+            color: '#fff'
+          }
+        },
+        datalabels: {
+          formatter: (value, context) => {
+            const datapoints = context.chart.data.datasets[0].data;
+            function totalSum(total, datapoint)  {
+              return total + datapoint;
+            }
+            const totalValue = datapoints.reduce(totalSum, 0);
+            const PercentageValue = (value / totalValue * 100).toFixed(1);
+            return `${PercentageValue}%`;
+          },
+          font: {
+            size: 10,
+          },
+          color: '#fff'
+        }
+      },
+    },
+    plugins: [ChartDataLabels]
+  };
+
+  const ChartTeh = new Chart(
+    document.getElementById('ChartTehByCompany'),
+    configTeh
+  );
+</script>
+
+<script>
+  const dataSawit = {
+    labels: [
+      "{{ $companySawit1st->company ?? "a" }}",
+      "{{ $companySawits2nd->company ?? "b" }}",
+    ],
+    datasets: [{
+      label: 'Tetes Dataset',
+      data: [
+        {{ $companySawit1st->value ?? "0" }},      
+        {{ $companySawit2nd->value ?? "0" }}
+      ],
+      backgroundColor: [
+        'rgba(210, 151, 59, 1)',
+        'rgba(232, 202, 129, 1)',
+      ],
+      borderColor:'#111F38',
+      hoverOffset: 3,
+    }]
+  };
+
+  const configSawit = {
+    type: 'doughnut',
+    data: dataSawit,
+    options: {
+      circumference: 	180,
+      rotation: 270,
+      responsive: true,
+      plugins: {
+        legend: {
+          display: false,
+          position: 'bottom',
+          align: 'center',
+          labels: {
+            boxWidth: 10,
+            font: {
+              size: 8,
+            },
+            color: '#fff'
+          }
+        },
+        datalabels: {
+          formatter: (value, context) => {
+            const datapoints = context.chart.data.datasets[0].data;
+            function totalSum(total, datapoint)  {
+              return total + datapoint;
+            }
+            const totalValue = datapoints.reduce(totalSum, 0);
+            const PercentageValue = (value / totalValue * 100).toFixed(1);
+            return `${PercentageValue}%`;
+          },
+          font: {
+            size: 10,
+          },
+          color: '#fff'
+        }
+      },
+    },
+    plugins: [ChartDataLabels]
+  };
+
+  const ChartSawit = new Chart(
+    document.getElementById('ChartSawitByCompany'),
+    configSawit
+  );
+</script>
+
+<script>
+  const dataKaret = {
+    labels: [
+      "{{ $companyKaret1st->company ?? "a" }}",
+      "{{ $companyKaret2nd->company ?? "b" }}",
+    ],
+    datasets: [{
+      label: 'Tetes Dataset',
+      data: [
+        {{ $companyKaret1st->value ?? "0" }},      
+        {{ $companyKaret2nd->value ?? "0" }}
+      ],
+      backgroundColor: [
+        'rgba(210, 151, 59, 1)',
+        'rgba(232, 202, 129, 1)',
+      ],
+      borderColor:'#111F38',
+      hoverOffset: 3,
+    }]
+  };
+
+  const configKaret = {
+    type: 'doughnut',
+    data: dataKaret,
+    options: {
+      circumference: 	180,
+      rotation: 270,
+      responsive: true,
+      plugins: {
+        legend: {
+          display: false,
+          position: 'bottom',
+          align: 'center',
+          labels: {
+            boxWidth: 10,
+            font: {
+              size: 8,
+            },
+            color: '#fff'
+          }
+        },
+        datalabels: {
+          formatter: (value, context) => {
+            const datapoints = context.chart.data.datasets[0].data;
+            function totalSum(total, datapoint)  {
+              return total + datapoint;
+            }
+            const totalValue = datapoints.reduce(totalSum, 0);
+            const PercentageValue = (value / totalValue * 100).toFixed(1);
+            return `${PercentageValue}%`;
+          },
+          font: {
+            size: 10,
+          },
+          color: '#fff'
+        }
+      },
+    },
+    plugins: [ChartDataLabels]
+  };
+
+  const ChartKaret= new Chart(
+    document.getElementById('ChartKaretByCompany'),
+    configKaret
   );
 </script>
 
@@ -494,6 +855,7 @@
   $('.accordion-button').click(function(){
     $(this).toggleClass("clicked");
   });
+
   var tbody = document.getElementById("tbody");
   var sumVal = 0;
 
@@ -510,5 +872,98 @@
   });
 
   document.getElementById('totalValue').innerHTML = formatter.format(sumVal);
+</script>
+
+<script>
+  var tablesToExcel = (function () {
+    var uri = "data:application/vnd.ms-excel;base64,",
+        tmplWorkbookXML =
+            '<?xml version="1.0"?><?mso-application progid="Excel.Sheet"?><Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">' +
+            '<DocumentProperties xmlns="urn:schemas-microsoft-com:office:office"><Author>Axel Richter</Author><Created>{created}</Created></DocumentProperties>' +
+            "<Styles>" +
+            '<Style ss:ID="Currency"><NumberFormat ss:Format="Currency"></NumberFormat></Style>' +
+            '<Style ss:ID="Date"><NumberFormat ss:Format="Medium Date"></NumberFormat></Style>' +
+            "</Styles>" +
+            "{worksheets}</Workbook>",
+        tmplWorksheetXML =
+            '<Worksheet ss:Name="{nameWS}"><Table>{rows}</Table></Worksheet>',
+        tmplCellXML =
+            '<Cell{attributeStyleID}{attributeFormula}><Data ss:Type="{nameType}">{data}</Data></Cell>',
+        base64 = function (s) {
+            return window.btoa(unescape(encodeURIComponent(s)));
+        },
+        format = function (s, c) {
+            return s.replace(/{(\w+)}/g, function (m, p) {
+                return c[p];
+            });
+        };
+    return function (tables, wsnames, wbname, appname) {
+        var ctx = "";
+        var workbookXML = "";
+        var worksheetsXML = "";
+        var rowsXML = "";
+  
+        for (var i = 0; i < tables.length; i++) {
+            if (!tables[i].nodeType)
+                tables[i] = document.getElementById(tables[i]);
+            for (var j = 0; j < tables[i].rows.length; j++) {
+                rowsXML += "<Row>";
+                for (var k = 0; k < tables[i].rows[j].cells.length; k++) {
+                    var dataType =
+                        tables[i].rows[j].cells[k].getAttribute("data-type");
+                    var dataStyle =
+                        tables[i].rows[j].cells[k].getAttribute("data-style");
+                    var dataValue =
+                        tables[i].rows[j].cells[k].getAttribute("data-value");
+                    dataValue = dataValue
+                        ? dataValue
+                        : tables[i].rows[j].cells[k].innerHTML;
+                    var dataFormula =
+                        tables[i].rows[j].cells[k].getAttribute("data-formula");
+                    dataFormula = dataFormula
+                        ? dataFormula
+                        : appname == "Calc" && dataType == "DateTime"
+                        ? dataValue
+                        : null;
+                    ctx = {
+                        attributeStyleID:
+                            dataStyle == "Currency" || dataStyle == "Date"
+                                ? ' ss:StyleID="' + dataStyle + '"'
+                                : "",
+                        nameType:
+                            dataType == "Number" ||
+                            dataType == "DateTime" ||
+                            dataType == "Boolean" ||
+                            dataType == "Error"
+                                ? dataType
+                                : "String",
+                        data: dataFormula ? "" : dataValue,
+                        attributeFormula: dataFormula
+                            ? ' ss:Formula="' + dataFormula + '"'
+                            : "",
+                    };
+                    rowsXML += format(tmplCellXML, ctx);
+                }
+                rowsXML += "</Row>";
+            }
+            ctx = { rows: rowsXML, nameWS: wsnames[i] || "Sheet" + i };
+            worksheetsXML += format(tmplWorksheetXML, ctx);
+            rowsXML = "";
+        }
+  
+        ctx = { created: new Date().getTime(), worksheets: worksheetsXML };
+        workbookXML = format(tmplWorkbookXML, ctx);
+  
+        console.log(workbookXML);
+  
+        var link = document.createElement("A");
+        link.href = uri + base64(workbookXML);
+        link.download = wbname || "Workbook.xls";
+        link.target = "_blank";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+  })();
 </script>
 @endsection

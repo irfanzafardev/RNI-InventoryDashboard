@@ -1,5 +1,20 @@
 @extends('administrator.layouts.main')
 
+@section('breadcrumb')
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb bg-transparent pt-4">
+    <li class="breadcrumb-item text-dark" aria-current="page">
+      <a href="/">
+        Dashboard
+      </a>
+    </li>
+    <li class="breadcrumb-item text-dark active" aria-current="page">
+      Product Sub Category
+    </li>
+  </ol>
+</nav>
+@endsection
+
 @section('container')
 <!-- Page Heading -->
 <div class="page-heading heading bg-darkblue d-sm-flex align-items-center justify-content-between mb-4">
@@ -70,19 +85,19 @@
     var subcategoryName = $(this).attr('data-name')
     swal({
       title: "Are you sure?",
-      text: "Once deleted, you will not be able to recover this "+subcategoryName+" ",
+      text: "Once deleted, you will not be able to recover "+subcategoryName+" ",
       icon: "warning",
       buttons: true,
       dangerMode: true,
     })
     .then((willDelete) => {
       if (willDelete) {
-        window.location = "/administrator/deletesubcategory/"+subcategoryId+""
-        swal("Poof! Your imaginary file has been deleted!", {
+        window.location = "/administrator/removesubcategory/"+subcategoryId+""
+        swal("The data has been deleted!", {
           icon: "success",
         });
       } else {
-        swal("Your imaginary file is safe!");
+        swal("Your file is safe!");
       }
     });
   })

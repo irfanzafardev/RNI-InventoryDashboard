@@ -22,7 +22,9 @@ class AdministratorCategoryController extends Controller
   public function index()
   {
     return view('administrator.categories.category', [
-      'categories' => Category::all()
+      'categories' => Category::where('active', true)
+        ->orderBy('updated_at', 'desc')
+        ->get()
     ]);
   }
 
@@ -118,5 +120,17 @@ class AdministratorCategoryController extends Controller
     $dataCategory = Category::find($id);
     $dataCategory->delete();
     return redirect('/administrator/categories')->with('success', 'Data has been successfully deleted');
+  }
+
+  public function removeCategory($id)
+  {
+    $categoryId = Category::find($id);
+    // dd($categoryId);
+
+    if ($categoryId) {
+      $categoryId->active = false;
+      $categoryId->save();
+    }
+    return redirect('/administrator/categories')->with('success', 'Data has been successfully removed');
   }
 }

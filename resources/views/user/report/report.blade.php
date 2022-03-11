@@ -4,7 +4,7 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb bg-transparent pt-4">
     <li class="breadcrumb-item text-dark" aria-current="page">
-      <a href="/administrator">
+      <a href="/staff">
         Dashboard
       </a>
     </li>
@@ -32,7 +32,7 @@
           <button type="submit" class="btn btn-primary bg-darkblue ml-3 px-4">
             Show
           </button>
-          <a href="/export" class="btn btn-primary bg-darkblue ml-3 px-4" onclick="tablesToExcel(['dataTable'], ['Stock'], 'stock.xls', 'Excel')">
+          <a href="#" class="btn btn-primary bg-darkblue ml-3 px-4" onclick="tablesToExcel(['dataTable'], ['Stock'], 'stock.xls', 'Excel')">
             Export
           </a>
         </div>
@@ -47,17 +47,6 @@
     <h6 class="m-0 font-weight-bold text-dark">Latest's input</h6>
   </div>
   <div class="card-body">
-    @if ($message = Session::get('success'))
-      <div class="alert alert-primary" role="alert">
-        {{ $message }}
-      </div>
-    @endif
-    @if (session('error'))
-      <div class="alert alert-danger">
-        {{ session('error') }}
-      </div>
-    @endif
-
     <div class="table-responsive">
       <table
         class="table table-bordered"
@@ -70,6 +59,8 @@
             <th>No</th>
             <th>Transact Code</th>
             <th>Date</th>
+            <th>Category</th>
+            <th>Subcategory</th>
             <th>Product Name</th>
             <th>UOM</th>
             <th>Qty</th>
@@ -82,6 +73,8 @@
             <th>No</th>
             <th>Transact Code</th>
             <th>Date</th>
+            <th>Category</th>
+            <th>Subcategory</th>
             <th>Product Name</th>
             <th>UOM</th>
             <th>Qty</th>
@@ -95,6 +88,8 @@
             <td>{{ $loop->iteration }}</td>
             <td>{{ $stock->stock_code }}</td>
             <td>{{ $stock->date }}</td>
+            <td>{{ $stock->category }}</td>
+            <td>{{ $stock->product->subcategory->subcategory_name }}</td>
             <td>{{ $stock->product->product_name }}</td>
             <td>{{ $stock->product->unit->unit_symbol }}</td>
             <td>{{ number_format($stock->quantity, 0)}}</td>

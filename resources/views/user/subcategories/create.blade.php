@@ -1,20 +1,20 @@
-@extends('administrator.layouts.main')
+@extends('user.layouts.main')
 
 @section('breadcrumb')
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb bg-transparent pt-4">
     <li class="breadcrumb-item text-dark" aria-current="page">
-      <a href="/">
+      <a href="/staff">
         Dashboard
       </a>
     </li>
     <li class="breadcrumb-item text-dark active" aria-current="page">
-      <a href="/administrator/products">
+      <a href="/staff/subcategories">
         Subcategory
       </a>
     </li>
     <li class="breadcrumb-item text-dark active" aria-current="page">
-      Edit
+      Create
     </li>
   </ol>
 </nav>
@@ -23,14 +23,13 @@
 @section('container')
 <!-- Page Heading -->
 <div class="page-heading heading bg-darkblue d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-white">Edit Sub Category Form</h1>
+    <h1 class="h3 mb-0 text-white">Sub Category Form</h1>
 </div>
 
 <!-- AddData-form -->
 <div class="row">
   <div class="col-12">
-    <form method="post" action="/administrator/subcategories/{{ $subcategory->id }}">
-      @method('put')
+    <form method="post" action="/staff/subcategories">
       @csrf
       <div class="row">
         <div class="col-5">
@@ -42,7 +41,7 @@
               name="subcategory_name"
               id="subcategory"
               placeholder="Enter subcategory name"
-              value="{{ old('subcategory_name', $subcategory->subcategory_name) }}"
+              value="{{ old('subcategory_name') }}"
               required
             />
             @error('category')
@@ -60,7 +59,7 @@
             required>
               <option value="">Choose product class</option>
               @foreach ($groups as $group)
-                @if (old('group_id', $subcategory->category->group_id) === $group->id)
+                @if (old('group_id') === $group->id)
                   <option value="{{ $group->id }}" selected>{{ $group->group_name }}</option>
                 @else
                   <option value="{{ $group->id }}">{{ $group->group_name }}</option>                 
@@ -83,13 +82,12 @@
               readonly
             />
           </div>
-          <small>Current Product Category : {{ $subcategory->category->category_name }}</small>
           <div class="form-group mb-3 d-none" id="categoryview">
             <label for="category" class="form-label">Product Category</label>
             <select class="form-control form-select" name="category_id" id="category" required></select>
           </div>
-          <button type="submit" class="btn btn-primary ms-3 mt-5 bg-darkblue float-end">Submit</button>
-          <a href="/administrator/subcategories" class="btn btn btn-light mt-5 float-end">Cancel</a>
+          <button type="submit" class="btn btn-primary ms-3 bg-darkblue float-end">Submit</button>
+          <a href="/administrator/subcategories" class="btn btn btn-light float-end">Cancel</a>
         </div>
       </div>
     </form>

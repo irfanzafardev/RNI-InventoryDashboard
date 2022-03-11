@@ -17,6 +17,7 @@ class CreateCategoriesTable extends Migration
       $table->id();
       $table->foreignId('group_id');
       $table->string('category_name')->unique();
+      $table->boolean('active')->default(1);
       $table->timestamps();
     });
   }

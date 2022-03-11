@@ -58,10 +58,15 @@ class StaffProductController extends Controller
     return view('user.product.create', compact('code'), [
       'users' => User::all(),
       'companies' => Company::all(),
-      'groups' => Group::all(),
-      'categories' => Category::all()->where('group_id', $id),
-      'subcategories' => Subcategory::all(),
+      'groups' => Group::all()
+        ->where('active', true),
+      'categories' => Category::all()
+        ->where('group_id', $id)
+        ->where('active', true),
+      'subcategories' => Subcategory::where('active', false)
+        ->get(),
       'units' => Unit::all()
+        ->where('active', true)
     ]);
   }
 
@@ -169,7 +174,7 @@ class StaffProductController extends Controller
       $productid->active = false;
       $productid->save();
     }
-    // $productid->delete();
-    return redirect('/staff/products')->with('success', 'Data has been successfully deleted');
+
+    return redirect('/staff/products')->with('success', 'Data has been successfully removed');
   }
 }

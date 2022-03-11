@@ -80,6 +80,59 @@ class DashboardAgroindustriController extends Controller
       ->where('category', 'Sawit')
       ->orderBy('quantity', 'desc')->get();
 
+
+
+    $companyGula1st = Stock::where('date', '=', $day)
+      ->where('category', 'Gula')
+      ->orderBy('quantity', 'desc')->first();
+
+    $companyGula2nd = Stock::where('date', '=', $day)
+      ->where('category', 'Gula')
+      ->orderBy('quantity', 'desc')->skip(1)->take(1)->first();
+
+    $companyGula3rd = Stock::where('date', '=', $day)
+      ->where('category', 'Gula')
+      ->orderBy('quantity', 'desc')->skip(2)->take(1)->first();
+
+    $companyGula4th = Stock::where('date', '=', $day)
+      ->where('category', 'Gula')
+      ->orderBy('quantity', 'desc')->skip(3)->take(1)->first();
+
+
+    $companyTetes1st = Stock::where('date', '=', $day)
+      ->where('category', 'Tetes')
+      ->orderBy('quantity', 'desc')->first();
+
+    $companyTetes2nd = Stock::where('date', '=', $day)
+      ->where('category', 'Tetes')
+      ->orderBy('quantity', 'desc')->skip(1)->take(1)->first();
+
+
+    $companyTeh1st = Stock::where('date', '=', $day)
+      ->where('category', 'Teh')
+      ->orderBy('quantity', 'desc')->first();
+
+    $companyTeh2nd  = Stock::where('date', '=', $day)
+      ->where('category', 'Teh')
+      ->orderBy('quantity', 'desc')->skip(1)->take(1)->first();
+
+
+    $companySawit1st = Stock::where('date', '=', $day)
+      ->where('category', 'Sawit')
+      ->orderBy('quantity', 'desc')->first();
+
+    $companySawit2nd  = Stock::where('date', '=', $day)
+      ->where('category', 'Sawit')
+      ->orderBy('quantity', 'desc')->skip(1)->take(1)->first();
+
+    $companyKaret1st = Stock::where('date', '=', $day)
+      ->where('category', 'Karet')
+      ->orderBy('quantity', 'desc')->first();
+
+    $companyKaret2nd  = Stock::where('date', '=', $day)
+      ->where('category', 'Karet')
+      ->orderBy('quantity', 'desc')->skip(1)->take(1)->first();
+
     return view(
       'dashboard.agroindustri.agroindustri',
       compact(
@@ -97,7 +150,23 @@ class DashboardAgroindustriController extends Controller
         'valueTeh',
         'valueSawit',
         'valueKaret',
-        'companyGula'
+        'companyGula',
+        'companyGula1st',
+        'companyGula2nd',
+        'companyGula3rd',
+        'companyGula4th',
+        'companyTetes',
+        'companyTetes1st',
+        'companyTetes2nd',
+        'companyTeh',
+        'companyTeh1st',
+        'companyTeh2nd',
+        'companySawit',
+        'companySawit1st',
+        'companySawit2nd',
+        'companyKaret',
+        'companyKaret1st',
+        'companyKaret2nd',
       )
     );
   }
@@ -149,6 +218,79 @@ class DashboardAgroindustriController extends Controller
       ->where('category', 'Karet')
       ->sum('value');
 
+    $companyGula = Stock::where('date', '=', $day)
+      ->where('category', 'Gula')
+      ->orderBy('quantity', 'desc')->get();
+
+    $companyTetes = Stock::where('date', '=', $day)
+      ->where('category', 'Tetes')
+      ->orderBy('quantity', 'desc')->get();
+
+    $companyTeh = Stock::where('date', '=', $day)
+      ->where('category', 'Teh')
+      ->orderBy('quantity', 'desc')->get();
+
+    $companySawit = Stock::where('date', '=', $day)
+      ->where('category', 'Sawit')
+      ->orderBy('quantity', 'desc')->get();
+
+    $companyKaret = Stock::where('date', '=', $day)
+      ->where('category', 'Sawit')
+      ->orderBy('quantity', 'desc')->get();
+
+
+
+    $companyGula1st = Stock::where('date', '=', $day)
+      ->where('category', 'Gula')
+      ->orderBy('quantity', 'desc')->first();
+
+    $companyGula2nd = Stock::where('date', '=', $day)
+      ->where('category', 'Gula')
+      ->orderBy('quantity', 'desc')->skip(1)->take(1)->first();
+
+    $companyGula3rd = Stock::where('date', '=', $day)
+      ->where('category', 'Gula')
+      ->orderBy('quantity', 'desc')->skip(2)->take(1)->first();
+
+    $companyGula4th = Stock::where('date', '=', $day)
+      ->where('category', 'Gula')
+      ->orderBy('quantity', 'desc')->skip(3)->take(1)->first();
+
+
+    $companyTetes1st = Stock::where('date', '=', $day)
+      ->where('category', 'Tetes')
+      ->orderBy('quantity', 'desc')->first();
+
+    $companyTetes2nd = Stock::where('date', '=', $day)
+      ->where('category', 'Tetes')
+      ->orderBy('quantity', 'desc')->skip(1)->take(1)->first();
+
+
+    $companyTeh1st = Stock::where('date', '=', $day)
+      ->where('category', 'Teh')
+      ->orderBy('quantity', 'desc')->first();
+
+    $companyTeh2nd  = Stock::where('date', '=', $day)
+      ->where('category', 'Teh')
+      ->orderBy('quantity', 'desc')->skip(1)->take(1)->first();
+
+
+    $companySawit1st = Stock::where('date', '=', $day)
+      ->where('category', 'Sawit')
+      ->orderBy('quantity', 'desc')->first();
+
+    $companySawit2nd  = Stock::where('date', '=', $day)
+      ->where('category', 'Sawit')
+      ->orderBy('quantity', 'desc')->skip(1)->take(1)->first();
+
+    $companyKaret1st = Stock::where('date', '=', $day)
+      ->where('category', 'Karet')
+      ->orderBy('quantity', 'desc')->first();
+
+    $companyKaret2nd  = Stock::where('date', '=', $day)
+      ->where('category', 'Karet')
+      ->orderBy('quantity', 'desc')->skip(1)->take(1)->first();
+
     return view(
       'dashboard.agroindustri.agroindustribydate',
       compact(
@@ -166,16 +308,40 @@ class DashboardAgroindustriController extends Controller
         'valueTeh',
         'valueSawit',
         'valueKaret',
+        'companyGula',
+        'companyGula1st',
+        'companyGula2nd',
+        'companyGula3rd',
+        'companyGula4th',
+        'companyTetes',
+        'companyTetes1st',
+        'companyTetes2nd',
+        'companyTeh',
+        'companyTeh1st',
+        'companyTeh2nd',
+        'companySawit',
+        'companySawit1st',
+        'companySawit2nd',
+        'companyKaret',
+        'companyKaret1st',
+        'companyKaret2nd',
       )
     );
   }
 
   public function product()
   {
-    $PTPGRajawaliI = 3;
+    $PTPGRajawaliI = "PT PG Rajawali I";
+    $PTPGCandiBaru = "PT PG Candi Baru";
+    $PGKrebetBaruI = "PG Krebet baru I";
+    $PTMitraKerinci   = "PT Mitra Kerinci";
     $dataproduct = Product::where('class', 'Agroindustri')->get();
-    $dataproductPTPGRajawaliI = Product::where('user_id', $PTPGRajawaliI)->get();
-    $dataproductPTPGCandiBaru = Product::where('class', 'PT PG Candi Baru')->get();
+
+    $dataproductPTPGRajawaliI = Product::where('company', $PTPGRajawaliI)->get();
+    $dataproductPTPGCandiBaru = Product::where('company', $PTPGCandiBaru)->get();
+    $dataproductPGKrebetBaruI = Product::where('company', $PGKrebetBaruI)->get();
+    $dataproductPTMitraKerinci = Product::where('company', $PTMitraKerinci)->get();
+
     $dataProductLength = Product::where('class', 'Agroindustri')->count();
     $dataCategoryLength = Category::where('group_id', 2)->count();
     $dataCategory = Category::where('group_id', 2)->get();
@@ -187,7 +353,9 @@ class DashboardAgroindustriController extends Controller
         'dataCategory',
         'dataCategoryLength',
         'dataproductPTPGRajawaliI',
-        'dataproductPTPGCandiBaru'
+        'dataproductPTPGCandiBaru',
+        'dataproductPGKrebetBaruI',
+        'dataproductPTMitraKerinci'
       )
     );
   }

@@ -21,7 +21,9 @@ class AdministratorCompanyController extends Controller
   public function index()
   {
     return view('administrator.companies.company', [
-      'companies' => Company::all()
+      'companies' => Company::where('active', true)
+        ->orderBy('updated_at', 'desc')
+        ->get()
     ]);
   }
 
@@ -117,5 +119,17 @@ class AdministratorCompanyController extends Controller
     $dataCompany = Company::find($id);
     $dataCompany->delete();
     return redirect('/administrator/companies')->with('success', 'Data has been successfully deleted');
+  }
+
+  public function removeCompany($id)
+  {
+    $companyId = Company::find($id);
+    // dd($companyId);
+
+    if ($companyId) {
+      $companyId->active = false;
+      $companyId->save();
+    }
+    return redirect('/administrator/companies')->with('success', 'Data has been successfully removed');
   }
 }

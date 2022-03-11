@@ -29,7 +29,7 @@
 <!-- AddData-form -->
 <div class="row">
   <div class="col-12">
-    <form method="post" action="/administrator/classes">
+    <form method="post" action="/administrator/units">
       @csrf
       <div class="row">
         <div class="col-5">
@@ -68,7 +68,7 @@
             @enderror
           </div>
           <button type="submit" class="btn btn-primary ms-3 bg-darkblue float-end">Submit</button>
-          <a href="/administrator/classes" class="btn btn btn-light float-end">Cancel</a>
+          <a href="/administrator/units" class="btn btn btn-light float-end">Cancel</a>
         </div>
       </div>
     </form>

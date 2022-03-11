@@ -1,20 +1,20 @@
-@extends('administrator.layouts.main')
+@extends('user.layouts.main')
 
 @section('breadcrumb')
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb bg-transparent pt-4">
     <li class="breadcrumb-item text-dark" aria-current="page">
-      <a href="/">
+      <a href="/staff">
         Dashboard
       </a>
     </li>
     <li class="breadcrumb-item text-dark active" aria-current="page">
-      <a href="/administrator/classes">
+      <a href="/staff/units">
         Unit
       </a>
     </li>
     <li class="breadcrumb-item text-dark active" aria-current="page">
-      Edit
+      Create
     </li>
   </ol>
 </nav>
@@ -23,14 +23,13 @@
 @section('container')
 <!-- Page Heading -->
 <div class="page-heading heading bg-darkblue d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-white">Edit UOM Form</h1>
+    <h1 class="h3 mb-0 text-white">UOM Form</h1>
 </div>
 
 <!-- AddData-form -->
 <div class="row">
   <div class="col-12">
-    <form method="post" action="/administrator/units/{{ $unit->id }}">
-      @method('put')
+    <form method="post" action="/staff/units">
       @csrf
       <div class="row">
         <div class="col-5">
@@ -42,7 +41,7 @@
               name="unit_name"
               id="unit"
               placeholder="Enter unit name"
-              value="{{ old('unit_name', $unit->unit_name) }}"
+              value="{{ old('unit_name') }}"
               required
             />
             @error('unit')
@@ -59,7 +58,7 @@
               name="unit_symbol"
               id="unit_symbol"
               placeholder="Enter unit symbol"
-              value="{{ old('unit_symbol', $unit->unit_symbol) }}"
+              value="{{ old('unit_symbol') }}"
               required
             />
             @error('unit_symbol')
@@ -69,7 +68,7 @@
             @enderror
           </div>
           <button type="submit" class="btn btn-primary ms-3 bg-darkblue float-end">Submit</button>
-          <a href="/administrator/units" class="btn btn btn-light float-end">Cancel</a>
+          <a href="/staff/units" class="btn btn btn-light float-end">Cancel</a>
         </div>
       </div>
     </form>

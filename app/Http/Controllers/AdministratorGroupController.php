@@ -20,7 +20,9 @@ class AdministratorGroupController extends Controller
   public function index()
   {
     return view('administrator.groups.group', [
-      'groups' => Group::all()
+      'groups' => Group::where('active', true)
+        ->orderBy('updated_at', 'desc')
+        ->get()
     ]);
   }
 
@@ -113,5 +115,17 @@ class AdministratorGroupController extends Controller
     $dataCompany = Group::find($id);
     $dataCompany->delete();
     return redirect('/administrator/classes')->with('success', 'Data has been successfully deleted');
+  }
+
+  public function removeGroup($id)
+  {
+    $groupId = Group::find($id);
+    // dd($groupId);
+
+    if ($groupId) {
+      $groupId->active = false;
+      $groupId->save();
+    }
+    return redirect('/administrator/classes')->with('success', 'Data has been successfully removed');
   }
 }

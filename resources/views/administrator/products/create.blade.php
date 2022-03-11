@@ -229,7 +229,7 @@
                     $('#subcategory').empty();
                     $('#subcategory').append('<option value="">Choose product subcategory</option>'); 
                     $.each(data, function(key, subcategory){
-    
+
                       $('select[name="subcategory_id"]').append('<option value="'+ subcategory.id +'">' + subcategory.subcategory_name+ '</option>');
                     });
                 }else {

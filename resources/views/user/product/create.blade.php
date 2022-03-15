@@ -119,7 +119,7 @@
           <div class="form-group mb-3">
             <label for="category" class="form-label">Product Category</label>
             <select 
-            class="form-control form-select category @error('category') is-invalid @enderror" 
+            class="form-control form-select category-select @error('category') is-invalid @enderror" 
             name="category_id" 
             id="category" 
             required>
@@ -138,7 +138,7 @@
                 </div>
             @enderror
           </div>
-          <div class="form-group d-none mb-3">
+          <div class="form-group mb-3">
             <label for="category" class="form-label">Category</label>
             <input
               type="text"
@@ -149,14 +149,14 @@
             />
           </div>
           <div class="form-group mb-3 d-none" id="subcategoryview">
-            <label for="subcategory" class="form-label">Product Subcategory</label>
-            <select class="form-control form-select" name="subcategory_id" id="subcategory" required></select>
+            <label for="subcategory" class="form-label">Product Subcategory</label> <br>
+            <select class="form-control form-select subcategory-select" name="subcategory_id" id="subcategory" required></select>
           </div>
           <div class="form-group mb-3">
             <label for="product_unit" class="form-label">Product Unit</label>
             <select
               name="unit_id"
-              class="form-control form-select"
+              class="form-control form-select unit-select"
               id="product_unit"
               required>
               <option value="">Choose product unit</option>
@@ -242,12 +242,14 @@
       }
     });
 
-    $(".category").on("input", function () {
+    $(".category-select").on("input", function () {
       var $variable = $('#category option:selected').html();
       document.getElementById("category-read").value = $variable;
     });
 
-
+    $('.category-select').select2();
+    $('.subcategory-select').select2();
+    $('.unit-select').select2();
   });
 </script>
 

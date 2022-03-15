@@ -106,7 +106,7 @@
             <div class="row">
               <div class="col-6">
                 <h5 class="card-title item-card-title text-white">
-                  Performance Stats
+                  Comparison Stats
                 </h5>
               </div>
             </div>
@@ -156,26 +156,15 @@
                 @endif --}}
               </div>
             </div>
-            <div id="companyGulaBody">
-              @php
-                $count = 0;
-                foreach ($companyGula as $item) {
-                  $value = $item->value;
-                  $quantity = $item->quantity;
-                  $company = $item->company;
-                  echo '
-                    <div class="card-info">
-                      <div class="row">
-                        <div class="col-4 item-card-info text-white">'.$company.'</div>
-                        <div class="col-4 item-card-info text-white">'.$quantity.'</div>
-                        <div id="value'.$count.'" class="col-4 item-card-info text-white">'.$value.'</div>
-                      </div>
-                    </div>
-                    ';
-                  ++$count;
-                }
-              @endphp
-            </div>
+            <div class="card-info scroll">
+              @foreach ($companyGula as $item)
+                <div class="row">
+                  <div class="col-4 item-card-info text-white">{{ $item->company }}</div>
+                  <div class="col-4 item-card-info text-white">{{ $item->quantity }}</div>
+                  <div class="col-4 item-card-info text-white">{{ $item->value }}</div>
+                </div>
+              @endforeach
+            </div>            
           </div>
         </div>
       </a>
@@ -253,23 +242,19 @@
               </div>
             </div>
             <div class="row mt-1">
-              <div class="col-4 item-card-company text-white">
-                Company
-              </div>
+              <div class="col-4 item-card-company text-white">Company</div>
               <div class="col-4 item-card-company text-white">Stock</div>
               <div class="col-4 item-card-company text-white">Value</div>
             </div>
-            @foreach ($companyTeh as $item)
-            <div class="card-info">
-              <div class="row">
-                <div class="col-4 item-card-info text-white">
-                  {{ $item->company }}
+            <div class="card-info scroll">
+              @foreach ($companyTeh as $item)
+                <div class="row">
+                  <div class="col-4 item-card-info text-white">{{ $item->company }}</div>
+                  <div class="col-4 item-card-info text-white">{{ $item->quantity }}</div>
+                  <div class="col-4 item-card-info text-white">{{ $item->value }}</div>
                 </div>
-                <div class="col-4 item-card-info text-white">{{ $item->quantity }}</div>
-                <div class="col-4 item-card-info text-white">{{ $item->value }}</div>
-              </div>
-            </div>            
-          @endforeach
+              @endforeach
+            </div>
           </div>
         </div>
       </a>
@@ -654,7 +639,7 @@
   const dataTeh = {
     labels: [
       "{{ $companyTeh1st->company ?? "a" }}",
-      "{{ $companyTehs2nd->company ?? "b" }}",
+      "{{ $companyTeh2nd->company ?? "b" }}",
     ],
     datasets: [{
       label: 'Tetes Dataset',

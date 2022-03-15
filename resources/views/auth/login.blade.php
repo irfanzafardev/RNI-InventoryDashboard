@@ -6,8 +6,10 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="icon" href="{{ URL::asset('logo.png') }}" type="image/x-icon"/>
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    {{-- <title>{{ config('app.name', 'Log in') }}</title> --}}
+		<title>Log in</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>

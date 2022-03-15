@@ -8,7 +8,7 @@
 		<meta name="author" content="" />
     <link rel="icon" href="{{ URL::asset('logo.png') }}" type="image/x-icon"/>
 
-		<title>Dashventory</title>
+		<title>Inventory Dashboard</title>
 
 		<!-- Custom fonts for this template-->
 		<link href="{{ asset("vendor/fontawesome-free/css/all.min.css") }}" rel="stylesheet" type="text/css"/>

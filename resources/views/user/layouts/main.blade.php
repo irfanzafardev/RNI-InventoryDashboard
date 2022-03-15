@@ -11,7 +11,7 @@
 		<meta name="author" content="" />
     <link rel="icon" href="{{ URL::asset('logo.png') }}" type="image/x-icon"/>
 
-		<title>Inventory Dashboard</title>
+		<title>Inventory</title>
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -158,5 +158,8 @@
 
     <!--  Sweetalert -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <!--  Select2 -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 	</body>
 </html>

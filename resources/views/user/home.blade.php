@@ -95,7 +95,7 @@
          <div class="col mr-2">
            <div class="h5 text-white mb-1">Total Products</div>
            <div class="h6 mb-0 font-weight-light text-white">
-             {{ $dataProduct }} <span>categories</span>
+             {{ $dataProduct }} <span>products</span>
            </div> 
          </div>
          <div class="col-auto">

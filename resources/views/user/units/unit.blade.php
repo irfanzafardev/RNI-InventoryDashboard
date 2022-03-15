@@ -44,7 +44,7 @@
       >
         <thead>
           <tr>
-            <th>No</th>
+            <th class="col-1">No</th>
             <th>Unit Name</th>
             <th>Unit Symbol</th>
             <th class="d-none">Option</th>

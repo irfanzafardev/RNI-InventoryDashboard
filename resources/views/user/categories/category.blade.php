@@ -44,7 +44,7 @@
       >
         <thead>
           <tr>
-            <th>No</th>
+            <th class="col-1">No</th>
             <th>Product Category</th>
             <th>Product Class</th>
             <th class="d-none">Option</th>

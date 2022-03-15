@@ -29,8 +29,9 @@ class StaffProductController extends Controller
   public function index()
   {
     $id = Auth::user()->id;
+    $company = Auth::user()->company->company_name;
     $dataproduct = Product::all()
-      ->where('user_id', $id)
+      ->where('company', $company)
       ->where('active', true);
 
     return view('user.product.product', compact('dataproduct'));

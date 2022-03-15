@@ -81,10 +81,11 @@
                                 name="role"
                                 class="form-select"
                                 id="role"
+                                value="{{ old('role') }}"
                                 required>
                                 <option value="">Choose Role</option>
-                                <option value="superadmin">Superadmin</option>
-                                <option value="admin">Admin</option>
+                                {{-- <option value="superadmin">Superadmin</option> --}}
+                                {{-- <option value="admin">Admin</option> --}}
                                 <option value="user">User</option>
                               </select>
                           </div>

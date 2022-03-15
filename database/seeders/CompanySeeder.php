@@ -61,6 +61,11 @@ class CompanySeeder extends Seeder
         'group_id' => 4,
         'active' => 1
       ],
+      [
+        'company_name' => 'PT Laras Astra Kartika',
+        'group_id' => 2,
+        'active' => 1
+      ],
     ]);
   }
 }

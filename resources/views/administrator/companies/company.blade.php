@@ -4,7 +4,7 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb bg-transparent pt-4">
     <li class="breadcrumb-item text-dark" aria-current="page">
-      <a href="/">
+      <a href="/administrator">
         Dashboard
       </a>
     </li>
@@ -24,7 +24,7 @@
 <!-- DataTales Today's input -->
 <div class="card my-4">
   <div class="card-header py-3">
-    <h6 class="m-0 font-weight-bold text-dark">Today's input</h6>
+    <h6 class="m-0 font-weight-bold text-dark">Company</h6>
   </div>
   <div class="card-body">
     @if ($message = Session::get('success'))
@@ -44,10 +44,10 @@
       >
         <thead>
           <tr>
-            <th>No</th>
+            <th class="col-1">No</th>
             <th>Company</th>
             <th>Product Class</th>
-            <th>Option</th>
+            <th class="text-center">Option</th>
           </tr>
         </thead>
         <tfoot>
@@ -55,7 +55,7 @@
             <th>No</th>
             <th>Company</th>
             <th>Product Class</th>
-            <th>Option</th>
+            <th class="text-center">Option</th>
           </tr>
         </tfoot>
         <tbody>
@@ -64,7 +64,7 @@
             <td>{{ $loop->iteration }}</td>
             <td>{{ $company->company_name }}</td>
             <td>{{ $company->group->group_name }}</td>
-            <td>
+            <td class="text-center">
               <a href="/administrator/companies/{{ $company->id }}/edit">Edit</a>
               <a href="#" class="delete" data-id="{{ $company->id }}" data-name="{{ $company->company_name }}">Delete</a>
             </td>

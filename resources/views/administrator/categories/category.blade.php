@@ -44,10 +44,10 @@
       >
         <thead>
           <tr>
-            <th>No</th>
+            <th class="col-1">No</th>
             <th>Product Class</th>
             <th>Product Category</th>
-            <th>Option</th>
+            <th class="text-center">Option</th>
           </tr>
         </thead>
         <tfoot>
@@ -55,7 +55,7 @@
             <th>No</th>
             <th>Product Class</th>
             <th>Product Category</th>
-            <th>Option</th>
+            <th class="text-center">Option</th>
           </tr>
         </tfoot>
         <tbody>
@@ -64,7 +64,7 @@
             <td>{{ $loop->iteration }}</td>
             <td>{{ $category->group->group_name }}</td>
             <td>{{ $category->category_name }}</td>
-            <td>
+            <td class="text-center">
               <a href="/administrator/categories/{{ $category->id }}/edit">Edit</a>
               <a href="#" class="delete" data-id="{{ $category->id }}" data-name="{{ $category->category_name }}">Delete</a>
             </td>

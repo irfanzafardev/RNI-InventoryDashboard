@@ -44,11 +44,11 @@
       >
         <thead>
           <tr>
-            <th>No</th>
+            <th class="col-1">No</th>
             <th>Product Class</th>
             <th>Product Category</th>
             <th>Subproduct Category</th>
-            <th>Option</th>
+            <th class="text-center">Option</th>
           </tr>
         </thead>
         <tfoot>
@@ -57,7 +57,7 @@
             <th>Product Class</th>
             <th>Product Category</th>
             <th>Subproduct Category</th>
-            <th>Option</th>
+            <th class="text-center">Option</th>
           </tr>
         </tfoot>
         <tbody>
@@ -67,7 +67,7 @@
             <td>{{ $subcategory->category->group->group_name }}</td>
             <td>{{ $subcategory->category->category_name }}</td>
             <td>{{ $subcategory->subcategory_name }}</td>
-            <td>
+            <td class="text-center">
               <a href="/administrator/subcategories/{{ $subcategory->id }}/edit">Edit</a>
               <a href="#" class="delete" data-id="{{ $subcategory->id }}" data-name="{{ $subcategory->subcategory_name }}">Delete</a>
             </td>

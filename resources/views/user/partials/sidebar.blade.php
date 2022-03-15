@@ -1,15 +1,12 @@
 <!-- Sidebar -->
 <ul class="navbar-nav bg-white sidebar accordion" id="accordionSidebar">
   <!-- Sidebar - Brand -->
-  <a
-    class="sidebar-brand d-flex align-items-center justify-content-center"
-    href="/staff"
-  >
+  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/staff">
     <div class="sidebar-brand-icon">
       <!-- <i class="fas fa-laugh-wink"></i> -->
       <img src="{{ asset('./img/logo-main.png') }}" alt="" width="20px" />
     </div>
-    <div class="sidebar-brand-text text-dark mx-4">Inventory User</div>
+    <div class="sidebar-brand-text text-dark mx-4">Inventory</div>
   </a>
 
   <!-- Divider -->
@@ -19,8 +16,8 @@
   <li class="nav-item">
     <a class="nav-link {{ Request::is('staff') ? 'active' : '' }} py-2" href="/staff">
       <!-- <i class="fas fa-fw fa-tachometer-alt"></i> -->
-      <span>Dashboard</span></a
-    >
+      <span>Dashboard</span>
+    </a>
   </li>
 
   <!-- Heading -->
@@ -29,15 +26,15 @@
   <!-- Nav Item - Charts -->
   <li class="nav-item">
     <a class="nav-link {{ Request::is('staff/products*') ? 'active' : '' }} py-2" href="/staff/products">
-      <span>Product Items</span></a
-    >
+      <span>Product Items</span>
+      </a>
   </li>
 
   <!-- Nav Item - Tables -->
   <li class="nav-item">
     <a class="nav-link {{ Request::is('staff/categories*') ? 'active' : '' }} py-2" href="/staff/categories">
-      <span>Product Category</span></a
-    >
+      <span>Product Category</span>
+      </a>
   </li>
 
   <!-- Nav Item - Tables -->

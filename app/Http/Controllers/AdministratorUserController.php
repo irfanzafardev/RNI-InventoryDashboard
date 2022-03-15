@@ -22,7 +22,10 @@ class AdministratorUserController extends Controller
   public function index()
   {
     return view('administrator.users.user', [
-      'users' => User::all()
+      'users' => User::with('ModelRole', 'ModelRole.Role')
+        ->where('active', true)
+        ->get()
+      // 'users' => User::all()
     ]);
   }
 
@@ -134,15 +137,15 @@ class AdministratorUserController extends Controller
     return redirect('/administrator/users')->with('success', 'Data has been successfully deleted');
   }
 
-  // public function deleteproduct($id)
-  // {
-  //   $productid = User::find($id);
-  //   dd($productid);
+  public function removeuser($id)
+  {
+    $userId = User::find($id);
+    // dd($userId);
 
-  //   if ($productid) {
-  //     $productid->active = false;
-  //     $productid->save();
-  //   }
-  //   return redirect('/administrator/products')->with('success', 'Data has been successfully removed');
-  // }
+    if ($userId) {
+      $userId->active = false;
+      $userId->save();
+    }
+    return redirect('/administrator/users')->with('success', 'Data has been successfully removed');
+  }
 }

@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Company;
+use App\Models\ModelRole;
 
 class RegisterController extends Controller
 {
   public function index()
   {
-    return view('register');
+    return view('register', [
+      'companies' => Company::all()
+    ]);
   }
 
   public function store(Request $request)
@@ -26,6 +30,10 @@ class RegisterController extends Controller
     // dd('berhasil');
 
     User::create($validatedData);
+
+    // ModelRole
+
+    // $user->assignRole('staff');
 
     return redirect('/');
   }

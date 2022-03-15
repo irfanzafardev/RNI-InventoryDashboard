@@ -34,7 +34,7 @@
         {{ $message }}
       </div>
     @endif
-    <a href="/administrator/users/create" class="btn btn-primary bg-darkblue px-4 mb-3">
+    <a href="/register" class="btn btn-primary bg-darkblue px-4 mb-3">
       Register User
     </a>
     <div class="table-responsive">
@@ -76,7 +76,7 @@
             <td>{{ $user->name }}</td>
             <td>{{ $user->email }}</td>
             <td>{{ $user->company->company_name }}</td>
-            <td>{{ $user->role }}</td>
+            <td>{{ $user->ModelRole->Role->name }}</td>
             <td>{{ $user->phone }}</td>
             <td>
               <a href="/administrator/users/{{ $user->id }}/edit">Edit</a>
@@ -103,7 +103,7 @@
     })
     .then((willDelete) => {
       if (willDelete) {
-        window.location = "/administrator/deleteuser/"+userId+""
+        window.location = "/administrator/removeuser/"+userId+""
         swal("Poof! Your imaginary file has been deleted!", {
           icon: "success",
         });

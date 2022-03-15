@@ -11,7 +11,7 @@
 		<meta name="author" content="" />
     <link rel="icon" href="{{ URL::asset('logo.png') }}" type="image/x-icon"/>
 
-		<title>Inventory Dashboard</title>
+		<title>Inventory</title>
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">

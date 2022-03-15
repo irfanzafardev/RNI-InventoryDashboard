@@ -108,7 +108,7 @@
             <div class="row">
               <div class="col-6">
                 <h5 class="card-title item-card-title text-white">
-                  Performance Stats
+                  Comparison Stats
                 </h5>
               </div>
             </div>

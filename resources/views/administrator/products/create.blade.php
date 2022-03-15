@@ -80,11 +80,18 @@
             <label for="group" class="form-label">Product Class</label>
             <select
               name="group_id"
-              class="form-control form-select"
+              class="form-control form-select group @error('category') is-invalid @enderror"
               id="group"
               required>
               <option value="">Choose product class</option>
-              <option value="{{ Auth::user()->company->group->id }}" selected>{{ Auth::user()->company->group->group_name }}</option>
+              {{-- <option value="{{ Auth::user()->company->group->id }}" selected>{{ Auth::user()->company->group->group_name }}</option> --}}
+              @foreach ($groups as $group)
+                @if (old('group_id') === $group->id)
+                  <option value="{{ $group->id }}" selected>{{ $group->group_name }}</option>
+                @else
+                  <option value="{{ $group->id }}">{{ $group->group_name }}</option>                 
+                @endif
+              @endforeach
             </select>
           </div>
           <div class="form-group mb-3">
@@ -93,8 +100,7 @@
               type="text"
               class="form-control @error('class') is-invalid @enderror"
               name="class"
-              id="class"
-              value="{{ Auth::user()->company->group->group_name }}"
+              id="group-read"
               readonly
             />
             @error('class')
@@ -119,7 +125,7 @@
           <div class="form-group mb-3">
             <label for="category" class="form-label">Product Category</label>
             <select 
-            class="form-control form-select category @error('category') is-invalid @enderror" 
+            class="form-control form-select category-select @error('category') is-invalid @enderror" 
             name="category_id" 
             id="category" 
             required>
@@ -142,21 +148,26 @@
             <label for="category" class="form-label">Category</label>
             <input
               type="text"
-              class="form-control @error('category') is-invalid @enderror"
+              class="form-control category @error('category') is-invalid @enderror"
               name="category"
               id="category-read"
               readonly
             />
+            @error('class')
+              <div class="invalid-feedback">
+                {{ $message }}
+              </div>
+            @enderror
           </div>
           <div class="form-group mb-3 d-none" id="subcategoryview">
-            <label for="subcategory" class="form-label">Product Subcategory</label>
-            <select class="form-control form-select" name="subcategory_id" id="subcategory" required></select>
+            <label for="subcategory" class="form-label">Product Subcategory</label> <br>
+            <select class="form-control subcategory-select" name="subcategory_id" id="subcategory" required></select>
           </div>
           <div class="form-group mb-3">
             <label for="product_unit" class="form-label">Product Unit</label>
             <select
               name="unit_id"
-              class="form-control form-select"
+              class="form-control form-select unit-select"
               id="product_unit"
               required>
               <option value="">Choose product unit</option>
@@ -209,6 +220,8 @@
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 <script>
   $(document).ready(function() {
     $("#category").change(function(){
@@ -242,6 +255,11 @@
       }
     });
 
+    $(".group").on("input", function () {
+      var $variableGroup = $('#group option:selected').html();
+      document.getElementById("group-read").value = $variableGroup;
+    });
+
     $(".category").on("input", function () {
       var $variable = $('#category option:selected').html();
       document.getElementById("category-read").value = $variable;
@@ -256,6 +274,10 @@
 
       document.getElementById("value").value = x * y;
     });
+
+    $('.category-select').select2();
+    $('.subcategory-select').select2();
+    $('.unit-select').select2();
   });
 </script>
 

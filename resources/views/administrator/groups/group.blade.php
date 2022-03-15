@@ -44,16 +44,16 @@
       >
         <thead>
           <tr>
-            <th>No</th>
+            <th class="col-1">No</th>
             <th>Product Class</th>
-            <th>Option</th>
+            <th class="text-center">Option</th>
           </tr>
         </thead>
         <tfoot>
           <tr>
             <th>No</th>
             <th>Product Class</th>
-            <th>Option</th>
+            <th class="text-center">Option</th>
           </tr>
         </tfoot>
         <tbody>

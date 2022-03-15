@@ -2,7 +2,7 @@
 
 /* Colours */
 .bg-darkblue {
-  background-color: #0B1629;
+  background-color: #0B1629 !important;
   border: none;
 }
 
@@ -288,8 +288,33 @@ label {
   background-color: #0B1629;
   border-radius: 10px;
   border: none;
-  min-height: 258px;
+  min-height: 260px;
+  max-height: 260px;
 }
+
+.single-card .card-info {
+  height: 40px;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.scroll::-webkit-scrollbar {
+  width: 5px;
+}
+ 
+.scroll::-webkit-scrollbar-track {
+  background: #fff;
+  border-radius: 5px;
+}
+ 
+.scroll::-webkit-scrollbar-thumb {
+  background: #BABABA; 
+  border-radius: 5px;
+}
+
+/* ::-webkit-scrollbar{
+  width: 10px;
+} */
 
 .single-card-consolidation {
   border-radius: 10px;

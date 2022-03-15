@@ -172,6 +172,7 @@
             class="input form-control @error('value') is-invalid @enderror" 
             name="value" 
             id="value" 
+            value="{{ old('value') }}"
             readonly 
             required/>
             @error('value')

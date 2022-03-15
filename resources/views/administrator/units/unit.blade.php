@@ -44,10 +44,10 @@
       >
         <thead>
           <tr>
-            <th>No</th>
+            <th class="col-1">No</th>
             <th>Unit Name</th>
             <th>Unit Symbol</th>
-            <th>Option</th>
+            <th class="text-center">Option</th>
           </tr>
         </thead>
         <tfoot>
@@ -55,7 +55,7 @@
             <th>No</th>
             <th>Unit Name</th>
             <th>Unit Symbol</th>
-            <th>Option</th>
+            <th class="text-center">Option</th>
           </tr>
         </tfoot>
         <tbody>
@@ -64,7 +64,7 @@
             <td>{{ $loop->iteration }}</td>
             <td>{{ $unit->unit_name }}</td>
             <td>{{ $unit->unit_symbol}}</td>
-            <td>
+            <td class="text-center">
               <a href="/administrator/units/{{ $unit->id }}/edit">Edit</a>
               <a href="#" class="delete" data-id="{{ $unit->id }}" data-name="{{ $unit->unit_name }}">Delete</a>
             </td>

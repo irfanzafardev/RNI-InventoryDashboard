@@ -43,6 +43,7 @@ class StaffStockController extends Controller
   {
     $check = Stock::count();
     $userid = Auth::user()->id;
+    $company = Auth::user()->company->company_name;
     $now = Carbon::now();
     $tanggal = $now->year . $now->month . $now->day;
     if ($check == 0) {
@@ -57,7 +58,7 @@ class StaffStockController extends Controller
     $today = Carbon::today()->toDateString();
     return view('user.stocks.create', compact('code', 'today'), [
       'products' => Product::all()
-        ->where('user_id', $userid)
+        ->where('company', $company)
         ->where('active', true),
       'users' => User::all()
         ->where('active', true),

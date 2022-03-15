@@ -64,6 +64,26 @@ class DashboardAgroindustriController extends Controller
       ->where('category', 'Gula')
       ->orderBy('quantity', 'desc')->get();
 
+    $rajawaliGulaVal = Stock::where('date', '=', $day)
+      ->where('category', 'Gula')
+      ->where('company', 'PT PG Rajawali I')
+      ->sum('value');
+
+    $rajawaliGulaQty = Stock::where('date', '=', $day)
+      ->where('category', 'Gula')
+      ->where('company', 'PT PG Rajawali I')
+      ->sum('quantity');
+
+    $candiGulaVal = Stock::where('date', '=', $day)
+      ->where('category', 'Gula')
+      ->where('company', 'PT PG Candi Baru')
+      ->sum('value');
+
+    $candiGulaQty = Stock::where('date', '=', $day)
+      ->where('category', 'Gula')
+      ->where('company', 'PT PG Candi Baru')
+      ->sum('quantity');
+
     $companyTetes = Stock::where('date', '=', $day)
       ->where('category', 'Tetes')
       ->orderBy('quantity', 'desc')->get();

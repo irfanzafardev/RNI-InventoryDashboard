@@ -54,7 +54,7 @@ class AdministratorStockController extends Controller
 
     $today = Carbon::today()->toDateString();
     return view('administrator.stocks.create', compact('code', 'today'), [
-      'products' => Product::all()->where('user_id', $userid),
+      'products' => Product::all(),
       'users' => User::all(),
       'last' => Stock::all()->last()
     ]);

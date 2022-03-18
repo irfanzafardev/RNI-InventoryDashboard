@@ -29,7 +29,7 @@
 <!-- AddData-form -->
 <div class="row">
   <div class="col-12">
-    <form method="post" action="/administrator/stocks/{{ $stock->id }}">
+    <form method="post" action="/staff/stocks/{{ $stock->id }}">
       @method('put')
       @csrf
       <div class="row">
@@ -166,7 +166,7 @@
             @enderror
           </div>
           <button type="submit" class="btn btn-primary ms-3 bg-darkblue float-end">Submit</button>
-          <a href="/administrator/stocks" class="btn btn btn-light float-end">Cancel</a>
+          <a href="/staff/stocks" class="btn btn btn-light float-end">Cancel</a>
         </div>
       </div>
     </form>

@@ -178,8 +178,8 @@ class DatabaseSeeder extends Seeder
       'class' => 'Garam',
       'user_id' => 10,
       'company' => 'PT Garam',
-      'subcategory_id' => 19,
-      'category' => 'Garam Produksi Sendiri',
+      'subcategory_id' => 17,
+      'category' => 'Garam Hasil Import',
       'unit_id' => 1,
       'active' => 1,
       'quantity' => 0,
@@ -192,7 +192,7 @@ class DatabaseSeeder extends Seeder
       'class' => 'Garam',
       'user_id' => 10,
       'company' => 'PT Garam',
-      'subcategory_id' => 19,
+      'subcategory_id' => 15,
       'category' => 'Garam Produksi Sendiri',
       'unit_id' => 1,
       'active' => 1,
@@ -206,11 +206,12 @@ class DatabaseSeeder extends Seeder
       'class' => 'Garam',
       'user_id' => 10,
       'company' => 'PT Garam',
-      'subcategory_id' => 19,
+      'subcategory_id' => 16,
       'category' => 'Garam Produksi Sendiri',
       'unit_id' => 1,
       'active' => 1,
       'quantity' => 0,
+
       'unit_price' => 10885
     ]);
   }

@@ -61,37 +61,12 @@ class CategorySeeder extends Seeder
         'active' => 1
       ],
       [
-        'category_name' => 'Garam Halus Karungan',
-        'group_id' => 4,
-        'active' => 1
-      ],
-      [
-        'category_name' => 'Garam Halus Kemasan',
-        'group_id' => 4,
-        'active' => 1
-      ],
-      [
-        'category_name' => 'Garam Kasar Kemasan',
-        'group_id' => 4,
-        'active' => 1
-      ],
-      [
-        'category_name' => 'Garam Import Farmasi',
-        'group_id' => 4,
-        'active' => 1
-      ],
-      [
-        'category_name' => 'Garam Rakyat PMN',
-        'group_id' => 4,
-        'active' => 1
-      ],
-      [
         'category_name' => 'Garam Produksi Sendiri',
         'group_id' => 4,
         'active' => 1
       ],
       [
-        'category_name' => 'Garam Top Grande Maduro',
+        'category_name' => 'Garam Hasil Import',
         'group_id' => 4,
         'active' => 1
       ],

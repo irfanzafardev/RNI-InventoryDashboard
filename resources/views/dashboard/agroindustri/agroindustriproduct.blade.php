@@ -23,7 +23,7 @@
 
 <ul class="nav time-nav mb-5">
   <li class="nav-item mr-3">
-    <a class="nav-link" href="/dashboard/agroindustri">Daily</a>
+    <a class="nav-link" href="/dashboard/agroindustri">Latest</a>
   </li>
   <li class="nav-item">
     <a class="nav-link active" href="/dashboard/agroindustri/products">Product</a>

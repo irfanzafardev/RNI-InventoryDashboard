@@ -182,7 +182,7 @@
             @enderror
           </div>
           <button type="submit" class="btn btn-primary ms-3 bg-darkblue float-end">Submit</button>
-          <a href="/administrator/stocks" class="btn btn btn-light float-end">Cancel</a>
+          <a href="/staff/stocks" class="btn btn btn-light float-end">Cancel</a>
         </div>
       </div>
     </form>

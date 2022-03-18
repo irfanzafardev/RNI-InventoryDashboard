@@ -101,37 +101,31 @@ class SubcategorySeeder extends Seeder
       ],
       [
         'subcategory_name' => 'Garam Halus Kemasan',
-        'category_id' => 11,
+        'category_id' => 10,
         'class' => 'Garam',
         'active' => 1
       ],
       [
         'subcategory_name' => 'Garam Kasar Kemasan',
-        'category_id' => 12,
+        'category_id' => 10,
         'class' => 'Garam',
         'active' => 1
       ],
       [
         'subcategory_name' => 'Garam Import Farmasi',
-        'category_id' => 13,
+        'category_id' => 11,
         'class' => 'Garam',
         'active' => 1
       ],
       [
         'subcategory_name' => 'Garam Rakyat PMN',
-        'category_id' => 14,
-        'class' => 'Garam',
-        'active' => 1
-      ],
-      [
-        'subcategory_name' => 'Garam Produksi Sendiri',
-        'category_id' => 15,
+        'category_id' => 10,
         'class' => 'Garam',
         'active' => 1
       ],
       [
         'subcategory_name' => 'Garam Top Grande Maduro',
-        'category_id' => 16,
+        'category_id' => 10,
         'class' => 'Garam',
         'active' => 1
       ],

@@ -105,9 +105,6 @@
                   class="form-select"
                   id="role"
                   required>
-                  <option value="">Choose Role</option>
-                  <option value="superadmin">Superadmin</option>
-                  <option value="admin">Admin</option>
                   <option value="user">User</option>
                 </select>
             </div>

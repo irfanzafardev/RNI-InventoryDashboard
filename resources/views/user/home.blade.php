@@ -172,7 +172,7 @@
               <td>Rp. {{ number_format($stock->product->unit_price, 2) }}</td>
               <td>Rp. {{ number_format($stock->value, 2) }}</td>
               <td>
-                <a href="/administrator/products/{{ $stock->id }}/edit">Edit</a>
+                <a href="/staff/stocks/{{ $stock->id }}/edit">Edit</a>
                 <a href="#" class="deleteStockIn" data-id="{{ $stock->id }}" data-name="{{ $stock->product->product_name }}">Delete</a>
               </td>
             </tr>

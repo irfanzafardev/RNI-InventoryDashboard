@@ -87,7 +87,7 @@
             <select class="form-control form-select" name="category_id" id="category" required></select>
           </div>
           <button type="submit" class="btn btn-primary ms-3 bg-darkblue float-end">Submit</button>
-          <a href="/administrator/subcategories" class="btn btn btn-light float-end">Cancel</a>
+          <a href="/staff/subcategories" class="btn btn btn-light float-end">Cancel</a>
         </div>
       </div>
     </form>

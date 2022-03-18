@@ -100,256 +100,231 @@
 <div class="collapse mt-3" id="collapseExample">
   <div class="single-cards row">
     <div class="col-12 col-md-6 col-lg-4 mb-3">
-      <a href="#" class="text-decoration-none">
-        <div class="card single-card">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-6">
-                <h5 class="card-title item-card-title text-white">
-                  Comparison Stats
-                </h5>
-              </div>
+      <div class="card single-card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-6">
+              <h5 class="card-title item-card-title text-white">
+                Comparison Stats
+              </h5>
             </div>
-            <div class="row">
-              <div class="col-12">
-                <div class="main-chart d-flex justify-content-center">
-                  <canvas id="AgroPerformance"></canvas>
-                </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="main-chart d-flex justify-content-center">
+                <canvas id="AgroPerformance"></canvas>
               </div>
             </div>
           </div>
         </div>
-      </a>
+      </div>
     </div>
     <div class="col-12 col-md-6 col-lg-4 mb-3">
-      <a href="#" class="text-decoration-none">
-        <div class="card single-card">
-          <div class="card-body">
-            <div class="row first-single-card-row">
-              <div class="col-6">
-                <h5 class="card-title item-card-title text-white ">
-                  Gula
-                </h5>
-                <p class="card-subtitle item-card-subtitle mb-2 text-white">
-                  {{ number_format($quantityGula, 0)}} <br />
-                  <span>(kg)</span>
-                </p>
-              </div>
-              <div class="col-6">
-                <div class="donut-chart pr-3 pt-2">
-                  <canvas id="ChartGulaByCompany"></canvas>
-                </div>
+      <div class="card single-card">
+        <div class="card-body">
+          <div class="row first-single-card-row">
+            <div class="col-6">
+              <h5 class="card-title item-card-title text-white ">
+                Gula
+              </h5>
+              <p class="card-subtitle item-card-subtitle mb-2 text-white">
+                {{ number_format($quantityGula, 0)}} <br />
+                <span>(kg)</span>
+              </p>
+            </div>
+            <div class="col-6">
+              <div class="donut-chart pr-3 pt-2">
+                <canvas id="ChartGulaByCompany"></canvas>
               </div>
             </div>
-            <div class="row mt-1">
-              <div class="col-12 item-card-value text-white">
-                Rp. {{ number_format($valueGula, 2)}}
-              </div>
-            </div>
-            <div class="row mt-2">
-              <div class="col-4 item-card-company text-white">Company</div>
-              <div class="col-4 item-card-company text-white">Stock</div>
-              <div class="col-4 item-card-company text-white">
-                Value 
-                {{-- @if (null !== $companyGula1st)
-                    {{ $companyGula1st->value }}
-                @endif --}}
-              </div>
-            </div>
-            <div class="card-info scroll">
-              @foreach ($companyGula as $item)
-                <div class="row">
-                  <div class="col-4 item-card-info text-white">{{ $item->company }}</div>
-                  <div class="col-4 item-card-info text-white">{{ $item->quantity }}</div>
-                  <div class="col-4 item-card-info text-white">{{ $item->value }}</div>
-                </div>
-              @endforeach
-            </div>            
           </div>
-        </div>
-      </a>
-    </div>
-    <div class="col-12 col-md-6 col-lg-4 mb-3">
-      <a href="#" class="text-decoration-none">
-        <div class="card single-card">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-6">
-                <h5 class="card-title item-card-title text-white">
-                  Tetes
-                </h5>
-                <p
-                  class="card-subtitle item-card-subtitle mb-2 text-white"
-                >
-                {{ number_format($quantityTetes, 0)}} <br />
-                  <span>(kg)</span>
-                </p>
-              </div>
-              <div class="col-6">
-                <div class="donut-chart pr-3 pt-2">
-                  <canvas id="ChartTetesByCompany"></canvas>
-                </div>
-              </div>
+          <div class="row mt-1">
+            <div class="col-12 item-card-value text-white">
+              Rp. {{ number_format($valueGula, 2)}}
             </div>
-            <div class="row mt-1">
-              <div class="col-12 item-card-value text-white">
-                Rp. {{ number_format($valueTetes, 2)}}
-              </div>
-            </div>
-            <div class="row mt-1">
-              <div class="col-4 item-card-company text-white">
-                Company
-              </div>
-              <div class="col-4 item-card-company text-white">Stock</div>
-              <div class="col-4 item-card-company text-white">Value</div>
-            </div>
-            @foreach ($companyTetes as $item)
-            <div class="card-info">
+          </div>
+          <div class="row mt-2 pr-2">
+            <div class="col-5 item-card-company text-white">Product</div>
+            <div class="col-3 item-card-company text-white">Stock</div>
+            <div class="col-4 item-card-company text-white">Value </div>
+          </div>
+          <div class="card-info scroll">
+            @foreach ($companyGula as $item)
               <div class="row">
-                <div class="col-4 item-card-info text-white">
-                  {{ $item->company }}
-                </div>
-                <div class="col-4 item-card-info text-white">{{ $item->quantity }}</div>
+                <div class="col-5 item-card-info text-white">{{ $item->product->product_name }}</div>
+                <div class="col-3 item-card-info text-white">{{ $item->quantity }}</div>
                 <div class="col-4 item-card-info text-white">{{ $item->value }}</div>
               </div>
-            </div>            
             @endforeach
-          </div>
+          </div>            
         </div>
-      </a>
+      </div>
     </div>
     <div class="col-12 col-md-6 col-lg-4 mb-3">
-      <a href="#" class="text-decoration-none">
-        <div class="card single-card">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-6">
-                <h5 class="card-title item-card-title text-white">Teh</h5>
-                <p class="card-subtitle item-card-subtitle mb-2 text-white">
-                  {{ number_format($quantityTeh, 0)}} <br />
-                  <span>(kg)</span>
-                </p>
-              </div>
-              <div class="col-6">
-                <div class="donut-chart pr-3 pt-2">
-                  <canvas id="ChartTehByCompany"></canvas>
-                </div>
-              </div>
+      <div class="card single-card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-6">
+              <h5 class="card-title item-card-title text-white">
+                Tetes
+              </h5>
+              <p
+                class="card-subtitle item-card-subtitle mb-2 text-white"
+              >
+              {{ number_format($quantityTetes, 0)}} <br />
+                <span>(kg)</span>
+              </p>
             </div>
-            <div class="row mt-1">
-              <div class="col-12 item-card-value text-white">
-                Rp. {{ number_format($valueTeh, 2)}} <br /> 
+            <div class="col-6">
+              <div class="donut-chart pr-3 pt-2">
+                <canvas id="ChartTetesByCompany"></canvas>
               </div>
-            </div>
-            <div class="row mt-1">
-              <div class="col-4 item-card-company text-white">Company</div>
-              <div class="col-4 item-card-company text-white">Stock</div>
-              <div class="col-4 item-card-company text-white">Value</div>
-            </div>
-            <div class="card-info scroll">
-              @foreach ($companyTeh as $item)
-                <div class="row">
-                  <div class="col-4 item-card-info text-white">{{ $item->company }}</div>
-                  <div class="col-4 item-card-info text-white">{{ $item->quantity }}</div>
-                  <div class="col-4 item-card-info text-white">{{ $item->value }}</div>
-                </div>
-              @endforeach
             </div>
           </div>
+          <div class="row mt-0">
+            <div class="col-12 item-card-value text-white">
+              Rp. {{ number_format($valueTetes, 2)}}
+            </div>
+          </div>
+          <div class="row mt-1 pr-2">
+            <div class="col-5 item-card-company text-white">Product</div>
+            <div class="col-3 item-card-company text-white">Stock</div>
+            <div class="col-4 item-card-company text-white">Value</div>
+          </div>
+          <div class="card-info scroll">
+            @foreach ($companyTetes as $item)
+              <div class="row">
+                <div class="col-4 item-card-info text-white">{{ $item->product->product_name }}</div>
+                <div class="col-4 item-card-info text-white">{{ $item->quantity }}</div>
+                <div class="col-4 item-card-info text-white">{{ $item->value }}</div>
+              </div>
+            @endforeach
+          </div>            
         </div>
-      </a>
+      </div>
     </div>
     <div class="col-12 col-md-6 col-lg-4 mb-3">
-      <a href="#" class="text-decoration-none">
-        <div class="card single-card">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-6">
-                <h5 class="card-title item-card-title text-white">
-                  Sawit
-                </h5>
-                <p
-                  class="card-subtitle item-card-subtitle mb-2 text-white"
-                >
-                  {{ number_format($quantitySawit, 0)}} <br />
-                  <span>(kg)</span>
-                </p>
-              </div>
-              <div class="col-6">
-                <div class="donut-chart pr-3 pt-2">
-                  <canvas id="ChartSawitByCompany"></canvas>
-                </div>
+      <div class="card single-card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-6">
+              <h5 class="card-title item-card-title text-white">Teh</h5>
+              <p class="card-subtitle item-card-subtitle mb-2 text-white">
+                {{ number_format($quantityTeh, 0)}} <br />
+                <span>(kg)</span>
+              </p>
+            </div>
+            <div class="col-6">
+              <div class="donut-chart pr-3 pt-2">
+                <canvas id="ChartTehByCompany"></canvas>
               </div>
             </div>
-            <div class="row mt-1">
-              <div class="col-12 item-card-value text-white">
-                Rp. {{ number_format($valueSawit, 0)}}
+          </div>
+          <div class="row mt-1">
+            <div class="col-12 item-card-value text-white">
+              Rp. {{ number_format($valueTeh, 2)}} <br /> 
+            </div>
+          </div>
+          <div class="row mt-1 pr-2">
+            <div class="col-5 item-card-company text-white">Company</div>
+            <div class="col-3 item-card-company text-white">Stock</div>
+            <div class="col-4 item-card-company text-white">Value</div>
+          </div>
+          <div class="card-info scroll">
+            @foreach ($companyTeh as $item)
+              <div class="row">
+                <div class="col-5 item-card-info text-white">{{ $item->product->product_name }}</div>
+                <div class="col-3 item-card-info text-white">{{ $item->quantity }}</div>
+                <div class="col-4 item-card-info text-white">{{ $item->value }}</div>
+              </div>
+            @endforeach
+          </div>     
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4 mb-3">
+      <div class="card single-card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-6">
+              <h5 class="card-title item-card-title text-white">
+                Sawit
+              </h5>
+              <p
+                class="card-subtitle item-card-subtitle mb-2 text-white"
+              >
+                {{ number_format($quantitySawit, 0)}} <br />
+                <span>(kg)</span>
+              </p>
+            </div>
+            <div class="col-6">
+              <div class="donut-chart pr-3 pt-2">
+                <canvas id="ChartSawitByCompany"></canvas>
               </div>
             </div>
-            <div class="row mt-1">
-              <div class="col-4 item-card-company text-white">Company</div>
-              <div class="col-4 item-card-company text-white">Stock</div>
-              <div class="col-4 item-card-company text-white">Value</div>
+          </div>
+          <div class="row mt-1">
+            <div class="col-12 item-card-value text-white">
+              Rp. {{ number_format($valueSawit, 2)}}
             </div>
+          </div>
+          <div class="row mt-1">
+            <div class="col-5 item-card-company text-white">Company</div>
+            <div class="col-3 item-card-company text-white">Stock</div>
+            <div class="col-4 item-card-company text-white">Value</div>
+          </div>
+          <div class="card-info scroll">
             @foreach ($companySawit as $item)
-            <div class="card-info">
               <div class="row">
-                <div class="col-4 item-card-info text-white">{{ $item->company }}</div>
-                <div class="col-4 item-card-info text-white">{{ $item->quantity }}</div>
+                <div class="col-5 item-card-info text-white">{{ $item->product->product_name }}</div>
+                <div class="col-3 item-card-info text-white">{{ $item->quantity }}</div>
                 <div class="col-4 item-card-info text-white">{{ $item->value }}</div>
               </div>
-            </div>            
-          @endforeach
-          </div>
+            @endforeach
+          </div>     
         </div>
-      </a>
+      </div>
     </div>
     <div class="col-12 col-md-6 col-lg-4 mb-3">
-      <a href="#" class="text-decoration-none">
-        <div class="card single-card">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-6">
-                <h5 class="card-title item-card-title text-white">
-                  Karet
-                </h5>
-                <p class="card-subtitle item-card-subtitle mb-2 text-white">
-                  {{ number_format($quantityKaret, 0)}} <br />
-                  <span>(kg)</span>
-                </p>
-              </div>
-              <div class="col-6">
-                <div class="donut-chart pr-3 pt-2">
-                  <canvas id="ChartKaretByCompany"></canvas>
-                </div>
+      <div class="card single-card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-6">
+              <h5 class="card-title item-card-title text-white">
+                Karet
+              </h5>
+              <p class="card-subtitle item-card-subtitle mb-2 text-white">
+                {{ number_format($quantityKaret, 0)}} <br />
+                <span>(kg)</span>
+              </p>
+            </div>
+            <div class="col-6">
+              <div class="donut-chart pr-3 pt-2">
+                <canvas id="ChartKaretByCompany"></canvas>
               </div>
             </div>
-            <div class="row mt-1">
-              <div class="col-12 item-card-value text-white">
-                Rp. {{ number_format($valueKaret, 0)}}
-              </div>
+          </div>
+          <div class="row mt-1">
+            <div class="col-12 item-card-value text-white">
+              Rp. {{ number_format($valueKaret, 2)}}
             </div>
-            <div class="row mt-1">
-              <div class="col-4 item-card-company text-white">
-                Company
-              </div>
-              <div class="col-4 item-card-company text-white">Stock</div>
-              <div class="col-4 item-card-company text-white">Value</div>
-            </div>
+          </div>
+          <div class="row mt-1">
+            <div class="col-5 item-card-company text-white">Company</div>
+            <div class="col-3 item-card-company text-white">Stock</div>
+            <div class="col-4 item-card-company text-white">Value</div>
+          </div>
+          <div class="card-info scroll">
             @foreach ($companyKaret as $item)
-            <div class="card-info">
               <div class="row">
-                <div class="col-4 item-card-info text-white">
-                  {{ $item->company }}
-                </div>
-                <div class="col-4 item-card-info text-white">{{ $item->quantity }}</div>
+                <div class="col-5 item-card-info text-white">{{ $item->product->product_name }}</div>
+                <div class="col-3 item-card-info text-white">{{ $item->quantity }}</div>
                 <div class="col-4 item-card-info text-white">{{ $item->value }}</div>
               </div>
-            </div>            
-          @endforeach
-          </div>
+            @endforeach
+          </div>     
         </div>
-      </a>
+      </div>
     </div>
   </div>
 </div>
@@ -414,7 +389,7 @@
             <td>{{ number_format($datastock->quantity, 0)}}</td>
             <td>Rp. {{ number_format($datastock->product->unit_price, 2) }}</td>
             @php
-              $value = $datastock->quantity * $datastock->product->unit_price ;
+              $value = $datastock->quantity * $datastock->product->unit_price;
             @endphp
             <td class="d-none"><?php echo $value ?> </td>
             <td>Rp.  <?php echo number_format($value, 2); ?> </td>
@@ -432,7 +407,7 @@
 
 <script>
   const dataAgro = {
-    labels: ["Gula", "Tetes", "Teh", "Sawit", "Teh"],
+    labels: ["Gula", "Tetes", "Teh", "Sawit", "Karet"],
     datasets: [
       {
         label: "Agroindustri Dataset",
@@ -500,18 +475,14 @@
 <script>
   const dataGula = {
     labels: [
-      "{{ $companyGula1st->company ?? "a" }}",
-      "{{ $companyGula2nd->company ?? "b" }}",
-      "{{ $companyGula3rd->company ?? "c" }}",
-      "{{ $companyGula4th->company ?? "d" }}",
+      "RA",
+      "CB",
     ],
     datasets: [{
       label: 'Gula Dataset',
       data: [ 
-        {{ $companyGula1st->value ?? "0" }},      
-        {{ $companyGula2nd->value ?? "0" }},
-        {{ $companyGula3rd->value ?? "0" }},
-        {{ $companyGula4th->value ?? "0" }},
+        {{ $rajawaliGulaVal ?? "0" }},      
+        {{ $candiGulaVal ?? "0" }},
       ],
       backgroundColor: [
         'rgba(210, 151, 59, 1)',
@@ -531,7 +502,7 @@
       responsive: true,
       plugins: {
         legend: {
-          display: false,
+          display: true,
           position: 'bottom',
           align: 'center',
           labels: {
@@ -558,6 +529,19 @@
           color: '#fff'
         }
       },
+      tooltips: {
+            callbacks: {
+                label: function(tooltipItem, data) {
+                    var label = data.datasets[tooltipItem.datasetIndex].label || '';
+
+                    if (label) {
+                        label += ': ';
+                    }
+                    label += isNaN(tooltipItem.yLabel) ? '0' : tooltipItem.yLabel;
+                    return label;
+                }
+            }
+        }
     },
     plugins: [ChartDataLabels]
   };
@@ -571,16 +555,19 @@
 <script>
   const dataTetes = {
     labels: [
-      "{{ $companyTetes1st->company ?? "a" }}",
-      "{{ $companyTetes2nd->company ?? "b" }}",
+      "KBB",
+      "CB",
+      "RA",
     ],
     datasets: [{
       label: 'Tetes Dataset',
       data: [
-        {{ $companyTetes1st->value ?? "0" }},      
-        {{ $companyTetes2nd->value ?? "0" }}
+        {{ $krebetTetesVal ?? 0 }},      
+        {{ $rajawaliTetesVal ?? 0 }},
+        {{ $candiTetesVal ?? 0 }},
       ],
       backgroundColor: [
+        "rgba(132, 178, 156, 1)",
         'rgba(210, 151, 59, 1)',
         'rgba(232, 202, 129, 1)',
       ],
@@ -598,7 +585,7 @@
       responsive: true,
       plugins: {
         legend: {
-          display: false,
+          display: true,
           position: 'bottom',
           align: 'center',
           labels: {
@@ -622,8 +609,8 @@
           font: {
             size: 10,
           },
-          color: '#fff'
-        }
+          color: '#fff',
+        },
       },
     },
     plugins: [ChartDataLabels]
@@ -638,14 +625,12 @@
 <script>
   const dataTeh = {
     labels: [
-      "{{ $companyTeh1st->company ?? "a" }}",
-      "{{ $companyTeh2nd->company ?? "b" }}",
+      "MK",
     ],
     datasets: [{
       label: 'Tetes Dataset',
       data: [
-        {{ $companyTeh1st->value ?? "0" }},      
-        {{ $companyTeh2nd->value ?? "0" }}
+        {{ $kerinciTehVal ?? 0 }}
       ],
       backgroundColor: [
         'rgba(210, 151, 59, 1)',
@@ -665,7 +650,7 @@
       responsive: true,
       plugins: {
         legend: {
-          display: false,
+          display: true,
           position: 'bottom',
           align: 'center',
           labels: {
@@ -705,14 +690,14 @@
 <script>
   const dataSawit = {
     labels: [
-      "{{ $companySawit1st->company ?? "a" }}",
-      "{{ $companySawits2nd->company ?? "b" }}",
+      "MO",
+      "LAK",
     ],
     datasets: [{
       label: 'Tetes Dataset',
       data: [
-        {{ $companySawit1st->value ?? "0" }},      
-        {{ $companySawit2nd->value ?? "0" }}
+        {{ $oganSawitVal ?? "0" }},      
+        {{ $laskarSawitVal ?? "0" }}
       ],
       backgroundColor: [
         'rgba(210, 151, 59, 1)',
@@ -732,7 +717,7 @@
       responsive: true,
       plugins: {
         legend: {
-          display: false,
+          display: true,
           position: 'bottom',
           align: 'center',
           labels: {

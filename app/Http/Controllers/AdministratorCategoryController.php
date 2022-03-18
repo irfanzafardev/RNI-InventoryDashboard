@@ -38,6 +38,7 @@ class AdministratorCategoryController extends Controller
     return view('administrator.categories.create', [
       'categories' => Category::all(),
       'groups' => Group::all()
+        ->where('active', true)
     ]);
   }
 

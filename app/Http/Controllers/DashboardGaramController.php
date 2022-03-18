@@ -19,12 +19,12 @@ class DashboardGaramController extends Controller
   {
     $day = Carbon::today()->toDateString();
 
-    $datastocks = Stock::where('date', '=', Carbon::today()->toDateString())
+    $datastocks = Stock::where('date', '=', $day)
       ->where('class', 'Garam')->get();
-    $highestAmount = Stock::where('date', '=', Carbon::today()->toDateString())
+    $highestAmount = Stock::where('date', '=', $day)
       ->where('class', 'Garam')
       ->orderBy('quantity', 'desc')->first();
-    $dataStockLength = Stock::where('date', '=', Carbon::today()->toDateString())
+    $dataStockLength = Stock::where('date', '=', $day)
       ->where('class', 'Garam')
       ->count();
 
@@ -32,21 +32,35 @@ class DashboardGaramController extends Controller
       ->where('category', 'Garam Produksi Sendiri')
       ->sum('quantity');
 
+    $quantityHasilImport = Stock::where('date', '=', $day)
+      ->where('category', 'Garam Hasil Import')
+      ->sum('quantity');
+
     $valueProduksiSendiri = Stock::where('date', '=', $day)
       ->where('category', 'Garam Produksi Sendiri')
+      ->sum('value');
+
+    $valueHasilImport = Stock::where('date', '=', $day)
+      ->where('category', 'Garam Hasil Import')
       ->sum('value');
 
     $companyProduksiSendiri = Stock::where('date', '=', $day)
       ->where('category', 'Garam Produksi Sendiri')
       ->orderBy('quantity', 'desc')->get();
 
-    $companyProduksiSendiri1st = Stock::where('date', '=', $day)
+    $garamProduksiSendiriVal = Stock::where('date', '=', $day)
       ->where('category', 'Garam Produksi Sendiri')
-      ->orderBy('quantity', 'desc')->first();
+      ->where('company', 'PT Garam')
+      ->sum('value');
 
-    $companyProduksiSendiri2nd = Stock::where('date', '=', $day)
-      ->where('category', 'Garam Produksi Sendiri')
-      ->orderBy('quantity', 'desc')->skip(1)->take(1)->first();
+    $companyHasilImport = Stock::where('date', '=', $day)
+      ->where('category', 'Garam Hasil Import')
+      ->orderBy('quantity', 'desc')->get();
+
+    $garamHasilImportVal = Stock::where('date', '=', $day)
+      ->where('category', 'Garam Hasil Import')
+      ->where('company', 'PT Garam')
+      ->sum('value');
 
     return view(
       'dashboard.garam.garam',
@@ -56,32 +70,86 @@ class DashboardGaramController extends Controller
         'highestAmount',
         'dataStockLength',
         'quantityProduksiSendiri',
+        'quantityHasilImport',
         'valueProduksiSendiri',
+        'valueHasilImport',
         'companyProduksiSendiri',
-        'companyProduksiSendiri1st',
-        'companyProduksiSendiri2nd'
+        'garamProduksiSendiriVal',
+        'companyHasilImport',
+        'garamHasilImportVal'
       )
     );
   }
 
   public function search(Request $request)
   {
-    $date = $request->input('date');
-    $stockbydates = Stock::where('date', '=', $date)
+    $day = $request->input('date');
+    $stockbydates = Stock::where('date', '=', $day)
       ->where('class', 'Garam')
       ->get();
 
     $datastocks = Stock::all();
     $yesterday = Carbon::today()->toDateString();
-    $highestAmount = Stock::where('date', '=', $date)
+    $highestAmount = Stock::where('date', '=', $day)
       ->orderBy('quantity', 'desc')->first();
-    $dataStockLength = Stock::where('date', '=', $date)
+    $dataStockLength = Stock::where('date', '=', $day)
       ->where('class', 'Garam')
       ->count();
 
+    $quantityProduksiSendiri = Stock::where('date', '=', $day)
+      ->where('category', 'Garam Produksi Sendiri')
+      ->sum('quantity');
+
+    $quantityHasilImport = Stock::where('date', '=', $day)
+      ->where('category', 'Garam Hasil Import')
+      ->sum('quantity');
+
+    $valueProduksiSendiri = Stock::where('date', '=', $day)
+      ->where('category', 'Garam Produksi Sendiri')
+      ->sum('value');
+
+    $valueHasilImport = Stock::where('date', '=', $day)
+      ->where('category', 'Garam Hasil Import')
+      ->sum('value');
+
+    $companyProduksiSendiri = Stock::where('date', '=', $day)
+      ->where('category', 'Garam Produksi Sendiri')
+      ->orderBy('quantity', 'desc')->get();
+
+    $garamProduksiSendiriVal = Stock::where('date', '=', $day)
+      ->where('category', 'Garam Produksi Sendiri')
+      ->where('company', 'PG Garam')
+      ->sum('value');
+
+    $companyHasilImport = Stock::where('date', '=', $day)
+      ->where('category', 'Garam Hasil Import')
+      ->orderBy('quantity', 'desc')->get();
+
+    $garamHasilImportVal = Stock::where('date', '=', $day)
+      ->where('category', 'Garam Hasil Import')
+      ->where('company', 'PG Garam')
+      ->sum('value');
+
     // dd($stockbydate);
 
-    return view('dashboard.garam.garambydate', compact('datastocks', 'stockbydates', 'highestAmount', 'dataStockLength', 'date'));
+    return view(
+      'dashboard.garam.garambydate',
+      compact(
+        'day',
+        'datastocks',
+        'stockbydates',
+        'highestAmount',
+        'dataStockLength',
+        'quantityProduksiSendiri',
+        'quantityHasilImport',
+        'valueProduksiSendiri',
+        'valueHasilImport',
+        'companyProduksiSendiri',
+        'garamProduksiSendiriVal',
+        'companyHasilImport',
+        'garamHasilImportVal'
+      )
+    );
   }
 
   public function product()

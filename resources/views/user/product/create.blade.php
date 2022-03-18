@@ -138,7 +138,7 @@
                 </div>
             @enderror
           </div>
-          <div class="form-group mb-3">
+          <div class="form-group d-none mb-3">
             <label for="category" class="form-label">Category</label>
             <input
               type="text"
@@ -202,7 +202,7 @@
               @enderror
           </div>
           <button type="submit" class="btn btn-primary ms-3 bg-darkblue float-end">Submit</button>
-          <a href="/administrator/products" class="btn btn btn-light float-end">Cancel</a>
+          <a href="/staff/products" class="btn btn btn-light float-end">Cancel</a>
         </div>
       </div>
     </form>

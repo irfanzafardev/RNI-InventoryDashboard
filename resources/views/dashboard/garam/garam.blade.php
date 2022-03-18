@@ -23,7 +23,7 @@
 
 <ul class="nav time-nav">
   <li class="nav-item mr-3">
-    <a class="nav-link active" href="/dashboard/garam">Daily</a>
+    <a class="nav-link active" href="/dashboard/garam">Latest</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="/dashboard/garam/products">Product</a>
@@ -32,7 +32,7 @@
 
 <!-- Content Row -->
 <div class="content-cta mb-3">
-  <form action="/dashboard/agroindustri/daily" method="POST">
+  <form action="/dashboard/garam/daily" method="POST">
     @csrf
     <div class="row justify-content-end">
       <div class="col-6 d-flex justify-content-end">
@@ -124,90 +124,86 @@
       </a>
     </div>
     <div class="col-12 col-md-6 col-lg-4 mb-3">
-      <a href="#" class="text-decoration-none">
-        <div class="card single-card">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-6">
-                <h5 class="card-title item-card-title text-white">
-                  Produksi Sendiri
-                </h5>
-                <p class="card-subtitle item-card-subtitle mb-2 text-white">
+      <div class="card single-card">
+        <div class="card-body">
+          <div class="row first-single-card-row">
+            <div class="col-6">
+              <h5 class="card-title item-card-title text-white ">
+                Produksi Sendiri
+              </h5>
+              <p class="card-subtitle item-card-subtitle mb-2 text-white">
                 {{ number_format($quantityProduksiSendiri, 0)}} <br />
-                  <span>(Kg)</span>
-                </p>
-              </div>
-              <div class="col-6">
-                <div class="donut-chart pr-3 pt-2">
-                  <canvas id="ChartProduksiSendiriByCompany"></canvas>
-                </div>
-              </div>
+                <span>(kg)</span>
+              </p>
             </div>
-            <div class="row mt-1">
-              <div class="col-12 item-card-value text-white">
-                Rp. {{ number_format($valueProduksiSendiri, 2)}}
+            <div class="col-6">
+              <div class="donut-chart pr-3 pt-2">
+                <canvas id="ChartProduksiSendiriByCompany"></canvas>
               </div>
             </div>
-            <div class="row mt-1">
-              <div class="col-4 item-card-company text-white">Company</div>
-              <div class="col-4 item-card-company text-white">Stock</div>
-              <div class="col-4 item-card-company text-white">Value</div>
+          </div>
+          <div class="row mt-1">
+            <div class="col-12 item-card-value text-white">
+              Rp. {{ number_format($valueProduksiSendiri, 2)}}
             </div>
+          </div>
+          <div class="row mt-2 pr-2">
+            <div class="col-5 item-card-company text-white">Product</div>
+            <div class="col-3 item-card-company text-white">Stock</div>
+            <div class="col-4 item-card-company text-white">Value </div>
+          </div>
+          <div class="card-info scroll">
             @foreach ($companyProduksiSendiri as $item)
-            <div class="card-info">
               <div class="row">
-                <div class="col-4 item-card-info text-white">{{ $item->company }}</div>
-                <div class="col-4 item-card-info text-white">{{ $item->quantity }}</div>
+                <div class="col-5 item-card-info text-white">{{ $item->product->product_name }}</div>
+                <div class="col-3 item-card-info text-white">{{ $item->quantity }}</div>
                 <div class="col-4 item-card-info text-white">{{ $item->value }}</div>
               </div>
-            </div>            
             @endforeach
-          </div>
+          </div>            
         </div>
-      </a>
+      </div>
     </div>
     <div class="col-12 col-md-6 col-lg-4 mb-3">
-      <a href="#" class="text-decoration-none">
-        <div class="card single-card">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-6">
-                <h5 class="card-title item-card-title text-white">
-                  Import
-                </h5>
-                <p class="card-subtitle item-card-subtitle mb-2 text-white">
-                {{ number_format($quantityProduksiSendiri, 0)}} <br />
-                  <span>(Kg)</span>
-                </p>
-              </div>
-              <div class="col-6">
-                <div class="donut-chart pr-3 pt-2">
-                  <canvas id="ChartProduksiSendiriByCompany"></canvas>
-                </div>
+      <div class="card single-card">
+        <div class="card-body">
+          <div class="row first-single-card-row">
+            <div class="col-6">
+              <h5 class="card-title item-card-title text-white ">
+                Hasil Import
+              </h5>
+              <p class="card-subtitle item-card-subtitle mb-2 text-white">
+                {{ number_format($quantityHasilImport, 0)}} <br />
+                <span>(kg)</span>
+              </p>
+            </div>
+            <div class="col-6">
+              <div class="donut-chart pr-3 pt-2">
+                <canvas id="ChartImportByCompany"></canvas>
               </div>
             </div>
-            <div class="row mt-1">
-              <div class="col-12 item-card-value text-white">
-                Rp. {{ number_format($valueProduksiSendiri, 2)}}
-              </div>
+          </div>
+          <div class="row mt-1">
+            <div class="col-12 item-card-value text-white">
+              Rp. {{ number_format($valueHasilImport, 2)}}
             </div>
-            <div class="row mt-1">
-              <div class="col-4 item-card-company text-white">Company</div>
-              <div class="col-4 item-card-company text-white">Stock</div>
-              <div class="col-4 item-card-company text-white">Value</div>
-            </div>
-            @foreach ($companyProduksiSendiri as $item)
-            <div class="card-info">
+          </div>
+          <div class="row mt-2 pr-2">
+            <div class="col-5 item-card-company text-white">Product</div>
+            <div class="col-3 item-card-company text-white">Stock</div>
+            <div class="col-4 item-card-company text-white">Value </div>
+          </div>
+          <div class="card-info scroll">
+            @foreach ($companyHasilImport as $item)
               <div class="row">
-                <div class="col-4 item-card-info text-white">{{ $item->company }}</div>
-                <div class="col-4 item-card-info text-white">{{ $item->quantity }}</div>
+                <div class="col-5 item-card-info text-white">{{ $item->product->product_name }}</div>
+                <div class="col-3 item-card-info text-white">{{ $item->quantity }}</div>
                 <div class="col-4 item-card-info text-white">{{ $item->value }}</div>
               </div>
-            </div>            
             @endforeach
-          </div>
+          </div>            
         </div>
-      </a>
+      </div>
     </div>
   </div>
 </div>
@@ -361,16 +357,12 @@
 <script>
   const dataProduksiSendiri = {
     labels: [
-      "{{ $companyProduksiSendiri1st->company ?? "a" }}",
-      "{{ $companyProduksiSendiri2nd->company ?? "b" }}",
-      "{{ $companyProduksiSendiri3rd->company ?? "c" }}",
+      "Garam",
     ],
     datasets: [{
       label: 'Produksi Sendiri Dataset',
       data: [ 
-        {{ $companyProduksiSendiri1st->value ?? "0" }},      
-        {{ $companyProduksiSendiri2nd->value ?? "0" }},
-        {{ $companyProduksiSendiri3rd->value ?? "0" }},
+        {{ $garamProduksiSendiriVal ?? "0" }}
       ],
       backgroundColor: [
         'rgba(210, 151, 59, 1)',
@@ -390,7 +382,7 @@
       responsive: true,
       plugins: {
         legend: {
-          display: false,
+          display: true,
           position: 'bottom',
           align: 'center',
           labels: {
@@ -430,16 +422,12 @@
 <script>
   const dataImport = {
     labels: [
-      "{{ $companyProduksiSendiri1st->company ?? "a" }}",
-      "{{ $companyProduksiSendiri2nd->company ?? "b" }}",
-      "{{ $companyProduksiSendiri3rd->company ?? "c" }}",
+      "Garam"
     ],
     datasets: [{
-      label: 'Produksi Sendiri Dataset',
+      label: 'Hasil Import Dataset',
       data: [ 
-        {{ $companyProduksiSendiri1st->value ?? "0" }},      
-        {{ $companyProduksiSendiri2nd->value ?? "0" }},
-        {{ $companyProduksiSendiri3rd->value ?? "0" }},
+        {{ $garamHasilImportVal ?? "0" }},      
       ],
       backgroundColor: [
         'rgba(210, 151, 59, 1)',
@@ -450,16 +438,16 @@
     }]
   };
 
-  const configProduksiSendiri = {
+  const configImport = {
     type: 'doughnut',
-    data: dataProduksiSendiri,
+    data: dataImport,
     options: {
       circumference: 	180,
       rotation: 270,
       responsive: true,
       plugins: {
         legend: {
-          display: false,
+          display: true,
           position: 'bottom',
           align: 'center',
           labels: {
@@ -490,9 +478,9 @@
     plugins: [ChartDataLabels]
   };
 
-  const ChartProduksiSendiri = new Chart(
+  const ChartImport= new Chart(
     document.getElementById('ChartImportByCompany'),
-    configProduksiSendiri
+    configImport
   );
 </script>
 

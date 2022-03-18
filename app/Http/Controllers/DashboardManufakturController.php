@@ -54,22 +54,37 @@ class DashboardManufakturController extends Controller
       ->where('category', 'Produk Manufaktur Lainnya')
       ->sum('value');
 
-
     $companyWBIB = Stock::where('date', '=', $day)
       ->where('category', 'WB/IB')
       ->orderBy('quantity', 'desc')->get();
 
-    $companyWBIB1st = Stock::where('date', '=', $day)
+    $tanjungsariWBIBVal = Stock::where('date', '=', $day)
       ->where('category', 'WB/IB')
-      ->orderBy('quantity', 'desc')->first();
+      ->where('company', 'PT Rajawali TE')
+      ->sum('value');
 
-    $companyWBIB2nd = Stock::where('date', '=', $day)
+    $citramasWBIBVal = Stock::where('date', '=', $day)
       ->where('category', 'WB/IB')
-      ->orderBy('quantity', 'desc')->skip(1)->take(1)->first();
+      ->where('company', 'PT Rajawali Citramas')
+      ->sum('value');
 
-    $companyWBIB3rd = Stock::where('date', '=', $day)
-      ->where('category', 'WB/IB')
-      ->orderBy('quantity', 'desc')->skip(2)->take(1)->first();
+    $companyASSP = Stock::where('date', '=', $day)
+      ->where('category', 'ASSP')
+      ->orderBy('quantity', 'desc')->get();
+
+    $banjaranASSPVal = Stock::where('date', '=', $day)
+      ->where('category', 'ASSP')
+      ->where('company', 'PT Mitra RB')
+      ->sum('value');
+
+    $companyLainnya = Stock::where('date', '=', $day)
+      ->where('category', 'Produk Manufaktur Lain')
+      ->orderBy('quantity', 'desc')->get();
+
+    $banjaranLainnyaVal = Stock::where('date', '=', $day)
+      ->where('category', 'Produk Manufaktur Lain')
+      ->where('company', 'PT Mitra RB')
+      ->sum('value');
 
 
     return view(
@@ -81,39 +96,121 @@ class DashboardManufakturController extends Controller
         'dataStockLength',
         'quantityWBIB',
         'quantityASSP',
-        'quantityAlatKesehatan',
         'quantityLainnya',
         'valueWBIB',
         'valueASSP',
-        'valueAlatKesehatan',
         'valueLainnya',
         'companyWBIB',
-        'companyWBIB1st',
-        'companyWBIB2nd',
-        'companyWBIB3rd'
+        'tanjungsariWBIBVal',
+        'citramasWBIBVal',
+        'companyASSP',
+        'banjaranASSPVal',
+        'companyLainnya',
+        'banjaranLainnyaVal'
       )
     );
   }
 
   public function search(Request $request)
   {
-    $date = $request->input('date');
-    $stockbydates = Stock::where('date', '=', $date)
+    $day = $request->input('date');
+    $stockbydates = Stock::where('date', '=', $day)
       ->where('class', 'Manufaktur')
       ->get();
 
     $datastocks = Stock::all();
-    $yesterday = Carbon::today()->toDateString();
-    $highestAmount = Stock::where('date', '=', $date)
+    $yesterday = Carbon::today()
+      ->toDateString();
+    $highestAmount = Stock::where('date', '=', $day)
       ->where('class', 'Manufaktur')
       ->orderBy('quantity', 'desc')->first();
-    $dataStockLength = Stock::where('date', '=', $date)
+    $dataStockLength = Stock::where('date', '=', $day)
       ->where('class', 'Manufaktur')
       ->count();
 
+    $quantityWBIB = Stock::where('date', '=', $day)
+      ->where('category', 'WB/IB')
+      ->sum('quantity');
+    $quantityASSP = Stock::where('date', '=', $day)
+      ->where('category', 'ASSP')
+      ->sum('quantity');
+    $quantityAlatKesehatan = Stock::where('date', '=', $day)
+      ->where('category', 'Alat Kesehatan')
+      ->sum('quantity');
+    $quantityLainnya = Stock::where('date', '=', $day)
+      ->where('category', 'Produk Manufaktur Lainnya')
+      ->sum('quantity');
+
+    $valueWBIB = Stock::where('date', '=', $day)
+      ->where('category', 'WB/IB')
+      ->sum('value');
+    $valueASSP = Stock::where('date', '=', $day)
+      ->where('category', 'ASSP')
+      ->sum('value');
+    $valueAlatKesehatan  = Stock::where('date', '=', $day)
+      ->where('category', 'Alat Kesehatan ')
+      ->sum('value');
+    $valueLainnya = Stock::where('date', '=', $day)
+      ->where('category', 'Produk Manufaktur Lainnya')
+      ->sum('value');
+
+    $companyWBIB = Stock::where('date', '=', $day)
+      ->where('category', 'WB/IB')
+      ->orderBy('quantity', 'desc')->get();
+
+    $tanjungsariWBIBVal = Stock::where('date', '=', $day)
+      ->where('category', 'WB/IB')
+      ->where('company', 'PT Rajawali TE')
+      ->sum('value');
+
+    $citramasWBIBVal = Stock::where('date', '=', $day)
+      ->where('category', 'WB/IB')
+      ->where('company', 'PT Rajawali Citramas')
+      ->sum('value');
+
+    $companyASSP = Stock::where('date', '=', $day)
+      ->where('category', 'ASSP')
+      ->orderBy('quantity', 'desc')->get();
+
+    $banjaranASSPVal = Stock::where('date', '=', $day)
+      ->where('category', 'ASSP')
+      ->where('company', 'PT Mitra RB')
+      ->sum('value');
+
+    $companyLainnya = Stock::where('date', '=', $day)
+      ->where('category', 'Produk Manufaktur Lain')
+      ->orderBy('quantity', 'desc')->get();
+
+    $banjaranLainnyaVal = Stock::where('date', '=', $day)
+      ->where('category', 'Produk Manufaktur Lain')
+      ->where('company', 'PT Mitra RB')
+      ->sum('value');
+
     // dd($stockbydate);
 
-    return view('dashboard.manufaktur.manufakturbydate', compact('datastocks', 'stockbydates', 'highestAmount', 'dataStockLength', 'date'));
+    return view(
+      'dashboard.manufaktur.manufakturbydate',
+      compact(
+        'day',
+        'datastocks',
+        'stockbydates',
+        'highestAmount',
+        'dataStockLength',
+        'quantityWBIB',
+        'quantityASSP',
+        'quantityLainnya',
+        'valueWBIB',
+        'valueASSP',
+        'valueLainnya',
+        'companyWBIB',
+        'tanjungsariWBIBVal',
+        'citramasWBIBVal',
+        'companyASSP',
+        'banjaranASSPVal',
+        'companyLainnya',
+        'banjaranLainnyaVal'
+      )
+    );
   }
 
   public function product()

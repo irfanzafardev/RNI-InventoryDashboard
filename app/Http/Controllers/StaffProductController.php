@@ -47,14 +47,18 @@ class StaffProductController extends Controller
     $check = Product::count();
     $userid = Auth::user()->id;
     $companyid = Auth::user()->company->id;
+    $company = Auth::user()->company->company_name;
     if ($check == 0) {
       $order = 1001;
       $code = 'PR-' . $userid . $companyid . $order;
     } else {
-      $pull = Product::all()->last();
+      $pull = Product::latest('id')
+        ->where('company', $company)
+        ->first();
       $order = (int)substr($pull->product_code, -4) + 1;
       $code = 'PR-' . $userid . $companyid . $order;
     }
+    // dd($pull->product_code);
     $id = Auth::user()->company->group->id;
     return view('user.product.create', compact('code'), [
       'users' => User::all(),

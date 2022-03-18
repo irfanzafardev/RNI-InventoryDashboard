@@ -149,19 +149,19 @@
               </div>
             </div>
             <div class="row mt-1">
-              <div class="col-4 item-card-company text-white">Company</div>
-              <div class="col-4 item-card-company text-white">Stock</div>
+              <div class="col-5 item-card-company text-white">Product</div>
+              <div class="col-3 item-card-company text-white">Stock</div>
               <div class="col-4 item-card-company text-white">Value</div>
             </div>
-            @foreach ($companyWBIB as $item)
-            <div class="card-info">
-              <div class="row">
-                <div class="col-4 item-card-info text-white">{{ $item->company }}</div>
-                <div class="col-4 item-card-info text-white">{{ $item->quantity }}</div>
-                <div class="col-4 item-card-info text-white">{{ $item->value }}</div>
-              </div>
-            </div>            
-            @endforeach
+            <div class="card-info scroll">
+              @foreach ($companyWBIB as $item)
+                <div class="row">
+                  <div class="col-5 item-card-info text-white">{{ $item->product->product_name }}</div>
+                  <div class="col-3 item-card-info text-white">{{ $item->quantity }}</div>
+                  <div class="col-4 item-card-info text-white">{{ $item->value }}</div>
+                </div>
+              @endforeach
+            </div> 
           </div>
         </div>
       </a>
@@ -192,19 +192,19 @@
               </div>
             </div>
             <div class="row mt-1">
-              <div class="col-4 item-card-company text-white">Company</div>
-              <div class="col-4 item-card-company text-white">Stock</div>
+              <div class="col-5 item-card-company text-white">Product</div>
+              <div class="col-3 item-card-company text-white">Stock</div>
               <div class="col-4 item-card-company text-white">Value</div>
             </div>
-            @foreach ($companyWBIB as $item)
-            <div class="card-info">
-              <div class="row">
-                <div class="col-4 item-card-info text-white">{{ $item->company }}</div>
-                <div class="col-4 item-card-info text-white">{{ $item->quantity }}</div>
-                <div class="col-4 item-card-info text-white">{{ $item->value }}</div>
-              </div>
-            </div>            
-            @endforeach
+            <div class="card-info scroll">
+              @foreach ($companyASSP as $item)
+                <div class="row">
+                  <div class="col-5 item-card-info text-white">{{ $item->product->product_name }}</div>
+                  <div class="col-3 item-card-info text-white">{{ $item->quantity }}</div>
+                  <div class="col-4 item-card-info text-white">{{ $item->value }}</div>
+                </div>
+              @endforeach
+            </div> 
           </div>
         </div>
       </a>
@@ -219,7 +219,7 @@
                   Lainnya
                 </h5>
                 <p class="card-subtitle item-card-subtitle mb-2 text-white">
-                {{ number_format($quantityWBIB, 0)}} <br />
+                {{ number_format($quantityLainnya, 0)}} <br />
                   <span>(Items)</span>
                 </p>
               </div>
@@ -231,23 +231,23 @@
             </div>
             <div class="row mt-1">
               <div class="col-12 item-card-value text-white">
-                Rp. {{ number_format($valueWBIB, 2)}}
+                Rp. {{ number_format($valueLainnya, 2)}}
               </div>
             </div>
             <div class="row mt-1">
-              <div class="col-4 item-card-company text-white">Company</div>
-              <div class="col-4 item-card-company text-white">Stock</div>
+              <div class="col-5 item-card-company text-white">Product</div>
+              <div class="col-3 item-card-company text-white">Stock</div>
               <div class="col-4 item-card-company text-white">Value</div>
             </div>
-            @foreach ($companyWBIB as $item)
-            <div class="card-info">
-              <div class="row">
-                <div class="col-4 item-card-info text-white">{{ $item->company }}</div>
-                <div class="col-4 item-card-info text-white">{{ $item->quantity }}</div>
-                <div class="col-4 item-card-info text-white">{{ $item->value }}</div>
-              </div>
-            </div>            
-            @endforeach
+            <div class="card-info scroll">
+              @foreach ($companyLainnya as $item)
+                <div class="row">
+                  <div class="col-5 item-card-info text-white">{{ $item->product->product_name }}</div>
+                  <div class="col-3 item-card-info text-white">{{ $item->quantity }}</div>
+                  <div class="col-4 item-card-info text-white">{{ $item->value }}</div>
+                </div>
+              @endforeach
+            </div> 
           </div>
         </div>
       </a>
@@ -401,16 +401,14 @@
 <script>
   const dataWBIB = {
     labels: [
-      "{{ $companyWBIB1st->company ?? "a" }}",
-      "{{ $companyWBIB2nd->company ?? "b" }}",
-      "{{ $companyWBIB3rd->company ?? "c" }}",
+      "RTE",
+      "RC",
     ],
     datasets: [{
       label: 'WBIB Dataset',
       data: [ 
-        {{ $companyWBIB1st->value ?? "0" }},      
-        {{ $companyWBIB2nd->value ?? "0" }},
-        {{ $companyWBIB3rd->value ?? "0" }},
+        {{ $tanjungsariWBIBVal ?? "0" }},      
+        {{ $citramasWBIBVal ?? "0" }},
       ],
       backgroundColor: [
         'rgba(210, 151, 59, 1)',
@@ -430,7 +428,7 @@
       responsive: true,
       plugins: {
         legend: {
-          display: false,
+          display: true,
           position: 'bottom',
           align: 'center',
           labels: {
@@ -457,6 +455,19 @@
           color: '#fff'
         }
       },
+      tooltips: {
+            callbacks: {
+                label: function(tooltipItem, data) {
+                    var label = data.datasets[tooltipItem.datasetIndex].label || '';
+
+                    if (label) {
+                        label += ': ';
+                    }
+                    label += isNaN(tooltipItem.yLabel) ? '0' : tooltipItem.yLabel;
+                    return label;
+                }
+            }
+        }
     },
     plugins: [ChartDataLabels]
   };
@@ -470,16 +481,12 @@
 <script>
   const dataASSP = {
     labels: [
-      "{{ $companyWBIB1st->company ?? "a" }}",
-      "{{ $companyWBIB2nd->company ?? "b" }}",
-      "{{ $companyWBIB3rd->company ?? "c" }}",
+      "MRB",
     ],
     datasets: [{
       label: 'ASSP Dataset',
       data: [ 
-        {{ $companyWBIB1st->value ?? "0" }},      
-        {{ $companyWBIB2nd->value ?? "0" }},
-        {{ $companyWBIB3rd->value ?? "0" }},
+        {{ $banjaranASSPVal ?? "0" }},      
       ],
       backgroundColor: [
         'rgba(210, 151, 59, 1)',
@@ -499,7 +506,7 @@
       responsive: true,
       plugins: {
         legend: {
-          display: false,
+          display: true,
           position: 'bottom',
           align: 'center',
           labels: {
@@ -526,6 +533,19 @@
           color: '#fff'
         }
       },
+      tooltips: {
+            callbacks: {
+                label: function(tooltipItem, data) {
+                    var label = data.datasets[tooltipItem.datasetIndex].label || '';
+
+                    if (label) {
+                        label += ': ';
+                    }
+                    label += isNaN(tooltipItem.yLabel) ? '0' : tooltipItem.yLabel;
+                    return label;
+                }
+            }
+        }
     },
     plugins: [ChartDataLabels]
   };
@@ -539,16 +559,12 @@
 <script>
   const dataLainnya = {
     labels: [
-      "{{ $companyWBIB1st->company ?? "a" }}",
-      "{{ $companyWBIB2nd->company ?? "b" }}",
-      "{{ $companyWBIB3rd->company ?? "c" }}",
+      "MRB",
     ],
     datasets: [{
-      label: 'ASSP Dataset',
+      label: 'Lainnya Dataset',
       data: [ 
-        {{ $companyWBIB1st->value ?? "0" }},      
-        {{ $companyWBIB2nd->value ?? "0" }},
-        {{ $companyWBIB3rd->value ?? "0" }},
+        {{ $banjaranLainnyaVal ?? "0" }},
       ],
       backgroundColor: [
         'rgba(210, 151, 59, 1)',
@@ -568,7 +584,7 @@
       responsive: true,
       plugins: {
         legend: {
-          display: false,
+          display: true,
           position: 'bottom',
           align: 'center',
           labels: {

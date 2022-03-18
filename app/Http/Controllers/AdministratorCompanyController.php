@@ -37,6 +37,7 @@ class AdministratorCompanyController extends Controller
     return view('administrator.companies.create', [
       'companies' => Company::all(),
       'groups' => Group::all()
+        ->where('active', true)
     ]);
   }
 

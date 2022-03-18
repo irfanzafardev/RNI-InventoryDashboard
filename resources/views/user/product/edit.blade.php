@@ -189,7 +189,7 @@
             @enderror
           </div>
           <button type="submit" class="btn btn-primary bg-darkblue ms-3 float-end">Update</button>
-          <a href="/administrator/products" class="btn btn btn-light float-end">Cancel</a>
+          <a href="/staff/products" class="btn btn btn-light float-end">Cancel</a>
         </div>
       </div>
     </form>
@@ -223,7 +223,7 @@
       }
     });
 
-    $('#category').on('change', function() {
+    $('#category').on('change', function() {4
       var categoryID = $(this).val();
       if(categoryID) {
           $.ajax({

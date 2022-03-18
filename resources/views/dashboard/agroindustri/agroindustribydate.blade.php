@@ -7,6 +7,11 @@
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb bg-transparent pt-4">
       <li class="breadcrumb-item text-dark" aria-current="page">
+        <a href="/dashboard">
+          Consolidation
+        </a>
+      </li>
+      <li class="breadcrumb-item text-dark active" aria-current="page">
         Agroindustri
       </li>
       <li class="breadcrumb-item text-dark active" aria-current="page">
@@ -18,7 +23,7 @@
 
 <ul class="nav time-nav">
   <li class="nav-item mr-3">
-    <a class="nav-link active" href="/dashboard/agroindustri">Daily</a>
+    <a class="nav-link" href="/dashboard/agroindustri">Latest</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="/dashboard/agroindustri/products">Product</a>
@@ -97,85 +102,67 @@
 <div class="collapse mt-3" id="collapseExample">
   <div class="single-cards row">
     <div class="col-12 col-md-6 col-lg-4 mb-3">
-      <a href="#" class="text-decoration-none">
-        <div class="card single-card">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-6">
-                <h5 class="card-title item-card-title text-white">
-                  Performance Stats
-                </h5>
-              </div>
+      <div class="card single-card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-6">
+              <h5 class="card-title item-card-title text-white">
+                Comparison Stats
+              </h5>
             </div>
-            <div class="row">
-              <div class="col-12">
-                <div class="main-chart d-flex justify-content-center">
-                  <canvas id="AgroPerformance"></canvas>
-                </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="main-chart d-flex justify-content-center">
+                <canvas id="AgroPerformance"></canvas>
               </div>
             </div>
           </div>
         </div>
-      </a>
+      </div>
     </div>
     <div class="col-12 col-md-6 col-lg-4 mb-3">
-      <a href="#" class="text-decoration-none">
-        <div class="card single-card">
-          <div class="card-body">
-            <div class="row first-single-card-row">
-              <div class="col-6">
-                <h5 class="card-title item-card-title text-white ">
-                  Gula
-                </h5>
-                <p class="card-subtitle item-card-subtitle mb-2 text-white">
-                  {{ number_format($quantityGula, 0)}} <br />
-                  <span>(kg)</span>
-                </p>
-              </div>
-              <div class="col-6">
-                <div class="donut-chart pr-3 pt-2">
-                  <canvas id="ChartGulaByCompany"></canvas>
-                </div>
-              </div>
+      <div class="card single-card">
+        <div class="card-body">
+          <div class="row first-single-card-row">
+            <div class="col-6">
+              <h5 class="card-title item-card-title text-white ">
+                Gula
+              </h5>
+              <p class="card-subtitle item-card-subtitle mb-2 text-white">
+                {{ number_format($quantityGula, 0)}} <br />
+                <span>(kg)</span>
+              </p>
             </div>
-            <div class="row mt-1">
-              <div class="col-12 item-card-value text-white">
-                Rp. {{ number_format($valueGula, 2)}}
+            <div class="col-6">
+              <div class="donut-chart pr-3 pt-2">
+                <canvas id="ChartGulaByCompany"></canvas>
               </div>
-            </div>
-            <div class="row mt-2">
-              <div class="col-4 item-card-company text-white">Company</div>
-              <div class="col-4 item-card-company text-white">Stock</div>
-              <div class="col-4 item-card-company text-white">
-                Value 
-                {{-- @if (null !== $companyGula1st)
-                    {{ $companyGula1st->value }}
-                @endif --}}
-              </div>
-            </div>
-            <div id="companyGulaBody">
-              @php
-                $count = 0;
-                foreach ($companyGula as $item) {
-                  $value = $item->value;
-                  $quantity = $item->quantity;
-                  $company = $item->company;
-                  echo '
-                    <div class="card-info">
-                      <div class="row">
-                        <div class="col-4 item-card-info text-white">'.$company.'</div>
-                        <div class="col-4 item-card-info text-white">'.$quantity.'</div>
-                        <div id="value'.$count.'" class="col-4 item-card-info text-white">'.$value.'</div>
-                      </div>
-                    </div>
-                    ';
-                  ++$count;
-                }
-              @endphp
             </div>
           </div>
+          <div class="row mt-1">
+            <div class="col-12 item-card-value text-white">
+              Rp. {{ number_format($valueGula, 2)}}
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-5 item-card-company text-white">Product</div>
+            <div class="col-3 item-card-company text-white">Stock</div>
+            <div class="col-4 item-card-company text-white">Value</div>
+          </div>
+          <div id="companyGulaBody">
+            <div class="card-info scroll">
+              @foreach ($companyGula as $item)
+                <div class="row">
+                  <div class="col-5 item-card-info text-white">{{ $item->product->product_name }}</div>
+                  <div class="col-3 item-card-info text-white pl-3">{{ $item->quantity }}</div>
+                  <div class="col-4 item-card-info text-white pl-3">{{ $item->value }}</div>
+                </div>
+              @endforeach
+            </div>       
+          </div>
         </div>
-      </a>
+      </div>
     </div>
     <div class="col-12 col-md-6 col-lg-4 mb-3">
       <a href="#" class="text-decoration-none">
@@ -205,23 +192,19 @@
               </div>
             </div>
             <div class="row mt-1">
-              <div class="col-4 item-card-company text-white">
-                Company
-              </div>
+              <div class="col-4 item-card-company text-white">Product</div>
               <div class="col-4 item-card-company text-white">Stock</div>
               <div class="col-4 item-card-company text-white">Value</div>
             </div>
-            @foreach ($companyTetes as $item)
-            <div class="card-info">
-              <div class="row">
-                <div class="col-4 item-card-info text-white">
-                  {{ $item->company }}
+            <div class="card-info scroll">
+              @foreach ($companyTetes as $item)
+                <div class="row">
+                  <div class="col-4 item-card-info text-white">{{ $item->product->product_name }}</div>
+                  <div class="col-4 item-card-info text-white">{{ $item->quantity }}</div>
+                  <div class="col-4 item-card-info text-white">{{ $item->value }}</div>
                 </div>
-                <div class="col-4 item-card-info text-white">{{ $item->quantity }}</div>
-                <div class="col-4 item-card-info text-white">{{ $item->value }}</div>
-              </div>
-            </div>            
-            @endforeach
+              @endforeach
+            </div>     
           </div>
         </div>
       </a>
@@ -250,23 +233,19 @@
               </div>
             </div>
             <div class="row mt-1">
-              <div class="col-4 item-card-company text-white">
-                Company
-              </div>
+              <div class="col-4 item-card-company text-white">Product</div>
               <div class="col-4 item-card-company text-white">Stock</div>
               <div class="col-4 item-card-company text-white">Value</div>
             </div>
-            @foreach ($companyTeh as $item)
-            <div class="card-info">
-              <div class="row">
-                <div class="col-4 item-card-info text-white">
-                  {{ $item->company }}
+            <div class="card-info scroll">
+              @foreach ($companyTeh as $item)
+                <div class="row">
+                  <div class="col-4 item-card-info text-white">{{ $item->product->product_name }}</div>
+                  <div class="col-4 item-card-info text-white">{{ $item->quantity }}</div>
+                  <div class="col-4 item-card-info text-white">{{ $item->value }}</div>
                 </div>
-                <div class="col-4 item-card-info text-white">{{ $item->quantity }}</div>
-                <div class="col-4 item-card-info text-white">{{ $item->value }}</div>
-              </div>
-            </div>            
-          @endforeach
+              @endforeach
+            </div>
           </div>
         </div>
       </a>
@@ -295,23 +274,23 @@
             </div>
             <div class="row mt-1">
               <div class="col-12 item-card-value text-white">
-                Rp. {{ number_format($valueSawit, 0)}}
+                Rp. {{ number_format($valueSawit, 2)}}
               </div>
             </div>
             <div class="row mt-1">
-              <div class="col-4 item-card-company text-white">Company</div>
+              <div class="col-4 item-card-company text-white">Product</div>
               <div class="col-4 item-card-company text-white">Stock</div>
               <div class="col-4 item-card-company text-white">Value</div>
             </div>
-            @foreach ($companySawit as $item)
-            <div class="card-info">
-              <div class="row">
-                <div class="col-4 item-card-info text-white">{{ $item->company }}</div>
-                <div class="col-4 item-card-info text-white">{{ $item->quantity }}</div>
-                <div class="col-4 item-card-info text-white">{{ $item->value }}</div>
-              </div>
-            </div>            
-          @endforeach
+            <div class="card-info scroll">
+              @foreach ($companySawit as $item)
+                <div class="row">
+                  <div class="col-4 item-card-info text-white">{{ $item->product->product_name }}</div>
+                  <div class="col-4 item-card-info text-white">{{ $item->quantity }}</div>
+                  <div class="col-4 item-card-info text-white">{{ $item->value }}</div>
+                </div>
+              @endforeach
+            </div>
           </div>
         </div>
       </a>
@@ -342,23 +321,19 @@
               </div>
             </div>
             <div class="row mt-1">
-              <div class="col-4 item-card-company text-white">
-                Company
-              </div>
+              <div class="col-4 item-card-company text-white">Product</div>
               <div class="col-4 item-card-company text-white">Stock</div>
               <div class="col-4 item-card-company text-white">Value</div>
             </div>
-            @foreach ($companyKaret as $item)
-            <div class="card-info">
-              <div class="row">
-                <div class="col-4 item-card-info text-white">
-                  {{ $item->company }}
+            <div class="card-info scroll">
+              @foreach ($companyKaret as $item)
+                <div class="row">
+                  <div class="col-4 item-card-info text-white">{{ $item->product->product_name }}</div>
+                  <div class="col-4 item-card-info text-white">{{ $item->quantity }}</div>
+                  <div class="col-4 item-card-info text-white">{{ $item->value }}</div>
                 </div>
-                <div class="col-4 item-card-info text-white">{{ $item->quantity }}</div>
-                <div class="col-4 item-card-info text-white">{{ $item->value }}</div>
-              </div>
-            </div>            
-          @endforeach
+              @endforeach
+            </div> 
           </div>
         </div>
       </a>
@@ -512,25 +487,21 @@
 <script>
   const dataGula = {
     labels: [
-      "{{ $companyGula1st->company ?? "a" }}",
-      "{{ $companyGula2nd->company ?? "b" }}",
-      "{{ $companyGula3rd->company ?? "c" }}",
-      "{{ $companyGula4th->company ?? "d" }}",
+      "RA",
+      "CB",
     ],
     datasets: [{
       label: 'Gula Dataset',
       data: [ 
-        {{ $companyGula1st->value ?? "0" }},      
-        {{ $companyGula2nd->value ?? "0" }},
-        {{ $companyGula3rd->value ?? "0" }},
-        {{ $companyGula4th->value ?? "0" }},
+        {{ $rajawaliGulaVal ?? "0" }},      
+        {{ $candiGulaVal ?? "0" }},
       ],
       backgroundColor: [
         'rgba(210, 151, 59, 1)',
         'rgba(232, 202, 129, 1)',
       ],
       borderColor:'#111F38',
-      hoverOffset: 3,
+      hoverOffset: 10,
     }]
   };
 
@@ -543,7 +514,7 @@
       responsive: true,
       plugins: {
         legend: {
-          display: false,
+          display: true,
           position: 'bottom',
           align: 'center',
           labels: {
@@ -570,6 +541,19 @@
           color: '#fff'
         }
       },
+      tooltips: {
+            callbacks: {
+                label: function(tooltipItem, data) {
+                    var label = data.datasets[tooltipItem.datasetIndex].label || '';
+
+                    if (label) {
+                        label += ': ';
+                    }
+                    label += isNaN(tooltipItem.yLabel) ? '0' : tooltipItem.yLabel;
+                    return label;
+                }
+            }
+        }
     },
     plugins: [ChartDataLabels]
   };
@@ -581,16 +565,84 @@
 </script>
 
 <script>
-  const dataTeh = {
+  const dataTetes = {
     labels: [
-      "{{ $companyTeh1st->company ?? "a" }}",
-      "{{ $companyTehs2nd->company ?? "b" }}",
+      "KBB",
+      "CB",
+      "RA",
     ],
     datasets: [{
       label: 'Tetes Dataset',
       data: [
-        {{ $companyTeh1st->value ?? "0" }},      
-        {{ $companyTeh2nd->value ?? "0" }}
+        {{ $krebetTetesVal ?? 0 }},      
+        {{ $rajawaliTetesVal ?? 0 }},
+        {{ $candiTetesVal ?? 0 }},
+      ],
+      backgroundColor: [
+        "rgba(132, 178, 156, 1)",
+        'rgba(210, 151, 59, 1)',
+        'rgba(232, 202, 129, 1)',
+      ],
+      borderColor:'#111F38',
+      hoverOffset: 3,
+    }]
+  };
+
+  const configTetes = {
+    type: 'doughnut',
+    data: dataTetes,
+    options: {
+      circumference: 	180,
+      rotation: 270,
+      responsive: true,
+      plugins: {
+        legend: {
+          display: true,
+          position: 'bottom',
+          align: 'center',
+          labels: {
+            boxWidth: 10,
+            font: {
+              size: 8,
+            },
+            color: '#fff'
+          }
+        },
+        datalabels: {
+          formatter: (value, context) => {
+            const datapoints = context.chart.data.datasets[0].data;
+            function totalSum(total, datapoint)  {
+              return total + datapoint;
+            }
+            const totalValue = datapoints.reduce(totalSum, 0);
+            const PercentageValue = (value / totalValue * 100).toFixed(1);
+            return `${PercentageValue}%`;
+          },
+          font: {
+            size: 10,
+          },
+          color: '#fff',
+        },
+      },
+    },
+    plugins: [ChartDataLabels]
+  };
+
+  const ChartTetes = new Chart(
+    document.getElementById('ChartTetesByCompany'),
+    configTetes
+  );
+</script>
+
+<script>
+  const dataTeh = {
+    labels: [
+      "MK",
+    ],
+    datasets: [{
+      label: 'Tetes Dataset',
+      data: [
+        {{ $kerinciTehVal ?? 0 }}
       ],
       backgroundColor: [
         'rgba(210, 151, 59, 1)',
@@ -610,7 +662,7 @@
       responsive: true,
       plugins: {
         legend: {
-          display: false,
+          display: true,
           position: 'bottom',
           align: 'center',
           labels: {
@@ -648,83 +700,16 @@
 </script>
 
 <script>
-  const dataTetes = {
-    labels: [
-      "{{ $companyTetes1st->company ?? "a" }}",
-      "{{ $companyTetes2nd->company ?? "b" }}",
-    ],
-    datasets: [{
-      label: 'Tetes Dataset',
-      data: [
-        {{ $companyTetes1st->value ?? "0" }},      
-        {{ $companyTetes2nd->value ?? "0" }}
-      ],
-      backgroundColor: [
-        'rgba(210, 151, 59, 1)',
-        'rgba(232, 202, 129, 1)',
-      ],
-      borderColor:'#111F38',
-      hoverOffset: 3,
-    }]
-  };
-
-  const configTetes = {
-    type: 'doughnut',
-    data: dataTetes,
-    options: {
-      circumference: 	180,
-      rotation: 270,
-      responsive: true,
-      plugins: {
-        legend: {
-          display: false,
-          position: 'bottom',
-          align: 'center',
-          labels: {
-            boxWidth: 10,
-            font: {
-              size: 8,
-            },
-            color: '#fff'
-          }
-        },
-        datalabels: {
-          formatter: (value, context) => {
-            const datapoints = context.chart.data.datasets[0].data;
-            function totalSum(total, datapoint)  {
-              return total + datapoint;
-            }
-            const totalValue = datapoints.reduce(totalSum, 0);
-            const PercentageValue = (value / totalValue * 100).toFixed(1);
-            return `${PercentageValue}%`;
-          },
-          font: {
-            size: 10,
-          },
-          color: '#fff'
-        }
-      },
-    },
-    plugins: [ChartDataLabels]
-  };
-
-  const ChartTetes = new Chart(
-    document.getElementById('ChartTetesByCompany'),
-    configTetes
-  );
-</script>
-
-<script>
   const dataSawit = {
     labels: [
-      "{{ $companySawit1st->company ?? "a" }}",
-      "{{ $companySawits2nd->company ?? "b" }}",
+      "MO",
+      "LAK",
     ],
     datasets: [{
       label: 'Tetes Dataset',
       data: [
-        {{ $companySawit1st->value ?? "0" }},      
-        {{ $companySawit2nd->value ?? "0" }}
+        {{ $oganSawitVal ?? "0" }},      
+        {{ $laskarSawitVal ?? "0" }}
       ],
       backgroundColor: [
         'rgba(210, 151, 59, 1)',
@@ -744,7 +729,7 @@
       responsive: true,
       plugins: {
         legend: {
-          display: false,
+          display: true,
           position: 'bottom',
           align: 'center',
           labels: {

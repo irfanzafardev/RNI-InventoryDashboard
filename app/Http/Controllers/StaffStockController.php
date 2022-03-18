@@ -26,11 +26,14 @@ class StaffStockController extends Controller
   {
     $company = Auth::user()->company->company_name;
     $date = Carbon::today()->toDateString();
+    $today = Carbon::today()->toDateString();
     return view('user.stocks.stock', [
       'stocks' => Stock::where('date', '=', $date)
         ->where('company', $company)
         ->get(),
-      'allStocks' => Stock::where('company', $company)->get()
+      'allStocks' => Stock::where('company', $company)
+        ->whereNotIn('date', [$date, $today])
+        ->get()
     ]);
   }
 
@@ -50,7 +53,9 @@ class StaffStockController extends Controller
       $order = 100001;
       $code = 'STC-' . $userid . $tanggal . $order;
     } else {
-      $pull = Stock::all()->last();
+      $pull = Stock::latest('id')
+        ->where('company', $company)
+        ->first();
       $order = (int)substr($pull->stock_code, -6) + 1;
       $code = 'STC-' . $userid . $tanggal . $order;
     }

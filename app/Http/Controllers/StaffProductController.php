@@ -127,7 +127,8 @@ class StaffProductController extends Controller
       'users' => User::all(),
       'companies' => Company::all(),
       'groups' => Group::all(),
-      'categories' => Category::all()->where('group_id', $id),
+      'categories' => Category::all()
+        ->where('group_id', $id),
       'subcategories' => Subcategory::all(),
       'units' => Unit::all(),
     ]);

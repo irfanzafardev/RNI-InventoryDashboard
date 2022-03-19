@@ -69,7 +69,10 @@
           <tr>
             <th>No</th>
             <th>Transact Code</th>
+            <th>Company</th>
             <th>Date</th>
+            <th>Category</th>
+            <th>Subcategory</th>
             <th>Product Name</th>
             <th>UOM</th>
             <th>Qty</th>
@@ -82,7 +85,10 @@
           <tr>
             <th>No</th>
             <th>Transact Code</th>
+            <th>Company</th>
             <th>Date</th>
+            <th>Category</th>
+            <th>Subcategory</th>
             <th>Product Name</th>
             <th>UOM</th>
             <th>Qty</th>
@@ -96,7 +102,10 @@
           <tr>
             <td>{{ $loop->iteration }}</td>
             <td>{{ $stock->stock_code }}</td>
+            <td>{{ $stock->company }}</td>
             <td>{{ $stock->date }}</td>
+            <td>{{ $stock->category }}</td>
+            <td>{{ $stock->product->subcategory->subcategory_name }}</td>
             <td>{{ $stock->product->product_name }}</td>
             <td>{{ $stock->product->unit->unit_symbol }}</td>
             <td>{{ number_format($stock->quantity, 0)}}</td>

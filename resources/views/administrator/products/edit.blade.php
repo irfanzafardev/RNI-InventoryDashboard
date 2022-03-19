@@ -67,26 +67,30 @@
           </div>
           <div class="form-group mb-3">
             <label for="company" class="form-label">Company</label>
-            <select
-              name="user_id"
-              class="form-select"
-              required
-              aria-readonly="true">
-              <option selected>Choose Company</option>
-              <option value="{{ Auth::user()->id }}" selected>{{ Auth::user()->company->company_name }}</option>
+            <select name="user_id" class="form-control form-select company-select" id="company">
+              <option hidden>Choose Company</option>
+              {{-- <option value="{{ Auth::user()->id }}" selected>{{ Auth::user()->company->company_name }}</option> --}}
+              @foreach ($companies as $company)
+                @if (old('company_id', $product->user->company->id) == $company->id)
+                  <option value="{{ $company->id }}" selected>{{ $company->company_name }}</option>
+                @else
+                  <option value="{{ $company->id }}">{{ $company->company_name }}</option>
+                @endif
+              @endforeach
             </select>
           </div>
           <div class="form-group mb-3">
-            <label for="product_class" class="form-label"
-              >Product Class</label
-            >
-            <select
-              name="group_id"
-              class="form-select"
-              aria-label="Default select example"
-            >
+            <label for="product_class" class="form-label">Product Class</label>
+            <select name="group_id" class="form-control form-select class-select" id="class">
               <option selected>Choose Class</option>
-              <option value="{{ Auth::user()->company->group->id }}" selected>{{ Auth::user()->company->group->group_name }}</option>
+              {{-- <option value="{{ Auth::user()->company->group->id }}" selected>{{ Auth::user()->company->group->group_name }}</option> --}}
+              @foreach ($groups as $group)
+                @if (old('category_id', $product->subcategory->category->group->id) == $group->id)
+                  <option value="{{ $group->id }}" selected>{{ $group->group_name }}</option>
+                @else
+                  <option value="{{ $group->id }}">{{ $group->group_name }}</option>
+                @endif
+              @endforeach
             </select>
           </div>
           <div class="form-group d-none mb-3">
@@ -95,8 +99,8 @@
               type="text"
               class="form-control @error('class') is-invalid @enderror"
               name="class"
-              id="class"
-              value="{{ Auth::user()->company->group->group_name }}"
+              id="class-read"
+              value="{{ old('class', $product->class) }}"
               readonly
             />
             @error('class')
@@ -111,8 +115,8 @@
               type="text"
               class="form-control @error('company') is-invalid @enderror"
               name="company"
-              id="company"
-              value="{{ Auth::user()->company->company_name }}"
+              id="company-read"
+              value="{{ old('company', $product->company) }}"
               readonly
             />
           </div>
@@ -121,7 +125,7 @@
         <div class="col-5">
           <div class="form-group mb-3">
             <label for="category" class="form-label">Product Category</label>
-            <select class="form-control form-select" name="category_id" id="category">
+            <select class="form-control form-select category-select" name="category_id" id="category">
               <option hidden>Choose Category</option>
               @foreach ($categories as $category)
                 @if (old('category_id', $product->subcategory->category_id) == $category->id)
@@ -139,27 +143,37 @@
               class="form-control @error('category') is-invalid @enderror"
               name="category"
               id="category-read"
-              value="{{ old('product_name', $product->category) }}"
+              value="{{ old('category', $product->category) }}"
               readonly
             />
           </div>
-          <div class="form-group mb-3">
+          {{-- <div class="form-group mb-3">
             <label for="subcategory" class="form-label d-block">Product Subcategory</label>
-            {{-- <small class="d-inline">Current Data : {{ $product->subcategory->subcategory_name }}</small> --}}
             <select class="form-control form-select @error('subcategory') is-invalid @enderror" name="subcategory_id" id="subcategory"></select>
             @error('subcategory')
               <div class="invalid-feedback">
                 {{ $message }}
               </div>
             @enderror
+          </div> --}}
+          <div class="form-group mb-3">
+            <label for="subcategory" class="form-label">Product Subcategory</label>
+            <select class="form-control form-select subcategory-select" name="subcategory_id" id="subcategory">
+              <option hidden>Choose Subategory</option>
+              @foreach ($subcategories as $subcategory)
+                @if (old('category_id', $product->subcategory->id) == $subcategory->id)
+                  <option value="{{ $subcategory->id }}" selected>{{ $subcategory->subcategory_name }}</option>
+                @else
+                  <option value="{{ $subcategory->id }}">{{ $subcategory->subcategory_name }}</option>
+                @endif
+              @endforeach
+            </select>
           </div>
           <div class="form-group mb-3">
-            <label for="product_unit" class="form-label"
-              >Product Unit</label
-            >
+            <label for="product_unit" class="form-label">Product Unit</label>
             <select
               name="unit_id"
-              class="form-select"
+              class="form-select unit-select"
               id="product_unit"
               aria-label="Default select example"
             >
@@ -196,78 +210,86 @@
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 <script>
   $(document).ready(function() {
-    $('#category').load('change', function() {
-      var categoryID = $(this).val();
-      if(categoryID) {
-          $.ajax({
-              url: '/getSubCategory/'+categoryID,
-              type: "GET",
-              data : {"_token":"{{ csrf_token() }}"},
-              dataType: "json",
-              success:function(data)
-              {
-                if(data){
-                    $('#subcategory').empty();
-                    $.each(data, function(key, subcategory){
-                        $('select[name="subcategory_id"]').append('<option value="'+ key + + subcategory.id +'">' + subcategory.subcategory_name+ '</option>');
-                    });
-                }else{
-                    $('#subcategory').empty();
-                }
-            }
-          });
-      }else{
-        $('#subcategory').empty();
-      }
+    $(".company-select").on("input", function () {
+      var $variable1 = $('#company option:selected').html();
+      document.getElementById("company-read").value = $variable1;
     });
 
-    $('#category').on('change', function() {
-      var categoryID = $(this).val();
-      if(categoryID) {
-          $.ajax({
-              url: '/getSubCategory/'+categoryID,
-              type: "GET",
-              data : {"_token":"{{ csrf_token() }}"},
-              dataType: "json",
-              success:function(data)
-              {
-                if(data){
-                    $('#subcategory').empty();
-                    $('#subcategory').append('<option hidden>Choose Subcategory</option>'); 
-                    $.each(data, function(key, subcategory){
-                        $('select[name="subcategory_id"]').append('<option value="'+ key + + subcategory.id +'">' + subcategory.subcategory_name+ '</option>');
-                    });
-                }else{
-                    $('#subcategory').empty();
-                }
-            }
-          });
-      }else{
-        $('#subcategory').empty();
-      }
+    $(".class-select").on("input", function () {
+      var $variable1 = $('#class option:selected').html();
+      document.getElementById("class-read").value = $variable1;
     });
 
-    $(".input").load("input", function () {
-      var x = document.getElementById("quantity").value;
-      x = parseFloat(x);
-
-      var y = document.getElementById("unit_price").value;
-      y = parseFloat(y);
-
-      document.getElementById("value").value = x * y;
+    $(".category-select").on("input", function () {
+      var $variable = $('#category option:selected').html();
+      document.getElementById("category-read").value = $variable;
     });
 
-    $(".input").on("input", function () {
-      var x = document.getElementById("quantity").value;
-      x = parseFloat(x);
+    $('.company-select').select2();
+    $('.class-select').select2();
+    $('.category-select').select2();
+    $('.subcategory-select').select2();
+    $('.unit-select').select2();
 
-      var y = document.getElementById("unit_price").value;
-      y = parseFloat(y);
 
-      document.getElementById("value").value = x * y;
-    });
+
+
+
+
+        // $('#category').load('change', function() {
+    //   var categoryID = $(this).val();
+    //   if(categoryID) {
+    //       $.ajax({
+    //           url: '/getSubCategory/'+categoryID,
+    //           type: "GET",
+    //           data : {"_token":"{{ csrf_token() }}"},
+    //           dataType: "json",
+    //           success:function(data)
+    //           {
+    //             if(data){
+    //                 $('#subcategory').empty();
+    //                 $.each(data, function(key, subcategory){
+    //                     $('select[name="subcategory_id"]').append('<option value="'+ key + + subcategory.id +'">' + subcategory.subcategory_name+ '</option>');
+    //                 });
+    //             }else{
+    //                 $('#subcategory').empty();
+    //             }
+    //         }
+    //       });
+    //   }else{
+    //     $('#subcategory').empty();
+    //   }
+    // });
+
+    // $('#category').on('change', function() {
+    //   var categoryID = $(this).val();
+    //   if(categoryID) {
+    //       $.ajax({
+    //           url: '/getSubCategoryAdmin/'+categoryID,
+    //           type: "GET",
+    //           data : {"_token":"{{ csrf_token() }}"},
+    //           dataType: "json",
+    //           success:function(data)
+    //           {
+    //             if(data){
+    //                 $('#subcategory').empty();
+    //                 $('#subcategory').append('<option hidden>Choose Subcategory</option>'); 
+    //                 $.each(data, function(key, subcategory){
+    //                     $('select[name="subcategory_id"]').append('<option value="'+ key + + subcategory.id +'">' + subcategory.subcategory_name+ '</option>');
+    //                 });
+    //             }else{
+    //                 $('#subcategory').empty();
+    //             }
+    //         }
+    //       });
+    //   }else{
+    //     $('#subcategory').empty();
+    //   }
+    // });
   });
 </script>
 @endsection

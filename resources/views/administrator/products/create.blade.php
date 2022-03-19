@@ -232,7 +232,7 @@
       var categoryID = $(this).val();
       if(categoryID) {
           $.ajax({
-              url: '/getSubCategory/'+categoryID,
+              url: '/getSubCategoryAdmin/'+categoryID,
               type: "GET",
               data : {"_token":"{{ csrf_token() }}"},
               dataType: "json",

@@ -226,7 +226,7 @@
             </div>
           </div>
           <div class="row mt-1 pr-2">
-            <div class="col-5 item-card-company text-white">Company</div>
+            <div class="col-5 item-card-company text-white">Product</div>
             <div class="col-3 item-card-company text-white">Stock</div>
             <div class="col-4 item-card-company text-white">Value</div>
           </div>
@@ -269,7 +269,7 @@
             </div>
           </div>
           <div class="row mt-1">
-            <div class="col-5 item-card-company text-white">Company</div>
+            <div class="col-5 item-card-company text-white">Product</div>
             <div class="col-3 item-card-company text-white">Stock</div>
             <div class="col-4 item-card-company text-white">Value</div>
           </div>
@@ -310,7 +310,7 @@
             </div>
           </div>
           <div class="row mt-1">
-            <div class="col-5 item-card-company text-white">Company</div>
+            <div class="col-5 item-card-company text-white">Product</div>
             <div class="col-3 item-card-company text-white">Stock</div>
             <div class="col-4 item-card-company text-white">Value</div>
           </div>

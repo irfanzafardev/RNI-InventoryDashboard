@@ -53,8 +53,7 @@
           <div class="form-group mb-3">
             <label for="group" class="form-label">Product Class</label>
             <select 
-            class="form-control form-select group @error('group') is-invalid @enderror" 
-            name="" 
+            class="form-control form-select class-select @error('group') is-invalid @enderror" 
             id="group" 
             required>
               <option value="">Choose product class</option>
@@ -82,9 +81,9 @@
               readonly
             />
           </div>
-          <div class="form-group mb-3 d-none" id="categoryview">
-            <label for="category" class="form-label">Product Category</label>
-            <select class="form-control form-select" name="category_id" id="category" required></select>
+          <div class="form-group mb-3" id="categoryview">
+            <label for="category" class="form-label">Product Category</label> <br>
+            <select class="form-control form-select category-select" name="category_id" id="category" required></select>
           </div>
           <button type="submit" class="btn btn-primary ms-3 bg-darkblue float-end">Submit</button>
           <a href="/administrator/subcategories" class="btn btn btn-light float-end">Cancel</a>
@@ -94,23 +93,24 @@
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 <script>
   $(document).ready(function() {
     $("#group").change(function(){
       $("#categoryview").removeClass("d-none");
     });
 
-    $(".group").on("input", function () {
+    $(".class-select").on("input", function () {
       var $variable = $('#group option:selected').html();
       document.getElementById("class-read").value = $variable;
     });
 
     $('#group').on('change', function() {
       var groupID = $(this).val();
-      // alert(groupID);
       if(groupID) {
           $.ajax({
-              url: '/getCategory/'+groupID,
+              url: '/getCategoryAdmin/'+groupID,
               type: "GET",
               data : {"_token":"{{ csrf_token() }}"},
               dataType: "json",
@@ -118,7 +118,7 @@
               {
                 if(data) {
                     $('#category').empty();
-                    $('#category').append('<option value="">Choose product category</option>'); 
+                    $('#category').append('<option value="">Choose category</option>'); 
                     $.each(data, function(key, category){
                       $('select[name="category_id"]').append('<option value="'+ category.id +'">' + category.category_name+ '</option>');
                     });
@@ -131,6 +131,9 @@
         $('#category').empty();
       }
     });
+
+    $('.class-select').select2();
+    $('.category-select').select2();
   });
 </script>
 @endsection

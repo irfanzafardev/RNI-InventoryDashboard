@@ -58,6 +58,7 @@
           <tr>
             <th>No</th>
             <th>Transact Code</th>
+            <th>Company</th>
             <th>Date</th>
             <th>Category</th>
             <th>Subcategory</th>
@@ -66,13 +67,14 @@
             <th>Qty</th>
             <th>Unit Price</th>
             <th>Value</th>
-            <th>Option</th>
+            <th class="d-none">Option</th>
           </tr>
         </thead>
         <tfoot>
           <tr>
             <th>No</th>
             <th>Transact Code</th>
+            <th>Company</th>
             <th>Date</th>
             <th>Category</th>
             <th>Subcategory</th>
@@ -81,7 +83,7 @@
             <th>Qty</th>
             <th>Unit Price</th>
             <th>Value</th>
-            <th>Option</th>
+            <th class="d-none">Option</th>
           </tr>
         </tfoot>
         <tbody>
@@ -89,6 +91,7 @@
           <tr>
             <td>{{ $loop->iteration }}</td>
             <td>{{ $stock->stock_code }}</td>
+            <td>{{ $stock->company }}</td>
             <td>{{ $stock->date }}</td>
             <td>{{ $stock->category }}</td>
             <td>{{ $stock->product->subcategory->subcategory_name }}</td>
@@ -97,7 +100,7 @@
             <td>{{ number_format($stock->quantity, 0)}}</td>
             <td>Rp. {{ number_format($stock->product->unit_price, 2) }}</td>
             <td>Rp. {{ number_format($stock->value, 2) }}</td>
-            <td>
+            <td class="d-none">
               <a href="/administrator/products/{{ $stock->id }}/edit">Edit</a>
               <a href="#" class="deleteStockIn" data-id="{{ $stock->id }}" data-name="{{ $stock->product->product_name }}">Delete</a>
             </td>

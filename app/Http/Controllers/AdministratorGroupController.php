@@ -79,6 +79,20 @@ class AdministratorGroupController extends Controller
     ]);
   }
 
+  public function sunting($id)
+  {
+    $group = Group::find($id);
+    // dd($data);
+    return view('administrator.groups.edit', compact('group'));
+  }
+
+  public function perbarui(Request $request, $id)
+  {
+    $group = Group::find($id);
+    $group->update($request->all());
+    return redirect('/administrator/classes')->with('success', 'Data has been successfully updated');
+  }
+
   /**
    * Update the specified resource in storage.
    *

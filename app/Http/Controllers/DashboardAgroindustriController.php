@@ -301,13 +301,18 @@ class DashboardAgroindustriController extends Controller
     $PTPGRajawaliI = "PT PG Rajawali I";
     $PTPGCandiBaru = "PT PG Candi Baru";
     $PGKrebetBaruI = "PG Krebet baru I";
-    $PTMitraKerinci   = "PT Mitra Kerinci";
+    $PTMitraKerinci = "PT Mitra Kerinci";
+    $PTLarasAstraKartika = "PT Laras Astra Kartika";
+    $PTMitraOgan = "PT Mitra Ogan";
+
     $dataproduct = Product::where('class', 'Agroindustri')->get();
 
     $dataproductPTPGRajawaliI = Product::where('company', $PTPGRajawaliI)->get();
     $dataproductPTPGCandiBaru = Product::where('company', $PTPGCandiBaru)->get();
     $dataproductPGKrebetBaruI = Product::where('company', $PGKrebetBaruI)->get();
     $dataproductPTMitraKerinci = Product::where('company', $PTMitraKerinci)->get();
+    $dataproductPTLarasAstraKartika = Product::where('company', $PTLarasAstraKartika)->get();
+    $dataproductPTMitraOgan = Product::where('company', $PTMitraOgan)->get();
 
     $dataProductLength = Product::where('class', 'Agroindustri')->count();
     $dataCategoryLength = Category::where('group_id', 2)->count();
@@ -322,7 +327,9 @@ class DashboardAgroindustriController extends Controller
         'dataproductPTPGRajawaliI',
         'dataproductPTPGCandiBaru',
         'dataproductPGKrebetBaruI',
-        'dataproductPTMitraKerinci'
+        'dataproductPTMitraKerinci',
+        'dataproductPTLarasAstraKartika',
+        'dataproductPTMitraOgan'
       )
     );
   }

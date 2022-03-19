@@ -121,7 +121,7 @@
         <div class="col-5">
           <div class="form-group mb-3">
             <label for="category" class="form-label">Product Category</label>
-            <select class="form-control form-select" name="category_id" id="category">
+            <select class="form-control form-select category-select" name="category_id" id="category">
               <option hidden>Choose Category</option>
               @foreach ($categories as $category)
                 @if (old('category_id', $product->subcategory->category_id) == $category->id)
@@ -139,27 +139,37 @@
               class="form-control @error('category') is-invalid @enderror"
               name="category"
               id="category-read"
-              value="{{ old('product_name', $product->category) }}"
+              value="{{ old('category', $product->category) }}"
               readonly
             />
           </div>
           <div class="form-group mb-3">
+            <label for="subcategory" class="form-label">Product Subcategory</label>
+            <select class="form-control form-select subcategory-select" name="subcategory_id" id="subcategory">
+              <option hidden>Choose Subategory</option>
+              @foreach ($subcategories as $subcategory)
+                @if (old('category_id', $product->subcategory->id) == $subcategory->id)
+                  <option value="{{ $subcategory->id }}" selected>{{ $subcategory->subcategory_name }}</option>
+                @else
+                  <option value="{{ $subcategory->id }}">{{ $subcategory->subcategory_name }}</option>
+                @endif
+              @endforeach
+            </select>
+          </div>
+          {{-- <div class="form-group mb-3">
             <label for="subcategory" class="form-label d-block">Product Subcategory</label>
-            {{-- <small class="d-inline">Current Data : {{ $product->subcategory->subcategory_name }}</small> --}}
-            <select class="form-control form-select @error('subcategory') is-invalid @enderror" name="subcategory_id" id="subcategory"></select>
+            <select class="form-control form-select subcategory-select @error('subcategory') is-invalid @enderror" name="subcategory_id" id="subcategory"></select>
             @error('subcategory')
               <div class="invalid-feedback">
                 {{ $message }}
               </div>
             @enderror
-          </div>
+          </div> --}}
           <div class="form-group mb-3">
-            <label for="product_unit" class="form-label"
-              >Product Unit</label
-            >
+            <label for="product_unit" class="form-label">Product Unit</label>
             <select
               name="unit_id"
-              class="form-select"
+              class="form-control form-select unit-select"
               id="product_unit"
               aria-label="Default select example"
             >
@@ -196,78 +206,70 @@
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 <script>
   $(document).ready(function() {
-    $('#category').load('change', function() {
-      var categoryID = $(this).val();
-      if(categoryID) {
-          $.ajax({
-              url: '/getSubCategory/'+categoryID,
-              type: "GET",
-              data : {"_token":"{{ csrf_token() }}"},
-              dataType: "json",
-              success:function(data)
-              {
-                if(data){
-                    $('#subcategory').empty();
-                    $.each(data, function(key, subcategory){
-                        $('select[name="subcategory_id"]').append('<option value="'+ key + + subcategory.id +'">' + subcategory.subcategory_name+ '</option>');
-                    });
-                }else{
-                    $('#subcategory').empty();
-                }
-            }
-          });
-      }else{
-        $('#subcategory').empty();
-      }
+    // $('#category').load('change', function() {
+    //   var categoryID = $(this).val();
+    //   if(categoryID) {
+    //       $.ajax({
+    //           url: '/getSubCategory/'+categoryID,
+    //           type: "GET",
+    //           data : {"_token":"{{ csrf_token() }}"},
+    //           dataType: "json",
+    //           success:function(data)
+    //           {
+    //             if(data){
+    //                 $('#subcategory').empty();
+    //                 $.each(data, function(key, subcategory){
+    //                     $('select[name="subcategory_id"]').append('<option value="'+ key + + subcategory.id +'">' + subcategory.subcategory_name+ '</option>');
+    //                 });
+    //             }else{
+    //                 $('#subcategory').empty();
+    //             }
+    //         }
+    //       });
+    //   }else{
+    //     $('#subcategory').empty();
+    //   }
+    // });
+
+    // $('#category').on('change', function() {4
+    //   var categoryID = $(this).val();
+    //   alert(categoryID);
+    //   if(categoryID) {
+    //       $.ajax({
+    //           url: '/getSubCategory/'+categoryID,
+    //           type: "GET",
+    //           data : {"_token":"{{ csrf_token() }}"},
+    //           dataType: "json",
+    //           success:function(data)
+    //           {
+    //             if(data){
+    //                 $('#subcategory').empty();
+    //                 $('#subcategory').append('<option hidden>Choose Subcategory</option>'); 
+    //                 $.each(data, function(key, subcategory){
+    //                     $('select[name="subcategory_id"]').append('<option value="'+ key + + subcategory.id +'">' + subcategory.subcategory_name+ '</option>');
+    //                 });
+    //             }else{
+    //                 $('#subcategory').empty();
+    //             }
+    //         }
+    //       });
+    //   }else{
+    //     $('#subcategory').empty();
+    //   }
+    // });
+
+    $(".category-select").on("input", function () {
+      var $variable = $('#category option:selected').html();
+      document.getElementById("category-read").value = $variable;
     });
 
-    $('#category').on('change', function() {4
-      var categoryID = $(this).val();
-      if(categoryID) {
-          $.ajax({
-              url: '/getSubCategory/'+categoryID,
-              type: "GET",
-              data : {"_token":"{{ csrf_token() }}"},
-              dataType: "json",
-              success:function(data)
-              {
-                if(data){
-                    $('#subcategory').empty();
-                    $('#subcategory').append('<option hidden>Choose Subcategory</option>'); 
-                    $.each(data, function(key, subcategory){
-                        $('select[name="subcategory_id"]').append('<option value="'+ key + + subcategory.id +'">' + subcategory.subcategory_name+ '</option>');
-                    });
-                }else{
-                    $('#subcategory').empty();
-                }
-            }
-          });
-      }else{
-        $('#subcategory').empty();
-      }
-    });
-
-    $(".input").load("input", function () {
-      var x = document.getElementById("quantity").value;
-      x = parseFloat(x);
-
-      var y = document.getElementById("unit_price").value;
-      y = parseFloat(y);
-
-      document.getElementById("value").value = x * y;
-    });
-
-    $(".input").on("input", function () {
-      var x = document.getElementById("quantity").value;
-      x = parseFloat(x);
-
-      var y = document.getElementById("unit_price").value;
-      y = parseFloat(y);
-
-      document.getElementById("value").value = x * y;
-    });
+    $('.category-select').select2();
+    $('.subcategory-select').select2();
+    $('.unit-select').select2();
   });
 </script>
 @endsection

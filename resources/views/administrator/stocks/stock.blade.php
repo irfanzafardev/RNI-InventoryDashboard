@@ -51,7 +51,7 @@
             {{ session('error') }}
           </div>
         @endif
-        <a href="/administrator/stocks/create" class="btn btn-primary bg-darkblue px-4 mb-3">
+        <a href="/administrator/stocks/create" class="btn btn-primary bg-darkblue d-none px-4 mb-3">
           Add Data
         </a>
         <div class="table-responsive">
@@ -65,6 +65,7 @@
               <tr>
                 <th>No</th>
                 <th>Transact Code</th>
+                <th>Company</th>
                 <th>Date</th>
                 <th>Product Name</th>
                 <th>UOM</th>
@@ -78,6 +79,7 @@
               <tr>
                 <th>No</th>
                 <th>Transact Code</th>
+                <th>Company</th>
                 <th>Date</th>
                 <th>Product Name</th>
                 <th>UOM</th>
@@ -92,6 +94,7 @@
               <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $stock->stock_code }}</td>
+                <td>{{ $stock->company }}</td>
                 <td>{{ $stock->date }}</td>
                 <td>{{ $stock->product->product_name }}</td>
                 <td>{{ $stock->product->unit->unit_symbol }}</td>
@@ -138,6 +141,7 @@
               <tr>
                 <th>No</th>
                 <th>Transact Code</th>
+                <th>Company</th>
                 <th>Date</th>
                 <th>Product Name</th>
                 <th>UOM</th>
@@ -151,6 +155,7 @@
               <tr>
                 <th>No</th>
                 <th>Transact Code</th>
+                <th>Company</th>
                 <th>Date</th>
                 <th>Product Name</th>
                 <th>UOM</th>
@@ -165,6 +170,7 @@
               <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $allStock->stock_code }}</td>
+                <td>{{ $stock->company }}</td>
                 <td>{{ $allStock->date }}</td>
                 <td>{{ $allStock->product->product_name }}</td>
                 <td>{{ $allStock->product->unit->unit_symbol }}</td>

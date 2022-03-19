@@ -80,7 +80,8 @@ class AdministratorCompanyController extends Controller
   {
     return view('administrator.companies.edit', [
       'company' => $company,
-      'groups' => Group::all(),
+      'groups' => Group::all()
+        ->where('active', true)
     ]);
   }
 

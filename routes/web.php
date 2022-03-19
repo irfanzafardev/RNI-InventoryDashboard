@@ -77,7 +77,7 @@ Route::middleware('role:superadmin')->group(function () {
 
   Route::resource('/administrator/products', AdministratorProductController::class);
   Route::get('/administrator/deleteproduct/{id}', [AdministratorProductController::class, 'deleteproduct'])->name('deleteproduct');
-  Route::get('getSubCategory/{id}', function ($id) {
+  Route::get('getSubCategoryAdmin/{id}', function ($id) {
     $subcategory = App\Models\Subcategory::where('category_id', $id)->where('active', true)->get();
     return response()->json($subcategory);
   });
@@ -89,6 +89,8 @@ Route::middleware('role:superadmin')->group(function () {
   Route::resource('/administrator/classes', AdministratorGroupController::class);
   Route::get('/administrator/deleteclass/{id}', [AdministratorGroupController::class, 'deleteclass'])->name('deleteClass');
   Route::get('/administrator/removegroup/{id}', [AdministratorGroupController::class, 'removeGroup'])->name('removeGroup');
+  Route::get('/administrator/sunting/{id}', [AdministratorGroupController::class, 'sunting'])->name('suntingGroup');
+  Route::post('/administrator/perbarui/{id}', [AdministratorGroupController::class, 'perbarui'])->name('perbaruiGroup');
 
   Route::resource('/administrator/categories', AdministratorCategoryController::class);
   Route::get('/administrator/deletecategory/{id}', [AdministratorCategoryController::class, 'deletecategory'])->name('deleteCategory');
@@ -97,8 +99,8 @@ Route::middleware('role:superadmin')->group(function () {
   Route::resource('/administrator/subcategories', AdministratorSubcategoryController::class);
   Route::get('/administrator/deletesubcategory/{id}', [AdministratorSubcategoryController::class, 'deletesubcategory'])->name('deleteSubcategory');
   Route::get('/administrator/removesubcategory/{id}', [AdministratorSubcategoryController::class, 'removeSubcategory'])->name('removeSubcategory');
-  Route::get('getCategory/{id}', function ($id) {
-    $category = App\Models\Category::where('group_id', $id)->get();
+  Route::get('getCategoryAdmin/{id}', function ($id) {
+    $category = App\Models\Category::where('group_id', $id)->where('active', true)->get();
     return response()->json($category);
   });
 
@@ -132,6 +134,10 @@ Route::middleware('role:staff')->group(function () {
 
   Route::resource('/staff/subcategories', StaffSubcategorytController::class);
   Route::get('/staff/removesubcategory/{id}', [AdministratorCompanyController::class, 'removeSubcategory'])->name('removeSubcategory');
+  Route::get('getCategory/{id}', function ($id) {
+    $category = App\Models\Category::where('group_id', $id)->where('active', true)->get();
+    return response()->json($category);
+  });
 
   Route::resource('/staff/units', StaffUnitController::class);
   Route::get('/staff/removeunit/{id}', [StaffUnitController::class, 'removeUnit'])->name('removeUnit');

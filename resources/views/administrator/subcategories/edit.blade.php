@@ -54,7 +54,7 @@
           <div class="form-group mb-3">
             <label for="group" class="form-label">Product Class</label>
             <select 
-            class="form-control form-select group @error('group') is-invalid @enderror" 
+            class="form-control form-select class-select @error('group') is-invalid @enderror" 
             name="" 
             id="group" 
             required>
@@ -73,20 +73,21 @@
                 </div>
             @enderror
           </div>
-          <div class="form-group d-none mb-3">
+          <div class="form-group mb-3">
             <label for="class" class="form-label">Class</label>
             <input
               type="text"
               class="form-control"
               name="class"
               id="class-read"
+              value="{{ old('class', $subcategory->class) }}"
               readonly
             />
           </div>
-          <small>Current Product Category : {{ $subcategory->category->category_name }}</small>
-          <div class="form-group mb-3 d-none" id="categoryview">
+          {{-- <small>Current Product Category : {{ $subcategory->category->category_name }}</small> --}}
+          <div class="form-group mb-3" id="categoryview">
             <label for="category" class="form-label">Product Category</label>
-            <select class="form-control form-select" name="category_id" id="category" required></select>
+            <select class="form-control form-select category-select" name="category_id" id="category" required></select>
           </div>
           <button type="submit" class="btn btn-primary ms-3 mt-5 bg-darkblue float-end">Submit</button>
           <a href="/administrator/subcategories" class="btn btn btn-light mt-5 float-end">Cancel</a>
@@ -96,15 +97,43 @@
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 <script>
   $(document).ready(function() {
     $("#group").change(function(){
       $("#categoryview").removeClass("d-none");
     });
 
-    $(".group").on("input", function () {
+    $(".class-select").on("input", function () {
       var $variable = $('#group option:selected').html();
       document.getElementById("class-read").value = $variable;
+    });
+
+    $('#group').load('change', function() {
+      var groupID = $(this).val();
+      // alert(groupID);
+      if(groupID) {
+          $.ajax({
+              url: '/getCategoryAdmin/'+groupID,
+              type: "GET",
+              data : {"_token":"{{ csrf_token() }}"},
+              dataType: "json",
+              success:function(data)
+              {
+                if(data) {
+                    $('#category').empty();
+                    $.each(data, function(key, category){
+                      $('select[name="category_id"]').append('<option value="'+ key + + category.id +'">' + category.category_name+ '</option>');
+                    });
+                }else {
+                    $('#category').empty();
+                }
+            }
+          });
+      }else{
+        $('#category').empty();
+      }
     });
 
     $('#group').on('change', function() {
@@ -112,7 +141,7 @@
       // alert(groupID);
       if(groupID) {
           $.ajax({
-              url: '/getCategory/'+groupID,
+              url: '/getCategoryAdmin/'+groupID,
               type: "GET",
               data : {"_token":"{{ csrf_token() }}"},
               dataType: "json",
@@ -133,6 +162,9 @@
         $('#category').empty();
       }
     });
+
+    $('.class-select').select2();
+    $('.category-select').select2();
   });
 </script>
 @endsection

@@ -62,7 +62,8 @@
             <td>{{ $loop->iteration }}</td>
             <td>{{ $group->group_name }}</td>
             <td class="text-center">
-              <a href="/administrator/classes/{{ $group->id }}/edit">Edit</a>
+              {{-- <a href="/administrator/classes/{{ $group->id }}/edit">Edit</a> --}}
+              <a href="/administrator/sunting/{{ $group->id }}">Edit</a>
               <a href="#" class="delete" data-id="{{ $group->id }}" data-name="{{ $group->group_name }}">Delete</a>
             </td>
           </tr>   

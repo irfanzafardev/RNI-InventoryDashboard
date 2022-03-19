@@ -34,7 +34,19 @@
   </li>
 
   <!-- Heading -->
+  <div class="nav-heading text-dark mx-3">Master Company</div>
+
+
+  <!-- Nav Item - Tables -->
+  <li class="nav-item">
+    <a class="nav-link {{ Request::is('administrator/companies*') ? 'active' : '' }} py-2" href="/administrator/companies">
+      <span>Master Company</span></a
+    >
+  </li>
+
+  <!-- Heading -->
   <div class="nav-heading text-dark mx-3">Master Data</div>
+
 
   <!-- Nav Item - Charts -->
   <li class="nav-item">
@@ -68,13 +80,6 @@
   <li class="nav-item">
     <a class="nav-link {{ Request::is('administrator/units*') ? 'active' : '' }} py-2" href="/administrator/units">
       <span>Product UOM</span></a
-    >
-  </li>
-
-  <!-- Nav Item - Tables -->
-  <li class="nav-item">
-    <a class="nav-link {{ Request::is('administrator/companies*') ? 'active' : '' }} py-2" href="/administrator/companies">
-      <span>Master Company</span></a
     >
   </li>
 

@@ -32,7 +32,7 @@
         {{ $message }}
       </div>
     @endif
-    <a href="/administrator/products/create" class="btn btn-primary bg-darkblue px-4 mb-3">
+    <a href="/administrator/products/create" class="btn btn-primary bg-darkblue d-none px-4 mb-3">
       Add Data
     </a>
     <div class="table-responsive">
@@ -53,7 +53,7 @@
             <th>Sub Category</th>
             <th>UOM</th>
             <th>Unit Price</th>
-            <th>Option</th>
+            <th class="">Option</th>
           </tr>
         </thead>
         <tfoot>
@@ -67,7 +67,7 @@
             <th>Sub Category</th>
             <th>UOM</th>
             <th>Unit Price</th>
-            <th>Option</th>
+            <th class="">Option</th>
           </tr>
         </tfoot>
         <tbody>
@@ -82,7 +82,7 @@
             <td>{{ $product->subcategory->subcategory_name }}</td>
             <td>{{ $product->unit->unit_name}}</td>
             <td>Rp. {{ number_format($product->unit_price, 2) }}</td>
-            <td>
+            <td class="">
               <a href="/administrator/products/{{ $product->id }}/edit">Edit</a>
               <a href="#" class="deleteProduct" data-id="{{ $product->id }}" data-name="{{ $product->product_name }}">Delete</a>
             </td>

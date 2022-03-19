@@ -82,6 +82,7 @@ class AdministratorCategoryController extends Controller
     return view('administrator.categories.edit', [
       'category' => $category,
       'groups' => Group::all()
+        ->where('active', true)
     ]);
   }
 

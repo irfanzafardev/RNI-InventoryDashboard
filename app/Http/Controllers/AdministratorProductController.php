@@ -114,15 +114,21 @@ class AdministratorProductController extends Controller
    */
   public function edit(Product $product)
   {
-    $id = Auth::user()->company->group->id;
+    // $id = Auth::user()->company->group->id;
     return view('administrator.products.edit', [
       'product' => $product,
       'users' => User::all(),
-      'companies' => Company::all(),
-      'groups' => Group::all(),
-      'categories' => Category::all()->where('group_id', $id),
-      'subcategories' => Subcategory::all(),
-      'units' => Unit::all(),
+      'companies' => Company::all()
+        ->where('active', true),
+      'groups' => Group::all()
+        ->where('active', true),
+      'categories' => Category::all()
+        ->where('active', true),
+      // ->where('group_id', $id),
+      'subcategories' => Subcategory::all()
+        ->where('active', true),
+      'units' => Unit::all()
+        ->where('active', true),
     ]);
   }
 

@@ -96,6 +96,12 @@
   <li class="nav-item" role="presentation">
     <button class="nav-link py-2 px-3" id="mitraKerinci-tab" data-bs-toggle="tab" data-bs-target="#mitraKerinci" type="button" role="tab" aria-controls="contact" aria-selected="false">PT Mitra Kerinci</button>
   </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link py-2 px-3" id="larasAstraKartika-tab" data-bs-toggle="tab" data-bs-target="#LarasAstraKartika" type="button" role="tab" aria-controls="contact" aria-selected="false">PT Laras Astra Kartika</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link py-2 px-3" id="mitraOgan-tab" data-bs-toggle="tab" data-bs-target="#MitraOgan" type="button" role="tab" aria-controls="contact" aria-selected="false">PT Mitra Ogan</button>
+  </li>
 </ul>
 <div class="tab-content" id="myTabContent">
   <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -301,6 +307,116 @@
             </tfoot>
             <tbody id="tbody">
               @foreach ($dataproductPTMitraKerinci as $product)
+              <tr>
+                <td>{{ $loop->iteration }}</td>
+                <td>{{ $product->user->company->company_name }}</td>
+                <td>{{ $product->subcategory->category->group->group_name }}</td>
+                <td>{{ $product->subcategory->category->category_name }}</td>
+                <td>{{ $product->subcategory->subcategory_name }}</td>
+                <td>{{ $product->product_name }}</td>
+                <td>{{ $product->unit->unit_symbol}}</td>
+                <td>Rp. {{ number_format($product->unit_price, 2) }}</td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane fade" id="LarasAstraKartika" role="tabpanel" aria-labelledby="contact-tab">
+    <div class="card my-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-dark">PT Laras Astra Kartika</h6>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table
+            class="table table-bordered display"
+            id="dataTable"
+            width="100%"
+            cellspacing="0">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Company</th>
+                <th>Class</th>
+                <th>Category</th>
+                <th>Sub Category</th>
+                <th>Product Name</th>
+                <th>UOM</th>
+                <th>Unit Price</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th>No</th>
+                <th>Company</th>
+                <th>Category</th>
+                <th>Class</th>
+                <th>Sub Category</th>
+                <th>Product Name</th>
+                <th>UOM</th>
+                <th>Unit Price</th>
+              </tr>
+            </tfoot>
+            <tbody id="tbody">
+              @foreach ($dataproductPTLarasAstraKartika as $product)
+              <tr>
+                <td>{{ $loop->iteration }}</td>
+                <td>{{ $product->user->company->company_name }}</td>
+                <td>{{ $product->subcategory->category->group->group_name }}</td>
+                <td>{{ $product->subcategory->category->category_name }}</td>
+                <td>{{ $product->subcategory->subcategory_name }}</td>
+                <td>{{ $product->product_name }}</td>
+                <td>{{ $product->unit->unit_symbol}}</td>
+                <td>Rp. {{ number_format($product->unit_price, 2) }}</td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane fade" id="MitraOgan" role="tabpanel" aria-labelledby="contact-tab">
+    <div class="card my-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-dark">PT Mitra Ogan</h6>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table
+            class="table table-bordered display"
+            id="dataTable"
+            width="100%"
+            cellspacing="0">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Company</th>
+                <th>Class</th>
+                <th>Category</th>
+                <th>Sub Category</th>
+                <th>Product Name</th>
+                <th>UOM</th>
+                <th>Unit Price</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th>No</th>
+                <th>Company</th>
+                <th>Category</th>
+                <th>Class</th>
+                <th>Sub Category</th>
+                <th>Product Name</th>
+                <th>UOM</th>
+                <th>Unit Price</th>
+              </tr>
+            </tfoot>
+            <tbody id="tbody">
+              @foreach ($dataproductPTMitraOgan as $product)
               <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $product->user->company->company_name }}</td>

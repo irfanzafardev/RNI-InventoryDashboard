@@ -36,9 +36,12 @@ class AdministratorSubcategoryController extends Controller
   public function create()
   {
     return view('administrator.subcategories.create', [
-      'subcategories' => Subcategory::all(),
-      'categories' => Category::all(),
+      'subcategories' => Subcategory::all()
+        ->where('active', true),
+      'categories' => Category::all()
+        ->where('active', true),
       'groups' => Group::all()
+        ->where('active', true)
     ]);
   }
 
@@ -82,8 +85,10 @@ class AdministratorSubcategoryController extends Controller
   {
     return view('administrator.subcategories.edit', [
       'subcategory' => $subcategory,
-      'categories' => Category::all(),
+      'categories' => Category::all()
+        ->where('active', true),
       'groups' => Group::all()
+        ->where('active', true)
     ]);
   }
 

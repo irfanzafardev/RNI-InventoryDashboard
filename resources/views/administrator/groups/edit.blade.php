@@ -29,8 +29,8 @@
 <!-- AddData-form -->
 <div class="row">
   <div class="col-12">
-    <form method="post" action="/administrator/classes/{{ $group->id }}">
-      @method('put')
+    <form method="post" action="/administrator/perbarui/{{ $group->id }}">
+      {{-- @method('put') --}}
       @csrf
       <div class="row">
         <div class="col-5">

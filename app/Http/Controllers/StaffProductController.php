@@ -11,6 +11,7 @@ use App\Models\Category;
 use App\Models\Subcategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Spatie\QueryBuilder\AllowedFilter;
 
@@ -28,13 +29,16 @@ class StaffProductController extends Controller
 
   public function index()
   {
+    $now = Carbon::now()->format('d F Y');
+    $today = Carbon::now()->format('D');
+
     $id = Auth::user()->id;
     $company = Auth::user()->company->company_name;
     $dataproduct = Product::all()
       ->where('company', $company)
       ->where('active', true);
 
-    return view('user.product.product', compact('dataproduct'));
+    return view('user.product.product', compact('now', 'today', 'dataproduct'));
   }
 
   /**
@@ -44,6 +48,8 @@ class StaffProductController extends Controller
    */
   public function create()
   {
+    $now = Carbon::now()->format('d F Y');
+    $today = Carbon::now()->format('D');
     $check = Product::count();
     $userid = Auth::user()->id;
     $companyid = Auth::user()->company->id;
@@ -60,7 +66,7 @@ class StaffProductController extends Controller
     }
     // dd($pull->product_code);
     $id = Auth::user()->company->group->id;
-    return view('user.product.create', compact('code'), [
+    return view('user.product.create', compact('code', 'now', 'today'), [
       'users' => User::all(),
       'companies' => Company::all(),
       'groups' => Group::all()

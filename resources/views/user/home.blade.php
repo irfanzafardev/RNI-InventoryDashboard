@@ -1,6 +1,7 @@
 @extends('user.layouts.main')
 
 @section('breadcrumb')
+{{-- {{ $today }}, {{ $now }} --}}
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb bg-transparent pt-4">
     <li class="breadcrumb-item text-dark" aria-current="page">
@@ -108,7 +109,6 @@
 </div>
 
 <!-- DataTales Today's input -->
-<div class="row">
   <div class="card my-4">
     <div class="card-header py-3">
       <h6 class="m-0 font-weight-bold text-dark">Today's input</h6>
@@ -182,7 +182,6 @@
       </div>
     </div>
   </div>
-</div>
 @endsection
 
 

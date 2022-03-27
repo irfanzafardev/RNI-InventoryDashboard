@@ -22,6 +22,9 @@ class StaffHomeController extends Controller
     $day = Carbon::today()->toDateString();
     $company = Auth::user()->company->company_name;
 
+    $now = Carbon::now()->format('d F Y');
+    $today = Carbon::now()->format('D');
+
     $dataValue = Stock::where('date', '=', $day)
       ->where('company', $company)
       ->sum('value');
@@ -35,6 +38,6 @@ class StaffHomeController extends Controller
       ->where('company', $company)
       ->count();
 
-    return view('user.home', compact('dataProduct', 'dataStock', 'dataValue', 'dataTotalStock'));
+    return view('user.home', compact('now', 'today', 'dataProduct', 'dataStock', 'dataValue', 'dataTotalStock'));
   }
 }

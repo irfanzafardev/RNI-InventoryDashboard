@@ -17,7 +17,9 @@ class DashboardManufakturController extends Controller
 
   public function latest()
   {
-    $day = Carbon::today()->toDateString();
+    $day = Carbon::yesterday()->toDateString();
+    $now = Carbon::now()->format('d F Y');
+    $today = Carbon::now()->format('D');
 
     $datastocks = Stock::where('date', '=', Carbon::today()->toDateString())
       ->where('class', 'Manufaktur')->get();
@@ -91,6 +93,8 @@ class DashboardManufakturController extends Controller
       'dashboard.manufaktur.manufaktur',
       compact(
         'day',
+        'now',
+        'today',
         'datastocks',
         'highestAmount',
         'dataStockLength',
@@ -114,6 +118,9 @@ class DashboardManufakturController extends Controller
   public function search(Request $request)
   {
     $day = $request->input('date');
+    $now = Carbon::now()->format('d F Y');
+    $today = Carbon::now()->format('D');
+
     $stockbydates = Stock::where('date', '=', $day)
       ->where('class', 'Manufaktur')
       ->get();
@@ -192,6 +199,8 @@ class DashboardManufakturController extends Controller
       'dashboard.manufaktur.manufakturbydate',
       compact(
         'day',
+        'now',
+        'today',
         'datastocks',
         'stockbydates',
         'highestAmount',

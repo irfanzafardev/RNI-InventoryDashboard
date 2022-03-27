@@ -170,7 +170,7 @@
               <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $allStock->stock_code }}</td>
-                <td>{{ $stock->company }}</td>
+                <td>{{ $allStock->company }}</td>
                 <td>{{ $allStock->date }}</td>
                 <td>{{ $allStock->product->product_name }}</td>
                 <td>{{ $allStock->product->unit->unit_symbol }}</td>

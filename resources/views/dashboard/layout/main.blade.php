@@ -12,6 +12,11 @@
 
 		<!-- Custom fonts for this template-->
 		<link href="{{ asset("vendor/fontawesome-free/css/all.min.css") }}" rel="stylesheet" type="text/css"/>
+    <link
+    href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}"
+    rel="stylesheet"
+    type="text/css"
+    />
 		<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet"/>
 
 		<!-- Custom styles for this template-->
@@ -21,6 +26,8 @@
 
     {{-- <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script> --}}
+
+    <script src="https://kit.fontawesome.com/55fc4a3228.js" crossorigin="anonymous"></script>
 
 		<link
 			href="http://code.jquery.com/ui/1.9.2/themes/smoothness/jquery-ui.css"
@@ -69,26 +76,31 @@
 
 
 					<!-- Nav Item - User Information -->
-          <div class="dropdown">
-            <button class="btn btn-link text-decoration-none dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-              <span class="mr-2 d-none d-lg-inline text-dark">
-                {{ Auth::user()->name }}
-              </span>
-              <img class="" src="{{ asset("img/user.png") }}" width="25px" />
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li>
-                  <a class="dropdown-item" href="{{ route('logout') }}"
-                      onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                      {{ __('Logout') }}
-                  </a>
-      
-                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-block">
-                      @csrf
-                  </form>
-              </li>
-            </ul>
+          <div class="d-flex">
+            <div class="text-dark pt-2 pr-4">
+              {{ $today }}, {{ $now }}
+            </div>
+            <div class="dropdown">
+              <button class="btn btn-link text-decoration-none dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-dark">
+                  {{ Auth::user()->name }}
+                </span>
+                <img class="" src="{{ asset("img/user.png") }}" width="25px" />
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li>
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                      document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+        
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-block">
+                        @csrf
+                    </form>
+                </li>
+              </ul>
+            </div>
           </div>
 				</div>
 			</div>

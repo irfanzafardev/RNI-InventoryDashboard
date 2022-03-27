@@ -73,7 +73,7 @@
                 </div>
             @enderror
           </div>
-          <div class="form-group mb-3">
+          <div class="form-group d-none mb-3">
             <label for="class" class="form-label">Class</label>
             <input
               type="text"

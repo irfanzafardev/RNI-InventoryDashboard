@@ -17,7 +17,9 @@ class DashboardGaramController extends Controller
 
   public function latest()
   {
-    $day = Carbon::today()->toDateString();
+    $day = Carbon::yesterday()->toDateString();
+    $now = Carbon::now()->format('d F Y');
+    $today = Carbon::now()->format('D');
 
     $datastocks = Stock::where('date', '=', $day)
       ->where('class', 'Garam')->get();
@@ -66,6 +68,8 @@ class DashboardGaramController extends Controller
       'dashboard.garam.garam',
       compact(
         'day',
+        'now',
+        'today',
         'datastocks',
         'highestAmount',
         'dataStockLength',
@@ -84,6 +88,9 @@ class DashboardGaramController extends Controller
   public function search(Request $request)
   {
     $day = $request->input('date');
+    $now = Carbon::now()->format('d F Y');
+    $today = Carbon::now()->format('D');
+
     $stockbydates = Stock::where('date', '=', $day)
       ->where('class', 'Garam')
       ->get();
@@ -136,6 +143,8 @@ class DashboardGaramController extends Controller
       'dashboard.garam.garambydate',
       compact(
         'day',
+        'now',
+        'today',
         'datastocks',
         'stockbydates',
         'highestAmount',

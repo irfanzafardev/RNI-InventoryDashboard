@@ -128,6 +128,121 @@
 
 <!-- Summary Row -->
 <div class="row">
+  <div class="col-6">
+    <div class="row">
+      <div class="col-6">
+        <div class="card single-card-consolidation bg-darkblue">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12 d-flex align-items-center">
+                <img src="{{ asset("./img/dollar-white.png") }}" alt="" width="30px" />
+                <h5 class="d-inline-block text-white ps-0">
+                  Highest Value
+                </h5>
+              </div>
+            </div>
+            <div class="row mt-0">
+              <div class="col-12 item-card-value text-white pl-4 pt-3">
+                @if (!empty($highestValue->product->product_code))
+                <small>({{ $highestValue->product->product_code }})</small>
+                <span class="p-0 card-number">Rp.{{ number_format($highestValue->value, 2) }}</span>
+                @else
+                <span>-</span>
+                @endif
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="card single-card-consolidation bg-darkblue">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12 d-flex align-items-center">
+                <img src="{{ asset("./img/highest-amount-white.png") }}" class="ml-2" width="30px" />
+                <h5 class="d-inline-block text-white pl-1">
+                  Highest Amount
+                </h5>
+              </div>
+            </div>
+            <div class="row mt-0">
+              <div class="col-12 item-card-value text-white pl-4 pt-3">
+                @if (!empty($highestAmount->product->product_name))
+                  <small>({{ $highestAmount->product->product_name }})</small> <br>
+                  <span class="p-0 card-number">{{ number_format($highestAmount->quantity, 0) }} Kg</span>
+                @else
+                <span>-</span>
+                @endif
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="card single-card-consolidation bg-darkblue mt-3">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12 d-flex align-items-center">
+                <img src="{{ asset("./img/dollar-white.png") }}" alt="" width="30px" />
+                <h5 class="d-inline-block text-white ps-0">
+                  Highest Value by Company
+                </h5>
+              </div>
+            </div>
+            <div class="row mt-0">
+              <div class="col-12 item-card-value text-white pl-4 pt-3">
+                @if (!empty($highestValueByCompany->company))
+                <small>({{ $highestValueByCompany->company }})</small>
+                <span class="p-0 card-number">Rp.{{ number_format($highestValueByCompany->sum, 2) }}</span>
+                @else
+                <span>-</span>
+                @endif
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="card single-card-consolidation bg-darkblue mt-3">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12 d-flex align-items-center">
+                <img src="{{ asset("./img/items-white.png") }}" class="" width="30px"/>
+                <h5 class="d-inline-block text-white pl-2">
+                  Total Stock Items
+                </h5>
+              </div>
+            </div>
+            <div class="row mt-0">
+              <div class="col-12 item-card-value text-white pl-4 pt-3">
+                <span>{{ $dataStockLength }} items</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-6">
+    <div class="card single-card-consolidation-chart bg-darkblue">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12">
+            <h5 class="card-title item-card-title text-white">
+              Comparison Stats
+            </h5>
+            <div class="d-flex justify-content-center">
+              <canvas class="canvas" id="chartConsolidation"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>   
+    </div>
+  </div>
+</div>
+
+<!-- Summary Row -->
+<div class="row d-none">
   <div class="col-9">
     <div class="summary-card mb-4">
       <div class="card bg-lightgray">
@@ -192,7 +307,7 @@
                 Performance Stats
               </h5>
               <div class="d-flex justify-content-center">
-                <canvas class="canvas" id="myChart"></canvas>
+                chart
               </div>
             </div>
           </div>
@@ -271,6 +386,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.0.0/chartjs-plugin-datalabels.min.js" integrity="sha512-R/QOHLpV1Ggq22vfDAWYOaMd5RopHrJNMxi8/lJu8Oihwi4Ho4BRFeiMiCefn9rasajKjnx9/fTQ/xkWnkDACg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script>
   $('.accordion-button').click(function(){
@@ -304,39 +420,52 @@
   datasets: [{
     label: 'My First Dataset',
     data: [{{ $valueAgroindustri }}, {{ $valueManufaktur }}, {{ $valueGaram }}],
-    // data: [60, 20, 20],
     backgroundColor: [
       'rgba(255, 211, 132, 1)',
       'rgba(255, 153, 106, 1)',
       'rgba(67, 140, 255, 1)'
     ],
-    borderColor:'#E9EEF6',
+    borderColor:'#0B1629',
     hoverOffset: 3,
   }]
-};
-
-  const config = {
-  type: 'doughnut',
-  data: data,
-  options: {
-      circumference: 	180,
-      rotation: 270,
-      responsive: true,
-      plugins: {
-        legend: {
-          display: true,
-          position: 'bottom',
-          align: 'center',
-          labels: {
-            boxWidth: 10
+  };
+    const config = {
+      type: 'doughnut',
+      data: data,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            display: true,
+            position: 'bottom',
+            align: 'center',
+            labels: {
+              boxWidth: 10,
+              color: '#fff'
+            }
+          },
+          datalabels: {
+            formatter: (value, context) => {
+              const datapoints = context.chart.data.datasets[0].data;
+              function totalSum(total, datapoint)  {
+                return total + datapoint;
+              }
+              const totalValue = datapoints.reduce(totalSum, 0);
+              const PercentageValue = (value / totalValue * 100).toFixed(1);
+              return `${PercentageValue}%`;
+            },
+            font: {
+              size: 12,
+            },
+            color: '#fff'
           }
         },
       },
-    },
-};
+      plugins: [ChartDataLabels]
+  };
 
   const myChart = new Chart(
-    document.getElementById('myChart'),
+    document.getElementById('chartConsolidation'),
     config
   );
 </script>

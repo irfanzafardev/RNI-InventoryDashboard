@@ -49,6 +49,7 @@
             <th>No</th>
             <th>ID</th>
             <th>Name</th>
+            <th>Username</th>
             <th>Email</th>
             <th>Company</th>
             <th>Level</th>
@@ -61,6 +62,7 @@
             <th>No</th>
             <th>ID</th>
             <th>Name</th>
+            <th>Username</th>
             <th>Email</th>
             <th>Company</th>
             <th>Level</th>
@@ -74,6 +76,7 @@
             <td>{{ $loop->iteration }}</td>
             <td>{{ $user->id }}</td>
             <td>{{ $user->name }}</td>
+            <td>{{ $user->username }}</td>
             <td>{{ $user->email }}</td>
             <td>{{ $user->company->company_name }}</td>
             <td>{{ $user->ModelRole->Role->name }}</td>

@@ -120,7 +120,8 @@ class StaffStockController extends Controller
     return view('user.stocks.edit', [
       'stock' => $stock,
       'allStocks' => Stock::all(),
-      'products' => Product::all()->where('user_id', $userid),
+      'products' => Product::all()
+      // ->where('user_id', $userid),
     ]);
   }
 

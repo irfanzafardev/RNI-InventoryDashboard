@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap');
 
+/* dDasboard Number */
+
+.card-number {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+
 /* Charts */
 .main-chart {
  transition: 1s;
@@ -208,6 +216,10 @@ label {
   min-height: 150px;
  } 
 
+ .consolidation-card-alt {
+  min-height: 276px;
+ }
+
 .summary-card .card .card-body img {
   max-width: 30px;
 }
@@ -336,6 +348,24 @@ label {
   border-radius: 10px;
   border: none;
   min-height: 160px;
+}
+
+.single-card-consolidation-below {
+  border-radius: 10px;
+  border: none;
+  min-height: 280px;
+  background-color: #0B1629 !important;
+}
+
+.single-card-consolidation-chart {
+  border-radius: 10px;
+  border: none;
+  min-height: 300px;
+}
+
+.single-card-consolidation-chart .canvas{
+  max-height: 256px;
+  max-width: 256px;
 }
 
 .single-card-consolidation .canvas{

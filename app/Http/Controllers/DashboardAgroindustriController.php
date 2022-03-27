@@ -17,7 +17,9 @@ class DashboardAgroindustriController extends Controller
 
   public function latest()
   {
-    $day = Carbon::today()->toDateString();
+    $day = Carbon::yesterday()->toDateString();
+    $now = Carbon::now()->format('d F Y');
+    $today = Carbon::now()->format('D');
 
     $datastocks = Stock::where('date', '=', $day)
       ->where('class', 'Agroindustri')->get();
@@ -124,6 +126,8 @@ class DashboardAgroindustriController extends Controller
       'dashboard.agroindustri.agroindustri',
       compact(
         'day',
+        'now',
+        'today',
         'datastocks',
         'highestAmount',
         'dataStockLength',
@@ -157,8 +161,8 @@ class DashboardAgroindustriController extends Controller
   public function search(Request $request)
   {
     $day = $request->input('date');
-    // dd($day);
-    $today = Carbon::today()->toDateString();
+    $now = Carbon::now()->format('d F Y');
+    $today = Carbon::now()->format('D');
 
     $stockbydates = Stock::where('date', '=', $day)
       ->where('class', 'Agroindustri')
@@ -266,6 +270,8 @@ class DashboardAgroindustriController extends Controller
       'dashboard.agroindustri.agroindustribydate',
       compact(
         'day',
+        'now',
+        'today',
         'stockbydates',
         'highestAmount',
         'dataStockLength',

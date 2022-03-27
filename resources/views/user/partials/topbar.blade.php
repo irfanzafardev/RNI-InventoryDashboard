@@ -12,6 +12,9 @@
 
   <!-- Topbar Navbar -->
   <ul class="navbar-nav ml-auto">
+    <div class="pt-4 pe-2 text-dark">
+      {{-- {{ $today }}, {{ $now }} --}}
+    </div>
     <div class="topbar-divider d-none d-sm-block"></div>
 
     <!-- Nav Item - User Information -->

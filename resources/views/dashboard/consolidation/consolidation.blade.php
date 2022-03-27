@@ -44,7 +44,7 @@
             </h5>
             <p class="card-subtitle item-card-subtitle mb-2 text-darkblue mt-2">
               {{-- Rp. <span class="number counter" data-target="{{ $valueAll }}">{{ $valueAll }}</span> --}}
-              <span class="number"> Rp.{{ number_format($valueAll, 0) }}</span>
+              <span class="number"> Rp.{{ number_format($valueAll, 2) }}</span>
             </p>
           </div>
         </div>
@@ -120,7 +120,7 @@
 </div>
 
 <!-- Summary Row -->
-<div class="row">
+<div class="row d-none">
   <div class="col-9">
     <div class="summary-card mb-4">
       <div class="card bg-lightgray">
@@ -192,6 +192,122 @@
     </div>
   </div>
 </div>
+
+<!-- Summary Row -->
+<div class="row">
+  <div class="col-6">
+    <div class="row">
+      <div class="col-6">
+        <div class="card single-card-consolidation bg-darkblue">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12 d-flex align-items-center">
+                <img src="{{ asset("./img/dollar-white.png") }}" alt="" width="30px" />
+                <h5 class="d-inline-block text-white ps-0">
+                  Highest Value
+                </h5>
+              </div>
+            </div>
+            <div class="row mt-0">
+              <div class="col-12 item-card-value text-white pl-4 pt-3">
+                @if (!empty($highestValue->product->product_code))
+                <small>({{ $highestValue->product->product_code }})</small>
+                <span class="p-0 card-number">Rp.{{ number_format($highestValue->value, 2) }}</span>
+                @else
+                <span>-</span>
+                @endif
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="card single-card-consolidation bg-darkblue">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12 d-flex align-items-center">
+                <img src="{{ asset("./img/highest-amount-white.png") }}" class="ml-2" width="30px" />
+                <h5 class="d-inline-block text-white pl-1">
+                  Highest Amount
+                </h5>
+              </div>
+            </div>
+            <div class="row mt-0">
+              <div class="col-12 item-card-value text-white pl-4 pt-3">
+                @if (!empty($highestAmount->product->product_code))
+                  <small>({{ $highestAmount->product->product_code }})</small> <br>
+                  <span class="p-0 card-number">{{ number_format($highestAmount->quantity, 0) }} Kg</span>
+                @else
+                <span>-</span>
+                @endif
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="card single-card-consolidation bg-darkblue mt-3">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12 d-flex align-items-center">
+                <img src="{{ asset("./img/dollar-white.png") }}" alt="" width="30px" />
+                <h5 class="d-inline-block text-white ps-0">
+                  Highest Value by Company
+                </h5>
+              </div>
+            </div>
+            <div class="row mt-0">
+              <div class="col-12 item-card-value text-white pl-4 pt-3">
+                @if (!empty($highestValueByCompany->company))
+                <small>({{ $highestValueByCompany->company }})</small>
+                <span class="p-0 card-number">Rp.{{ number_format($highestValueByCompany->sum, 2) }}</span>
+                @else
+                <span>-</span>
+                @endif
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="card single-card-consolidation bg-darkblue mt-3">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12 d-flex align-items-center">
+                <img src="{{ asset("./img/items-white.png") }}" class="" width="30px"/>
+                <h5 class="d-inline-block text-white pl-2">
+                  Total Stock Items
+                </h5>
+              </div>
+            </div>
+            <div class="row mt-0">
+              <div class="col-12 item-card-value text-white pl-4 pt-3">
+                <span>{{ $dataStockLength }} items</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-6">
+    <div class="card single-card-consolidation-chart bg-darkblue">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12">
+            <h5 class="card-title item-card-title text-white">
+              Comparison Stats
+            </h5>
+            <div class="d-flex justify-content-center">
+              <canvas class="canvas" id="chartConsolidation"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>   
+    </div>
+  </div>
+</div>
+
 
 <!-- DataTales Today's input -->
 <div class="card my-4">
@@ -301,7 +417,6 @@
     datasets: [{
       label: 'My First Dataset',
       data: [{{ $valueAgroindustri }}, {{ $valueManufaktur }}, {{ $valueGaram }}],
-      // data: [60, 20, 20],
       backgroundColor: [
         'rgba(255, 211, 132, 1)',
         'rgba(255, 153, 106, 1)',
@@ -351,6 +466,67 @@
   const myChart = new Chart(
     document.getElementById('myChart'),
     config
+  );
+</script>
+
+<script>
+  const dataConsolidation = {
+    labels: [
+      'Agroindustri',
+      'Manufaktur',
+      'Garam'
+    ],
+    datasets: [{
+      label: 'My First Dataset',
+      data: [{{ $valueAgroindustri }}, {{ $valueManufaktur }}, {{ $valueGaram }}],
+      backgroundColor: [
+        'rgba(255, 211, 132, 1)',
+        'rgba(255, 153, 106, 1)',
+        'rgba(67, 140, 255, 1)'
+      ],
+    borderColor:'#0B1629',
+    hoverOffset: 3,
+    }]
+  };
+
+  const configConsolidation = {
+    type: 'doughnut',
+    data: dataConsolidation,
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          display: true,
+          position: 'bottom',
+          align: 'center',
+          labels: {
+            boxWidth: 10,
+            color: '#fff'
+          }
+        },
+        datalabels: {
+          formatter: (value, context) => {
+            const datapoints = context.chart.data.datasets[0].data;
+            function totalSum(total, datapoint)  {
+              return total + datapoint;
+            }
+            const totalValue = datapoints.reduce(totalSum, 0);
+            const PercentageValue = (value / totalValue * 100).toFixed(1);
+            return `${PercentageValue}%`;
+          },
+          font: {
+            size: 12,
+          },
+          color: '#fff'
+        }
+      },
+    },
+    plugins: [ChartDataLabels]
+  };
+
+  const chartConsolidation = new Chart(
+    document.getElementById('chartConsolidation'),
+    configConsolidation
   );
 </script>
 

@@ -17,13 +17,25 @@ class DashboardConsolidationController extends Controller
 
   public function latest()
   {
-    $day = Carbon::today()->toDateString();
+    $day = Carbon::yesterday()->toDateString();
+    $now = Carbon::now()->format('d F Y');
+    $today = Carbon::now()->format('D');
 
     $datastocks = Stock::where('date', '=', $day)
       ->get();
     $highestAmount = Stock::where('date', '=', $day)
       ->orderBy('quantity', 'desc')
       ->first();
+    $highestValue = Stock::where('date', '=', $day)
+      ->orderBy('value', 'desc')
+      ->first();
+
+    $highestValueByCompany = Stock::groupBy('company')
+      ->where('date', '=', $day)
+      ->selectRaw('sum(value) as sum, company')
+      ->first();
+
+    // dd($highestValueByCompany);
     $dataStockLength = Stock::where('date', '=', $day)
       ->count();
 
@@ -57,7 +69,11 @@ class DashboardConsolidationController extends Controller
       'dashboard.consolidation.consolidation',
       compact(
         'day',
+        'now',
+        'today',
         'datastocks',
+        'highestValue',
+        'highestValueByCompany',
         'highestAmount',
         'dataStockLength',
         'quantityAgroindustri',
@@ -74,7 +90,8 @@ class DashboardConsolidationController extends Controller
   public function search(Request $request)
   {
     $day = $request->input('date');
-    $today = Carbon::today()->toDateString();
+    $now = Carbon::now()->format('d F Y');
+    $today = Carbon::now()->format('D');
 
     $datastocks = Stock::where('date', '=', $day)
       ->get();
@@ -83,6 +100,14 @@ class DashboardConsolidationController extends Controller
       ->first();
     $dataStockLength = Stock::where('date', '=', $day)
       ->count();
+    $highestValue = Stock::where('date', '=', $day)
+      ->orderBy('value', 'desc')
+      ->first();
+
+    $highestValueByCompany = Stock::groupBy('company')
+      ->where('date', '=', $day)
+      ->selectRaw('sum(value) as sum, company')
+      ->first();
 
     $quantityAgroindustri = Stock::where('date', '=', $day)
       ->where('class', 'Agroindustri')
@@ -111,9 +136,13 @@ class DashboardConsolidationController extends Controller
       'dashboard.consolidation.consolidationbydate',
       compact(
         'day',
+        'now',
+        'today',
         'datastocks',
         'highestAmount',
         'dataStockLength',
+        'highestValue',
+        'highestValueByCompany',
         'quantityAgroindustri',
         'quantityManufaktur',
         'quantityGaram',

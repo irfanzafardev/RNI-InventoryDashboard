@@ -89,6 +89,7 @@ class AdministratorUserController extends Controller
     return view('administrator.users.edit', [
       'user' => $user,
       'companies' => Company::all()
+        ->where('active', true)
     ]);
   }
 

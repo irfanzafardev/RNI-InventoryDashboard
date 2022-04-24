@@ -21,12 +21,12 @@ class DashboardManufakturController extends Controller
     $now = Carbon::now()->format('d F Y');
     $today = Carbon::now()->format('D');
 
-    $datastocks = Stock::where('date', '=', Carbon::today()->toDateString())
+    $datastocks = Stock::where('date', '=', Carbon::yesterday()->toDateString())
       ->where('class', 'Manufaktur')->get();
-    $highestAmount = Stock::where('date', '=', Carbon::today()->toDateString())
+    $highestAmount = Stock::where('date', '=', Carbon::yesterday()->toDateString())
       ->where('class', 'Manufaktur')
       ->orderBy('quantity', 'desc')->first();
-    $dataStockLength = Stock::where('date', '=', Carbon::today()->toDateString())
+    $dataStockLength = Stock::where('date', '=', Carbon::yesterday()->toDateString())
       ->where('class', 'Manufaktur')
       ->count();
 

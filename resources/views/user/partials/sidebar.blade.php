@@ -2,11 +2,11 @@
 <ul class="navbar-nav bg-white sidebar accordion" id="accordionSidebar">
   <!-- Sidebar - Brand -->
   <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/staff">
-    <div class="sidebar-brand-icon">
+    <div class="sidebar-icon">
       <!-- <i class="fas fa-laugh-wink"></i> -->
       <img src="{{ asset('./img/logo-main.png') }}" alt="" width="20px" />
     </div>
-    <div class="sidebar-brand-text text-dark mx-4">Inventory</div>
+    <div class="sidebar-text text-style-medium mx-4">Inventory</div>
   </a>
 
   <!-- Divider -->

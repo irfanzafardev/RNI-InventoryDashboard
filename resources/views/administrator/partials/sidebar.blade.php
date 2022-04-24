@@ -1,19 +1,22 @@
 <!-- Sidebar -->
 <ul class="navbar-nav bg-white sidebar accordion" id="accordionSidebar">
+  <div class="logo d-none justify-content-center my-3 pr-4">
+    <img src="./img/idfood.png" alt="" width="110px">
+  </div>
   <!-- Sidebar - Brand -->
   <a
-    class="sidebar-brand d-flex align-items-center justify-content-center"
+    class="sidebar-brand d-flex align-items-center justify-content-center my-2"
     href="/"
+    style="max-height: 40px"
   >
-    <div class="sidebar-brand-icon">
+    <div class="sidebar-icon">
       <!-- <i class="fas fa-laugh-wink"></i> -->
       <img src="{{ asset('./img/logo-main.png') }}" alt="" width="20px" />
     </div>
-    <div class="sidebar-brand-text text-dark mx-4">Inventory</div>
+    <div class="sidebar-text text-style-medium mx-4">Inventory</div>
   </a>
 
   <!-- Divider -->
-  <!-- <hr class="sidebar-divider my-0"> -->
 
   <!-- Nav Item - Dashboard -->
   <li class="nav-item">

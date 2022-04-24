@@ -50,6 +50,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::middleware('role:admin|superadmin')->group(function () {
   Route::get('/dashboard', [DashboardConsolidationController::class, 'latest'])->name('dashboardConsolidation');
   Route::post('/dashboard/daily', [DashboardConsolidationController::class, 'search'])->name('dashboardConsolidationSearch');
+  Route::get('/dashboard/monthly', [DashboardConsolidationController::class, 'monthly'])->name('dashboardConsolidationMonthly');
 
   Route::get('/dashboard/agroindustri', [DashboardAgroindustriController::class, 'latest'])->name('dashboardAgroindustri');
   Route::post('/dashboard/agroindustri/daily', [DashboardAgroindustriController::class, 'search'])->name('dashboardAgroindustriSearch');

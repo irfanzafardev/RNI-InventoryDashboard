@@ -40,7 +40,7 @@
         <div class="card-body">
           <div class="row">
             <div class="col-12">
-              <h5 class="card-title item-card-title text-muted">
+              <h5 class="card-title item-card-title text-style-small">
                 Total Value
               </h5>
               <p class="card-subtitle item-card-subtitle mb-2 text-darkblue mt-2">
@@ -58,7 +58,7 @@
         <div class="card-body">
           <div class="row">
             <div class="col-12">
-              <h5 class="card-title item-card-title text-muted">
+              <h5 class="card-title item-card-title text-style-small">
                 Agroindustri
               </h5>
               <p class="card-subtitle item-card-subtitle mb-2 text-darkblue mt-2">
@@ -82,7 +82,7 @@
         <div class="card-body">
           <div class="row">
             <div class="col-12">
-              <h5 class="card-title item-card-title text-muted">
+              <h5 class="card-title item-card-title text-style-small">
                 Manufaktur
               </h5>
               <p class="card-subtitle item-card-subtitle mb-2 text-darkblue mt-2">
@@ -106,7 +106,7 @@
         <div class="card-body">
           <div class="row">
             <div class="col-12">
-              <h5 class="card-title item-card-title text-muted">
+              <h5 class="card-title item-card-title text-style-small">
                 Garam
               </h5>
               <p class="card-subtitle item-card-subtitle mb-2 text-darkblue mt-2">
@@ -136,7 +136,7 @@
             <div class="row">
               <div class="col-12 d-flex align-items-center">
                 <img src="{{ asset("./img/dollar-white.png") }}" alt="" width="30px" />
-                <h5 class="d-inline-block text-white ps-0">
+                <h5 class="d-inline-block text-white text-style-small ps-0">
                   Highest Value
                 </h5>
               </div>
@@ -160,7 +160,7 @@
             <div class="row">
               <div class="col-12 d-flex align-items-center">
                 <img src="{{ asset("./img/highest-amount-white.png") }}" class="ml-2" width="30px" />
-                <h5 class="d-inline-block text-white pl-1">
+                <h5 class="d-inline-block text-white text-style-small pl-1">
                   Highest Amount
                 </h5>
               </div>
@@ -184,7 +184,7 @@
             <div class="row">
               <div class="col-12 d-flex align-items-center">
                 <img src="{{ asset("./img/dollar-white.png") }}" alt="" width="30px" />
-                <h5 class="d-inline-block text-white ps-0">
+                <h5 class="d-inline-block text-white text-style-small ps-0">
                   Highest Value by Company
                 </h5>
               </div>
@@ -208,7 +208,7 @@
             <div class="row">
               <div class="col-12 d-flex align-items-center">
                 <img src="{{ asset("./img/items-white.png") }}" class="" width="30px"/>
-                <h5 class="d-inline-block text-white pl-2">
+                <h5 class="d-inline-block text-white text-style-small pl-2">
                   Total Stock Items
                 </h5>
               </div>
@@ -228,7 +228,7 @@
       <div class="card-body">
         <div class="row">
           <div class="col-12">
-            <h5 class="card-title item-card-title text-white">
+            <h5 class="card-title item-card-title text-white text-style-medium">
               Comparison Stats
             </h5>
             <div class="d-flex justify-content-center">
@@ -320,7 +320,7 @@
 <!-- DataTales Today's input -->
 <div class="card my-4">
   <div class="card-header py-3">
-    <h6 class="m-0 font-weight-bold text-dark">Today's input</h6>
+    <h6 class="m-0 text-dark">Today's input</h6>
   </div>
   <div class="card-body">
     <div class="table-responsive">

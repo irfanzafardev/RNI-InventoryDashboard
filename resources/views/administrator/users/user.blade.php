@@ -24,7 +24,7 @@
 <!-- DataTales Example -->
 <div class="card mb-4">
   <div class="card-header py-3">
-    <h6 class="m-0 font-weight-bold text-dark">
+    <h6 class="m-0 text-dark">
       User List
     </h6>
   </div>

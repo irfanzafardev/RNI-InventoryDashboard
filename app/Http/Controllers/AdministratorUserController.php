@@ -108,11 +108,8 @@ class AdministratorUserController extends Controller
       'company_id' => ['required', 'max:255'],
       'phone' => ['required', 'max:255'],
       'email' => ['required', 'string', 'email', 'max:255'],
-      // 'password' => ['required', 'string', 'min:4', 'confirmed'],
       'role' => ['required', 'max:255'],
     ]);
-
-    // $validatedData['password'] = bcrypt($validatedData['password']);
 
     User::where('id', $user->id)
       ->update($validatedData);

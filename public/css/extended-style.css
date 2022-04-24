@@ -1,10 +1,40 @@
 @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap');
 
+/* All */
+
+html, body, form, fieldset, table, tr, td, img {
+  font-family: 'Segoe UI', helvetica, sans-serif !important;
+  font-weight: 400;
+}
+
 /* dDasboard Number */
 
 .card-number {
-  font-weight: 700;
+  font-weight: 600;
   font-size: 18px;
+}
+
+/* dDasboard text */
+
+.text-style-small {
+  font-family: 'Segoe UI', helvetica, sans-serif !important;
+  font-weight: 400 !important;
+  font-size: 14px;
+  color: #333;
+}
+
+.text-style-medium {
+  font-family: 'Segoe UI', helvetica, sans-serif !important;
+  font-weight: 400;
+  font-size: 16px;
+  color: #333;
+}
+
+.text-style-large {
+  font-family: 'Segoe UI', helvetica, sans-serif !important;
+  font-weight: 400 !important;
+  font-size: 26px;
+  color: #333;
 }
 
 
@@ -27,6 +57,11 @@
 /* Colours */
 .bg-darkblue {
   background-color: #0B1629 !important;
+  border: none;
+}
+
+.bg-cello {
+  background-color: #243A5E;
   border: none;
 }
 
@@ -85,31 +120,41 @@
 
 /* Administrator */
 
+.sidebar-text {
+  font-family: 'Segoe UI', helvetica, sans-serif;
+  /* font-family: "Poppins", Helvetica, sans-serif; */
+  text-transform: capitalize;
+  letter-spacing: 1px;
+  font-weight: 500;
+  font-size: 18px;
+  color: #000;
+}
+
 .navbar-expand {
   background-color: #F8F9FA;
 }
 .nav-item a span {
-  font-family: "Poppins", Helvetica, sans-serif;
+  font-family: 'Segoe UI', helvetica, sans-serif;
   font-weight: 500;
   font-size: 13px;
   color: #000;
 }
 
 .nav-item .active span {
-  font-family: "Poppins", Helvetica, sans-serif;
+  font-family: 'Segoe UI', helvetica, sans-serif;
   font-weight: 500;
   font-size: 13px;
   color: blue;
 }
 
 .nav-heading {
-  font-family: "Poppins", Helvetica, sans-serif;
+  font-family: 'Segoe UI', helvetica, sans-serif;
   font-size: 10px !important;
   line-height: 17px;
 }
 
 .user-profile a span {
-  font-family: "Poppins", Helvetica, sans-serif;
+  font-family: 'Segoe UI', helvetica, sans-serif;
   padding-right: 10px;
   font-size: 12px;
   font-style: normal;
@@ -118,7 +163,7 @@
 }
 
 .page-heading h1 {
-  font-family: "Poppins", Helvetica, sans-serif;
+  font-family: 'Segoe UI', helvetica, sans-serif;
   color: #0B1629;
   font-style: normal;
   font-weight: 400;
@@ -138,7 +183,7 @@
 }
 
 .panel-single-card .h5 {
-  font-family: "Poppins", Helvetica, sans-serif;
+  font-family: 'Segoe UI', helvetica, sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -147,7 +192,7 @@
 
 .panel-single-card .h6 {
   padding: 26px 0;
-  font-family: "Poppins", Helvetica, sans-serif;
+  font-family: 'Segoe UI', helvetica, sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 26px;
@@ -155,7 +200,7 @@
 }
 
 label {
-  font-family: "Poppins", Helvetica, sans-serif;
+  font-family: 'Segoe UI', helvetica, sans-serif;
   font-size: 15px;
 }
 
@@ -166,7 +211,7 @@ label {
 
 /* View Dashboard */
 .navbar-brand {
-  font-family: "Poppins", Helvetica, sans-serif;
+  font-family: 'Segoe UI', helvetica, sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 22px;
@@ -174,7 +219,7 @@ label {
 }
 
 .nav-link {
-  font-family: "Poppins", Helvetica, sans-serif;
+  font-family: 'Segoe UI', helvetica, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -199,7 +244,7 @@ label {
 }
 
 #datepicker {
-  font-family: "Poppins", Helvetica, sans-serif;
+  font-family: 'Segoe UI', helvetica, sans-serif;;
   padding: 0 8px;
   background-color: #fff;
   border-radius: 5px;
@@ -226,7 +271,7 @@ label {
 
 .summary-card .card .card-body h2 {
   color: #000;
-  font-family: "Poppins", Helvetica, sans-serif;
+  font-family: 'Segoe UI', helvetica, sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
@@ -235,7 +280,7 @@ label {
 
 .summary-card .card .card-body h5 {
   color: #000;
-  font-family: "Poppins", Helvetica, sans-serif;
+  font-family: 'Segoe UI', helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -245,7 +290,7 @@ label {
 .summary-card .card .card-body span {
   color: #858796!important;
   padding: 30px 0 0 44px;
-  font-family: "Poppins", Helvetica, sans-serif;
+  font-family: 'Segoe UI', helvetica, sans-serif;
   font-style: normal;
   font-weight: 300;
   font-size: 20px;
@@ -276,7 +321,7 @@ label {
 
 .category-summary-card .card .card-body h2 {
   color: #000;
-  font-family: "Poppins", Helvetica, sans-serif;
+  font-family: 'Segoe UI', helvetica, sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
@@ -285,7 +330,7 @@ label {
 
 .category-summary-card .card .card-body h5 {
   color: #000;
-  font-family: "Poppins", Helvetica, sans-serif;
+  font-family: 'Segoe UI', helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -298,7 +343,7 @@ label {
 
 .category-summary-card .card .card-body span {
   color: #858796!important;
-  font-family: "Poppins", Helvetica, sans-serif;
+  font-family: 'Segoe UI', helvetica, sans-serif;
   font-style: normal;
   font-weight: 300;
   font-size: 20px;
@@ -379,8 +424,8 @@ label {
 }
 
 .single-card-consolidation .item-card-subtitle .number {
-  font-size: 26px;
-  font-weight: 700;
+  font-size: 24px;
+  font-weight: 600;
 }
 
 .single-card:hover {
@@ -397,7 +442,7 @@ label {
 }
 
 .single-card .item-card-subtitle {
-  font-family: "Poppins", Helvetica, sans-serif;
+  font-family: 'Segoe UI', helvetica, sans-serif;
   font-style: normal;
   font-weight: 100 !important;
   font-size: 20px;
@@ -414,13 +459,19 @@ label {
   max-height: 160px !important;
 }
 
+.single-card .main-chart-alt canvas {
+  margin-top: -20px;
+  max-width: 460px !important;
+  max-height: 220px !important;
+}
+
 .single-card .donut-chart canvas {
   max-width: 120px !important;
   max-height: 120px !important;
 }
 
 .single-card .item-card-subtitle span {
-  font-family: "Poppins", Helvetica, sans-serif;
+  font-family: 'Segoe UI', helvetica, sans-serif;
   font-style: normal;
   font-weight: 100 !important;
   font-size: 12px;
@@ -428,7 +479,7 @@ label {
 }
 
 .single-card .item-card-value {
-  font-family: "Poppins", Helvetica, sans-serif;
+  font-family: 'Segoe UI', helvetica, sans-serif;
   font-style: normal;
   font-weight: 100 !important;
   font-size: 16px;
@@ -436,7 +487,7 @@ label {
 }
 
 .single-card .item-card-company {
-  font-family: "Poppins", Helvetica, sans-serif;
+  font-family: 'Segoe UI', helvetica, sans-serif;
   font-style: normal;
   font-weight: 500 !important;
   font-size: 12px;
@@ -444,7 +495,7 @@ label {
 }
 
 .single-card .item-card-info {
-  font-family: "Poppins", Helvetica, sans-serif;
+  font-family: 'Segoe UI', helvetica, sans-serif;
   font-style: normal;
   font-weight: 300 !important;
   font-size: 10px;
@@ -452,7 +503,7 @@ label {
 }
 
 .single-card .h5 {
-  font-family: "Poppins", Helvetica, sans-serif;
+  font-family: 'Segoe UI', helvetica, sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -461,7 +512,7 @@ label {
 
 .single-card .h6 {
   padding: 26px 0;
-  font-family: "Poppins", Helvetica, sans-serif;
+  font-family: 'Segoe UI', helvetica, sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 26px;
@@ -473,7 +524,7 @@ label {
 }
 
 .table tr th {
-  font-family: "Poppins", Helvetica, sans-serif;
+  font-family: 'Segoe UI', helvetica, sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
@@ -481,7 +532,7 @@ label {
 }
 
 .table tr td {
-  font-family: "Poppins", Helvetica, sans-serif;
+  font-family: 'Segoe UI', helvetica, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;

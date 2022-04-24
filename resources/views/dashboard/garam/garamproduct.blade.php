@@ -100,7 +100,7 @@
   <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
     <div class="card my-4">
       <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-dark">PT Garam</h6>
+        <h6 class="m-0 text-dark">PT Garam</h6>
       </div>
       <div class="card-body">
         <div class="table-responsive">

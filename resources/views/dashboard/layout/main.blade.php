@@ -77,12 +77,12 @@
 
 					<!-- Nav Item - User Information -->
           <div class="d-flex">
-            <div class="text-dark pt-2 pr-4">
+            <div class="text-style-small pt-2 pr-4">
               {{ $today }}, {{ $now }}
             </div>
             <div class="dropdown">
               <button class="btn btn-link text-decoration-none dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-dark">
+                <span class="mr-2 d-none d-lg-inline text-style-small">
                   {{ Auth::user()->name }}
                 </span>
                 <img class="" src="{{ asset("img/user.png") }}" width="25px" />
@@ -115,7 +115,7 @@
 		<footer class="sticky-footer bg-white">
 			<div class="container my-auto">
 				<div class="copyright text-center my-auto">
-					<span>Copyright &copy; IT RNI 2022</span>
+					<span class="text-style">Copyright &copy; IT RNI 2022</span>
 				</div>
 			</div>
 		</footer>

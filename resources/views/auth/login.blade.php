@@ -94,7 +94,10 @@
                         </div>
                       </div>
                       <div class="col-lg-6">
-                        <div class="p-5">
+                        <div class="px-5 pb-5 pt-3">
+                          <div class="logo d-flex justify-content-center mb-3">
+                            <img src="./img/idfood.png" alt="" width="120px">
+                          </div>
                           <div class="text-dark">
                             <h1 class="h4 mb-4">Log in</h1>
                           </div>
@@ -125,11 +128,10 @@
                             </button>
                           </form>
                   
-                          <div class="text-center mt-3">
-                            <p class="small">
-                              Silahkan hubungi Divisi IT RNI untuk informasi lebih
-                              lanjut
-                            </p>
+                          <div class="text-end mt-3">
+                            <a href="#" class="small text-dark">
+                              Forgot Password?
+                            </a>
                           </div>
                         </div>
                       </div>

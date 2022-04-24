@@ -90,8 +90,6 @@ class StaffStockController extends Controller
       'value' => 'required'
     ]);
 
-    // $validatedData['user_id'] = auth()->user()->id;
-
     Stock::create($validatedData);
     return redirect('/staff/stocks')->with('success', 'Data has been successfully added');
     // return redirect('/administrator/detailstockin/');

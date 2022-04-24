@@ -115,7 +115,7 @@
   <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
     <div class="card my-4">
       <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-dark">PT Rajawali Citramas Products</h6>
+        <h6 class="m-0 text-dark">PT Rajawali Citramas Products</h6>
       </div>
       <div class="card-body">
         <div class="table-responsive">
@@ -170,7 +170,7 @@
   <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
     <div class="card my-4">
       <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-dark">PT Mitra RB Products</h6>
+        <h6 class="m-0 text-dark">PT Mitra RB Products</h6>
       </div>
       <div class="card-body">
         <div class="table-responsive">
@@ -225,7 +225,7 @@
   <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
     <div class="card my-4">
       <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-dark">PT Rajawali TE Products</h6>
+        <h6 class="m-0 text-dark">PT Rajawali TE Products</h6>
       </div>
       <div class="card-body">
         <div class="table-responsive">

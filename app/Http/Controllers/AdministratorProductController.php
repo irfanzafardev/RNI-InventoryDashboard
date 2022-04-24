@@ -89,8 +89,6 @@ class AdministratorProductController extends Controller
       'unit_price' => 'required',
     ]);
 
-    // $validatedData['user_id'] = auth()->user()->id;
-
     Product::create($validatedData);
     return redirect('/administrator/products')->with('success', 'Data has been successfully added');
   }

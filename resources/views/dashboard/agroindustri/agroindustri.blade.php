@@ -99,6 +99,26 @@
 </a>
 <div class="collapse mt-3" id="collapseExample">
   <div class="single-cards row">
+    <div class="col-12 col-md-12 col-lg-12 mb-3 d-none">
+      <div class="card single-card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-6">
+              <h5 class="card-title item-card-title text-white">
+                Comparison Stats
+              </h5>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="main-chart-alt d-flex justify-content-center">
+                <canvas id="AgroPerformanceAlt"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="col-12 col-md-6 col-lg-4 mb-3">
       <div class="card single-card">
         <div class="card-body">
@@ -332,7 +352,7 @@
 <!-- DataTales Today's input -->
 <div class="card my-4">
   <div class="card-header py-3">
-    <h6 class="m-0 font-weight-bold text-dark">Today's input</h6>
+    <h6 class="m-0 text-dark">Today's input</h6>
   </div>
   <div class="d-flex justify-content-end">
     <a href="#" class="btn btn-primary bg-darkblue mr-4 mt-3 px-4" onclick="tablesToExcel(['dataTable'], ['Stock'], 'stock.xls', 'Excel')">
@@ -404,6 +424,87 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.0.0/chartjs-plugin-datalabels.min.js" integrity="sha512-R/QOHLpV1Ggq22vfDAWYOaMd5RopHrJNMxi8/lJu8Oihwi4Ho4BRFeiMiCefn9rasajKjnx9/fTQ/xkWnkDACg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+  const dataAgroAlt = {
+    labels: ["Gula", "Tetes", "Teh", "Sawit", "Karet"],
+    datasets: [
+      {
+        label: "Agroindustri Dataset",
+        data: [{{ $valueGula }}, {{ $valueTetes }}, {{ $valueTeh }}, {{ $valueSawit }}, {{ $valueKaret }}],
+        backgroundColor: [
+          "rgba(132, 178, 156, 1)",
+          "rgba(242, 204, 142, 1)",
+          "rgba(232, 202, 129, 1)",
+          "rgba(210, 151, 59, 1)",
+          "rgba(244, 246, 248, 1)"
+        ],
+        hoverOffset: 4,
+        borderColor:'#111F38',
+      },
+    ],
+  };
+
+  const configAgroAlt = {
+    type: "bar",
+    data: dataAgroAlt,
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          display: true,
+          position: 'bottom',
+          align: 'center',
+          labels: {
+            boxWidth: 10,
+            font: {
+              size: 10,
+            },
+            color: '#fff'
+          }
+        },
+        tooltip: {
+          enabled: true
+        },
+        datalabels: {
+          formatter: (value, context) => {
+            const datapoints = context.chart.data.datasets[0].data;
+            function totalSum(total, datapoint)  {
+              return total + datapoint;
+            }
+            const totalValue = datapoints.reduce(totalSum, 0);
+            const PercentageValue = (value / totalValue * 100).toFixed(1);
+            return `${PercentageValue}%`;
+          },
+          font: {
+            size: 10,
+          },
+          color: '#fff'
+        }
+      },
+      scales: {
+        y: {
+          ticks: {
+            color: "#fff",
+            fontSize: 18,
+          }
+        },
+        x: {
+          ticks: {
+            color: "#fff",
+            fontSize: 18,
+          }
+        },
+      }
+    },
+    plugins: [ChartDataLabels]
+  };
+
+  const AgroPerformanceAlt = new Chart(
+    document.getElementById("AgroPerformanceAlt"),
+    configAgroAlt
+  );
+</script>
 
 <script>
   const dataAgro = {

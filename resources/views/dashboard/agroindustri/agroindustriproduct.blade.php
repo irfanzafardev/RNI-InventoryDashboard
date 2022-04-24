@@ -107,7 +107,7 @@
   <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
     <div class="card my-4">
       <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-dark">PT PG Rajawali I Products</h6>
+        <h6 class="m-0 text-dark">PT PG Rajawali I Products</h6>
       </div>
       <div class="card-body">
         <div class="table-responsive">
@@ -162,7 +162,7 @@
   <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
     <div class="card my-4">
       <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-dark">PT PG Candi Baru Products</h6>
+        <h6 class="m-0 text-dark">PT PG Candi Baru Products</h6>
       </div>
       <div class="card-body">
         <div class="table-responsive">
@@ -217,7 +217,7 @@
   <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
     <div class="card my-4">
       <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-dark">PG Krebet Baru I Products</h6>
+        <h6 class="m-0 text-dark">PG Krebet Baru I Products</h6>
       </div>
       <div class="card-body">
         <div class="table-responsive">
@@ -272,7 +272,7 @@
   <div class="tab-pane fade" id="mitraKerinci" role="tabpanel" aria-labelledby="contact-tab">
     <div class="card my-4">
       <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-dark">PT Mitra Kerinci Products</h6>
+        <h6 class="m-0 text-dark">PT Mitra Kerinci Products</h6>
       </div>
       <div class="card-body">
         <div class="table-responsive">
@@ -327,7 +327,7 @@
   <div class="tab-pane fade" id="LarasAstraKartika" role="tabpanel" aria-labelledby="contact-tab">
     <div class="card my-4">
       <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-dark">PT Laras Astra Kartika</h6>
+        <h6 class="m-0 text-dark">PT Laras Astra Kartika</h6>
       </div>
       <div class="card-body">
         <div class="table-responsive">
@@ -382,7 +382,7 @@
   <div class="tab-pane fade" id="MitraOgan" role="tabpanel" aria-labelledby="contact-tab">
     <div class="card my-4">
       <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-dark">PT Mitra Ogan</h6>
+        <h6 class="m-0 text-dark">PT Mitra Ogan</h6>
       </div>
       <div class="card-body">
         <div class="table-responsive">

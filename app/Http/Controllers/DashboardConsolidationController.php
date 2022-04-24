@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Carbon\Carbon;
+use App\Models\Stock;
 use App\Models\Product;
 use App\Models\Category;
-use App\Models\Stock;
-use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DashboardConsolidationController extends Controller
 {
@@ -150,6 +151,91 @@ class DashboardConsolidationController extends Controller
         'valueAgroindustri',
         'valueManufaktur',
         'valueGaram',
+      )
+    );
+  }
+
+  public function monthly()
+  {
+    $day = Carbon::yesterday()->toDateString();
+    $now = Carbon::now()->format('d F Y');
+    $today = Carbon::now()->format('D');
+
+    $dailyTotalValueAgro = Stock::groupBy('date')
+      ->whereMonth('created_at', date('m'))
+      ->whereYear('created_at', date('Y'))
+      ->where('class', 'Agroindustri')
+      ->selectRaw('sum(value) as sum')
+      ->pluck('sum');
+
+    $dailyTotalValueAgro = Stock::selectRaw("date_part('day', created_at) as month, SUM(value) as value")
+      ->groupBy('month')
+      ->whereYear('created_at', date('Y'))
+      ->where('class', 'Agroindustri')
+      ->pluck('value');
+
+    $dailyTotalValueAgroConverted = array_map('intval', json_decode($dailyTotalValueAgro, true));
+
+
+    $dailyTotalValueAgroDay = Stock::selectRaw("date_part('day', created_at) as month, SUM(value) as value")
+      ->groupBy('month')
+      ->whereYear('created_at', date('Y'))
+      ->where('class', 'Agroindustri')
+      ->pluck('month');
+
+    $dailyTotalValueAgroDayConverted = array_map('intval', json_decode($dailyTotalValueAgroDay, true));
+
+
+
+    $dailyTotalValueManu = Stock::selectRaw("date_part('day', created_at) as month, SUM(value) as value")
+      ->groupBy('month')
+      ->whereYear('created_at', date('Y'))
+      ->where('class', 'Manufaktur')
+      ->pluck('value');
+
+    $dailyTotalValueManuConverted = array_map('intval', json_decode($dailyTotalValueManu, true));
+
+
+    $dailyTotalValueManuDay = Stock::selectRaw("date_part('day', created_at) as month, SUM(value) as value")
+      ->groupBy('month')
+      ->whereYear('created_at', date('Y'))
+      ->where('class', 'Manufaktur')
+      ->pluck('month');
+
+    $dailyTotalValueManuDayConverted = array_map('intval', json_decode($dailyTotalValueManuDay, true));
+
+
+
+    $dailyTotalValueGaram = Stock::selectRaw("date_part('day', created_at) as month, SUM(value) as value")
+      ->groupBy('month')
+      ->whereYear('created_at', date('Y'))
+      ->where('class', 'Garam')
+      ->pluck('value');
+
+    $dailyTotalValueGaramConverted = array_map('intval', json_decode($dailyTotalValueGaram, true));
+
+
+    $dailyTotalValueGaramDay = Stock::selectRaw("date_part('day', created_at) as month, SUM(value) as value")
+      ->groupBy('month')
+      ->whereYear('created_at', date('Y'))
+      ->where('class', 'Garam')
+      ->pluck('month');
+
+    $dailyTotalValueGaramDayConverted = array_map('intval', json_decode($dailyTotalValueGaramDay, true));
+
+
+    return view(
+      'dashboard.consolidation.consolidationmonthly',
+      compact(
+        'day',
+        'now',
+        'today',
+        'dailyTotalValueAgroConverted',
+        'dailyTotalValueAgroDayConverted',
+        'dailyTotalValueManuConverted',
+        'dailyTotalValueManuDayConverted',
+        'dailyTotalValueGaramConverted',
+        'dailyTotalValueGaramDayConverted'
       )
     );
   }

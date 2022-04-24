@@ -49,7 +49,6 @@ class AdministratorCompanyController extends Controller
    */
   public function store(Request $request)
   {
-    // return $request;
     $validatedData = $request->validate([
       'company_name' => 'required',
       'group_id' => 'required',

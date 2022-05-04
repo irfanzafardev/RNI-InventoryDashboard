@@ -9,7 +9,7 @@
       </a>
     </li>
     <li class="breadcrumb-item text-dark active" aria-current="page">
-      <a href="/administrator/products">
+      <a href="/administrator/companies">
         Company
       </a>
     </li>

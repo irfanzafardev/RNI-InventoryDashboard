@@ -24,7 +24,7 @@
 <!-- DataTales Today's input -->
 <div class="card my-4">
   <div class="card-header py-3">
-    <h6 class="m-0 text-dark">Company</h6>
+    <h6 class="m-0 text-dark">Company List</h6>
   </div>
   <div class="card-body">
     @if ($message = Session::get('success'))
@@ -66,7 +66,7 @@
             <td>{{ $company->group->group_name }}</td>
             <td class="text-center">
               <a href="/administrator/companies/{{ $company->id }}/edit">Edit</a>
-              <a href="#" class="delete" data-id="{{ $company->id }}" data-name="{{ $company->company_name }}">Delete</a>
+              <a href="#" class="delete text-danger" data-id="{{ $company->id }}" data-name="{{ $company->company_name }}">Delete</a>
             </td>
           </tr>   
           @endforeach

@@ -24,7 +24,7 @@
 <!-- DataTales Today's input -->
 <div class="card my-4">
   <div class="card-header py-3">
-    <h6 class="m-0 text-dark">Today's input</h6>
+    <h6 class="m-0 text-dark">Product UOM List</h6>
   </div>
   <div class="card-body">
     @if ($message = Session::get('success'))
@@ -66,7 +66,7 @@
             <td>{{ $unit->unit_symbol}}</td>
             <td class="text-center">
               <a href="/administrator/units/{{ $unit->id }}/edit">Edit</a>
-              <a href="#" class="delete" data-id="{{ $unit->id }}" data-name="{{ $unit->unit_name }}">Delete</a>
+              <a href="#" class="delete text-danger" data-id="{{ $unit->id }}" data-name="{{ $unit->unit_name }}">Delete</a>
             </td>
           </tr>   
           @endforeach

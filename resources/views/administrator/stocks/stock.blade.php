@@ -9,7 +9,7 @@
       </a>
     </li>
     <li class="breadcrumb-item text-dark active" aria-current="page">
-      Daily Stock
+      Stock
     </li>
   </ol>
 </nav>
@@ -38,7 +38,7 @@
     <!-- DataTales Today's input -->
     <div class="card my-4">
       <div class="card-header py-3">
-        <h6 class="m-0 text-dark">Today's input</h6>
+        <h6 class="m-0 text-dark">Latest input</h6>
       </div>
       <div class="card-body">
         @if ($message = Session::get('success'))
@@ -179,7 +179,7 @@
                 <td>Rp. {{ number_format($allStock->value, 2) }}</td>
                 <td>
                   <a href="/administrator/stocks/{{ $allStock->id }}/edit">Edit</a>
-                  <a href="#" class="deleteStockIn" data-id="{{ $allStock->id }}" data-name="{{ $allStock->product->product_name }}">Delete</a>
+                  <a href="#" class="deleteStockIn text-danger" data-id="{{ $allStock->id }}" data-name="{{ $allStock->product->product_name }}">Delete</a>
                 </td>
               </tr>
               @endforeach

@@ -54,7 +54,7 @@
             <th>Company</th>
             <th>Level</th>
             <th>Phone</th>
-            <th>Action</th>
+            <th>Option</th>
           </tr>
         </thead>
         <tfoot>
@@ -67,7 +67,7 @@
             <th>Company</th>
             <th>Level</th>
             <th>Phone</th>
-            <th>Action</th>
+            <th>Option</th>
           </tr>
         </tfoot>
         <tbody>
@@ -83,7 +83,7 @@
             <td>{{ $user->phone }}</td>
             <td>
               <a href="/administrator/users/{{ $user->id }}/edit">Edit</a>
-              <a href="#" class="delete" data-id="{{ $user->id }}" data-name="{{ $user->name }}">Delete</a>
+              <a href="#" class="delete text-danger" data-id="{{ $user->id }}" data-name="{{ $user->name }}">Delete</a>
             </td>
           </tr>     
           @endforeach

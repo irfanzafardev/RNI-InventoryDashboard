@@ -24,7 +24,7 @@
 <!-- DataTales Today's input -->
 <div class="card my-4">
   <div class="card-header py-3">
-    <h6 class="m-0 text-dark">Today's input</h6>
+    <h6 class="m-0 text-dark">Subcategory List</h6>
   </div>
   <div class="card-body">
     @if ($message = Session::get('success'))
@@ -69,7 +69,7 @@
             <td>{{ $subcategory->subcategory_name }}</td>
             <td class="text-center">
               <a href="/administrator/subcategories/{{ $subcategory->id }}/edit">Edit</a>
-              <a href="#" class="delete" data-id="{{ $subcategory->id }}" data-name="{{ $subcategory->subcategory_name }}">Delete</a>
+              <a href="#" class="delete text-danger" data-id="{{ $subcategory->id }}" data-name="{{ $subcategory->subcategory_name }}">Delete</a>
             </td>
           </tr>   
           @endforeach

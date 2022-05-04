@@ -128,7 +128,7 @@
   </div>
 </div>
 
-<!-- Summary Row -->
+<!-- Row -->
 <div class="row d-none">
   <div class="col-9">
     <div class="summary-card mb-4">
@@ -203,7 +203,7 @@
 </div>
 
 <!-- Summary Row -->
-<div class="row">
+<div class="row mb-4">
   <div class="col-6">
     <div class="row">
       <div class="col-6">
@@ -301,7 +301,7 @@
   </div>
   <div class="col-6">
     <div class="card single-card-consolidation-chart bg-darkblue">
-      <div class="card-body">
+      <div class="card-body" style="min-height: 335px">
         <div class="row">
           <div class="col-12">
             <h5 class="card-title item-card-title text-white text-style-medium">
@@ -313,6 +313,23 @@
           </div>
         </div>
       </div>   
+    </div>
+  </div>
+</div>
+
+<a class="accordion-button text-muted text-decoration-none" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+  Show Graphic
+  <img src="{{ asset("img/down-arrow-muted.png") }}" class="ml-3" width="20px">
+</a>
+<div class="collapse mt-3" id="collapseExample">
+  <div class="row">
+    <div class="col-12">
+      <h5 class="card-title item-card-title text-dark text-style-medium">
+        Performance Stats
+      </h5>
+      <figure class="highcharts-figure">
+        <div id="graphic"></div>
+      </figure>
     </div>
   </div>
 </div>
@@ -393,6 +410,101 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.0.0/chartjs-plugin-datalabels.min.js" integrity="sha512-R/QOHLpV1Ggq22vfDAWYOaMd5RopHrJNMxi8/lJu8Oihwi4Ho4BRFeiMiCefn9rasajKjnx9/fTQ/xkWnkDACg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<!-- Highcharts -->
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+<script type="text/javascript">
+  var dailyTotalValueAgro = <?php echo json_encode ($dailyTotalValueAgroConverted) ?>;
+  var dailyTotalValueManu = <?php echo json_encode ($dailyTotalValueManuConverted) ?>;
+  var dailyTotalValueGaram = <?php echo json_encode ($dailyTotalValueGaramConverted) ?>;
+  var dailyTotalValueDays = <?php echo json_encode ($dailyTotalValueAgroDayConverted) ?>;
+
+  Highcharts.chart('graphic', {
+    legend: {
+      itemStyle: {
+        color: 'black',
+        fontWeight: 'bold'
+      }
+    },
+    chart: {
+      backgroundColor: 'rgba(0,0,0,0)',
+      labels: {
+        style: {
+          color: '#000'
+        }
+      }
+    },
+    title : {
+      text: "Stock Value Graph",
+      style: {"color": "#000"}
+    },
+    xAxis : {
+      title: {
+        text: "Date",
+        style: {"color": "#000"}
+      },
+      categories: dailyTotalValueDays,
+      labels: {
+        style: {
+          color: '#000'
+        }
+      }
+    },
+    yAxis : {
+      title: {
+        text: "Value",
+        style: {"color": "#000"}
+      },
+      labels: {
+        style: {
+          color: '#000'
+        }
+      }
+    },
+    plotOptions: {
+      series: {
+        allowPointSelect: true
+      }
+    },
+    series: [
+      {
+        name: "Agroindustri",
+        data: dailyTotalValueAgro,
+        color: '#D2973B',
+      },
+      {
+        name: "Manufaktur",
+        data: dailyTotalValueManu,
+      },
+      {
+        name: "Garam",
+        data: dailyTotalValueGaram,
+        color: '#84B29C',
+      }
+    ],
+    responsive: {
+      rules: [
+        {
+          condition: {
+            maxWidth: 500,
+          },
+          chartOptions: {
+            legend: {
+              layout: "horizontal",
+              align: "center",
+              verticalAlign: "bottom",
+            },
+          },
+        },
+      ],
+    },
+  });
+</script>
 
 <script>
   $('.accordion-button').click(function(){

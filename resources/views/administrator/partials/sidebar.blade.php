@@ -1,7 +1,7 @@
 <!-- Sidebar -->
 <ul class="navbar-nav bg-white sidebar accordion" id="accordionSidebar">
-  <div class="logo d-none justify-content-center my-3 pr-4">
-    <img src="./img/idfood.png" alt="" width="110px">
+  <div class="logo d-flex justify-content-center mt-3 pr-4">
+    <img src="../../img/idfood.png" width="110px">
   </div>
   <!-- Sidebar - Brand -->
   <a
@@ -9,11 +9,10 @@
     href="/"
     style="max-height: 40px"
   >
-    <div class="sidebar-icon">
-      <!-- <i class="fas fa-laugh-wink"></i> -->
+    {{-- <div class="sidebar-icon d-none">
       <img src="{{ asset('./img/logo-main.png') }}" alt="" width="20px" />
-    </div>
-    <div class="sidebar-text text-style-medium mx-4">Inventory</div>
+    </div> --}}
+    <div class="sidebar-text text-style-medium pe-3">Dashventory</div>
   </a>
 
   <!-- Divider -->

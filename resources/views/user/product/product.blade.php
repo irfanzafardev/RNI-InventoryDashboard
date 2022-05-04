@@ -24,7 +24,7 @@
 <!-- DataTales Today's input -->
 <div class="card my-4">
   <div class="card-header py-3">
-    <h6 class="m-0 text-dark">Product</h6>
+    <h6 class="m-0 text-dark">Product List</h6>
   </div>
   <div class="card-body">
     @if ($message = Session::get('success'))
@@ -89,7 +89,7 @@
             {{-- <td>{{ $product->created_at }}</td> --}}
             <td>
               <a href="/staff/products/{{ $product->id }}/edit">Edit</a>
-              <a href="#" class="deleteProduct" data-id="{{ $product->id }}" data-name="{{ $product->product_name }}">Delete</a>
+              <a href="#" class="deleteProduct text-danger" data-id="{{ $product->id }}" data-name="{{ $product->product_name }}">Delete</a>
             </td>
           </tr>   
           @endforeach

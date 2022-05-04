@@ -9,7 +9,7 @@
       </a>
     </li>
     <li class="breadcrumb-item text-dark active" aria-current="page">
-      Product Items
+      Product
     </li>
   </ol>
 </nav>
@@ -24,7 +24,7 @@
 <!-- DataTales Today's input -->
 <div class="card my-4">
   <div class="card-header py-3">
-    <h6 class="m-0 text-dark">Today's input</h6>
+    <h6 class="m-0 text-dark">Product List</h6>
   </div>
   <div class="card-body">
     @if ($message = Session::get('success'))
@@ -53,7 +53,7 @@
             <th>Sub Category</th>
             <th>UOM</th>
             <th>Unit Price</th>
-            <th class="">Option</th>
+            <th class="d-none">Option</th>
           </tr>
         </thead>
         <tfoot>
@@ -67,7 +67,7 @@
             <th>Sub Category</th>
             <th>UOM</th>
             <th>Unit Price</th>
-            <th class="">Option</th>
+            <th class="d-none">Option</th>
           </tr>
         </tfoot>
         <tbody>
@@ -82,7 +82,7 @@
             <td>{{ $product->subcategory->subcategory_name }}</td>
             <td>{{ $product->unit->unit_name}}</td>
             <td>Rp. {{ number_format($product->unit_price, 2) }}</td>
-            <td class="">
+            <td class="d-none">
               <a href="/administrator/products/{{ $product->id }}/edit">Edit</a>
               <a href="#" class="deleteProduct" data-id="{{ $product->id }}" data-name="{{ $product->product_name }}">Delete</a>
             </td>

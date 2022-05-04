@@ -24,7 +24,7 @@
 <!-- DataTales Today's input -->
 <div class="card my-4">
   <div class="card-header py-3">
-    <h6 class="m-0 text-dark">Subcategory</h6>
+    <h6 class="m-0 text-dark">Subcategory List</h6>
   </div>
   <div class="card-body">
     @if ($message = Session::get('success'))

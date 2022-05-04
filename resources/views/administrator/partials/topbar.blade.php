@@ -20,7 +20,7 @@
       <a id="navbarDropdown" class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
           {{ Auth::user()->name }} |
           {{ Auth::user()->company->company_name }} |
-          {{ Auth::user()->ModelRole->Role->name }}
+          Super admin
           <img class="ms-3" src="{{ asset('img/user.png') }}" width="25px" />
       </a>
       <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">

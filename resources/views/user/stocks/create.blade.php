@@ -9,7 +9,9 @@
       </a>
     </li>
     <li class="breadcrumb-item text-dark active" aria-current="page">
-      Daily Stock
+      <a href="/staff/stocks">
+        Stock
+      </a>
     </li>
     <li class="breadcrumb-item text-dark active" aria-current="page">
       Create

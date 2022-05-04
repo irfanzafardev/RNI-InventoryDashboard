@@ -99,7 +99,7 @@
 </a>
 <div class="collapse mt-3" id="collapseExample">
   <div class="single-cards row">
-    <div class="col-12 col-md-12 col-lg-12 mb-3 d-none">
+    <div class="col-12 col-md-12 col-lg-12 mb-3">
       <div class="card single-card">
         <div class="card-body">
           <div class="row">
@@ -352,7 +352,7 @@
 <!-- DataTales Today's input -->
 <div class="card my-4">
   <div class="card-header py-3">
-    <h6 class="m-0 text-dark">Today's input</h6>
+    <h6 class="m-0 text-dark">Latest input</h6>
   </div>
   <div class="d-flex justify-content-end">
     <a href="#" class="btn btn-primary bg-darkblue mr-4 mt-3 px-4" onclick="tablesToExcel(['dataTable'], ['Stock'], 'stock.xls', 'Excel')">

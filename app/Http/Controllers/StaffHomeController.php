@@ -30,6 +30,7 @@ class StaffHomeController extends Controller
       ->sum('value');
     $dataProduct = Product::all()
       ->where('user_id', $id)
+      ->where('active', true)
       ->count();
     $dataStock = Stock::where('date', '=', $day)
       ->where('company', $company)

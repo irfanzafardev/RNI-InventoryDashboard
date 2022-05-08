@@ -225,7 +225,7 @@
   </div>
   <div class="col-6">
     <div class="card single-card-consolidation-chart bg-darkblue">
-      <div class="card-body">
+      <div class="card-body" style="min-height: 335px">
         <div class="row">
           <div class="col-12">
             <h5 class="card-title item-card-title text-white text-style-medium">

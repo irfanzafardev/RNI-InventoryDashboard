@@ -14,7 +14,7 @@ html, body, form, fieldset, table, tr, td, img {
   font-size: 18px;
 }
 
-/* dDasboard text */
+/* Dasboard text */
 
 .text-style-small {
   font-family: 'Segoe UI', helvetica, sans-serif !important;
@@ -54,6 +54,7 @@ html, body, form, fieldset, table, tr, td, img {
  .donut-chart:hover {
   transform: scale(1.2);
  }
+
 /* Colours */
 .bg-darkblue {
   background-color: #0B1629 !important;
@@ -216,6 +217,13 @@ label {
   font-weight: 600;
   font-size: 22px;
   line-height: 34px;
+}
+
+.topbar-divider {
+  width: 0;
+  border-right: 1px solid #e3e6f0;
+  height: calc(4.375rem - 2rem);
+  margin: auto 1rem;
 }
 
 .nav-link {

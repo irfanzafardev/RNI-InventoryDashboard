@@ -18,7 +18,7 @@
 @section('container')
 <!-- Page Heading -->
 <div class="page-heading heading bg-darkblue d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-white">Daily Stock</h1>
+    <h1 class="h3 mb-0 text-white">Daily Stock List</h1>
 </div>
 
 <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -103,7 +103,7 @@
                 <td>Rp. {{ number_format($stock->value, 2) }}</td>
                 <td>
                   <a href="/administrator/stocks/{{ $stock->id }}/edit">Edit</a>
-                  <a href="#" class="deleteStockIn" data-id="{{ $stock->id }}" data-name="{{ $stock->product->product_name }}">Delete</a>
+                  <a href="#" class="deleteStockIn text-danger" data-id="{{ $stock->id }}" data-name="{{ $stock->product->product_name }}">Delete</a>
                 </td>
               </tr>
               @endforeach
@@ -201,7 +201,7 @@
       var stockname = $(this).attr('data-name')
       swal({
         title: "Are you sure?",
-        text: "Once deleted, you will not be able to recover this "+stockname+" ",
+        text: "Once deleted, you will not be able to recover "+stockname+" ",
         icon: "warning",
         buttons: true,
         dangerMode: true,
@@ -209,11 +209,11 @@
       .then((willDelete) => {
         if (willDelete) {
           window.location = "/administrator/deletestock/"+stockid+""
-          swal("Poof! Your imaginary file has been deleted!", {
+          swal("Your file has been deleted!", {
             icon: "success",
           });
         } else {
-          swal("Your imaginary file is safe!");
+          swal("YouR file is safe!");
         }
       });
     })

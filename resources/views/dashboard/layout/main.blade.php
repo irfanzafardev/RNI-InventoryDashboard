@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 		<meta name="description" content="" />
 		<meta name="author" content="" />
-    <link rel="icon" href="{{ URL::asset('logo.png') }}" type="image/x-icon"/>
+    <link rel="icon" href="{{ URL::asset('logoAlt.svg') }}" type="image/x-icon"/>
 
 		<title>Inventory Dashboard</title>
 
@@ -49,7 +49,13 @@
 	<body id="page-top">
 		<nav class="navbar navbar-expand-lg navbar-light bg-white">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="/dashboard">Dashventory</a>
+        <div class="logo d-flex justify-content-center mt-3 pr-4">
+          <img src="../../img/idfood.png" alt="" width="110px">
+        </div>
+        <div class="topbar-divider d-none d-sm-block"></div>
+				<a class="navbar-brand mt-0 ml-1" href="/dashboard">
+          <img src="../img/login-logo.svg" alt="" width="120px" />
+        </a>
 				<button
 					class="navbar-toggler"
 					type="button"
@@ -61,7 +67,7 @@
 				>
 					<span class="navbar-toggler-icon"></span>
 				</button>
-				<div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+				<div class="collapse navbar-collapse justify-content-between mt-1" id="navbarNav">
 					<ul class="navbar-nav">
 						<li class="nav-item mb-2 mb-lg-0">
 							<a class="nav-link {{ Request::is('dashboard/agroindustri*') ? 'active' : '' }}" aria-current="page" href="/dashboard/agroindustri">Agroindustri</a>

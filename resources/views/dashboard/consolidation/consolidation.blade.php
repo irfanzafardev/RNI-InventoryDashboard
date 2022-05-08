@@ -16,17 +16,8 @@
   </nav>
 </div>
 
-{{-- <ul class="nav time-nav">
-  <li class="nav-item mr-4">
-    <a class="nav-link active" href="/dashboard/agroindustri">Latest</a>
-  </li>
-  <li class="nav-item mr-4">
-    <a class="nav-link" href="/dashboard/agroindustri">Montly Stats</a>
-  </li>
-</ul> --}}
-
 <!-- Content Row -->
-<div class="content-cta mb-3">
+<div class="content-cta mb-4">
   <form action="/dashboard/daily" method="POST">
     @csrf
     <div class="row justify-content-end">
@@ -318,7 +309,7 @@
 </div>
 
 <a class="accordion-button text-muted text-decoration-none" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-  Show Graphic
+  Show Stock Value Graph
   <img src="{{ asset("img/down-arrow-muted.png") }}" class="ml-3" width="20px">
 </a>
 <div class="collapse mt-3" id="collapseExample">

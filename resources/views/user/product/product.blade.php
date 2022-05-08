@@ -105,7 +105,7 @@
     var productname = $(this).attr('data-name')
     swal({
       title: "Are you sure?",
-      text: "Once deleted, you will not be able to recover this "+productname+" ",
+      text: "Once deleted, you will not be able to recover "+productname+" ",
       icon: "warning",
       buttons: true,
       dangerMode: true,
@@ -113,11 +113,11 @@
     .then((willDelete) => {
       if (willDelete) {
         window.location = "/staff/deleteproduct/"+productid+""
-        swal("Poof! Your imaginary file has been deleted!", {
+        swal("Your file has been deleted!", {
           icon: "success",
         }); 
       } else {
-        swal("Your imaginary file is safe!");
+        swal("Your file is safe!");
       }
     });
   })

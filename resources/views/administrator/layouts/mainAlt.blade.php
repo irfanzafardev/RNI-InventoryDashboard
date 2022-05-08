@@ -9,7 +9,7 @@
 		/>
 		<meta name="description" content="" />
 		<meta name="author" content="" />
-    <link rel="icon" href="{{ URL::asset('logo.png') }}" type="image/x-icon"/>
+    <link rel="icon" href="{{ URL::asset('logoAlt.svg') }}" type="image/x-icon"/>
 
 		<title>Inventory</title>
 

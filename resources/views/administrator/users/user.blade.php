@@ -99,7 +99,7 @@
     var userName = $(this).attr('data-name')
     swal({
       title: "Are you sure?",
-      text: "Once deleted, you will not be able to recover this "+userName+" ",
+      text: "Once deleted, you will not be able to recover "+userName+" ",
       icon: "warning",
       buttons: true,
       dangerMode: true,
@@ -107,11 +107,11 @@
     .then((willDelete) => {
       if (willDelete) {
         window.location = "/administrator/removeuser/"+userId+""
-        swal("Poof! Your imaginary file has been deleted!", {
+        swal("Your file has been deleted!", {
           icon: "success",
         });
       } else {
-        swal("Your imaginary file is safe!");
+        swal("Your file is safe!");
       }
     });
   })

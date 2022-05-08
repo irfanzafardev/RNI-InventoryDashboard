@@ -9,7 +9,7 @@
 
     {{-- <title>{{ config('app.name', 'Laravel') }}</title> --}}
     <title>Registration</title>
-    <link rel="icon" href="{{ URL::asset('logo.png') }}" type="image/x-icon"/>
+    <link rel="icon" href="{{ URL::asset('logoAlt.svg') }}" type="image/x-icon"/>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>

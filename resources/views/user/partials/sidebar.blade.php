@@ -1,14 +1,19 @@
 <!-- Sidebar -->
 <ul class="navbar-nav bg-white sidebar accordion" id="accordionSidebar">
-  <div class="logo d-flex justify-content-center mt-3 pr-4">
-    <img src="../../img/idfood.png" alt="" width="110px">
-  </div>
   <!-- Sidebar - Brand -->
-  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/staff">
+  <a 
+  class="sidebar-brand d-flex align-items-center justify-content-center mt-2 mb-4" 
+  href="/staff" 
+  style="max-height: 40px"
+  >
+    <div class="logo d-flex justify-content-center mt-3 pr-4">
+      <img src="../../img/idfood.png" alt="" width="110px">
+    </div>
     {{-- <div class="sidebar-icon">
       <img src="{{ asset('./img/logo-main.png') }}" alt="" width="20px" />
     </div> --}}
-    <div class="sidebar-text text-style-medium pe-3">Dashventory</div>
+    {{-- <div class="sidebar-text text-style-medium pe-3">Dashventory</div> --}}
+    {{-- <img src="../../img/login-logo.svg" alt="" width="100px" class="me-3" /> --}}
   </a>
 
   <!-- Divider -->
@@ -69,7 +74,7 @@
   <!-- Nav Item - Tables -->
   <li class="nav-item">
     <a class="nav-link {{ Request::is('staff/report*') ? 'active' : '' }} py-2" href="/staff/report">
-      <span>Report Stock</span>
+      <span>Stock Report</span>
     </a>
   </li>
 

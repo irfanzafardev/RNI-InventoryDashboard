@@ -1,6 +1,11 @@
 <!-- Topbar -->
 <nav class="navbar navbar-expand navbar-light topbar mb-4 static-top">
-  @yield('breadcrumb')
+  <img src="../../img/login-logo.svg" alt="" width="120px" class="ms-2 me-3" />
+  <div class="topbar-divider d-none d-sm-block"></div>
+  <div class="pt-2">
+    @yield('breadcrumb')
+  </div>
+
 
   <!-- Sidebar Toggle (Topbar) -->
   <button

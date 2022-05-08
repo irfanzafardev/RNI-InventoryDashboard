@@ -32,7 +32,7 @@
         {{ $message }}
       </div>
     @endif
-    <a href="/administrator/subcategories/create" class="btn btn-primary bg-darkblue px-4 mb-3">
+    <a href="/administrator/subcategories/create" class="btn btn-primary bg-darkblue px-4 mb-3 d-none">
       Add Data
     </a>
     <div class="table-responsive">

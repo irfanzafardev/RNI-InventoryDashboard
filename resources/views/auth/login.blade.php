@@ -6,7 +6,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="icon" href="{{ URL::asset('logo.png') }}" type="image/x-icon"/>
+    <link rel="icon" href="{{ URL::asset('logoAlt.svg') }}" type="image/x-icon"/>
 
     {{-- <title>{{ config('app.name', 'Log in') }}</title> --}}
 		<title>Log in</title>

@@ -115,7 +115,7 @@
             <th>Qty</th>
             <th>Unit Price</th>
             <th>Value</th>
-            <th>Option</th>
+            <th class="d-none">Option</th>
           </tr>
         </thead>
         <tfoot>
@@ -129,7 +129,7 @@
             <th>Qty</th>
             <th>Unit Price</th>
             <th>Value</th>
-            <th>Option</th>
+            <th class="d-none">Option</th>
           </tr>
         </tfoot>
         <tbody>
@@ -144,9 +144,9 @@
             <td>{{ number_format($stock->quantity, 0)}}</td>
             <td>Rp. {{ number_format($stock->product->unit_price, 2) }}</td>
             <td>Rp. {{ number_format($stock->value, 2) }}</td>
-            <td>
+            <td class="d-none">
               <a href="/administrator/products/{{ $stock->id }}/edit">Edit</a>
-              <a href="#" class="deleteStockIn" data-id="{{ $stock->id }}" data-name="{{ $stock->product->product_name }}">Delete</a>
+              <a href="#" class="deleteStockIn text-danger" data-id="{{ $stock->id }}" data-name="{{ $stock->product->product_name }}">Delete</a>
             </td>
           </tr>
           @endforeach

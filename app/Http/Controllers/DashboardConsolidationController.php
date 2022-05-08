@@ -129,6 +129,13 @@ class DashboardConsolidationController extends Controller
 
     $dailyTotalValueGaramDayConverted = array_map('intval', json_decode($dailyTotalValueGaramDay, true));
 
+    $joinTable = DB::table('stocks')
+      ->join('products', 'stocks.product_id', 'products.id')
+      ->select('stocks.id', 'products.product_name')
+      ->where('products.class', 'Agroindustri')
+      ->get();
+    // dd($joinTable);
+
     return view(
       'dashboard.consolidation.consolidation',
       compact(

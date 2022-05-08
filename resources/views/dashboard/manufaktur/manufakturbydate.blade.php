@@ -23,10 +23,13 @@
 
 <ul class="nav time-nav">
   <li class="nav-item mr-3">
-    <a class="nav-link" href="/dashboard/manufaktur">Latest</a>
+    <a class="nav-link" href="/dashboard/manufaktur">Latest Stock</a>
+  </li>
+  <li class="nav-item mr-4">
+    |
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="/dashboard/manufaktur/products">Product</a>
+    <a class="nav-link" href="/dashboard/manufaktur/products">Product Item</a>
   </li>
 </ul>
 

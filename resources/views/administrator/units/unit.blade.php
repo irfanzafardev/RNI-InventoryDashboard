@@ -18,7 +18,7 @@
 @section('container')
 <!-- Page Heading -->
 <div class="page-heading heading bg-darkblue d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-white">Product UOM List</h1>
+    <h1 class="h3 mb-0 text-white">UOM List</h1>
 </div>
 
 <!-- DataTales Today's input -->
@@ -32,7 +32,7 @@
         {{ $message }}
       </div>
     @endif
-    <a href="/administrator/units/create" class="btn btn-primary bg-darkblue px-4 mb-3">
+    <a href="/administrator/units/create" class="btn btn-primary bg-darkblue px-4 mb-3 d-none">
       Add Data
     </a>
     <div class="table-responsive">
@@ -82,7 +82,7 @@
     var unitName = $(this).attr('data-name')
     swal({
       title: "Are you sure?",
-      text: "Once deleted, you will not be able to recover this "+unitName+" ",
+      text: "Once deleted, you will not be able to recover "+unitName+" ",
       icon: "warning",
       buttons: true,
       dangerMode: true,

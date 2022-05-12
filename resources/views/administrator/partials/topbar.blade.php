@@ -25,9 +25,13 @@
           {{ Auth::user()->name }} |
           {{ Auth::user()->company->company_name }} |
           Super admin
-          <img class="ms-3" src="{{ asset('img/user.png') }}" width="25px" />
+          <img class="ms-3 me-1" src="{{ asset('img/user.png') }}" width="25px" />
+          <i class="fa-solid fa-caret-down"></i>
       </a>
       <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{{ route('change_password') }}">
+            Change Password
+          </a>  
           <a class="dropdown-item" href="{{ route('logout') }}"
              onclick="event.preventDefault();
                            document.getElementById('logout-form').submit();">

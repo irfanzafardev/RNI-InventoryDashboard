@@ -114,7 +114,7 @@ class AdministratorUserController extends Controller
     User::where('id', $user->id)
       ->update($validatedData);
 
-    return redirect('/administrator/users')->with('success', 'Data has been successfully updated');
+    return redirect('/administrator/users')->with('success', 'Account has been successfully updated');
   }
 
   /**
@@ -144,6 +144,6 @@ class AdministratorUserController extends Controller
       $userId->active = false;
       $userId->save();
     }
-    return redirect('/administrator/users')->with('success', 'Data has been successfully removed');
+    return redirect('/administrator/users')->with('success', 'Account has been successfully removed');
   }
 }

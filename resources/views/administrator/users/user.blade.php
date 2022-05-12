@@ -107,11 +107,11 @@
     .then((willDelete) => {
       if (willDelete) {
         window.location = "/administrator/removeuser/"+userId+""
-        swal("Your file has been deleted!", {
+        swal("Account has been deleted!", {
           icon: "success",
         });
       } else {
-        swal("Your file is safe!");
+        swal("Account is safe!");
       }
     });
   })

@@ -85,8 +85,8 @@
                                 required>
                                 <option value="">Choose Role</option>
                                 {{-- <option value="superadmin">Superadmin</option> --}}
-                                {{-- <option value="admin">Admin</option> --}}
-                                <option value="user">User</option>
+                                <option value="admin">Admin</option>
+                                <option value="staff">Staff</option>
                               </select>
                           </div>
                         </div>

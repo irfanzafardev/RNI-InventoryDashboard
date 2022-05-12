@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\StaffHomeController;
 use App\Http\Controllers\StaffStockController;
 use App\Http\Controllers\StaffProductController;
@@ -44,9 +45,13 @@ use App\Http\Controllers\AdministratorSubcategoryController;
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+// Change Password
+Route::middleware('role:staff|admin|superadmin')->group(function () {
+  Route::get('change-password', [ChangePasswordController::class, 'index'])->name('change_password');
+  Route::post('change-password', [ChangePasswordController::class, 'store'])->name('change.password');
+});
+
 // Admin Frontend View
-
-
 Route::middleware('role:admin|superadmin')->group(function () {
   Route::get('/dashboard', [DashboardConsolidationController::class, 'latest'])->name('dashboardConsolidation');
   Route::post('/dashboard/daily', [DashboardConsolidationController::class, 'search'])->name('dashboardConsolidationSearch');
@@ -65,9 +70,7 @@ Route::middleware('role:admin|superadmin')->group(function () {
   Route::get('/dashboard/garam/products', [DashboardGaramController::class, 'product'])->name('dashboardGaramProduct');
 });
 
-
 // Superadmin Frontend View
-
 Route::middleware('role:superadmin')->group(function () {
   Route::get('/', [AdministratorHomeController::class, 'index'])->name('administratorHome');
   Route::get('/administrator', [AdministratorHomeController::class, 'index'])->name('administratorHome');
@@ -117,10 +120,7 @@ Route::middleware('role:superadmin')->group(function () {
   Route::post('/administrator/report/daily', [AdministratorReportController::class, 'search'])->name('reportStockByDate');
 });
 
-
-
 // User Staff Frontend View
-
 Route::middleware('role:staff')->group(function () {
   Route::get('/staff', [StaffHomeController::class, 'index'])->name('staffHome');
 

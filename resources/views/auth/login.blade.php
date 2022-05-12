@@ -126,12 +126,14 @@
                             <button type="submit" class="btn btn-dark bg-darkblue btn-login btn-block">
                               {{ __('Login') }}
                             </button>
+                            <div class="row mt-2 float-right">
+                              <a href="{{ route('password.request') }}" class="small text-dark">
+                                Forgot Password?
+                              </a>                         
+                            </div>
                           </form>
                   
                           <div class="text-end mt-3">
-                            <a href="#" class="small text-dark">
-                              Forgot Password?
-                            </a>
                           </div>
                         </div>
                       </div>

@@ -80,7 +80,8 @@ class RegisterController extends Controller
       // 'password' => $data['password'],
     ]);
 
-    $user->assignRole('staff');
-    return $user;
+    $user->assignRole($data['role']);
+    // return $user;
+    return redirect('/administrator/users')->with('success', 'Account has been successfully added');
   }
 }

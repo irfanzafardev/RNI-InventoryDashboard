@@ -29,10 +29,24 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{-- {{ config('app.name', 'Laravel') }} --}}
-                    Dashventory
-                </a>
+              @role('superadmin')
+              <a class="navbar-brand" href="{{ url('/') }}">
+                <div class="logo d-flex justify-content-center mt-1 pr-4">
+                  <img src="../../img/login-logo.svg" alt="" width="120px" class="ms-2 me-3" />
+                </div>
+              </a>
+              @else
+              <a class="navbar-brand" href="{{ url('/staff') }}">
+                <div class="logo d-flex justify-content-center mt-1 pr-4">
+                  <img src="../../img/login-logo.svg" alt="" width="120px" class="ms-2 me-3" />
+                </div>
+              </a>
+              @endrole
+                {{-- <a class="navbar-brand" href="{{ url('/') }}">
+                    <div class="logo d-flex justify-content-center mt-1 pr-4">
+                      <img src="../../img/login-logo.svg" alt="" width="120px" class="ms-2 me-3" />
+                    </div>
+                </a> --}}
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>

@@ -22,9 +22,9 @@ class AdministratorSubcategoryController extends Controller
   public function index()
   {
     return view('administrator.subcategories.subcategory', [
-      'subcategories' => Subcategory::where('active', true)
-        ->orderBy('updated_at', 'desc')
-        ->get()
+      'subcategories' => Subcategory::all()
+        ->where('active', true)
+        ->sortByDesc("updated_at")
     ]);
   }
 

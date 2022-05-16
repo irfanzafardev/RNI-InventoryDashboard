@@ -6,14 +6,12 @@
   href="/staff" 
   style="max-height: 40px"
   >
-    <div class="logo d-flex justify-content-center mt-3 pr-4">
-      <img src="../../img/idfood.png" alt="" width="110px">
-    </div>
-    {{-- <div class="sidebar-icon">
-      <img src="{{ asset('./img/logo-main.png') }}" alt="" width="20px" />
-    </div> --}}
-    {{-- <div class="sidebar-text text-style-medium pe-3">Dashventory</div> --}}
-    {{-- <img src="../../img/login-logo.svg" alt="" width="100px" class="me-3" /> --}}
+  <div class="logo d-none d-md-flex justify-content-center mt-3 pr-4">
+    <img src="../../../img/idfood.png" width="110px">
+  </div>
+  <div class="logo d-flex d-md-none justify-content-center mt-3 pr-2">
+    <img src="../../../img/idfood.png" width="60px">
+  </div>
   </a>
 
   <!-- Divider -->
@@ -28,7 +26,7 @@
   </li>
 
   <!-- Heading -->
-  <div class="nav-heading text-dark mx-3">Master Data</div>
+  <div class="nav-heading text-dark text-center text-md-left mx-3">Master Data</div>
 
   <!-- Nav Item - Charts -->
   <li class="nav-item">
@@ -59,7 +57,7 @@
   </li>
 
   <!-- Heading -->
-  <div class="nav-heading text-dark mx-3">Warehouse</div>
+  <div class="nav-heading text-dark text-center text-md-left mx-3">Warehouse</div>
 
   <!-- Nav Item - Tables -->
   <li class="nav-item">
@@ -69,7 +67,7 @@
   </li>
 
   <!-- Report -->
-  <div class="nav-heading text-dark mx-3">Report</div>
+  <div class="nav-heading text-dark text-center text-md-left mx-3">Report</div>
 
   <!-- Nav Item - Tables -->
   <li class="nav-item">

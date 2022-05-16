@@ -55,6 +55,8 @@
     <link href="http://code.jquery.com/ui/1.9.2/themes/smoothness/jquery-ui.css" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
+    <script src="https://kit.fontawesome.com/55fc4a3228.js" crossorigin="anonymous"></script>
+
 		<link
 			href="http://code.jquery.com/ui/1.9.2/themes/smoothness/jquery-ui.css"
 			rel="stylesheet"

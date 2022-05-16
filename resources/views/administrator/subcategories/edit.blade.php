@@ -123,10 +123,11 @@
               {
                 if(data) {
                     $('#category').empty();
+                    $('select[name="category_id"]').append('<option value="">{{ $subcategory->category->category_name }}</option>');
                     $.each(data, function(key, category){
                       $('select[name="category_id"]').append('<option value="'+ key + + category.id +'">' + category.category_name+ '</option>');
                     });
-                }else {
+                } else {
                     $('#category').empty();
                 }
             }
@@ -163,8 +164,12 @@
       }
     });
 
-    $('.class-select').select2();
-    $('.category-select').select2();
+    $('.class-select').select2({
+      theme: "bootstrap-5",
+    });
+    $('.category-select').select2({
+      theme: "bootstrap-5",
+    });
   });
 </script>
 @endsection

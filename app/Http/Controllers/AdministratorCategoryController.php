@@ -22,9 +22,9 @@ class AdministratorCategoryController extends Controller
   public function index()
   {
     return view('administrator.categories.category', [
-      'categories' => Category::where('active', true)
-        ->orderBy('updated_at', 'desc')
-        ->get()
+      'categories' => Category::all()
+        ->where('active', true)
+        ->sortByDesc("updated_at")
     ]);
   }
 

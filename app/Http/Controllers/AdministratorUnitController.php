@@ -20,9 +20,10 @@ class AdministratorUnitController extends Controller
   public function index()
   {
     return view('administrator.units.unit', [
-      'units' => Unit::where('active', true)
-        ->orderBy('updated_at', 'desc')
-        ->get()
+      'units' => Unit::all()
+        ->where('active', true)
+        ->sortByDesc("updated_at")
+
     ]);
   }
 

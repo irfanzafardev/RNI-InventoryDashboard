@@ -79,7 +79,8 @@
             <select
               name="product_id"
               class="form-control form-select"
-              id="product_id">
+              id="product_id"
+              required>
               <option value="">Choose product</option>
               @foreach ($products as $product)
                 @if (old('product_id') == $product->id)

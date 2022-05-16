@@ -30,7 +30,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
               @role('superadmin')
-              <a class="navbar-brand" href="{{ url('/') }}">
+              <a class="navbar-brand" href="{{ url()->previous() }}">
                 <div class="logo d-flex justify-content-center mt-1 pr-4">
                   <img src="../../img/login-logo.svg" alt="" width="120px" class="ms-2 me-3" />
                 </div>

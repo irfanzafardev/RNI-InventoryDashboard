@@ -36,7 +36,8 @@ class StaffProductController extends Controller
     $company = Auth::user()->company->company_name;
     $dataproduct = Product::all()
       ->where('company', $company)
-      ->where('active', true);
+      ->where('active', true)
+      ->sortByDesc("updated_at");
 
     return view('user.product.product', compact('now', 'today', 'dataproduct'));
   }

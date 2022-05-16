@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use DatePeriod;
+use DateInterval;
+use DateTime;
+
 use Carbon\Carbon;
 use App\Models\Stock;
 use App\Models\Product;
@@ -66,9 +70,15 @@ class DashboardConsolidationController extends Controller
       ->where('category', 'Gula')
       ->orderBy('quantity', 'desc')->get();
 
+    $carbon = Carbon::now();
+
     $day = Carbon::yesterday()->toDateString();
     $now = Carbon::now()->format('d F Y');
     $today = Carbon::now()->format('D');
+
+    $month = $carbon->format('F');
+    $year = Carbon::now()->format('Y');
+    $monthYear = $month . " " . $year;
 
     $exceptionDay = Carbon::today()->toDateString();
     $exceptionToday = Carbon::today()->toDateString();
@@ -96,7 +106,6 @@ class DashboardConsolidationController extends Controller
       ->whereYear('created_at', date('Y'))
       ->where('class', 'Manufaktur')
       ->whereNotIn('date', [$exceptionDay, $exceptionToday])
-      // ->get();
       ->selectRaw('sum(value) as sum')
       ->pluck('sum');
 
@@ -134,14 +143,89 @@ class DashboardConsolidationController extends Controller
       ->select('stocks.id', 'products.product_name')
       ->where('products.class', 'Agroindustri')
       ->get();
-    // dd($joinTable);
+
+    $from = new Carbon('first day of this month');
+    $to = Carbon::yesterday()->modify('+1 day')->toDateString();
+    $from =  $from->toDateString();
+
+    $period = new DatePeriod(new DateTime($from), new DateInterval('P1D'), new DateTime($to));
+    $dbData = [];
+
+    foreach ($period as $date) {
+      $range[$date->format("Y-m-d")] = 0;
+    };
+
+    $dataAgroindustri = Stock::selectRaw("date, SUM(value) as value")
+      ->whereDate('date', '>=', date($from))
+      ->whereDate('date', '<=', date($to))
+      ->where('class', 'Agroindustri')
+      ->groupBy('date')
+      ->orderBy('date', 'ASC')
+      ->get();
+
+
+    foreach ($dataAgroindustri as $val) {
+      $dbData[$val->date] = $val->value;
+    }
+
+    $dataAgroindustri = array_replace($range, $dbData);
+    $label = array_keys($dataAgroindustri);
+    $dataAgroindustri = array_values($dataAgroindustri);
+    $dataAgroindustri = array_map('intval', $dataAgroindustri);
+
+    $dataManufaktur = Stock::selectRaw("date, SUM(value) as value")
+      ->whereDate('date', '>=', date($from))
+      ->whereDate('date', '<=', date($to))
+      ->where('class', 'Manufaktur')
+      ->groupBy('date')
+      ->orderBy('date', 'ASC')
+      ->get();
+
+    foreach ($dataManufaktur as $val) {
+      $dbData[$val->date] = $val->value;
+    }
+
+    $dataManufaktur = array_replace($range, $dbData);
+    $labelManufaktur = array_keys($dataManufaktur);
+    $dataManufaktur = array_values($dataManufaktur);
+    $dataManufaktur = array_map('intval', $dataManufaktur);
+
+    $dataGaram = Stock::selectRaw("date, SUM(value) as value")
+      ->whereDate('date', '>=', date($from))
+      ->whereDate('date', '<=', date($to))
+      ->where('class', 'Garam')
+      ->groupBy('date')
+      ->orderBy('date', 'ASC')
+      ->get();
+
+    foreach ($dataGaram as $val) {
+      $dbData[$val->date] = $val->value;
+    }
+
+    $dataGaram = array_replace($range, $dbData);
+    $labelGaram = array_keys($dataGaram);
+    $dataGaram = array_values($dataGaram);
+    $dataGaram = array_map('intval', $dataGaram);
 
     return view(
       'dashboard.consolidation.consolidation',
+      [
+        'year' => $year,
+        'monthYear' => $monthYear,
+        'label' => $label,
+        'dataAgroindustri' => $dataAgroindustri,
+        'labelManufaktur' => $dataManufaktur,
+        'dataManufaktur' => $dataManufaktur,
+        'labelGaram' => $labelGaram,
+        'dataGaram' => $dataGaram,
+      ],
       compact(
         'day',
         'now',
         'today',
+        'month',
+        'monthYear',
+        'year',
         'datastocks',
         'highestValue',
         'highestValueByCompany',
@@ -159,7 +243,7 @@ class DashboardConsolidationController extends Controller
         'dailyTotalValueManuConverted',
         'dailyTotalValueManuDayConverted',
         'dailyTotalValueGaramConverted',
-        'dailyTotalValueGaramDayConverted'
+        'dailyTotalValueGaramDayConverted',
       )
     );
   }

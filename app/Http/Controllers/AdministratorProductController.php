@@ -30,9 +30,9 @@ class AdministratorProductController extends Controller
   public function index()
   {
     return view('administrator.products.product', [
-      'products' => Product::where('active', true)
-        ->orderBy('updated_at', 'desc')
-        ->get()
+      'products' => Product::all()
+        ->where('active', true)
+        ->sortByDesc("updated_at")
     ]);
   }
 

@@ -267,9 +267,15 @@
       document.getElementById("category-read").value = $variable;
     });
 
-    $('.category-select').select2();
-    $('.subcategory-select').select2();
-    $('.unit-select').select2();
+    $('.category-select').select2({
+      theme: "bootstrap-5",
+    });
+    $('.subcategory-select').select2({
+      theme: "bootstrap-5",
+    });
+    $('.unit-select').select2({
+      theme: "bootstrap-5",
+    });
   });
 </script>
 @endsection

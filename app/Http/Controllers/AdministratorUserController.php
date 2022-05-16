@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Company;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -21,7 +22,9 @@ class AdministratorUserController extends Controller
 
   public function index()
   {
-    return view('administrator.users.user', [
+    $now = Carbon::now()->format('d F Y');
+    $today = Carbon::now()->format('D');
+    return view('administrator.users.user', compact('now', 'today'), [
       'users' => User::with('ModelRole', 'ModelRole.Role')
         ->where('active', true)
         ->get()

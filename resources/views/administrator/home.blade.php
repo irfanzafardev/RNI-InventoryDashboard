@@ -25,7 +25,7 @@
         <div class="row no-gutters">
           <div class="col mr-2">
             <div class="h5 text-white mb-1">
-              Today's Value
+              Today's Stock Value
             </div>
             <div class="h6 mb-0 font-weight-light text-white">
               Rp. {{ number_format($dataValue, 2) }}
@@ -81,7 +81,7 @@
 <!-- DataTales Today's input -->
 <div class="card my-4">
   <div class="card-header py-3">
-    <h6 class="m-0 text-dark">Today's input</h6>
+    <h6 class="m-0 text-dark">Today's Stock Input</h6>
   </div>
   <div class="card-body">
     @if ($message = Session::get('success'))

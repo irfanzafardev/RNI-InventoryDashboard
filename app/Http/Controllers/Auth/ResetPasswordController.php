@@ -27,5 +27,13 @@ class ResetPasswordController extends Controller
    * @var string
    */
   // protected $redirectTo = RouteServiceProvider::HOME;
-  protected $redirectTo = '/login';
+  // protected $redirectTo = '/login';
+  // protected $redirectTo = '/login';
+  protected function redirectTo()
+  {
+    return '/login';
+    // ->with('success', 'Password has been successfully reset');
+  }
+  // return redirect('/dashboard')->with('status', 'Profile updated!');
+  // protected redirect('/login')->with('success', 'Data has been successfully added');
 }

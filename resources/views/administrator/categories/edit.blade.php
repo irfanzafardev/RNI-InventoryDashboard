@@ -54,7 +54,7 @@
           <div class="form-group mb-3">
             <label for="group" class="form-label">Product Class</label>
             <select 
-            class="form-control form-select class-select @error('group') is-invalid @enderror" 
+            class="form-control form-select @error('group') is-invalid @enderror" 
             name="group_id" 
             id="group" 
             required>
@@ -85,7 +85,9 @@
 
 <script>
   $(document).ready(function() {
-    $('.class-select').select2();
+    $('#group').select2({
+    theme: "bootstrap-5",
+  });
   });
 </script>
 

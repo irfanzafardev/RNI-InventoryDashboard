@@ -193,7 +193,13 @@
 
 <script>
   $(document).ready(function() {
-    $('table.display').DataTable();
+    $('table.display').DataTable({
+      aLengthMenu: [
+          [25, 50, 100, 200, -1],
+          [25, 50, 100, 200, "All"]
+      ],
+      // iDisplayLength: -1
+    });
   });
 
   $('.deleteStockIn').click( function(){
@@ -213,7 +219,7 @@
             icon: "success",
           });
         } else {
-          swal("YouR file is safe!");
+          swal("Your file is safe!");
         }
       });
     })

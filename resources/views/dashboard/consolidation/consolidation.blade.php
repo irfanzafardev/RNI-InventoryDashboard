@@ -316,7 +316,7 @@
   <div class="row">
     <div class="col-12">
       <h5 class="card-title item-card-title text-dark text-style-medium">
-        Performance Stats
+        Performance Stats in {{ $monthYear }}
       </h5>
       <figure class="highcharts-figure">
         <div id="graphic"></div>
@@ -410,10 +410,11 @@
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
 <script type="text/javascript">
-  var dailyTotalValueAgro = <?php echo json_encode ($dailyTotalValueAgroConverted) ?>;
-  var dailyTotalValueManu = <?php echo json_encode ($dailyTotalValueManuConverted) ?>;
-  var dailyTotalValueGaram = <?php echo json_encode ($dailyTotalValueGaramConverted) ?>;
-  var dailyTotalValueDays = <?php echo json_encode ($dailyTotalValueAgroDayConverted) ?>;
+  var label = <?php echo json_encode ($label) ?>;
+  var dailyTotalValueAgro = <?php echo json_encode ($dataAgroindustri) ?>;
+  var dailyTotalValueManu = <?php echo json_encode ($dataManufaktur) ?>;
+  var dailyTotalValueGaram = <?php echo json_encode ($dataGaram) ?>;
+
 
   Highcharts.chart('graphic', {
     legend: {
@@ -434,12 +435,15 @@
       text: "Stock Value Graph",
       style: {"color": "#000"}
     },
+    subtitle: {
+        text: "{{ $monthYear }}"
+    },
     xAxis : {
       title: {
         text: "Date",
         style: {"color": "#000"}
       },
-      categories: dailyTotalValueDays,
+      categories: label,
       labels: {
         style: {
           color: '#000'

@@ -107,6 +107,11 @@
                               {{-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> --}}
                             </div>
                           @endif
+                          @if ($message = Session::get('success'))
+                          <div class="alert alert-primary" role="alert">
+                            {{ $message }}
+                          </div>
+                          @endif
                   
                           <form method="POST" action="{{ route('login') }}" class="user">
                             @csrf
@@ -126,9 +131,9 @@
                             <button type="submit" class="btn btn-dark bg-darkblue btn-login btn-block">
                               {{ __('Login') }}
                             </button>
-                            <div class="row mt-2 float-right">
-                              <a href="{{ route('password.request') }}" class="small text-dark">
-                                Forgot Password?
+                            <div class="row mt-3 float-right">
+                              <a href="{{ route('password.request') }}" class="small text-black" style="font-weight: 500; font-size: 12px">
+                                Reset Password
                               </a>                         
                             </div>
                           </form>

@@ -18,14 +18,20 @@
 		<link href="{{ asset("css/sb-admin-2.min.css") }}" rel="stylesheet" />
 		<link href="{{ asset("css/extended-style.css") }}" rel="stylesheet" />
 		<link href="{{ asset("vendor/datatables/dataTables.bootstrap4.min.css") }}" rel="stylesheet"/>
-
-    
 	</head>
 
 	<body id="page-top">
 		<nav class="navbar navbar-expand-lg navbar-light bg-white">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="/dashboard">Dashventory</a>
+        <div class="logo d-flex justify-content-center mt-1 pr-4">
+				<a class="navbar-brand mt-0 ml-1" href="/dashboard">
+          <img src="../../img/idfood.png" alt="" width="110px">
+        </a>
+        </div>
+        <div class="topbar-divider d-none d-sm-block"></div>
+				<a class="navbar-brand mt-0 ml-1" href="/dashboard">
+          <img src="../../img/login-logo.svg" alt="" width="120px" />
+        </a>
 				<button
 					class="navbar-toggler"
 					type="button"
@@ -52,27 +58,32 @@
 
 
 					<!-- Nav Item - User Information -->
-          <div class="dropdown">
-            <button class="btn btn-link text-decoration-none dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-              <span class="mr-2 d-none d-lg-inline text-dark">
-                {{ Auth::user()->name }}
-              </span>
-              <img class="" src="{{ asset("img/user.png") }}" width="25px" />
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li>
-                  <a class="dropdown-item" href="{{ route('logout') }}"
-                      onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                      {{ __('Logout') }}
-                  </a>
-      
-                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-block">
-                      @csrf
-                  </form>
-              </li>
-            </ul>
-          </div>
+          <div class="d-flex">
+            <div class="text-style-small pr-4" style="margin-top: 10px;">
+              {{ $today }}, {{ $now }}
+            </div>
+            <div class="dropdown">
+              <button class="btn btn-link text-decoration-none dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-style-small">
+                  {{ Auth::user()->name }}
+                </span>
+                <img class="" src="{{ asset("img/user.png") }}" width="25px" />
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li>
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                      document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+        
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-block">
+                        @csrf
+                    </form>
+                </li>
+              </ul>
+            </div>
+			  	</div>
 				</div>
 			</div>
 		</nav>

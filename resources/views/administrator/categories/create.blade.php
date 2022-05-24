@@ -32,7 +32,7 @@
     <form method="post" action="/administrator/categories">
       @csrf
       <div class="row">
-        <div class="col-5">
+        <div class="col-6">
           <div class="form-group mb-3">
             <label for="category" class="form-label">Category Name</label>
             <input
@@ -85,7 +85,7 @@
 <script>
   $(document).ready(function() {
     $('#group').select2({
-    theme: "bootstrap-5",
+    theme: "bootstrap-5"
   });
   });
 </script>

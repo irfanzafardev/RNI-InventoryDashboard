@@ -32,7 +32,7 @@
     <form method="post" action="/staff/products">
       @csrf
       <div class="row">
-        <div class="col-5">
+        <div class="col-6">
           <div class="form-group mb-3">
             <label for="product_code" class="form-label">Product Code</label>
             <input
@@ -115,7 +115,7 @@
             />
           </div>
         </div>
-        <div class="col-5">
+        <div class="col-6">
           <div class="form-group mb-3">
             <label for="category" class="form-label">Product Category</label>
             <select 

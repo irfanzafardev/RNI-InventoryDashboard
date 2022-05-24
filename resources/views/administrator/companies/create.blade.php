@@ -32,7 +32,7 @@
     <form method="post" action="/administrator/companies">
       @csrf
       <div class="row">
-        <div class="col-5">
+        <div class="col-6">
           <div class="form-group mb-3">
             <label for="company" class="form-label">Company Name</label>
             <input

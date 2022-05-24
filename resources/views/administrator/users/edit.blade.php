@@ -34,24 +34,19 @@
       @csrf
       <div class="row">
         <div class="col-6">
-          <div class="row mb-3">
-            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
-
-            <div class="col-md-6">
-                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name', $user->name) }}" required autocomplete="name" autofocus>
-
-                @error('name')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
+          <div class="form-group mb-3">
+            <label for="name" class="form-label">{{ __('Name') }}</label>
+            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name', $user->name) }}" required autocomplete="name" autofocus>
+            @error('name')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
           </div>
 
-          <div class="row mb-3">
-            <label for="username" class="col-md-4 col-form-label text-md-end">{{ __('Username') }}</label>
+          <div class="form-group mb-3">
+            <label for="username" class="form-label">{{ __('Username') }}</label>
 
-            <div class="col-md-6">
                 <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username', $user->username) }}" required autocomplete="name" autofocus>
 
                 @error('username')
@@ -59,12 +54,10 @@
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
-            </div>
           </div>
 
-          <div class="row mb-3">
-            <label for="company" class="col-md-4 col-form-label text-md-end">{{ __('Company') }}</label>
-            <div class="col-md-6">
+          <div class="form-group mb-3">
+            <label for="company" class="form-label">{{ __('Company') }}</label>
               <select
                 name="company_id"
                 class="form-select"
@@ -79,13 +72,11 @@
                   @endif
                 @endforeach
               </select>
-            </div>
           </div>
 
-          <div class="row mb-3">
-            <label for="phone" class="col-md-4 col-form-label text-md-end">{{ __('Phone') }}</label>
+          <div class="form-group mb-3">
+            <label for="phone" class="form-label">{{ __('Phone') }}</label>
 
-            <div class="col-md-6">
                 <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone', $user->phone) }}" required autocomplete="phone" autofocus>
 
                 @error('phone')
@@ -93,7 +84,6 @@
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
-            </div>
           </div>
 
           <div class="row d-none mb-3">
@@ -110,10 +100,9 @@
             </div>
           </div>
 
-          <div class="row mb-3">
-              <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+          <div class="form-group mb-3">
+              <label for="email" class="form-label">{{ __('Email Address') }}</label>
 
-              <div class="col-md-6">
                   <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email', $user->email) }}" required autocomplete="email">
 
                   @error('email')
@@ -121,11 +110,10 @@
                           <strong>{{ $message }}</strong>
                       </span>
                   @enderror
-              </div>
           </div>
 
           <div class="row d-none mb-3">
-              <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+              <label for="password" class="form-label">{{ __('Password') }}</label>
 
               <div class="col-md-6">
                   <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password', $user->password) }}" required autocomplete="new-password">
@@ -145,13 +133,9 @@
                   <input id="password-confirm" type="password" class="form-control" name="password_confirmation" value="{{ old('password', $user->password) }}" required autocomplete="new-password">
               </div>
           </div>
+          <button type="submit" class="btn btn-primary ms-3 bg-darkblue float-end">Update</button>
+          <a href="/administrator/users" class="btn btn btn-light float-end">Cancel</a>
 
-          <div class="row mb-3">
-            <div class="mr-5">
-              <button type="submit" class="btn btn-primary ms-3 mr-5 bg-darkblue float-end">Update</button>
-              <a href="/administrator/users" class="btn btn btn-light float-end">Cancel</a>
-            </div>
-          </div>
 
         </div>
       </div>

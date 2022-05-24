@@ -32,7 +32,7 @@
     <form method="post" action="/administrator/classes">
       @csrf
       <div class="row">
-        <div class="col-5">
+        <div class="col-6">
           <div class="form-group mb-3">
             <label for="group" class="form-label">Class Name</label>
             <input

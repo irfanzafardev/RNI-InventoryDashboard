@@ -98,6 +98,11 @@
                           <div class="logo d-flex justify-content-center mb-3">
                             <img src="./img/idfood.png" alt="" width="120px">
                           </div>
+                          @if ($message = Session::get('success'))
+                          <div class="alert alert-primary" role="alert">
+                            {{ $message }}
+                          </div>
+                          @endif
                           <div class="text-dark">
                             <h1 class="h4 mb-4">Log in</h1>
                           </div>

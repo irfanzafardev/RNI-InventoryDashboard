@@ -128,15 +128,17 @@ class StaffProductController extends Controller
    */
   public function edit(Product $product)
   {
-    $id = Auth::user()->company->group->id;
+    $group_id = Auth::user()->company->group->id;
+    $category_id = $product->subcategory->category->id;
     return view('user.product.edit', [
       'product' => $product,
       'users' => User::all(),
       'companies' => Company::all(),
       'groups' => Group::all(),
       'categories' => Category::all()
-        ->where('group_id', $id),
-      'subcategories' => Subcategory::all(),
+        ->where('group_id', $group_id),
+      'subcategories' => Subcategory::all()
+        ->where('category_id', $category_id),
       'units' => Unit::all(),
     ]);
   }

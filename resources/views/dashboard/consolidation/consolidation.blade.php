@@ -4,13 +4,13 @@
 <!-- Page Heading -->
 <div class="page-heading d-sm-flex align-items-center justify-content-between mb-4">
   <h1 class="h3 mb-0">Consolidation</h1>
-  <nav class="d-none" aria-label="breadcrumb">
+  <nav aria-label="breadcrumb">
     <ol class="breadcrumb bg-transparent pt-4">
       <li class="breadcrumb-item text-dark" aria-current="page">
         Consolidation
       </li>
       <li class="breadcrumb-item text-dark active" aria-current="page">
-        Daily
+        Latest
       </li>
     </ol>
   </nav>
@@ -130,7 +130,8 @@
                 <div class="">
                   <div class="row">
                     <div class="col-12 d-flex align-items-center">
-                      <img src="{{ asset("./img/dollar-sign.png") }}" alt="" />
+                      {{-- <img src="{{ asset("./img/dollar-sign.png") }}" alt="" /> --}}
+                      <img src="{{ asset("./img/rp.png") }}" alt="" class="pt-2" width="25px" />
                       <h5 class="d-inline-block text-dark ps-0">
                         Total Value
                       </h5>
@@ -202,7 +203,8 @@
           <div class="card-body">
             <div class="row">
               <div class="col-12 d-flex align-items-center">
-                <img src="{{ asset("./img/dollar-white.png") }}" alt="" width="30px" />
+                {{-- <img src="{{ asset("./img/dollar-white.png") }}" alt="" width="30px" /> --}}
+                <img src="{{ asset("./img/rp-white.png") }}" alt="" class="mr-2" width="25px" />
                 <h5 class="d-inline-block text-white text-style-medium ps-0">
                   Highest Value
                 </h5>
@@ -250,7 +252,8 @@
           <div class="card-body">
             <div class="row">
               <div class="col-12 d-flex align-items-center">
-                <img src="{{ asset("./img/dollar-white.png") }}" alt="" width="30px" />
+                {{-- <img src="{{ asset("./img/dollar-white.png") }}" alt="" width="30px" /> --}}
+                <img src="{{ asset("./img/rp-white.png") }}" alt="" class="mr-2" width="25px" />
                 <h5 class="d-inline-block text-white text-style-medium ps-0">
                   Highest Value by Company
                 </h5>
@@ -410,10 +413,10 @@
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
 <script type="text/javascript">
-  var label = <?php echo json_encode ($label) ?>;
-  var dailyTotalValueAgro = <?php echo json_encode ($dataAgroindustri) ?>;
-  var dailyTotalValueManu = <?php echo json_encode ($dataManufaktur) ?>;
-  var dailyTotalValueGaram = <?php echo json_encode ($dataGaram) ?>;
+  var label = <?php echo json_encode($label); ?>;
+  var dailyTotalValueAgro = <?php echo json_encode($dataAgroindustri); ?>;
+  var dailyTotalValueManu = <?php echo json_encode($dataManufaktur); ?>;
+  var dailyTotalValueGaram = <?php echo json_encode($dataGaram); ?>;
 
 
   Highcharts.chart('graphic', {
@@ -432,7 +435,7 @@
       }
     },
     title : {
-      text: "Stock Value Graph",
+      text: "Total Stock Value Graph by Class",
       style: {"color": "#000"}
     },
     subtitle: {
@@ -470,16 +473,16 @@
       {
         name: "Agroindustri",
         data: dailyTotalValueAgro,
-        color: '#D2973B',
+        color: 'rgba(255, 211, 132, 1)',
       },
       {
         name: "Manufaktur",
         data: dailyTotalValueManu,
+        color: '#D2973B',
       },
       {
         name: "Garam",
         data: dailyTotalValueGaram,
-        color: '#84B29C',
       }
     ],
     responsive: {

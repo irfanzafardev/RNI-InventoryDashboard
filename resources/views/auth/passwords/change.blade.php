@@ -5,8 +5,12 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
-
+                <div class="card-header">{{ __('Change Password') }}</div>
+                @if ($message = Session::get('success'))
+                <div class="alert alert-primary mt-2 mx-2" role="alert">
+                  {{ $message }}
+                </div>
+                @endif
                 <div class="card-body">
                     <form method="POST" action="{{ route('change.password') }}">
                         @csrf
@@ -65,11 +69,12 @@
                         </div>
 
                         <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary bg-darkblue">
-                                    {{ __('Change Password') }}
-                                </button>
-                            </div>
+                          <div class="col-md-10">
+                            <button type="submit" class="btn btn-primary bg-darkblue float-end">
+                                {{ __('Change Password') }}
+                            </button>
+                            <a href="{{ url()->previous() }}" class="btn btn-light float-end me-3">Cancel</a>
+                          </div>
                         </div>
                     </form>
                 </div>

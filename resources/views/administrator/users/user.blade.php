@@ -82,8 +82,8 @@
             <td>{{ $user->ModelRole->Role->name }}</td>
             <td>{{ $user->phone }}</td>
             <td>
-              <a href="/administrator/users/{{ $user->id }}/edit">Edit</a>
-              <a href="#" class="delete text-danger" data-id="{{ $user->id }}" data-name="{{ $user->name }}">Delete</a>
+              <a href="/administrator/users/{{ $user->id }}/edit" class="edit-button">Edit</a>
+              <a href="#" class="delete text-danger delete-button" data-id="{{ $user->id }}" data-name="{{ $user->name }}">Delete</a>
             </td>
           </tr>     
           @endforeach

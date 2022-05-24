@@ -4,17 +4,29 @@
 <!-- Page Heading -->
 <div class="page-heading d-sm-flex align-items-center justify-content-between mb-4">
   <h1 class="h3 mb-0">Consolidation</h1>
-  <nav class="d-none" aria-label="breadcrumb">
+  <nav aria-label="breadcrumb">
     <ol class="breadcrumb bg-transparent pt-4">
       <li class="breadcrumb-item text-dark" aria-current="page">
         Consolidation
       </li>
       <li class="breadcrumb-item text-dark active" aria-current="page">
-        Daily
+        {{ $day }}
       </li>
     </ol>
   </nav>
 </div>
+
+<ul class="nav time-nav">
+  <li class="nav-item mr-4">
+    <a class="nav-link" href="/dashboard">Latest Stock</a>
+  </li>
+  <li class="nav-item mr-4">
+    |
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#valueGraph">See Value Graph</a>
+  </li>
+</ul>
 
 <!-- Content Row -->
 <div class="content-cta mb-3">
@@ -135,7 +147,8 @@
           <div class="card-body">
             <div class="row">
               <div class="col-12 d-flex align-items-center">
-                <img src="{{ asset("./img/dollar-white.png") }}" alt="" width="30px" />
+                {{-- <img src="{{ asset("./img/dollar-white.png") }}" alt="" width="30px" /> --}}
+              <img src="{{ asset("./img/rp-white.png") }}" alt="" class="mr-2" width="25px" />
                 <h5 class="d-inline-block text-white text-style-small ps-0">
                   Highest Value
                 </h5>
@@ -183,7 +196,8 @@
           <div class="card-body">
             <div class="row">
               <div class="col-12 d-flex align-items-center">
-                <img src="{{ asset("./img/dollar-white.png") }}" alt="" width="30px" />
+                {{-- <img src="{{ asset("./img/dollar-white.png") }}" alt="" width="30px" /> --}}
+              <img src="{{ asset("./img/rp-white.png") }}" alt="" class="mr-2" width="25px" />
                 <h5 class="d-inline-block text-white text-style-small ps-0">
                   Highest Value by Company
                 </h5>
@@ -252,7 +266,8 @@
                 <div class="">
                   <div class="row">
                     <div class="col-12 d-flex align-items-center">
-                      <img src="{{ asset("./img/dollar-sign.png") }}" alt="" />
+                      {{-- <img src="{{ asset("./img/dollar-sign.png") }}" alt="" /> --}}
+                      <img src="{{ asset("./img/rp.png") }}" alt="" class="pt-2" width="25px" />
                       <h5 class="d-inline-block text-dark ps-0">
                         Total Value
                       </h5>
@@ -317,12 +332,30 @@
   </div>
 </div>
 
+<section id="valueGraph" style="margin-top: -80px;">
+  <div class="row">
+    <div class="col-12" style="margin-top: 120px;">
+      <h5 class="card-title item-card-title text-dark text-style-medium">
+        Performance Stats in {{ $monthYear }}
+      </h5>
+      <figure class="highcharts-figure">
+        <div id="graphic"></div>
+      </figure>
+    </div>
+  </div>
+</section>
+
 <!-- DataTales Today's input -->
 <div class="card my-4">
   <div class="card-header py-3">
     <h6 class="m-0 text-dark">Today's input</h6>
   </div>
-  <div class="card-body">
+  <div class="d-flex justify-content-end">
+    <a href="#" class="btn btn-primary bg-darkblue mr-4 mt-3 px-4" onclick="tablesToExcel(['dataTable'], ['Stock'], 'stock.xls', 'Excel')">
+      Export
+    </a>
+  </div>
+  <div class="card-body">                                                                 
     <div class="table-responsive">
       <table
         class="table table-bordered"
@@ -387,6 +420,105 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.0.0/chartjs-plugin-datalabels.min.js" integrity="sha512-R/QOHLpV1Ggq22vfDAWYOaMd5RopHrJNMxi8/lJu8Oihwi4Ho4BRFeiMiCefn9rasajKjnx9/fTQ/xkWnkDACg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<!-- Highcharts -->
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+<script type="text/javascript">
+  var label = <?php echo json_encode ($label) ?>;
+  var dailyTotalValueAgro = <?php echo json_encode ($dataAgroindustri) ?>;
+  var dailyTotalValueManu = <?php echo json_encode ($dataManufaktur) ?>;
+  var dailyTotalValueGaram = <?php echo json_encode ($dataGaram) ?>;
+
+
+  Highcharts.chart('graphic', {
+    legend: {
+      itemStyle: {
+        color: 'black',
+        fontWeight: 'bold'
+      }
+    },
+    chart: {
+      backgroundColor: 'rgba(0,0,0,0)',
+      labels: {
+        style: {
+          color: '#000'
+        }
+      }
+    },
+    title : {
+      text: "Total Stock Value Graph by Class",
+      style: {"color": "#000"}
+    },
+    subtitle: {
+        text: "{{ $monthYear }}"
+    },
+    xAxis : {
+      title: {
+        text: "Date",
+        style: {"color": "#000"}
+      },
+      categories: label,
+      labels: {
+        style: {
+          color: '#000'
+        }
+      }
+    },
+    yAxis : {
+      title: {
+        text: "Value",
+        style: {"color": "#000"}
+      },
+      labels: {
+        style: {
+          color: '#000'
+        }
+      }
+    },
+    plotOptions: {
+      series: {
+        allowPointSelect: true
+      }
+    },
+    series: [
+      {
+        name: "Agroindustri",
+        data: dailyTotalValueAgro,
+        color: 'rgba(255, 211, 132, 1)',
+      },
+      {
+        name: "Manufaktur",
+        data: dailyTotalValueManu,
+        color: '#D2973B',
+      },
+      {
+        name: "Garam",
+        data: dailyTotalValueGaram,
+      }
+    ],
+    responsive: {
+      rules: [
+        {
+          condition: {
+            maxWidth: 500,
+          },
+          chartOptions: {
+            legend: {
+              layout: "horizontal",
+              align: "center",
+              verticalAlign: "bottom",
+            },
+          },
+        },
+      ],
+    },
+  });
+</script>
 
 <script>
   $('.accordion-button').click(function(){
@@ -468,5 +600,98 @@
     document.getElementById('chartConsolidation'),
     config
   );
+</script>
+
+<script>
+  var tablesToExcel = (function () {
+    var uri = "data:application/vnd.ms-excel;base64,",
+        tmplWorkbookXML =
+            '<?xml version="1.0"?><?mso-application progid="Excel.Sheet"?><Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">' +
+            '<DocumentProperties xmlns="urn:schemas-microsoft-com:office:office"><Author>Axel Richter</Author><Created>{created}</Created></DocumentProperties>' +
+            "<Styles>" +
+            '<Style ss:ID="Currency"><NumberFormat ss:Format="Currency"></NumberFormat></Style>' +
+            '<Style ss:ID="Date"><NumberFormat ss:Format="Medium Date"></NumberFormat></Style>' +
+            "</Styles>" +
+            "{worksheets}</Workbook>",
+        tmplWorksheetXML =
+            '<Worksheet ss:Name="{nameWS}"><Table>{rows}</Table></Worksheet>',
+        tmplCellXML =
+            '<Cell{attributeStyleID}{attributeFormula}><Data ss:Type="{nameType}">{data}</Data></Cell>',
+        base64 = function (s) {
+            return window.btoa(unescape(encodeURIComponent(s)));
+        },
+        format = function (s, c) {
+            return s.replace(/{(\w+)}/g, function (m, p) {
+                return c[p];
+            });
+        };
+    return function (tables, wsnames, wbname, appname) {
+        var ctx = "";
+        var workbookXML = "";
+        var worksheetsXML = "";
+        var rowsXML = "";
+  
+        for (var i = 0; i < tables.length; i++) {
+            if (!tables[i].nodeType)
+                tables[i] = document.getElementById(tables[i]);
+            for (var j = 0; j < tables[i].rows.length; j++) {
+                rowsXML += "<Row>";
+                for (var k = 0; k < tables[i].rows[j].cells.length; k++) {
+                    var dataType =
+                        tables[i].rows[j].cells[k].getAttribute("data-type");
+                    var dataStyle =
+                        tables[i].rows[j].cells[k].getAttribute("data-style");
+                    var dataValue =
+                        tables[i].rows[j].cells[k].getAttribute("data-value");
+                    dataValue = dataValue
+                        ? dataValue
+                        : tables[i].rows[j].cells[k].innerHTML;
+                    var dataFormula =
+                        tables[i].rows[j].cells[k].getAttribute("data-formula");
+                    dataFormula = dataFormula
+                        ? dataFormula
+                        : appname == "Calc" && dataType == "DateTime"
+                        ? dataValue
+                        : null;
+                    ctx = {
+                        attributeStyleID:
+                            dataStyle == "Currency" || dataStyle == "Date"
+                                ? ' ss:StyleID="' + dataStyle + '"'
+                                : "",
+                        nameType:
+                            dataType == "Number" ||
+                            dataType == "DateTime" ||
+                            dataType == "Boolean" ||
+                            dataType == "Error"
+                                ? dataType
+                                : "String",
+                        data: dataFormula ? "" : dataValue,
+                        attributeFormula: dataFormula
+                            ? ' ss:Formula="' + dataFormula + '"'
+                            : "",
+                    };
+                    rowsXML += format(tmplCellXML, ctx);
+                }
+                rowsXML += "</Row>";
+            }
+            ctx = { rows: rowsXML, nameWS: wsnames[i] || "Sheet" + i };
+            worksheetsXML += format(tmplWorksheetXML, ctx);
+            rowsXML = "";
+        }
+  
+        ctx = { created: new Date().getTime(), worksheets: worksheetsXML };
+        workbookXML = format(tmplWorkbookXML, ctx);
+  
+        console.log(workbookXML);
+  
+        var link = document.createElement("A");
+        link.href = uri + base64(workbookXML);
+        link.download = wbname || "Workbook.xls";
+        link.target = "_blank";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+  })();
 </script>
 @endsection

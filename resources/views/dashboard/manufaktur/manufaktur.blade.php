@@ -29,7 +29,7 @@
     |
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="/dashboard/manufaktur/products">Product Itenm</a>
+    <a class="nav-link" href="/dashboard/manufaktur/products">Product Item</a>
   </li>
 </ul>
 
@@ -57,7 +57,8 @@
         <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-1">
           <div class="row">
             <div class="col-12">
-              <img src="{{ asset("./img/dollar-sign.png") }}" alt="" />
+              {{-- <img src="{{ asset("./img/dollar-sign.png") }}" alt="" /> --}}
+              <img src="{{ asset("./img/rp.png") }}" alt="" class="pt-2" width="25px" />
               <h5 class="d-inline-block ps-2">Total Value</h5>
             </div>
           </div>

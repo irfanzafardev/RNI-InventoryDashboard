@@ -32,7 +32,7 @@
     <form method="post" action="/staff/subcategories">
       @csrf
       <div class="row">
-        <div class="col-5">
+        <div class="col-6">
           <div class="form-group mb-3">
             <label for="subcategory" class="form-label">Sub Category Name</label>
             <input
@@ -84,7 +84,7 @@
           </div>
           <div class="form-group mb-3 d-none" id="categoryview">
             <label for="category" class="form-label">Product Category</label>
-            <select class="form-control form-select" name="category_id" id="category" required></select>
+            <select class="form-control form-select category" name="category_id" id="category" required></select>
           </div>
           <button type="submit" class="btn btn-primary ms-3 bg-darkblue float-end">Submit</button>
           <a href="/staff/subcategories" class="btn btn btn-light float-end">Cancel</a>
@@ -98,6 +98,14 @@
   $(document).ready(function() {
     $("#group").change(function(){
       $("#categoryview").removeClass("d-none");
+    });
+
+    $('.group').select2({
+      theme: "bootstrap-5",
+    });
+
+    $('.category').select2({
+      theme: "bootstrap-5",
     });
 
     $(".group").on("input", function () {

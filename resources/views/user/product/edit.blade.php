@@ -33,7 +33,7 @@
       @method('put')
       @csrf
       <div class="row">
-        <div class="col-5">
+        <div class="col-6">
           <div class="form-group mb-3">
             <label for="product_code" class="form-label">Product Code</label>
             <input
@@ -118,10 +118,10 @@
           </div>
 
         </div>
-        <div class="col-5">
+        <div class="col-6">
           <div class="form-group mb-3">
             <label for="category" class="form-label">Product Category</label>
-            <select class="form-control form-select category-select" name="category_id" id="category">
+            <select class="form-control form-select category-select" name="category_id" id="category" disabled>
               <option hidden>Choose Category</option>
               @foreach ($categories as $category)
                 @if (old('category_id', $product->subcategory->category_id) == $category->id)
@@ -184,7 +184,7 @@
             </select>
           </div>
           <div class="form-group mb-3">
-            <label for="unit_price" class="form-label">Unit Price</label>
+            <label for="unit_price" class="form-label">Unit Price (Rp)</label>
             <input
               type="number"
               class="input form-control @error('unit_price') is-invalid @enderror"

@@ -55,7 +55,7 @@
        <div class="row no-gutters">
          <div class="col mr-2">
            <div class="h5 text-white mb-1">
-             Today's Value
+             Today's Total Value
            </div>
            <div class="h6 mb-0 font-weight-light text-white">
              Rp. {{ number_format($dataValue, 2) }}
@@ -75,7 +75,7 @@
      <div class="card-body">
        <div class="row no-gutters">
          <div class="col mr-2">
-           <div class="h5 text-white mb-1">Today's Stock</div>
+           <div class="h5 text-white mb-1">Today's Stock Items</div>
            <div class="h6 mb-0 font-weight-light text-white">
             {{ $dataTotalStock }} <span>items</span> 
            </div>
@@ -94,7 +94,7 @@
      <div class="card-body">
        <div class="row no-gutters">
          <div class="col mr-2">
-           <div class="h5 text-white mb-1">Total Products</div>
+           <div class="h5 text-white mb-1">Total Product Items</div>
            <div class="h6 mb-0 font-weight-light text-white">
              {{ $dataProduct }} <span>products</span>
            </div> 
@@ -106,6 +106,18 @@
      </div>
    </div>
  </div>
+</div>
+
+<!-- Performance Stats -->
+<div class="row">
+  <div class="col-12">
+    <h5 class="card-title item-card-title text-dark text-style-medium">
+      Performance Stats in {{ $monthYear }}
+    </h5>
+    <figure class="highcharts-figure">
+      <div id="graphic"></div>
+    </figure>
+  </div>
 </div>
 
 <!-- DataTales Today's input -->
@@ -182,6 +194,94 @@
     </div>
   </div>
 </div>
+
+<!-- Highcharts -->
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+<script type="text/javascript">
+  var label = <?php echo json_encode ($label) ?>;
+  var dataAllStock = <?php echo json_encode ($dataAllStock) ?>;
+
+
+  Highcharts.chart('graphic', {
+    legend: {
+      itemStyle: {
+        color: 'black',
+        fontWeight: 'bold'
+      }
+    },
+    chart: {
+      backgroundColor: 'rgba(0,0,0,0)',
+      labels: {
+        style: {
+          color: '#000'
+        }
+      }
+    },
+    title : {
+      text: "{{ $company }} Total Stock Value Graph",
+      style: {"color": "#000"}
+    },
+    subtitle: {
+        text: "{{ $monthYear }}"
+    },
+    xAxis : {
+      title: {
+        text: "Date",
+        style: {"color": "#000"}
+      },
+      categories: label,
+      labels: {
+        style: {
+          color: '#000'
+        }
+      }
+    },
+    yAxis : {
+      title: {
+        text: "Value",
+        style: {"color": "#000"}
+      },
+      labels: {
+        style: {
+          color: '#000'
+        }
+      }
+    },
+    plotOptions: {
+      series: {
+        allowPointSelect: true
+      }
+    },
+    series: [
+      {
+        name: "Stock",
+        data: dataAllStock,
+        color: '#FF996A',
+      }
+    ],
+    responsive: {
+      rules: [
+        {
+          condition: {
+            maxWidth: 500,
+          },
+          chartOptions: {
+            legend: {
+              layout: "horizontal",
+              align: "center",
+              verticalAlign: "bottom",
+            },
+          },
+        },
+      ],
+    },
+  });
+</script>
 @endsection
 
 

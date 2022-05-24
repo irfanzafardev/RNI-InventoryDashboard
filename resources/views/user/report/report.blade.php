@@ -49,7 +49,7 @@
   <div class="card-body">
     <div class="table-responsive">
       <table
-        class="table table-bordered"
+        class="table display table-bordered"
         id="dataTable"
         width="100%"
         cellspacing="0"
@@ -104,6 +104,18 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function() {
+    $('table.display').DataTable({
+      aLengthMenu: [
+          [25, 50, 100, 200, -1],
+          [25, 50, 100, 200, "All"]
+      ],
+      iDisplayLength: -1
+    });
+  });
+</script>
+
 <script src="{{ URL::to('js/exportExcel/export.js') }}"></script>
 @endsection
 

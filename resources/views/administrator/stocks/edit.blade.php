@@ -33,7 +33,7 @@
       @method('put')
       @csrf
       <div class="row">
-        <div class="col-5">
+        <div class="col-6">
           <div class="form-group mb-3">
             <label for="stock_code" class="form-label">Stock Code</label>
             <input
@@ -58,6 +58,7 @@
               name="date"
               id="date"
               value="{{ old('date', $stock->date) }}"
+              readonly
             />
             <input type="text" class="mt-3 d-none" id="datepickerAdmin" value="{{ old('date', $stock->date) }}" name="datepicker"
             style="
@@ -81,7 +82,8 @@
             <select
               name="product_id"
               class="form-control form-select product_id"
-              id="product_id">
+              id="product_id"
+              disabled>
               <option value="">Choose product</option>
               @foreach ($products as $product)
                 @if (old('product_id', $stock->product_id) == $product->id)
@@ -125,7 +127,7 @@
             @enderror
           </div>
         </div>
-        <div class="col-5">
+        <div class="col-6">
           <div class="form-group mb-3">
             <label for="category" class="form-label">Category</label>
             <input
@@ -149,7 +151,7 @@
           <div class="form-group mb-3">
             <label for="quantity" class="form-label">Quantity</label>
               
-              <input type="number" class="input form-control @error('quantity') is-invalid @enderror" name="quantity" id="quantity" value="{{ old('quantity', $stock->quantity) }}"  placeholder="Enter product quantity" />
+              <input type="number" class="input form-control @error('quantity') is-invalid @enderror" name="quantity" id="quantity" value="{{ old('quantity', $stock->quantity) }}"  placeholder="Enter product quantity" autofocus/>
             @error('quantity')
               <div class="invalid-feedback">
                 {{ $message }}
@@ -176,7 +178,9 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <script>
-  $('.product_id').select2();
+  $('.product_id').select2({
+    theme: "bootstrap-5"
+  });
 
   $('#product_id').change(function(){
     var id = $(this).val();

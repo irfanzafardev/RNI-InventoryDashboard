@@ -32,7 +32,7 @@
     <form method="post" action="/administrator/stocks">
       @csrf
       <div class="row">
-        <div class="col-5">
+        <div class="col-6">
           <div class="form-group mb-3">
             <label for="stock_code" class="form-label">Stock Code</label>
             <input

@@ -36,7 +36,7 @@
                 </div>
               </a>
               @else
-              <a class="navbar-brand" href="{{ url('/staff') }}">
+              <a class="navbar-brand" href="{{ url()->previous() }}">
                 <div class="logo d-flex justify-content-center mt-1 pr-4">
                   <img src="../../img/login-logo.svg" alt="" width="120px" class="ms-2 me-3" />
                 </div>

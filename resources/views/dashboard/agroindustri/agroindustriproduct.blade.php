@@ -22,11 +22,14 @@
 </div>
 
 <ul class="nav time-nav mb-5">
-  <li class="nav-item mr-3">
-    <a class="nav-link" href="/dashboard/agroindustri">Latest</a>
+  <li class="nav-item mr-4">
+    <a class="nav-link" href="/dashboard/agroindustri">Latest Stock</a>
+  </li>
+  <li class="nav-item mr-4">
+    |
   </li>
   <li class="nav-item">
-    <a class="nav-link active" href="/dashboard/agroindustri/products">Product</a>
+    <a class="nav-link active" href="/dashboard/agroindustri/products">Product Item</a>
   </li>
 </ul>
 

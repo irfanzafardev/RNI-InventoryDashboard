@@ -49,12 +49,14 @@
 	<body id="page-top">
 		<nav class="navbar navbar-expand-lg navbar-light bg-white">
 			<div class="container-fluid">
-        <div class="logo d-flex justify-content-center mt-3 pr-4">
+        <div class="logo d-flex justify-content-center mt-1 pr-4">
+				<a class="navbar-brand mt-0 ml-1" href="/dashboard">
           <img src="../../img/idfood.png" alt="" width="110px">
+        </a>
         </div>
         <div class="topbar-divider d-none d-sm-block"></div>
 				<a class="navbar-brand mt-0 ml-1" href="/dashboard">
-          <img src="../img/login-logo.svg" alt="" width="120px" />
+          <img src="../../img/login-logo.svg" alt="" width="120px" />
         </a>
 				<button
 					class="navbar-toggler"
@@ -83,7 +85,7 @@
 
 					<!-- Nav Item - User Information -->
           <div class="d-flex">
-            <div class="text-style-small pt-2 pr-4">
+            <div class="text-style-small pr-4" style="margin-top: 10px;">
               {{ $today }}, {{ $now }}
             </div>
             <div class="dropdown">

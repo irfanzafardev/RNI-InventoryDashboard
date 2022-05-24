@@ -5,6 +5,7 @@
 html, body, form, fieldset, table, tr, td, img {
   font-family: 'Segoe UI', helvetica, sans-serif !important;
   font-weight: 400;
+  scroll-behavior: smooth;
 }
 
 /* dDasboard Number */
@@ -545,4 +546,8 @@ label {
   font-weight: normal;
   font-size: 12px;
   line-height: 18px;
+}
+
+.table tbody tr:first-child td:last-child .delete-button {
+  display: none;
 }

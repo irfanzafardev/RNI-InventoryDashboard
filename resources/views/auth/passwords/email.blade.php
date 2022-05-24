@@ -33,11 +33,12 @@
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary bg-darkblue">
+                                <button type="submit" class="btn btn-primary bg-darkblue float-end">
                                     {{ __('Send Password Reset Link') }}
                                 </button>
+                            <a href="{{ url()->previous() }}" class="btn btn-light float-end me-3">Cancel</a>
                             </div>
-                        </div>
+                          </div>
                     </form>
                 </div>
             </div>
